@@ -8,24 +8,20 @@ tags:
 - oauth2
 ---
 
-OIDC Infrastructure design
-
-<!--more-->
-
-## OIDC IDP Design
-
-### Endpoints
+## Endpoints
 
 - discovery endpoint(`/.well-known/openid-configuration`), show all endpoints for client
-- auth endpoint(`/auth`), trigger auth workflow
-- token endpoint(`/token`), get token info
+- auth endpoint(`/auth`), trigger authorize workflow
+- token endpoint(`/token`), exchange/refresh token info
 - JWKS endpoint(`/.well-known/jwks.json`), is used to verify jwt token, such like id token
 - user endpoint(`/me`), get lateset user info
 - end session endpoint(`/session/end`), is used to logout
 
-### Token
+<!--more-->
 
-#### ID Token
+## Token
+
+### ID Token
 
 It's a `JWT token`, represents a user credentials for successful login user,
 and includes basic user profile which defined by scope and claim.
@@ -56,7 +52,7 @@ most important fields in ID Token:
 Client uses HTTP Header `Authorization: "Bearer <ID Token>"` to send request to server,
 then server could use `JWKS endpoint` to get public key to verify ID Token.
 
-#### Access Token
+### Access Token
 
 It mostly is an `Opaque token` which is a random string
 and used to access IDP resources, such like below cases:
@@ -65,19 +61,20 @@ and used to access IDP resources, such like below cases:
 
 Access token is mostly `saved in backend`. If client required IDP resources, backend service could be proxy to get related resources and return to client.
 
-#### Refresh Token
+### Refresh Token
 
-It's used to get a new Access Token and ID Token when Access Token is expired by invoking `token endpoint`.
+It's used to get a new Access Token and ID Token when Access Token / ID Token is expired by invoking `token endpoint`.
 
 It should be `saved in backend` for security.
 
-It requires scope `offline_access` and `prompt=consent` in querystring when trigger auth workflow.
+It requires scope `offline_access` and `prompt=consent` in querystring when trigger auth workflow,
+and use grant type `refresh_token` when refresh token with `token endpoint`
 
 More details for reference:
 
 - [刷新 Access Token](https://docs.authing.cn/v2/guides/federation/oidc.html#%E5%88%B7%E6%96%B0-access-token)
 
-#### Expiration Time for Tokens
+### Expiration Time for Tokens
 
 `Refresh Token > ID Token >= Access Token`
 
@@ -87,7 +84,7 @@ that's why expiration time for ID Token/Access Token could be short.
 When Refresh Token is expired, user must re-login again to obtain new token info include refresh token,
 to avoid requiring users to login frequently, refresh tokens are given a long expiration time.
 
-### auth Workflow with authorization_code
+## authorize Workflow with authorization_code
 
 ```plantuml
 
@@ -117,7 +114,7 @@ group get token phase
 C --> S: send received code
 S --> IDP: get token info by code with token endpoint
 IDP --> S: return token info include id token, access token, refresh token and profile.
-S --> IDP: use access token to get user info by user endpoint
+S --> S: decode Id Token to get user info
 S --> S: save user info and token info with session
 S --> C: return user info and access token
 C --> C: save access token and show user info from id token
@@ -138,7 +135,7 @@ group refresh token in slient
 
 C --> S: trigger refresh access token when it will be expired
 S --> IDP: get new access token with original access token and refresh token
-S --> IDP: use access token to get user info by user endpoint
+S --> S: decode Id Token to get user info
 S --> C: return user info and access token
 C --> C: save user info and access token
 
@@ -162,34 +159,80 @@ good resources for reference:
 
 - demo show in [使用 OIDC 授权码模式](https://docs.authing.cn/v2/federation/oidc/authorization-code/?step=0)
 
-#### SPA with authorization_code + PCKE
-
-for SPA application without server, it recommends use `authorization_code + PCKE` flow.
-
-TODO
-
-### Model Design
-
-TODO
-
 ## Client Integration
 
-### Login
+Preparation:
 
+- client id/client secret, presents client is trusted source
 - login callback
+- logout callback
+- scope
+- grand type
 
-TODO
+### Login and get Id Token
 
-### Token Refresh
-
-- refresh token
-- Silent Authentication
-
-TODO
+1. Client backend generates IDP login url for client frontend
+2. Frontend redirects to IDP `auth endpoint` by generated login url
+3. When login success, IDP will redirect frontend to `login callback` page with code
+4. Frontend will transfer code to backend, then backend will exchange token by code with IDP `token endpoint`
+5. Backend return id token to frontend after token exchange.
+6. Show user info from id token
 
 ### Logout
 
-- logout callback
+1. Client backend generate IDP logout url for frontend
+2. Frontend redirects to IDP `end session endpoint` by generated logout url
+3. When logout success, IDP will redirect frontend to `logout callback` page
+4. Clear token in frontend/backend session
+5. Frontend redirects to root page
+
+### Verify Id Token
+
+1. Client frontend uses HTTP Header `Authorization: "Bearer <ID Token>"` to send request to backend,
+2. Backend will use `JWKS endpoint` to get public key to verify ID Token
+3. If invalid, request will be denied with http status 401 Unauthorized frontend should re-login.
+
+### Refresh Expired Id Token
+
+1. Check if Id Token is expired periodly or when sending request with id token
+2. If expired, client frontend apply to refresh Id Token with backend
+3. Backend will invoke `token endpoint` to get new Token info, include access token and id token.
+4. Backend update token in session, then return new id token to frontend
+5. Frontend save id token and update user info
+
+### SPA Integration
+
+It recommends use `authorization_code + PKCE` flow for SPA, because it has no backend.
+
+More details please refer:
+
+- [授权码 + PKCE 模式](https://docs.authing.cn/v2/guides/federation/oidc.html#%E6%8E%88%E6%9D%83%E7%A0%81-pkce-%E6%A8%A1%E5%BC%8F)
+- [使用 OIDC 授权码 + PKCE 模式](https://docs.authing.cn/v2/federation/oidc/pkce/?step=0)
+
+#### Refresg Id Token in SPA
+
+#### Refresh with refresh token
+
+It requires store refresh token in frontend, and it's a security risk.
+
+Mostly it requires OIDC IDP to support `refresh token with rotation and expiring old refresh token`,
+then there will no security risk.
+
+It's recommended by using `refresh token with rotation`.
+
+#### Silent Authentication
+
+It uses a **hidden** `<iframe>` that sends a new authorization request to OIDC IDP with `prompt=none`.
+
+It requires:
+
+- user session should be alive in OIDC IDP
+- `prompt=none` is supported by OIDC IDP for this client
+- `silent callback` url in redirect_uri of registered client in OIDC IDP
+
+Mostly use 3rd part library, such as `oidc-client-ts`, instead of implement by youself.
+
+## OIDC IDP Model Design
 
 TODO
 

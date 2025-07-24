@@ -4,8 +4,8 @@ date: 2024-06-15 20:47:19
 categories:
 - quick-guide
 tags:
-- quick-guide
 - TypeScript
+- TS
 ---
 
 TS 是**强类型**语言，**只涉及类型，不涉及值**，所有和值相关的处理，都是由 JS 完成。通过**编译**，会将 TS 转为 JS 代码。

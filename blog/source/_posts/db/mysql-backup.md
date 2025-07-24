@@ -1,5 +1,5 @@
 ---
-title: MySQL备份和恢复
+title: MySQL 运维
 date: 2021-06-16 20:47:19
 categories:
 - DB
@@ -15,7 +15,31 @@ tags:
 
 <!--more-->
 
-## 原理
+## 对 schema 的修改
+
+MySQL中大部分执行alter table来修改表结构的操作都会导致**重建表**, 即用新的结构创建新表, 将旧表数据导入新表, 最后删除旧表. 这对大表来说需要花费很大的时间和代价.
+
+大部分的alter table操作都会导致MySQL服务中断. 对于在生产环境中修改表结构, 一般可采用以下方法:
+
+- 在备用数据库上修改结构后, 和主库进行切换
+- 影子拷贝, 操作同创建影子表的操作; 也可借助一些第三方工具来进行影子拷贝
+
+### 影子表
+
+主要用于重建表，操作流程：
+
+1. 创建相同结构的新表, `create table <test_table_new> like <test_table>`
+2. 填充数据, 数据有可能时老数据, 也可能时重新整理后的数据
+3. 通过重命名来交换新表和旧表的名字,
+
+    ``` sql
+    rename table <test_table> to <test_table_old>
+    rename <test_table_new> to <test_table>   
+    ```
+
+4. 如果出问题了, 可以很容易回滚旧表
+
+## 备份和恢复策略
 
 规划备份和恢复策略时, 可以根据一些需求来考虑:
 
@@ -145,20 +169,20 @@ $ mysqldump --single-transaction --tab=<backup_dirname> <database_name> [table1,
 4. 在下一次全备份之前， 定时备份二进制日志
 
 ```bash
-$ mysql -e "flush logs;"
-$ mysql -e "show binary logs;"
-$ mkdir <backup_dir_path>
-$ mysqldump --single-transaction -d <database_name>
-$ mysqldump --single-transaction --tab=<backup_dir_path> <database_name>
-$ mysql -e "purge binary logs to ‘<最新的二进制日志>'"
+mysql -e "flush logs;"
+mysql -e "show binary logs;"
+mkdir <backup_dir_path>
+mysqldump --single-transaction -d <database_name>
+mysqldump --single-transaction --tab=<backup_dir_path> <database_name>
+mysql -e "purge binary logs to ‘<最新的二进制日志>'"
 ```
 
 二进制日志文件备份流程：
 
 ```bash
-$ mysql -e "flush logs;"
-$ cp binlog.* <backup_dir_path>
-$ mysql -e "purge binary logs to ‘<最新的二进制日志>'"
+mysql -e "flush logs;"
+cp binlog.* <backup_dir_path>
+mysql -e "purge binary logs to ‘<最新的二进制日志>'"
 ```
 
 ## 恢复
