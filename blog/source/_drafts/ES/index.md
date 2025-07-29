@@ -1,7 +1,10 @@
 ---
+title: ES Guide
+date: 2025-06-30 20:47:19
+categories:
+- DB
 tags:
-  - 搜索引擎
-  - ES
+- ES
 ---
 
 # 文档 Document
@@ -26,11 +29,11 @@ tags:
 
 # 索引 Index
 
-![[数据建模.png]]
+![数据建模](数据建模.png)
 
 文档的容器, 在逻辑空间上的一类文档的结合. 一个索引就相当与数据库中的一个表.
 
-![[创建索引的流程.png]]
+![创建索引的流程](创建索引的流程.png)
 
 ### Mappings
 
@@ -58,7 +61,7 @@ tags:
 - nested, 字段会被存储成独立的文档, 存储在相同的节点上
 - parent/child join, 定义父子关系, 分离两个对象文档, 更新互不影响. 添加子文档时, 要指定routing为对应的父文档id, 保证它们存储在相同的分片上.
 
-![[复杂类型.png]]
+![复杂类型](复杂类型.png)
 
 ES不擅长处理关联关系
 ### settings
@@ -100,7 +103,7 @@ ES不擅长处理关联关系
 
 尽量避免使用动态映射
 
-![[动态索引.png]]
+![动态索引](动态索引.png)
 
 ## 节点 Node
 
@@ -109,7 +112,7 @@ ES不擅长处理关联关系
 - data node， 负责保存分片数据
 - coordinating node， 负责接受请求, 将请求分发到合适的节点, 最终把结果汇集在一起. 每个节点默认为coordinating node
 
-![[节点上的索引流程.jpg]]
+![节点上的索引流程](节点上的索引流程.jpg)
 
 ## 数据持久化过程
 
@@ -117,7 +120,7 @@ ES不擅长处理关联关系
 
 ### write
 
-![[write.png]]
+![write](write.png)
 
 一个新文档过来，会存储在 in-memory buffer 内存缓存区中，顺便会记录 Translog（Elasticsearch 增加了一个 translog ，或者叫事务日志，在每一次对 Elasticsearch 进行操作时均进行了日志记录）。
 
@@ -125,7 +128,7 @@ ES不擅长处理关联关系
 
 ### refresh
 
-![[refresh.png]]
+![refresh](refresh.png)
 
 refresh 默认 1 秒钟，执行一次上图流程。ES 是支持修改这个值的，通过 index.refresh_interval 设置 refresh （冲刷）间隔时间。refresh 流程大致如下：
 
@@ -136,7 +139,7 @@ refresh 默认 1 秒钟，执行一次上图流程。ES 是支持修改这个值
 
 ### flush
 
-![[flush.png]]
+![flush](flush.png)
 
 上个过程中 segment 在文件系统缓存中，会有意外故障文档丢失。那么，为了保证文档不会丢失，需要将文档写入磁盘。那么文档从文件缓存写入磁盘的过程就是 flush。写入磁盘后，清空 translog。具体过程如下：
 
@@ -164,7 +167,7 @@ Elasticsearch通过在后台进行Merge Segment来解决这个问题。小的段
 
 所有的搜索系统一般都是两阶段查询，第一阶段查询到匹配的DocID，第二阶段再查询DocID对应的完整文档，这种在Elasticsearch中称为query_then_fetch。
 
-![[读取过程.jpg]]
+![读取过程](读取过程.jpg)
 
 
 # 搜索 Search
@@ -222,7 +225,7 @@ Elasticsearch通过在后台进行Merge Segment来解决这个问题。小的段
 	- range, 对指定字段的范围进行分桶
 - metric, 统计计算
 
-![[aggregations.png]]
+![aggregations](aggregations.png)
 
 # 优化
 
@@ -259,18 +262,18 @@ Elasticsearch通过在后台进行Merge Segment来解决这个问题。小的段
 # ELK
 
 基本的日志系统
-![[beats+logstath+elasticsearch+kibana.png]]
+![beats+logstath+elasticsearch+kibana](beats+logstath+elasticsearch+kibana.png)
 
 增加数据源，和使用MQ
-![[beats+MQ+logstash+elasticsearch+kibana.png]]
+![beats+MQ+logstash+elasticsearch+kibana](beats+MQ+logstash+elasticsearch+kibana.png)
 
 Metric收集和APM性能监控
-![[Metric收集和APM性能监控.png]]
+![Metric收集和APM性能监控](Metric收集和APM性能监控.png)
 
 
 # Lucene
 
-![[Lucene.png]]
+![Lucene](Lucene.png)
 
 **Segment内部**（有着许多数据结构）
 - Inverted Index，一个有序的数据字典Dictionary（包括单词Term和它出现的频率）和单词Term对应的Postings（即存在这个单词的文件）
