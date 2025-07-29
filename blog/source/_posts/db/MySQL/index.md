@@ -1,9 +1,16 @@
 ---
+title: MySQL with InnoDB
+date: 2025-06-30 20:47:19
+categories:
+- DB
 tags:
-  - db
+- DB
+- mysql
 ---
 
-# MySQL with InnoDB
+
+
+<!--more-->
 
 ## SQL 执行过程
 
@@ -60,11 +67,9 @@ binlog 是逻辑日志，记录内容是语句的原始逻辑，会记录所有�
 
 ![[binlog.png]]
 
-
 ### 两段式提交
 
 ![[两段式提交.png]]
-
 
 ### undo log
 
@@ -81,6 +86,7 @@ undo log 属于逻辑日志，记录的是 SQL 语句，利用 undo log 将数�
 - **`update undo log`**， `update` 或 `delete` 操作中产生的 `undo log`。该 `undo log`可能需要提供 `MVCC` 机制，因此不能在事务提交时就进行删除。提交时放入 `undo log` 链表，等待 `purge线程` 进行最后的删除
 
 不同事务或者相同事务的对同一记录行的修改，会使该记录行的 `undo log` 成为一条链表，链首就是最新的记录，链尾就是最早的旧记录。
+
 ## 隔离级别
 
 MySQL 默认采用的 `REPEATABLE_READ` 隔离级别， Oracle 默认采用的 `READ_COMMITTED` 隔离级别.
@@ -107,6 +113,7 @@ MySQL 的 `REPEATABLE_READ` 隔离级别基于锁和 MVCC 机制共同实现的�
 当我们执行 `UPDATE`、`DELETE` 语句时，如果 `WHERE`条件中字段没有命中唯一索引或者索引失效的话，就会导致扫描全表对表中的所有行记录进行加锁。
 
 行级锁的分类：
+
 - Record Lock
 - Gap Lock
 - Next-Key Lock，等于`Record Lock + Gap Lock`，主要目的是为了解决幻读问题（MySQL 事务部分提到过）
@@ -131,6 +138,7 @@ MySQL 的 `REPEATABLE_READ` 隔离级别基于锁和 MVCC 机制共同实现的�
 **MVCC** 是多版本并发控制方法，即对一份数据会存储多个版本，通过事务的可见性来保证事务能看到自己应该看到的版本。通常会有一个全局的版本分配器来为每一行数据设置版本号，版本号是唯一的。
 
 MVCC 在 MySQL 中实现所依赖的手段主要是: **隐藏字段（DB_TRX_ID， DB_ROLL_PTR， DB_ROW_ID）、read view、undo log**。
+
 ### 当前读 & 快照读
 
 - **快照读**（一致性非锁定读）就是普通的 `SELECT` 语句，不包括 `select ... for update/share`
@@ -142,6 +150,7 @@ MVCC 在 MySQL 中实现所依赖的手段主要是: **隐藏字段（DB_TRX_ID�
 
 - 在 RC 级别下，对于快照数据，一致性非锁定读总是读取被锁定行的最新一份快照数据。
 - 在 RR 级别下，对于快照数据，一致性非锁定读总是读取本事务开始时的行数据版本。
+
 ### 可见性
 
 ![[事务可见性.jpg]]
@@ -193,6 +202,7 @@ type 常见的几种类型具体含义如下：
 - **ALL**：全表扫描。
 
 Extra常见的值：
+
 - **Using filesort**：在排序时使用了外部的索引排序，没有用到表内索引进行排序。
 - **Using temporary**：MySQL 需要创建临时表来存储查询的结果，常见于 ORDER BY 和 GROUP BY。
 - **Using index**：表明查询使用了覆盖索引，不用回表，查询效率非常高。
@@ -200,160 +210,6 @@ Extra常见的值：
 - **Using where**：表明查询使用了 WHERE 子句进行条件过滤。一般在没有使用到索引的时候会出现。
 - **Using join buffer (Block Nested Loop)**：连表查询的方式，表示当被驱动表的没有使用索引的时候，MySQL 会先将驱动表读出来放到 join buffer 中，再遍历被驱动表与驱动表进行查询。
 
-## 运维
-
-### 对 schema 的修改
-
-MySQL中大部分执行alter table来修改表结构的操作都会导致**重建表**, 即用新的结构创建新表, 将旧表数据导入新表, 最后删除旧表. 这对大表来说需要花费很大的时间和代价.
-
-大部分的alter table操作都会导致MySQL服务中断. 对于在生产环境中修改表结构, 一般可采用以下方法:
-
-- 在备用数据库上修改结构后, 和主库进行切换
-- 影子拷贝, 操作同创建影子表的操作; 也可借助一些第三方工具来进行影子拷贝
-#### 影子表
-
-主要用于重建表，操作流程：
-
-1. 创建相同结构的新表, `create table <test_table_new> like <test_table>`
-2. 填充数据, 数据有可能时老数据, 也可能时重新整理后的数据
-3. 通过重命名来交换新表和旧表的名字, 
-``` sql
-$ rename table <test_table> to <test_table_old>
-$ rename <test_table_new> to <test_table>   
-```
-5. 如果出问题了, 可以很容易回滚旧表
-
-### 备份和恢复
-
-规划备份和恢复策略时, 可以根据一些需求来考虑:
-
-- 恢复点目标(RPO), 指恢复到哪个时间点, 可以容许丢失多少数据
-- 恢复时间目标(RTO), 指恢复可以容许的恢复时间长度
-- 备份到目的地的时间, 比如本地, NFS等
-
-备份的内容：
-
-- MySQL配置
-- schema和数据
-- 二进制日志
-
-Innodb是一个ACID系统， 任何时刻， 每个提交的事务 要么在**Innodb数据文件**中， 要么在**二进制日志文件**中。 所以为了保证一致性， 即属于同一个时间点， 备份Innodb时需要对**数据和二进制日志**都进行备份。
-
-#### 逻辑备份
-
-逻辑备份**只用于数据备份**, 通过**MySQL服务器**将存储引擎中的数据导出, 与存储引擎无关, 并且可以对备份的数据进行裁剪.
-缺点： 需要通过MySQL加载, 转为存储格式, 并且需要重建索引, 过程很慢, 尤其在加载一个巨大的导出文件的代价很大
-需要尽量控制导出的数据文件大小，在保证一致性的前提下， 按照业务逻辑导出到多个文件中，以控制导出到粒度。
-
-导出方式:
-
-- 导出sql格式的schema和数据
-- 导出sql格式的schema和csv格式的数据, 必须保证secure_file_priv变量不为NULL, 以及相应的路径必须存在. 需要在MySQL启动前在my.conf中配置
-
-``` sql
--- 将schema导出  
-$ mysqldump --single-transaction -d --databases <database_name> > schema.sql  
--- 将相关连的表的数据导到sql文件中  
-$ mysqldump --single-transaction -t --databases <database_name> > data.sql  
--- 每张表都会导出一个sql格式的表结构文件, csv格式的数据导文件  
-$ mysqldump --single-transaction --tab=<backup_dirname> <database_name> [table1, ...]
-```
-
-#### 物理备份
-
-优点:
-
-- 物理备份的方式更加简单高效
-- 恢复往往要比逻辑备份要快, 省去了加载和重建过程
-
-缺点:
-
-- 往往备份的大小要比逻辑备份大得多
-
-物理备份方式:
-
-- 基于文件拷贝的备份, 适用于关机下备份， 配置文件备份， 日志备份等
-- 通过快照进行备份
-
-##### 快照备份
-
-快照功能需要文件系统的支持，利用了文件系统的“写时复制”（Copy-on-Write）技术，在备份过程中只复制被修改的页，从而大大提高了备份效率。
-
-物理数据存放在`/var/lib/mysql`目录下， 每个数据库存储在相同名字的目录下， 同时也包含服务器配置和二进制日志文件。
-
-快照备份是非常好的在线备份方法, 并且可以减少持有锁的时间。 又分为：
-
-- 最小化锁快照备份, 只锁MyISAM表，InnoDB不需要锁
-- 无锁快照备份, 如果MyISAM不会发生修改, 就可以不锁表
-
-快照备份后， 通过挂载快照， 拷贝数据文件到备份的地方。
-
-但使用快照备份需要额外的磁盘空间， 用于快照需要的写时复制空间。 并且要求将MySQL的数据相关文件（/var/lib/mysql/）部署在同一个专有卷上。 而且会导致原始卷和快照比正常读写性能要差， 尤其在过多使用写时复制空间时。
-
-对数据进行物理快照备份后, 需要构建一个MySQL实例并加载物理备份, 然后使用mysqlcheck可以对所有的表执行`CHECK TABLES`操作, 检查物理备份的正确性.
-
-##### MySQL配置备份
-
-- /etc/mysql/my.cnf, 默认配置文件
-- /etc/mysql/conf.d, 自定义配置目录, 会覆盖默认配置中的设置.
-
-##### 二进制日志备份
-
-二进制日志默认存储在`/var/lib/mysql/`目录下, 格式为`binlog.*`, 可通过命令`mysqlbinlog -d <database_name> <binlog>`来查看指定数据库的二进制日志
-
-常用命令：
-
-- 查看二进制日志， `show binary logs`;
-- 创建新的二进制日志文件, `flush logs`;
-- 清理指定二进制日志文件之前的日志文件, `purge binary logs to 'binlog.000005'`;
-
-在备份数据之前， 建议flush logs生成新的日志， 可保证备份期间的操作被清楚的记录在最新的日志文件里。
-
-#### 备份最佳实践
-
-一般情况下备份策略采用长周期的逻辑全备份（保底恢复，但加载慢）+ 短周期的快照物理备份（快速恢复） + 二进制日志文件定时备份（恢复到某个时间点）。 如果数据量不大， 则只需要逻辑全备份 + 二进制日志文件备份就可以。
-
-逻辑全备份流程：
-
-1. 在进行全备份之前， 创建新二进制日志， 保证在备份期间的操作会被记录到新二进制日志中
-2. 进行全备份
-3. 清理老的二进制日志， 只保留最新二进制日志
-4. 在下一次全备份之前， 定时备份二进制日志
-
-``` sql
--- 创建新的二进制日志， 保证备份期间的操作会被记录到新二进制日志中
-$ mysql -e "flush logs;"  
-$ mysql -e "show binary logs;"  
-$ mkdir <backup_dir_path>  
--- 备份 schema 以及 数据
-$ mysqldump --single-transaction -d <database_name>  
-$ mysqldump --single-transaction --tab=<backup_dir_path> <database_name>
--- 备份二进制日志
-$ cp binlog.* <backup_dir_path>
--- 清理老的二进制文件
-$ mysql -e "purge binary logs to ‘<最新的二进制日志>'"
-```
-
-#### 基于时间点的逻辑备份的恢复
-
-在恢复过程中， 要保证MySQL除了恢复进程外不接受其他访问， 直到恢复并检测完毕， 重新提供服务为止。
-
-基于时间点的恢复要求建立日常备份, 并保证所需要的二进制日志有效. 这样才能基于某一次全备份, 然后从那个时间点开始重放二进制日志, 将数据来恢复到指定时间.
-
-基于逻辑备份恢复和二进制重放都是一个很慢的过程, 在开始恢复之前， 建议通过`set sql_log_bin=0;`关闭二进制日志。
-
-``` bash
-## 禁用二进制日志  
-$ mysql -e "set sql_log_bin=0;"  
-## 创建schema  
-$ mysql < schema.sql  
-## 导入数据, mysqlimporter是对load data infile命令的封装  
-$ mysqlimportor <database_name> <csv数据文件路径>  
-## 重放从那个时间点之后的二进制日志  
-$ mysqlbinlog --database=<database_name> <binlog二进制文件路径> | mysql  
-## 打开二进制日志  
-$ mysql -e "set sql_log_bin=1;"
-```
 ## 最佳实践
 
 - 字符集使用 utf8mb4
