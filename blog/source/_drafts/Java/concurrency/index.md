@@ -12,6 +12,13 @@ JUC
 
 <!--more-->
 
+## IO 模型
+
+- BIO
+- NIO
+  - IO 多路复用
+- AIO
+
 ## ThreadPool
 
 ### BlockingQueue
