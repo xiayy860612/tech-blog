@@ -49,7 +49,7 @@ TODO
 
 #### 线性结构的双指针遍历
 
-#### 前后指针
+##### 前后指针
 
 ```java
 public ListNode reverseList(ListNode head) {
@@ -66,7 +66,7 @@ public ListNode reverseList(ListNode head) {
 }
 ```
 
-#### 快慢指针
+##### 快慢指针
 
 ```java
 public boolean hasCycle(ListNode head) {  
@@ -84,7 +84,7 @@ public boolean hasCycle(ListNode head) {
 }
 ```
 
-#### 头尾指针向中间靠拢
+##### 头尾指针向中间靠拢
 
 ``` java
 int l = i + 1;  
@@ -427,7 +427,11 @@ public int climbStairs(int n) {
 
 ### 位运算
 
-TODO
+![异或](xor.png)
+
+![常用操作1](bit-op1.png)
+
+![常用操作2](bit-op2.png)
 
 ## 排序
 
@@ -661,9 +665,28 @@ class LRUCache extends LinkedHashMap<Integer, Integer> {
 }
 ```
 
-### 布隆过滤器
+### 双指针确定边界
 
-TODO
+```java
+public int removeDuplicates(int[] nums) {
+  if (nums.length <= 2) {
+    return nums.length;
+  }
+
+  int l = 2;
+  for(int r = 2; r < nums.length; r++) {
+    // l 是要写的位置
+    // nums[r] == nums[l - 2] => [l-2, r] 都一样，
+    // 而 r >= l，即有超过2个连续一样的
+    if (nums[r] != nums[l - 2]) {
+      nums[l] = nums[r];
+      ++l;
+    }
+  }
+
+  return l;
+}
+```
 
 ## Reference
 
