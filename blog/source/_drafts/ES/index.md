@@ -83,7 +83,7 @@ TODO
 - delete, `DELETE /<index>/_doc/<id>`
 - 重建索引
   - update by query， 因为索引的新增修改对老的数据未生效, 需要通过update_by_query在现有的索引上进行重建
-  - reindex，想要修改已有的索引设置, 需要在其他索引上进行重建, 将源的source中的原始数据在新的索引上进行重建
+  - reindex，想要修改已有的索引设置, 需要在其他索引上进行重建, 将源的source中的原始数据在新的索引上进行重建，并通过 alias 来查询索引数据
 
 ### 查询
 
@@ -117,6 +117,7 @@ TODO
 对数据进行分组，还可以对分组后的结果集进行进一步的 aggregate。
 
 - filter，对将要分组的数据集进行前置过滤
+
 - terms，基于字段进行分组
 - filters，基于条件进行分组
 - range，基于数值范围进行分组
