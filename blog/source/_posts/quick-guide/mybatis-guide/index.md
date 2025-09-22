@@ -8,6 +8,7 @@ tags:
 - mybatis
 ---
 
+快速掌握 MaBatis Mapper 的定义
 
 <!--more-->
 
@@ -60,13 +61,11 @@ resultMap 定义 Entity 与 DB Table 的映射关系，包括表名以及字段�
 - type, 指定对应类型的全路径
 - `<id>`，指定 Entity 的唯一键
 - `<result>`, 定义 entity 的属性与 table 字段的映射关系
-- `<association>`, 映射复杂类型的 entity 的属性
 
 #### 复杂类型的映射
 
 自动映射，默认需要保证返回的列名和类型中的属性名一致。
 可以通过别名(alias)，保证返回的列名 column 和类型中的属性名 property 一致
-
 
 - 通过在 resultMap 中手动配置列名和类型属性名之间的映射
 - 通过 `extends` 继承其他 resultMap 的配置
