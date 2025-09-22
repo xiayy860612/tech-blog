@@ -240,3 +240,4 @@ TODO
 
 - [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0-final.html)
 - [JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
+- [OAuth 2.0 的四种方式](https://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html)

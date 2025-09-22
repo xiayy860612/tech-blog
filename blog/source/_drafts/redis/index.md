@@ -273,6 +273,19 @@ Redis 的内存淘汰策略只有在运行内存达到了配置的最大内存�
 - 只追加文件（append-only file，AOF），实时性
 - RDB 和 AOF 的混合持久化（Redis 4.0 新增）
 
+#### RDB
+
+- 自动触发, 通过 redis.conf 中配置 `save m n`，即在m秒内有n次修改时，自动触发bgsave生成rdb文件
+- 手动触发，通过`save/bgsave`
+
+一般都是采用`自动触发`.
+
+RDB中的核心思路是 Copy-on-Write，来保证在进行快照操作的这段时间，需要压缩写入磁盘上的数据在内存中不会发生变化。
+
+#### AOF
+
+AOF日志采用写后日志，即先写内存，后写日志
+
 #### AOF
 
 TODO
