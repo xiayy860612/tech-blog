@@ -1,5 +1,5 @@
 ---
-title: LLM 介绍
+title: LLM and Transformer
 date: 2025-11-16 14:00:00
 categories:
 - ai
@@ -8,15 +8,17 @@ tags:
 - LLM
 ---
 
-模型类型：
+LLM 是基于 Transformer 通用模型架构进行构建的语言模型。
+
+<!--more-->
+
+## 模型类型
 
 - 基础模型，随机初始化权重，没有任何先验知识。
 - 预训练模型，需要以**无监督学习**的方式接受**大量原始文本**的训练
   - 非指令模型
   - 指令模型
 - 专用模型，针对特定领域，使用**特定数据集**通过迁移学习（transfer learning）训练的模型
-
-<!--more-->
 
 ```puml
 object "基础模型" as BM {
@@ -44,9 +46,7 @@ PTM --> DM: 微调
 
 ## Transformer 通用模型架构
 
-LLM 是基于 Transformer 通用模型架构进行构建的语言模型。
-
-有以下部分组成:
+Transformer 通用模型架构有以下部分组成:
 
 - Encoder：编码器接收输入并构建其**表示（特征）**。这意味着模型的使命是从输入中获取理解。
 - Decoder：解码器使用编码器的表示（特征）以及其他输入来生成目标序列。这意味着模型的使命是生成输出。
@@ -71,9 +71,8 @@ Transformer 模型的一个关键特性是**注意力层**, Transformer 架构�
 
 ## Transformer 处理流程
 
-Transformer 提供一个统一的接口来加载、训练和保存任何 Transformer 模型。
-
-其中最基本的对象是 `pipeline()` 函数。它将模型与所需的预处理和后续处理步骤连接起来，使我们能够通过直接输入任何文本并获得最终的结果。
+Transformer 提供一个统一的接口 `pipeline()` 来加载、训练和保存任何 Transformer 模型。
+它将模型与所需的预处理和后续处理步骤连接起来，使我们能够通过直接输入任何文本并获得最终的结果。
 
 pipeline 集成了三个步骤：**预处理、模型计算和后处理**。
 
@@ -87,12 +86,12 @@ Transformer 模型无法直接处理原始文本，只接受 `tensor（张量）
 它将负责以下的几个操作：
 
 - tokenization 分词，将输入拆分为单词、子单词或符号（如标点符号），称为标记(token)
-- 通过**词汇表 vocabulary** 将每个 token 映射到一个数字，称为 input ID
-- 添加模型需要的其他输入，例如特殊标记（如 [CLS] 和 [SEP] ）
+- 通过**词汇表 vocabulary** 将每个 token 映射到一个数字 `input ID`
+- 根据模型需要，添加其他输入，例如特殊标记（如 [CLS] 和 [SEP] ）
   - 位置编码：指示每个标记在句子中的位置。
   - 段落标记：区分不同段落的文本。
   - 特殊标记：例如 [CLS] 和 [SEP] 标记，用于标识句子的开头和结尾。
-- 将 input ID 列表转换为 tensor
+- 将 input IDs 转换为 tensor，并将长度不一致的 input IDs 进行填充，保证所有 input IDs 长度一致
 
 需要保证使用**相同的模型**来进行 tokenizer 和模型计算，因为涉及到一些共用的数据：
 
@@ -113,16 +112,21 @@ tokenization 分词的目标:
 - 基于字符（Character-based），
   - PROS: 相比基于单词的方法，vocabulary 和 unknown token 都要小很多
   - CONS: 字符本身可能并没有多大意义, 还导致模型需要处理大量的 token
-- (推荐) 基于子词（subword）
+- (推荐) 基于子词（sub-word）
   - 它依赖于一个原则：常用词不应被分解为更小的子词，但罕见词应被分解为有意义的子词。将前缀/后缀也作为子词。
   - PROS: 子词提供大量的语义信息, 并可以通过子词组合可以得到其他有意义的子词。在保持空间效率的同时具有语义意义
 
 #### Padding 以及 attention mask
 
-无法将多个不同长度的 inputs ID 列表直接转换为张量，为了解决这个问题，通常使用**填充输入（Padding）**。在值较少的 inputs ID 列表中添加名为 `padding_id` 的特殊 token 来确保所有的列表长度相同，
+无法将多个不同长度的 inputs ID 列表直接转换为张量，为了解决这个问题，通常使用**填充输入（Padding）**。
+在值较少的 inputs ID 列表中添加名为 `padding_id` 的特殊 token 来确保所有的列表长度相同，
 然后转为标准长度的张量。
 
-因为 Transformer 模型的关键特性：**注意力层**，它考虑了每个 token 的上下文信息。这具体来说，每个 token 的含义并非单独存在的，它的含义还取决于它在句子中的位置以及周围的其他 tokens。当我们使用填充（padding）来处理长度不同的句子时，我们会添加特殊的“填充 token”来使所有句子达到相同的长度。但是，注意力层会将这些填充 token 也纳入考虑，因为它们会关注序列中的所有 tokens。这就导致了一个问题：尽管填充 token 本身并没有实际的含义，但它们的存在会影响模型对句子的理解。
+因为 Transformer 模型的关键特性：**注意力层**，它考虑了每个 token 的上下文信息。
+这具体来说，每个 token 的含义并非单独存在的，它的含义还取决于它在句子中的位置以及周围的其他 tokens。
+当我们使用填充（padding）来处理长度不同的句子时，我们会添加特殊的“填充 token”来使所有句子达到相同的长度。
+但是，注意力层会将这些填充 token 也纳入考虑，因为它们会关注序列中的所有 tokens。
+这就导致了一个问题：尽管填充 token 本身并没有实际的含义，但它们的存在会影响模型对句子的理解。
 所以就需要通过使用**注意力掩码（attention mask）层**来告诉注意层需要忽略的填充 token 是哪些。
 
 注意力掩码（attention mask）是与 inputs ID 张量形状完全相同的张量，
@@ -139,7 +143,7 @@ tokenization 分词的目标:
 
 ![model process flow](model-process-flow.png)
 
-模型由其**嵌入层和后续层**表示。
+模型由其**嵌入层和后续层**表示，后续层即神经网络层。
 嵌入层将 tokenize 后输入中的每个 inputs ID 转换为表示关联 token 的向量。
 后续层使用**注意机制**操纵这些向量，生成句子的最终表示。
 
@@ -154,14 +158,11 @@ tokenization 分词的目标:
 
 #### 模型头 head
 
-输出包含 `hidden states` 的高维向量会直接发送到**模型头**进行处理。
+Transformers 的模型头都是围绕处理特定任务而设计的，所以必须根据需求/任务来为模型选择特定的模型头。
 
-模型头通常由一个或几个线性层组成，它的输入是隐状态的高维向量，
+模型头通常由一个或几个线性层组成，它的输入是 `hidden states` 的高维向量，
 它会并将其**投影到不同的维度**，所以输出向量的维度会比输入向量的小得多，
 一般表示成 `logits（对数几率）`, 它是模型最后一层输出的**原始的、未标准化的分数**。
-
-Transformers 中有许多不同的 architecture，每种 architecture 都是围绕处理特定任务而设计的。
-所以要进行模型头的处理，必须根据需求/任务来为模型选择特定的模型头。
 
 常见任务类型的模型的模型头后缀如下：
 
@@ -199,9 +200,204 @@ Transformers 中有许多不同的 architecture，每种 architecture 都是围�
 由于模型的输出是 logits，是一种原始的、未标准化的分数。
 所以要转换为**概率**，还需要经过 `SoftMax 层`进行计算，每个输出中的所有概率之和为 1。
 
+## 批处理
+
+为了更好的进行训练，一般都会使用**批处理**以及使用 `Accelerate` 库在多个 GPU 或 TPU 上启用分布式训练。
+
+- 需要使用 `collate` 函数在预处理阶段对同一个 batch 的数据进行填充
+- 使用 `Accelerate` 库在多个 GPU 或 TPU 上启用分布式训练，以下的组件都可以进行并行处理
+  - 数据加载器
+  - 模型
+  - 优化器
+
+```python
+from accelerate import Accelerator
+from transformers import AutoModelForSequenceClassification, get_scheduler
+
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_labels=2)
+optimizer = AdamW(model.parameters(), lr=3e-5)
+
+# 使用 accelerator
+accelerator = Accelerator()
+train_dataloader, eval_dataloader, model, optimizer = accelerator.prepare(
+    train_dataloader, eval_dataloader, model, optimizer
+)
+
+num_epochs = 3
+num_training_steps = num_epochs * len(train_dataloader)
+lr_scheduler = get_scheduler(
+    "linear",
+    optimizer=optimizer,
+    num_warmup_steps=0,
+    num_training_steps=num_training_steps
+)
+
+progress_bar = tqdm(range(num_training_steps))
+
+model.train()
+for epoch in range(num_epochs):
+    for batch in train_dataloader:
+        outputs = model(**batch)
+        loss = outputs.loss
+        # 使用 accelerator
+        accelerator.backward(loss)
+
+        optimizer.step()
+        lr_scheduler.step()
+        optimizer.zero_grad()
+        progress_bar.update(1)
+
+```
+
 ## 微调
 
+Transformers 提供了一个 `Trainer` 类，可以帮助你在数据集上微调任何预训练模型。
+
+微调前的准备：
+
+- 数据集，它包含训练集、验证集和测试集
+- TrainingArguments，包含在训练和评估中使用的所有超参数。
+- `collate` 函数
+- tokenizer
+- compute_metrics() 函数，用来计算评估过程的指标
+
+```python
+from datasets import load_dataset
+from transformers import AutoTokenizer, DataCollatorWithPadding
+
+raw_datasets = load_dataset("glue", "mrpc")
+checkpoint = "bert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(checkpoint)
+
+def tokenize_function(example):
+    return tokenizer(example["sentence1"], example["sentence2"], truncation=True)
+
+tokenized_datasets = raw_datasets.map(tokenize_function, batched=True)
+data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
+training_args = TrainingArguments("test-trainer", evaluation_strategy="epoch")
+model = AutoModelForSequenceClassification.from_pretrained(checkpoint, num_labels=2)
+
+def compute_metrics(eval_preds):
+    metric = evaluate.load("glue", "mrpc")
+    logits, labels = eval_preds
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
+
+trainer = Trainer(
+    model,
+    training_args,
+    train_dataset=tokenized_datasets["train"],
+    eval_dataset=tokenized_datasets["validation"],
+    data_collator=data_collator,
+    tokenizer=tokenizer,
+    compute_metrics=compute_metrics,
+)
+
+trainer.train()
+```
+
+训练的完整步骤：
+
+1. 训练前的准备
+2. 训练循环
+3. 评估循环
+
+### 训练前的准备
+
+1. 对分词后的数据进行处理
+   - 删除与模型不需要的列
+   - 将列名 label 重命名为 labels （因为模型默认的输入是 labels ）。
+   - 设置数据集的格式，使其返回 PyTorch 张量而不是列表。
+2. 定义数据加载器
+
+```python
+tokenized_datasets = tokenized_datasets.remove_columns(["sentence1", "sentence2", "idx"])
+tokenized_datasets = tokenized_datasets.rename_column("label", "labels")
+tokenized_datasets.set_format("torch")
+tokenized_datasets["train"].column_names
+
+from torch.utils.data import DataLoader
+
+train_dataloader = DataLoader(
+    tokenized_datasets["train"], shuffle=True, batch_size=8, collate_fn=data_collator
+)
+eval_dataloader = DataLoader(
+    tokenized_datasets["validation"], batch_size=8, collate_fn=data_collator
+)
+```
+
+### 训练循环
+
+- 优化器 optimizer
+- 学习率调度器
+- 定义 device，指定使用 CPU 还是 GPU
+
+```python
+from torch.optim import AdamW
+optimizer = AdamW(model.parameters(), lr=5e-5)
+
+from transformers import get_scheduler
+
+num_epochs = 3
+num_training_steps = num_epochs * len(train_dataloader)
+lr_scheduler = get_scheduler(
+    "linear",
+    optimizer=optimizer,
+    num_warmup_steps=0,
+    num_training_steps=num_training_steps,
+)
+
+import torch
+
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+model.to(device)
+
+from tqdm.auto import tqdm
+
+progress_bar = tqdm(range(num_training_steps))
+
+model.train()
+for epoch in range(num_epochs):
+    for batch in train_dataloader:
+        batch = {k: v.to(device) for k, v in batch.items()}
+        outputs = model(**batch)
+        loss = outputs.loss
+        loss.backward()
+
+        optimizer.step()
+        lr_scheduler.step()
+        optimizer.zero_grad()
+        progress_bar.update(1)
+```
+
+### 评估循环
+
+使用 `Evaluate` 库提供的指标，使用 add_batch() 方法进行预测循环时，该指标可以为我们累积所有 batch 的结果。
+一旦我们累积了所有 batch，我们就可以使用 metric.compute() 评估得到的结果。
+
+```python
+import evaluate
+
+metric = evaluate.load("glue", "mrpc")
+model.eval()
+for batch in eval_dataloader:
+    batch = {k: v.to(device) for k, v in batch.items()}
+    with torch.no_grad():
+        outputs = model(**batch)
+
+    logits = outputs.logits
+    predictions = torch.argmax(logits, dim=-1)
+    metric.add_batch(predictions=predictions, references=batch["labels"])
+
+metric.compute()
+```
+
+### 微调的方法
+
 TODO
+
+
 
 ## Reference
 
