@@ -395,6 +395,7 @@ metric.compute()
 
 评估指标：
 
+- Loss（损失函数），衡量模型预测结果与真实情况之间的差距，目标是最小化这个 Loss 值
 - 准确率 (Accuracy)，`(TP + TN) / (TP + TN + FP + FN)`
 - 精确率 (Precision)，`TP / (TP + FP)`
 - 召回率 (Recall)，`TP / (TP + FN)`
@@ -405,8 +406,6 @@ metric.compute()
 ### 微调的方法
 
 TODO
-
-
 
 ## Reference
 
