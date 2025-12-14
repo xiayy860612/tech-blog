@@ -9,47 +9,6 @@ tags:
 
 <!--more-->
 
-## Beans
-
-- BeanFactory
-- ApplicationContext
-
-### 控制反转 IoC (Inversion of Control)
-
-- 依赖注入（Dependency Injection，DI）, 这是 IoC 最常见以及最合理的实现方式
-- 依赖查询
-
-Bean 配置的方法：
-
-- XML
-- Java Config
-- 注解
-
-注入的方法：
-
-- (推荐) 构造注入，保证注入的组件不可变，并且确保需要的依赖不为空。
-- setter 注入
-- 基于注解的注入
-
-### Bean 生命周期
-
-![bean life](spring-bean-lifestyle.png)
-
-1. 实例化 Instantiation
-2. 属性赋值 Populate
-3. 初始化 Initialization
-4. 销毁 Destruction
-
-TODO
-
-### 如何解决循环依赖问题
-
-通过**三级缓存**来解决：
-
-- **一级缓存（singletonObjects）**，存放最终形态的 Bean（已经实例化、属性填充、初始化）
-- **二级缓存（earlySingletonObjects）**，存放过渡 Bean（实例化后的半成品，尚未属性填充以及初始化）
-- **三级缓存（singletonFactories）**，存放`ObjectFactory`
-
 ## AOP
 
 AOP 的目的是将横切关注点（如日志记录、事务管理、权限控制、接口限流、接口幂等等）从核心业务逻辑中分离出来，通过动态代理、字节码操作等技术，实现代码的复用和解耦，提高代码的可维护性和可扩展性。
