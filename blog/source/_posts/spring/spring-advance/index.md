@@ -7,6 +7,8 @@ tags:
 - spring
 ---
 
+Spring 高级特性的学习整理笔记。
+
 <!--more-->
 
 ## IoC
