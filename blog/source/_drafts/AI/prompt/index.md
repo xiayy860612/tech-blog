@@ -165,15 +165,48 @@ fundamental contextual statements:
 - (Optional) include the original way that I asked
 - (Optional) prompt me for which approach I would like to use
 
+### Ask for input Pattern/Tail Generation Pattern
 
-### Ask for input Pattern
+Make LLM to start a new conversation.
 
- 
+fundamental contextual statements:
+
+- At the end, repeat Y and/or ask me for X.
+
+### Outline Expansion Pattern
+
+This pattern helps break down task into steps with more details.
+
+following fundamental contextual statements:
+
+- Act as an outline expander.
+- Generate a bullet point outline based on the input that I give you and then ask me for which bullet point you should expand on.
+- Create a new outline for the bullet point that I select.
+- At the end, ask me for what bullet point to expand next.
+- Ask me for what to outline.
+
+### Menu Actions Pattern
+
+This pattern is used to provide a list of shot commands，
+and identify user's intend, then execute.
+
+fundamental contextual statements:
+
+- Whenever I type: X, you will do Y.
+- (Optional, provide additional menu items) Whenever I type Z, you will do Q.
+- At the end, you will ask me for the next action.
+
+### Fact Check List Pattern
+
+fundamental contextual statements:
+
+- Generate a set of facts that are contained in the output
+- The set of facts should be inserted at `POSITION` in the output
+- The set of facts should be the fundamental facts that could undermine the veracity of the output if any of them are incorrect
+
 ## Combining Patterns
 
 ## ReAct Prompt
-
-
 
 
 ## Reference
