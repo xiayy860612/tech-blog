@@ -13,7 +13,7 @@ tags:
 
 ## 基本概念
 
-TODO, 添加和 RDBMS 对比图
+![ES vs RDBS](<ES vs RDBS.png>)
 
 ### 索引 Index
 
@@ -25,7 +25,7 @@ TODO, 添加和 RDBMS 对比图
 
 ### Mappings
 
-对索引中文档的定义，包含的文档的字段名和类型，类似数据库中的 schema 定义。
+对索引中的文档进行定义，包含的文档的字段名和类型，类似数据库中的 schema 定义。
 
 #### 基本类型
 
@@ -40,7 +40,7 @@ TODO, 添加和 RDBMS 对比图
   - geo_point
   - geo_sharp
 
-常用参数配置：
+字段常用的参数配置：
 
 - index，控制当前字段是否被索引, 默认为true, 如果为false, 则字段不可被搜索
 - store， 默认为false, 因为数据在_source中已经被存储了. store设置为true, 一般是结合_source的enabled设置为false一起使用的, 它会单独存储该字段的原始内容
@@ -54,21 +54,19 @@ TODO, 添加和 RDBMS 对比图
 
 ![复杂类型](复杂类型.png)
 
-ES不擅长处理关联关系
+ES不擅长处理关联关系，所以尽量少用，尽量分割成不同的文档。
 
 ### 文档 Document
 
 一个文档相当与数据库表中的一行
 
 - 可搜索数据的最小单元
-- json 格式, 会被处理成扁平式键值对的结构
+- json 格式, 会被处理成**扁平式**键值对的结构
 - 每个文档有一个唯一id
 
 ### Term
 
-查询的最小单元。
-
-TODO
+相当于表中一行数据中的某一列的值。
 
 ## 操作
 
@@ -92,6 +90,7 @@ TODO
 - exist
 - term
 - terms
+- prefix
 - range
 - regexp
 - wildcard
@@ -107,17 +106,20 @@ TODO
 - match_phrase
 - match_pharse_prefix
 
+#### 查询优化
+
+1. 如果我们想以`后缀作`为搜索条件，可以为 Term 做`反向处理`。`* suffix -> xiffus *`
+2. 对于GEO位置信息，可以将它转换为 `GEO Hash`。`(60.6384, 6.5017) -> u4u8gyykk`
+
 ### Aggregate 聚合
 
 - 使用 aggregate 时，最好配置 `size: 0`，因为一般只需要返回聚合后的结果
-- 
 
 #### bucket
 
-对数据进行分组，还可以对分组后的结果集进行进一步的 aggregate。
+对数据进行**分组**，还可以对分组后的结果集进行进一步的 aggregate。
 
 - filter，对将要分组的数据集进行前置过滤
-
 - terms，基于字段进行分组
 - filters，基于条件进行分组
 - range，基于数值范围进行分组
@@ -125,7 +127,7 @@ TODO
 
 #### metric
 
-对数据进行统计
+对数据进行**统计计算**
 
 ### 索引操作
 
@@ -152,6 +154,7 @@ TODO
 将全文本(text)转换为单词(term/token)。`GET /_analyze` 可以用来测试分词器
 
 处理流程：
+
 1. Character Filters，针对原始文本进行处理
 2. Tokenizer， 切分单词的规则
 3. Token Filters， 对切分后的单词进行处理
@@ -161,14 +164,16 @@ TODO
 文档在物理空间上的划分. 对于生产环境中的分片设定, 需要提前做好容量规划.
 
 主分片(Primary Shard)， 用于解决数据水平扩展的问题, 通过主分片可以将数据分布到集群内的所有节点上.
+
 - 一个主分片是一个运行的lucene实例
 - 主分片数在索引创建时指定, 后续不允许修改.
 
 副本分片(Replica Shard)，用于解决数据的高可用的问题, 它是主分片的拷贝
+
 - 副本数量可以动态修改
 - 提高副本数, 可以在一定程度上提高读取的吞吐量
 
-一般都设置分片数不超过节点数的 3 倍
+一般都设置分片数(主分片+副本分片)不超过节点数的 3 倍
 
 #### 索引类型
 
@@ -185,7 +190,6 @@ TODO
 尽量避免使用动态映射
 
 ![动态索引](动态索引.png)
-
 
 #### 备份 & 迁移
 
@@ -231,22 +235,20 @@ Node "1" -> "1..*" Shard: primary and replica
 Index "1" --> "1..*" Shard: primary shards
 
 Shard "1" -> "1" LI
-LI "1" -> "1..* LS
+LI "1" -> "1..*" LS
 
 ```
 
-#### Lucene
+### Lucene
 
 一个Shard本质上是一个Lucene Index。
 
 ![Lucene](Lucene.png)
 
-**Segment内部** 是不可变的, 并且内部有着许多数据结构
+**Segment** 是不可变的, 并且内部有着许多数据结构，最主要的两个：
 
-- Inverted Index，一个有序的数据字典Dictionary（包括单词Term和它出现的频率）和单词Term对应的Postings（即存在这个单词的Document）
-- Stored Fields
-- Document Values
-- Cache
+- **Inverted Index**，倒排索引，一个**有序**的数据**字典Dictionary（包括单词Term和它出现的频率）**和单词Term对应的Postings（即存在这个单词的Document）
+- **Document Values**，**列式存储**，可以聚合和排序
 
 ### 节点 Node
 
@@ -279,7 +281,7 @@ refresh 默认 1 秒钟，执行一次上图流程。ES 是支持修改这个值
 
 1. in-memory buffer 中的文档写入到新的 segment 中，但 segment 是存储在文件系统的缓存中。此时文档可以被搜索到
 2. 最后清空 in-memory buffer。注意: Translog 没有被清空，为了将 segment 数据写到磁盘
-3. 文档经过 refresh 后， segment 暂时写到文件系统缓存，这样避免了性能 IO 操作，又可以使文档搜索到。refresh 默认 1 秒执行一次，性能损耗太大。一般建议稍微延长这个 refresh 时间间隔，比如 5 s。因此，ES 其实就是准实时，达不到真正的实时。
+3. 文档经过 refresh 后， segment 暂时写到文件系统缓存，这样避免了性能 IO 操作，又可以使文档搜索到。refresh 默认 1 秒执行一次，性能损耗太大。一般建议稍微延长这个 refresh 时间间隔，比如 5 s。因此，ES 其实就是**准实时**，达不到真正的实时。
 
 #### flush
 
@@ -304,8 +306,6 @@ Elasticsearch通过在后台进行Merge Segment来解决这个问题。小的段
 1. 新的段被刷新（flush）到了磁盘。 写入一个包含新段且排除旧的和较小的段的新提交点。
 2. 新的段被打开用来搜索。
 3. 老的段被删除。
-
-
 
 ### 读取过程
 
