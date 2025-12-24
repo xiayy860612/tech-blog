@@ -12,6 +12,14 @@ tags:
 
 <!--more-->
 
+并发的形式：
+
+- 多进程，跨节点进行分布式处理
+- 多线程，充分利用单个节点上的多核 CPU
+- 多协程，用户态的轻量级线程，由程序控制调度（非操作系统内核调度），通常基于事件循环实现，切换开销极小。
+
+![并发方式](concurrent-strategy.png)
+
 ## Thread
 
 ![thread status flow](<thread status flow.png>)
@@ -19,6 +27,14 @@ tags:
 - wait，当前线程**释放**实例对象的锁，状态变为等待并进入等待队列，其他线程获取锁然后执行相关操作。
 - sleep，当前线程**不会释放**实例对象的锁，其他想要获取锁的线程仍然被阻塞
 - notify/notifyAll/interrupt/超时，通知等待队列中的线程，重新尝试去获取实例对象的锁，如果没有获取到，则进入阻塞状态
+
+### 多线程并发
+
+多线程并发三要素：
+
+- 可见性问题，由 CPU 缓存引起的。可见性是指一个线程对共享变量的修改，另外一个线程能够立刻看到。
+- 原子性问题，由分时复用 CPU 引起的。原子性是指一个操作或者多个操作 要么全部执行并且执行的过程不会被任何因素打断，要么就都不执行。
+- 有序性问题，由编译器和处理器对指令做重排序引起的。有序性是指程序执行的顺序按照代码的先后顺序执行。
 
 ### 中断线程
 
@@ -37,7 +53,9 @@ interrupt方法只是改变了线程的中断状态而已。
 如果没有调用 sleep、wait、join 等方法, 或者没有编写**检查线程的中断状态**，
 并抛出 InterruptedException 异常的代码, 那么 InterruptedException 异常就不会被抛出。
 
-## Single Thread Execution Pattern
+## Pattern
+
+### Single Thread Execution Pattern
 
 该模式通过对有状态并且**状态会变化**的**共享资源**设置**临界区**，
 来限制**同一时间**只能让**一个线程**执行处理。
@@ -91,7 +109,7 @@ class SharedResource {
 }
 ```
 
-## Immutable Pattern
+### Immutable Pattern
 
 该模式保证共享资源的状态**不可变**，所以也就不需要执行耗时的互斥处理，进而提高程序的性能。
 
@@ -132,7 +150,7 @@ Immutable <--> Mutable: 转换
 
 ```
 
-## Guarded Suspension Pattern
+### Guarded Suspension Pattern
 
 该模式通过让线程等待来保证共享资源的安全性，
 当**守护条件(guard condition)**不成立时，让线程等待，直到守护条件满足才能执行操作。
@@ -161,7 +179,7 @@ synchronized void stateChangingMethod() {
 }
 ```
 
-## Balking Pattern
+### Balking Pattern
 
 该模式用于当**守护条件**不满足时，就停止处理，直接返回，而 `Guarded Suspension Pattern` 则是一直等待。
 
@@ -209,7 +227,7 @@ synchronized void guardedMethod() throws InterruptedException, TimeoutException 
 }
 ```
 
-## Producer-Consumer Pattern
+### Producer-Consumer Pattern
 
 通过阻塞队列来消除生产者和消费者之间的处理速度。
 
@@ -222,7 +240,7 @@ Channel 角色位于 Producer 角色和 Consumer 角色之间, 承担用于传�
 - 栈，LIFO
 - 优先队列(priority queue)
 
-## Read-Write Lock Pattern
+### Read-Write Lock Pattern
 
 在Read-Write Lock 模式中, 读取操作和写入操作是分开考虑的。在执行读取操作之前,线程
 必须获取用于读取的锁。而在执行写入操作之前,线程必须获取用于写入的锁。
@@ -239,7 +257,7 @@ Channel 角色位于 Producer 角色和 Consumer 角色之间, 承担用于传�
 - 适合读取操作繁重时
 - 适合读取频率比写入频率高时
 
-## Thread-Per-Message Pattern
+### Thread-Per-Message Pattern
 
 该模式为每个请求新分配一个线程, 由这个线程来执行处理，并且最终不需要获取请求的结果。
 
@@ -247,7 +265,7 @@ Channel 角色位于 Producer 角色和 Consumer 角色之间, 承担用于传�
 
 ![Thread-Per-Message Flow](<Thread-Per-Message Flow.png>)
 
-## Worker Thread Pattern
+### Worker Thread Pattern
 
 该模式为了不必要的线程创建的开销，对线程进行重用，工作线程会逐个取得任务，并对任务进行处理，
 在全部任务处理完毕后会等待新的任务。
@@ -266,7 +284,7 @@ Channel 角色位于 Producer 角色和 Consumer 角色之间, 承担用于传�
 - 任务可以被取消
 - 支持分布式
 
-## Future Pattern
+### Future Pattern
 
 该模式为每个请求分配一个线程, 由这个线程来执行处理，并且最终需要获得请求处理的结果。
 
@@ -274,11 +292,36 @@ Channel 角色位于 Producer 角色和 Consumer 角色之间, 承担用于传�
 
 ![Future Pattern Flow](<Future Pattern Flow.png>)
 
-## Two-Phase Termination Pattern
+### Multiple-Phase Pattern
 
-## Thread-Specific Storage
+通过**状态机**来管理每一步处理流程的状态，将每一步操作都分为**处理中**以及**处理完成/下个状态**2个状态，
+来保证每一步操作的正确执行了。
 
-## Active Object Pattern
+#### Two-Phase Terminication Pattern
+
+分两阶段(操作中 -> 终止中 -> 终止)优雅的终止线程。
+
+![Two-Phase Terminication Flow](<Two-Phase Terminication Flow.png>)
+
+![Two-Phase Terminication Pattern](<Two-Phase Terminication Pattern.png>)
+
+### Thread-Local Pattern
+
+在**不破坏原有代码结构**的基础中，通过统一接口来获取当前线程的上下文数据，并且**没有显式的执行互斥操作**。
+
+![Thread-Local Pattern](<Thread-Local Pattern.png>)
+
+上下文数据的存储有 2 种：
+
+- 基于⾓⾊的⽅式，在线程的实例中保存进⾏⼯作所必需的信息(上下⽂、状态)，但一般这种线程属于一次性消费
+- 基于任务的方式，线程中不保存上下文，而是通过**任务**来保存上下文，将任务传递给线程来执行。
+任何线程都可以执行根据任务中的信息执行相关的工作。一般这种线程是可重用的。
+
+### Actor Pattern
+
+用于解决比较大粒度的耗时操作。
+
+![Actor Pattern](<Actor Pattern.png>)
 
 ## Reference
 
