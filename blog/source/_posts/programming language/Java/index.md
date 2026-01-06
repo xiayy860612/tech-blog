@@ -8,13 +8,15 @@ tags:
 - programming language
 ---
 
-Java 语言特性梳理
+Java 语言特性梳理，它支持面向对象以及范型编程。
 
 <!--more-->
 
-## 核心特性
+## 常用核心特性
 
-### 基础类
+业务开发中最常用的语言特性。
+
+### 类型系统
 
 - 基础类型
   - 数字类型
@@ -51,7 +53,7 @@ Java 8 之后引入 java.time 包，主要的时间类：
 - Period，计算日期差
 - DateTimeFormatter，格式化和解析日期时间
 
-上面所有时间类均为不可变对象。
+上面所有时间类均为**不可变对象**。
 
 ##### 时间的格式化
 
@@ -81,23 +83,14 @@ public class TimeFormatExample {
 
 通常情况下，大部分需要浮点数**精确运算**结果的业务场景（比如涉及到钱的场景）都是通过 BigDecimal 来做的。
 
+它包含两个重要数据：
+
+- value 值
+- scale 精度
+
 为了防止精度丢失，推荐使用它的 `BigDecimal(String val)` 构造方法或者 `BigDecimal.valueOf(double val)` 静态方法来创建对象
 
-- 使用 `compareTo()` 方法进行等值比较，会**忽略精度**；而 equals() 方法不仅会比较值的大小（value）还会**比较精度**（scale）
-
-#### 值的比较
-
-- 基础类型的比较使用 `==` 操作符
-- 引用类型的比较使用 `Comparable/Comparator` 接口，它们一般用于排序/比较
-  - Comparable，在对象类中实现该接口中的 `compareTo(T obj)` 方法
-  - (推荐) Comparator，针对指定类型单独定义的工具类，实现 `compare(T a, T b)` 方法
-    - `a < b => -1`
-    - `a = b => 0`
-    - `a > b => 1`
-- 引用类型的等值比较，还可以使用 `a.equals(b)`
-  - 类没有重写 equals()方法：通过 equals() 比较该类的两个对象时，等价于通过 `==` 比较这两个对象，使用的默认是 Object 类 equals() 方法，比较两个对象的引用地址是否相同。
-  - 类重写了 equals()方法：一般重写 equals() 方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
-    - 重写了 equals() 也需要重写 `hashCode()`
+- 使用 `compareTo()` 方法进行**等值比较**，会**忽略精度**；而 equals() 方法不仅会比较值的大小（value）还会**比较精度**（scale）
 
 #### Regex
 
@@ -135,6 +128,22 @@ public class RegexExample {
     }
 }
 ```
+
+### 常用语法以及操作
+
+#### 值的比较/排序
+
+- 基础类型的比较使用 `==` 操作符
+- 引用类型的比较使用 `Comparable/Comparator` 接口，它们一般用于排序/比较
+  - Comparable，在对象类中实现该接口中的 `compareTo(T obj)` 方法
+  - (推荐) Comparator，针对指定类型单独定义的工具类，实现 `compare(T a, T b)` 方法
+    - `a < b => -1`
+    - `a = b => 0`
+    - `a > b => 1`
+- 引用类型的等值比较，还可以使用 `a.equals(b)`
+  - 类没有重写 equals()方法：通过 equals() 比较该类的两个对象时，等价于通过 `==` 比较这两个对象，使用的默认是 Object 类 equals() 方法，比较两个对象的引用地址是否相同。
+  - 类重写了 equals()方法：一般重写 equals() 方法来比较两个对象中的属性是否相等；若它们的属性相等，则返回 true(即，认为这两个对象相等)。
+    - 重写了 equals() 也需要重写 `hashCode()`
 
 ### 容器框架
 
@@ -213,7 +222,25 @@ LinkedHashMap 在 HashMap 的基础上，采用`双向链表`将所有entry连�
 
 - (**推荐**) Collection.toArray(new T[0]), 传入空数组，JVM 会自动创建合适大小的新数组。
 
-### I/O
+### 异常
+
+在 Java 中，所有的异常都有一个共同的祖先 java.lang 包中的 Throwable 类。
+
+- Error，程序无法处理的错误，表示运行应用程序中出现了严重的错误。
+- Exception，程序本身可以处理的异常
+  - 受检查异常 Checked Exception，需要在**方法声明**中通过 `throws` 关键字显式声明
+  - 非受检查异常 Unchecked Exception，`RuntimeException` 及其子类都统称为非受检查异常
+
+`try-catch-finally` 在 catch 中处理异常，并在异常处理完毕后，在 finally 中进行清理操作
+
+实践：
+
+- 只针对不正常的情况才使用异常，不应该被用于正常的控制流，而且建立并抛出一个异常对象开销非常大。
+- 优先捕获最具体的异常
+- 不要记录并抛出异常
+- 包装异常时不要抛弃原始的异常
+
+### 同步 I/O
 
 - 字节流, InputStream/OutputStream
 - 字符流, Reader/Writer, 需要指定`字符集`
@@ -237,27 +264,94 @@ TODO
 
 TODO
 
-### 异常类
+### 测试
 
-在 Java 中，所有的异常都有一个共同的祖先 java.lang 包中的 Throwable 类。
-
-- Error，程序无法处理的错误，表示运行应用程序中出现了严重的错误。
-- Exception，程序本身可以处理的异常
-  - 受检查异常 Checked Exception，需要在**方法声明**中通过 `throws` 关键字显式声明
-  - 非受检查异常 Unchecked Exception，`RuntimeException` 及其子类都统称为非受检查异常
-
-`try-catch-finally` 在 catch 中处理异常，并在异常处理完毕后，在 finally 中进行清理操作
-
-实践：
-
-- 只针对不正常的情况才使用异常，不应该被用于正常的控制流，而且建立并抛出一个异常对象开销非常大。
-- 优先捕获最具体的异常
-- 不要记录并抛出异常
-- 包装异常时不要抛弃原始的异常
+常用的单元测试框架组合 `JUnit + Mockito + AssertJ`
 
 ### 并发
 
-#### 线程 && 线程池
+Java 业务开发中并发一般采用**多线程**的方式，
+Java 也提供了 `JUC(java.util.concurrent)` 包来简化并发程序的开发。
+
+![JUC](JUC.png)
+
+#### 无锁
+
+无锁并发基于**状态的不可变性**或者是**线程独占**的形式来实现的。
+
+##### ThreadLocal
+
+通过 `ThreadLocalMap` 来维护线程和**线程独占**的上下文数据。
+由于 key 使用了 **WeakReference**，只要发生垃圾回收，若这个对象只被弱引用指向，那么就会被回收，从而导致 value(即上下文数据) 的内存泄漏。
+所以为了避免内存泄漏，当不再需要上下文时，显式调用 `ThreadLocal.remove()` 手动移除上下文。
+
+#### 乐观锁
+
+乐观锁基于操作系统提供的硬件指令级的 `CAS 指令 + 重试机制(自旋)` 来实现。
+
+##### AtomicXXX
+
+通过 `CAS + 自旋`来实现。
+
+- 针对基础类型，AtomicBoolean，AtomicInteger，AtomicLong
+- 针对数组，AtomicIntegerArray，AtomicLongArray，BooleanArray
+- 针对引用，AtomicReference，AtomicStampedReference
+
+##### CAS (Compare-And-Swap) 和重试机制
+
+CAS 是一条CPU的**原子**指令，是基于硬件平台的汇编指令，靠硬件实现的。
+操作需要输入两个数值，一个旧值(期望操作前的值)和一个新值，在操作期间先比较下在旧值有没有发生变化，如果没有发生变化，才交换成新值，发生了变化则不交换。
+
+CAS 操作一般会配合**自旋**来实现重试机制，但为了避免长时间不成功，导致 CPU 一直被占用而带来的执行开销，一般都会设置**自旋的次数/超时时间**。
+
+#### 悲观锁
+
+通过**锁机制**来控制线程间的调用顺序。在使用时，需要尽可能将同步块的作用范围限制到**尽量小**的范围。
+
+- synchronized，使用简单，但不够灵活
+- Lock && Condition，灵活但实现相对复杂
+
+##### synchronized
+
+JVM 提供的同步原语，会根据运行时的竞争情况进行锁升级，
+`无锁(锁消除) -> 乐观锁(CAS + 自旋) -> 悲观锁`。
+
+它保证只有一个线程能够拿到锁，只有在同步块执行完毕或者抛出异常时才会释放锁。
+这个锁是一个**可重入**的**非公平**锁，它的来源：
+
+- 类实例对象的锁，用于实例方法
+- 类对象的锁，用于类静态方法
+
+通过使用 `Object 的 wait/notify/notifyAll` 来控制线程的挂起和唤醒。
+
+##### Lock && Condition
+
+![Lock框架和Tools类](Lock框架和Tools类.png)
+
+- ReentrantLock，可重入锁，支持公平锁和非公平锁
+- ReentrantReadWriteLock，读写锁，用于读多写少的场景
+
+通过 Lock 来生成 Condition，通过 condition 的 await/signal/signalAll 来控制线程的挂起和唤醒，
+并且提供了更加灵活的线程控制操作，支持设置超时以及锁状态检查。
+
+`synchronized + Object 的 wait/notify/notifyAll` 模式可以使用 `Lock + Condition 的 await/signal/signalAll` 进行替换，
+但大部分场景优先使用 synchronized，除非对线程调度需要高度灵活可控的场景。
+
+##### AQS && CLH
+
+AQS(AbstractQueuedSynchronizer)，Java 中的悲观锁都是基于 AQS 来实现的。
+它的核心包括两个部分：
+
+- state，用于描述**守护条件**，通过守护条件的判断来决定线程的状态是执行还是挂起
+- CLH，请求资源的线程队列，使用**双向链表**来实现
+
+基于 AQS 实现的常用锁：
+
+- Semaphore，用于控制同一时间的并发数
+- CountDownLatch，设置**一次性**的栏闩，控制指定数量的并发任务执行完毕后，回到**主线程**继续执行。
+- CyclicBarrier，设置**可重用**的栏闩，控制指定数量的并发任务执行完毕后重置栏闩，让**并发任务的线程**重新执行操作。
+
+#### 线程池
 
 ![Executor Framework](executer-service-framework.png)
 
@@ -299,51 +393,6 @@ public ThreadPoolExecutor(
 - (推荐) shutdown，拒绝再接受任务，中断所有未执行的任务，并等待正在执行的任务完成
 - shutdownNow，拒绝再接受任务，中断所有任务，包括正在执行的任务
 
-#### JUC
-
-![JUC](JUC.png)
-
-##### AtomicXXX
-
-通过 `CAS + 自旋`来实现。
-
-- 针对基础类型，AtomicBoolean，AtomicInteger，AtomicLong
-- 针对数组，AtomicIntegerArray，AtomicLongArray，BooleanArray
-- 针对引用，AtomicReference，AtomicStampedReference
-
-###### CAS (Compare-And-Swap)
-
-CAS 是一条CPU的**原子**指令，是基于硬件平台的汇编指令，靠硬件实现的。
-操作需要输入两个数值，一个旧值(期望操作前的值)和一个新值，在操作期间先比较下在旧值有没有发生变化，如果没有发生变化，才交换成新值，发生了变化则不交换。
-
-CAS 操作一般会配合自旋来实现重试机制，但为了避免长时间不成功，导致 CPU 一直被占用而带来的执行开销，一般都会设置**自旋的次数**。
-
-##### ThreadLocal
-
-通过 `ThreadLocalMap` 来维护线程和线程独占的上下文数据。
-由于 key 使用了 **WeakReference**，只要发生垃圾回收，若这个对象只被弱引用指向，那么就会被回收，从而导致 value(即上下文数据) 的内存泄漏。
-所以为了避免内存泄漏，当不再需要上下文时，显式调用 `ThreadLocal.remove()` 手动移除上下文。
-
-##### Lock && Condition
-
-![Lock框架和Tools类](Lock框架和Tools类.png)
-
-- ReentrantLock，可重入锁，支持公平锁和非公平锁
-- ReentrantReadWriteLock，读写锁，用于读多写少的场景
-
-通过 Lock 来生成 Condition，通过 condition 的 await/signal/signalAll 来控制线程的挂起和唤醒。
-
-`synchronized + Object 的 wait/notify/notifyAll` 模式可以使用 `Lock + Condition 的 await/signal/signalAll` 进行替换，
-但大部分场景优先使用 synchronized，除非对线程调度需要高度灵活可控的场景。
-
-###### AQS && CLH
-
-AQS(AbstractQueuedSynchronizer)，Java 中的悲观锁都是基于 AQS 来实现的。
-它的核心包括两个部分：
-
-- state，用于描述**守护条件**，通过守护条件的判断来决定线程的状态是执行还是挂起
-- CLH，请求资源的线程队列，使用**双向链表**来实现
-
 ##### Concurrent Collections
 
 ![Concurrent Collections](<Concurrent Collections.png>)
@@ -357,9 +406,9 @@ AQS(AbstractQueuedSynchronizer)，Java 中的悲观锁都是基于 AQS 来实现
   - PriorityBlockingQueue，基于优先级队列实现的**无界**阻塞队列
   - SynchronousQueue，同步队列，只存放一个元素，只有一个元素被取走后才能放下一个
 
-##### fail-fast（快速失败）和 fail-safe（安全失败）
+###### fail-fast（快速失败）和 fail-safe（安全失败）
 
-它们是Java集合框架在处理并发修改问题时，两种截然不同的设计哲学和容错策略。
+它们是 Java **集合框架**在处理并发修改问题时，两种截然不同的设计哲学和容错策略。
 
 fail-fast 快速失败是针对可能发生的异常通过**尽早的发现和停止错误**，降低故障系统级联的风险。
 在 java.util 包下的大部分集合（如 ArrayList, HashMap）是不支持线程安全的，为了能够提前发现并发操作导致线程安全风险，
@@ -368,9 +417,20 @@ fail-fast 快速失败是针对可能发生的异常通过**尽早的发现和�
 fail-safe 安全失败是在面对意外情况也能**恢复并继续**运行，这使得它特别适用于不确定或者不稳定的环境。
 该思想常运用于**并发容器**，最经典的实现就是 CopyOnWriteArrayList 的实现，通过写时复制（Copy-On-Write）的思想保证在进行修改操作时复制出一份快照，基于这份快照完成添加或者删除操作后，将 CopyOnWriteArrayList 底层的数组引用指向这个新的数组空间，由此避免迭代时被并发修改所干扰所导致并发操作安全问题，当然这种做法也存在缺点，即进行**遍历操作时无法获得实时结果**。
 
-### 内存管理
+##### 任务编排 CompletableFuture
 
-Java 对象的内存分配是通过 JVM 来管理。
+`ExecutorService` 实现了 Future/Promise 并发设计模型，在 submit 一个异步任务后返回 Future 实例，但未针对多个 Future 提供异步任务编排功能，需要通过 CompletableFuture 来进行异步任务的编排。
+
+![CompletableFuture](CompletableFuture.png)
+
+- 创建异步任务
+  - `<U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executor executor);`
+  - `CompletableFuture<Void> runAsync(Runnable runnable, Executor executor);`
+- CompletableFuture.allOf(...), 用于编排"等待所有异步任务完成"后再继续
+
+## 内存管理
+
+Java 对象的内存分配是通过 JVM 来管理，不需要开发者去维护。
 
 ![JVM Memory Design](JVM-Memory.png)
 
@@ -386,7 +446,7 @@ Java 对象的内存分配是通过 JVM 来管理。
   - 虚拟机栈
   - 本地方法栈
 
-#### 对象的创建过程
+### 对象的创建过程
 
 ```puml
 : 类加载;
@@ -396,7 +456,7 @@ Java 对象的内存分配是通过 JVM 来管理。
 : 执行 init 方法，即构造函数;
 ```
 
-#### 类加载
+### 类加载
 
 ![class lifecycle](class-lifecycle.png)
 
@@ -412,7 +472,7 @@ JVM 判定两个 Java 类是否相同的具体规则：JVM 不仅要看类的全
 
 类加载器默认通过**双亲委派机制**来加载类，也是官方推荐的方式。可以通过设置**线程上下文类加载器（ThreadContextClassLoader）**来打破加载的顺序。
 
-#### 垃圾回收 GC
+### 垃圾回收 GC
 
 Java 堆是垃圾收集器管理的主要区域，因此也被称作 GC 堆（Garbage Collected Heap）。
 由于现在收集器基本都采用**分代垃圾收集算法**，所以 Java 堆被划分为了几个不同的区域：
@@ -448,7 +508,7 @@ GC Roots：
 
 从 JDK9 开始，G1 垃圾收集器成为了默认的垃圾收集器。
 
-#### 相关 JVM 参赛配置
+### 常用 JVM 参数
 
 - `-Xms/-Xmx<heap size>[unit]`，通常建议将它们设置为相同的值，以避免运行时堆内存的动态调整带来的性能开销
 - OOM 相关参赛
@@ -461,7 +521,9 @@ GC Roots：
 - jstack
 - MAT
 
-## 其他特性
+## 高级特性
+
+高级特性一般用于框架开发。
 
 ### 泛型 Generics
 
@@ -479,10 +541,12 @@ GC Roots：
 
 类型擦除的主要过程如下：
 
-1.将所有的泛型参数用其最左边界（最顶级的父类型）类型替换。
-2.移除所有的类型参数。
+1. 将所有的泛型参数用其最左边界（最顶级的父类型）类型替换。
+2. 移除所有的类型参数。
 
 ### 反射
+
+JVM 在类加载后就维护了类的元数据，所以反射就是通过类的元数据来实现的。
 
 TODO
 
@@ -490,7 +554,9 @@ TODO
 
 TODO
 
-### NIO
+### 异步IO/NIO
+
+TODO
 
 ### 序列化 serialization
 
@@ -503,7 +569,9 @@ TODO
 
 ### SPI (Service Provider Interface)
 
-TODO
+![SPI](SPI.png)
+
+服务的提供者提供了一种接口的实现之后，需要在 classpath 下的 `META-INF/services/` 目录里创建一个以服务接口**全路径**命名的文件，这个文件里的内容就是这个接口的具体的实现类的**全路径**。然后通过 `java.util.ServiceLoader` 搜索 `classpath` 下以及jar包中 `META-INF/services` 目录，来加载相关的实现。
 
 ### 字节码
 
@@ -512,3 +580,4 @@ TODO
 ## Reference
 
 - [Java 全栈学习](https://www.pdai.tech/md/java/basic/java-basic-oop.html)
+- [JavaGuide](https://javaguide.cn/home.html)
