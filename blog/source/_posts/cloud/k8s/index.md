@@ -1,4 +1,18 @@
-# k8s 快速入门
+---
+title: k8s
+date: 2024-07-24 20:00:00
+categories:
+- cloud
+tags:
+- k8s
+- cloud
+---
+
+k8s 常用特性
+
+<!--more-->
+
+## 常用操作
 
 ```bash
 # 常用命令, 一般都需要指定 kind 和 namespace
@@ -172,7 +186,9 @@ Deployment 控制 ReplicaSet（版本），ReplicaSet 控制 Pod（副本数）�
 
 ### Service
 
-Service 是 Kubernetes 项目中用来将一组 Pod 暴露给外界访问的一种机制。
+Service 就是 Kubernetes 为 Pod 分配的、固定的、基于 iptables（或者 IPVS）的访问入口，
+用来将一组 Pod 暴露给外界访问的一种机制。。
+而这些访问入口代理的 Pod 信息，则来自于 Etcd，由 kube-proxy 通过控制循环来维护。
 
 - 第一种方式，是以 Service 的 VIP（Virtual IP，即：虚拟 IP）方式。
 - 第二种方式，就是以 Service 的 DNS 方式。
@@ -200,6 +216,20 @@ StatefulSet 就保证了 Pod 网络标识的稳定性。
 
 首先，StatefulSet 的控制器直接管理的是 Pod，区分这些实例的方式，就是通过在 Pod 的名字里加上事先约定好的**编号**。其次，Kubernetes 通过 **Headless Service**，为这些有编号的 Pod，在 DNS 服务器中生成带有同样编号的 DNS 记录。只要 StatefulSet 能够保证这些 Pod 名字里的编号不变，那么 Service 里类似于 web-0.nginx.default.svc.cluster.local 这样的 DNS 记录也就不会变，最后，StatefulSet 还为每一个 Pod 分配并创建一个同样编号的 **PVC**。这样，Kubernetes 就可以通过 Persistent Volume 机制为这个 PVC 绑定上对应的 PV，从而保证了每一个 Pod 都拥有一个独立的 Volume。在这种情况下，即使 Pod 被删除，它所对应的 PVC 和 PV 依然会保留下来。所以当这个 Pod 被重新创建出来之后，Kubernetes 会为它找到同样编号的 PVC，挂载这个 PVC 对应的 Volume，从而获取到以前保存在 Volume 里的数据。
 
+#### 外网访问 Service
+
+##### NodePort 类型的 Service
+
+TODO
+
+##### LoadBalancer 类型的 Service
+
+TODO
+
+##### ExternalName 类型的 Service
+
+TODO
+
 ### Node Group
 
 Node Group​​（节点组）是一组具有相同配置的节点集合，通常用于批量管理节点的生命周期、资源调度和扩缩容策略。
@@ -212,7 +242,6 @@ Node Group 和 Pod 的相互影响：
 Pod 选择 node 的方式：
 
 - nodeSelector
-- 
 
 ## 容器持久化存储
 
@@ -248,9 +277,11 @@ Service Account 的授权信息和文件，实际上保存在它所绑定的一�
 
 ### Persistent Volume Claim
 
+TODO
+
 ### StorageClass
 
-
+TODO
 
 ## Reference
 

@@ -86,7 +86,7 @@ void unsafeMethod() {
 - 尽量减少状态会变化的共享资源的数量，以减少需要获取的锁的数量
 - 尽量缩小临界区的范围，以降低线程冲突的概率，就能抑制性能的下降。
 
-### 计数信号量 Semaphore
+#### 计数信号量 Semaphore
 
 Semaphore 可以用来控制线程的数量，来确保临界区**最多只能由 N 个线程**执行。
 
@@ -130,7 +130,7 @@ class ImmutableSharedResouce {
 - 实例创建后，其状态不再发生变化
 - 共享并且频繁被访问
 
-### Mutable 和 Immutable 成对出现
+#### Mutable 和 Immutable 成对出现
 
 Mutable 实例用于构建 Immutable 实例，可被修改；
 Immutable 实例则用于共享。
@@ -206,7 +206,7 @@ synchronized void guardedMethod() {
 - return 有返回值
 - 抛出异常
 
-### 通过 Balking Pattern 和 Guarded Suspension Pattern 实现超时等待
+#### 通过 Balking Pattern 和 Guarded Suspension Pattern 实现超时等待
 
 ```java
 synchronized void guardedMethod() throws InterruptedException, TimeoutException {

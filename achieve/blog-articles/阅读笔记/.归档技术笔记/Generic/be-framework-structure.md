@@ -4,6 +4,7 @@
 <!-- more -->
 
 ## 基本组成
+
 - Host机制
 - Encrypt/Decrypt加密解密机制
 - 配置管理
