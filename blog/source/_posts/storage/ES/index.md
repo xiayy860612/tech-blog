@@ -106,6 +106,10 @@ ES不擅长处理关联关系，所以尽量少用，尽量分割成不同的文
 - match_phrase
 - match_pharse_prefix
 
+#### bool 查询
+
+TODO
+
 #### 查询优化
 
 1. 如果我们想以`后缀作`为搜索条件，可以为 Term 做`反向处理`。`* suffix -> xiffus *`
