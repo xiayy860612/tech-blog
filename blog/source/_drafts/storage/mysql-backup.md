@@ -2,9 +2,10 @@
 title: MySQL 运维
 date: 2021-06-16 20:47:19
 categories:
-- DB
+- storage
 tags:
-- DB
+- storage
+- RDBS
 - mysql
 ---
 

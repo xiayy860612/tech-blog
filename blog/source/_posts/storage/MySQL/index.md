@@ -1,10 +1,11 @@
 ---
-title: MySQL with InnoDB
+title: 深入理解 MySQL InnoDB
 date: 2025-06-30 20:47:19
 categories:
-- DB
+- storage
 tags:
-- DB
+- storage
+- RDBS
 - mysql
 ---
 

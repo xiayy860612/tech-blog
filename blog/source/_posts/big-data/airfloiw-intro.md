@@ -2,8 +2,9 @@
 title: Airflow介绍
 date: 2020-08-23 20:47:19
 categories:
-- ETL
+- big data
 tags:
+- big data
 - ETL
 - airflow
 ---
