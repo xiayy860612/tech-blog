@@ -1,9 +1,10 @@
 ---
-title: ES Quick Guide
+title: ES 实践
 date: 2020-08-30 14:00:00
 categories:
-- quick-guide
+- storage
 tags:
+- storage
 - ES
 ---
 

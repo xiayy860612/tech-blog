@@ -1,5 +1,5 @@
 ---
-title: Java
+title: Java JVM
 date: 2024-05-08 20:00:00
 categories:
 - system

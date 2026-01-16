@@ -1,0 +1,25 @@
+symbol,english_name,common_reading,chinese
+.,period/full stop,period,句号
+",",comma,comma,逗号
+?,question mark,question mark,问号
+!,exclamation mark/exclamation point,exclamation,感叹号
+:,colon,colon,冒号
+;,semicolon,semicolon,分号
+',apostrophe,apostrophe,撇号
+"",quotation marks/quotes,quotes,引号
+(),parentheses/round brackets,parentheses,圆括号
+[],square brackets,brackets,方括号
+{},curly braces/braces,braces,花括号
+-,hyphen,hyphen,连字符
+–,en dash,dash,短破折号
+—,em dash,dash,长破折号
+…,ellipsis,ellipsis,省略号
+/,slash/forward slash,slash,斜杠
+\,backslash,backslash,反斜杠
+@,at sign,at,@符号
+#,hash/pound,hash,井号
+&,ampersand,and,&符
+*,asterisk,asterisk,星号
+%,percent sign,percent,百分号
++,plus sign,plus,加号
+=,equals sign,equals,等号
