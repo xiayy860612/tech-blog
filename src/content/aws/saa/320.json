@@ -1,0 +1,17 @@
+{
+ "index": 320,
+ "total": 1018,
+ "type": "单选题",
+ "question": "为了确保上传到Amazon S3存储桶的所有对象都加密，解决方案架构师应该采取哪些措施？",
+ "options": [
+  "A. 更新存储桶策略，如果PutObject操作没有设置s3:x-amz-acl标头，则拒绝操作。",
+  "B. 更新存储桶策略，如果PutObject操作没有设置s3:x-amz-acl标头为private，则拒绝操作。",
+  "C. 更新存储桶策略，如果PutObject操作没有设置aws:SecureTransport标头为true，则拒绝操作。",
+  "D. 更新存储桶策略，如果PutObject操作没有设置x-amz-server-side-encryption标头，则拒绝操作。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了确保上传到Amazon S3存储桶的所有对象都加密，最佳做法是选择D选项。通过要求PutObject操作中包含x-amz-server-side-encryption标头，可以确保上传的对象都使用服务器端加密进行加密。这是一种有效的方法来强制加密存储在S3存储桶中的对象。其他选项中的s3:x-amz-acl、aws:SecureTransport等标头并不是用于强制加密的标头，因此不适合此需求。",
+  "AI解析": "Amazon S3服务器端加密要求上传对象时指定加密标头。AWS官方文档指出，存储桶策略可强制要求`x-amz-server-side-encryption`标头，拒绝未包含该标头的上传请求。选项A、B涉及ACL权限，与加密无关；选项C涉及传输加密而非存储加密。选项D通过检查加密标头确保所有对象启用服务器端加密，符合要求。"
+ }
+}

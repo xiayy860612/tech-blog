@@ -1,0 +1,18 @@
+{
+ "qid": "1908084730",
+ "index": 613,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在设计一个新的多层Web应用程序，包括以下组件：\n• 运行在Amazon EC2实例上的Web和应用服务器，作为Auto Scaling组的一部分\n• 用于数据存储的Amazon RDS数据库实例\n解决方案架构师需要限制对应用服务器的访问，以便只有Web服务器可以访问它们。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在应用服务器前部署AWS PrivateLink。配置网络ACL以允许只有Web服务器访问应用服务器。",
+  "B. 在应用服务器前部署VPC端点。配置安全组以允许只有Web服务器访问应用服务器。",
+  "C. 部署一个Network Load Balancer，其目标组包含应用服务器的Auto Scaling组。配置网络ACL以允许只有Web服务器访问应用服务器。",
+  "D. 部署一个Application Load Balancer，其目标组包含应用服务器的Auto Scaling组。配置安全组以允许只有Web服务器访问应用服务器。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了限制对应用服务器的访问，最佳解决方案是选择选项D，即部署一个Application Load Balancer (ALB)并配置其目标组以包含应用服务器的Auto Scaling组。然后，配置ALB的安全组以允许只有Web服务器可以访问应用服务器。\n其他选项可能不太适合这种情况：\nA 部署AWS PrivateLink并配置网络ACL来限制访问，但PrivateLink通常用于与AWS服务的私有访问，不太适用于这种情况。\nB 部署VPC端点并配置安全组来限制访问，但端点通常用于与AWS服务的私有访问，也不太适用于这种情况。\nC 部署Network Load Balancer并配置网络ACL，但NLB通常用于负载均衡流量，而不是用于限制访问。此外，配置网络ACL来限制访问可能不如安全组灵活。",
+  "AI解析": "Application Load Balancer (ALB) 适用于处理 HTTP 和 HTTPS 流量，能按请求内容将流量路由到不同后端服务器。在此场景中，可将 Web 服务器配置为 ALB 的目标组，应用服务器作为后端服务器。安全组可控制进出 AWS 资源的流量，通过配置安全组，能限制只有 Web 服务器访问应用服务器，满足设计需求。"
+ }
+}

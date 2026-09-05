@@ -1,0 +1,18 @@
+{
+ "qid": "1908085461",
+ "index": 727,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司的本地数据中心的存储容量即将用尽。公司希望将其存储基础架构迁移到AWS，同时尽量减少带宽成本。解决方案必须允许立即检索数据而不产生额外费用。\n如何满足这些要求？",
+ "options": [
+  "A. 部署Amazon S3 Glacier Vault并启用加速检索。为工作负载启用预配检索容量。",
+  "B. 使用缓存卷部署AWS Storage Gateway。使用Storage Gateway将数据存储在Amazon S3中，同时在本地保留经常访问的数据子集的副本。",
+  "C. 使用存储卷部署AWS Storage Gateway，将数据存储在本地。使用Storage Gateway异步备份数据的时间点快照到Amazon S3。",
+  "D. 部署AWS Direct Connect与本地数据中心连接。配置AWS Storage Gateway将数据存储在本地。使用Storage Gateway异步备份数据的时间点快照到Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "使用存储卷部署AWS Storage Gateway可以在本地保留数据的副本，同时使用Storage Gateway将数据的时间点快照异步备份到Amazon S3。这种方法可以满足立即检索数据且不产生额外费用的要求。",
+  "AI解析": "本题核心在于平衡存储迁移成本与即时数据访问需求。AWS Storage Gateway存储卷模式通过本地缓存维持数据即时访问（无检索费用），同时异步上传时间点快照至Amazon S3实现主存储迁移。此异步机制分散数据传输，避免带宽峰值，符合成本优化要求；选项C的本地缓存层直接响应即时检索，而A的Glacier涉及检索延迟及费用，B/D则因实时传输或专线成本不符合带宽节约目标。"
+ }
+}

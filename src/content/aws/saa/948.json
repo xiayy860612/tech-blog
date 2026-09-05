@@ -1,0 +1,18 @@
+{
+ "qid": "2949540289",
+ "index": 948,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个多层次的\nWeb 应用程序。应用程序的内部服务组件部署在 Amazon EC2 实例上。这些内部服务组件需要访问托管在 AWS 上的第三方软件即服务（SaaS）API。\n公司需要为应用程序的内部服务提供安全和私密的连接到第三方 SaaS 应用程序。公司需要确保尽量减少公共互联网暴露。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 实施 AWS Site-to-Site VPN 以建立与第三方 SaaS 提供商的安全连接。",
+  "B. 部署 AWS Transit Gateway 以管理和路由应用程序的 VPC 与第三方 SaaS 提供商之间的流量。",
+  "C. 配置 AWS PrivateLink 以允许 VPC 的出站流量，而不启用第三方 SaaS 提供商的入站流量。",
+  "D. 使用 AWS PrivateLink 创建应用程序的 VPC 与第三方 SaaS 提供商之间的私有连接。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "AWS PrivateLink 允许您通过私有 IP 地址访问托管在 AWS 上的第三方 SaaS 应用程序。通过使用 PrivateLink，流量在 AWS 网络内传输，无需通过公共互联网，从而实现安全和私密的连接。这种解决方案符合要求，并且最小化了公共互联网的暴露。",
+  "AI解析": "AWS PrivateLink 支持在 VPC 与第三方服务之间创建私有终端节点（VPC Endpoint），无需通过公共互联网，流量仅在 AWS 网络内部传输。第三方 SaaS 提供商作为服务提供方，通过 PrivateLink 公开其服务，请求方通过私有连接访问，避免流量暴露。《AWS 安全最佳实践》指出 PrivateLink 可消除数据在公网传输的风险。选项 C 的“出站流量”描述不准确，选项 D 正确描述了双向私有连接的场景。选项 A/B 依赖 VPN 或 Transit Gateway 可能存在公网路径。"
+ }
+}

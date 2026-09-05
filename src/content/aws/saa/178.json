@@ -1,0 +1,17 @@
+{
+ "index": 178,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家金融公司的客户通过发送短信消息请求与财务顾问预约。运行在Amazon EC2实例上的Web应用程序接受预约请求。通过Web应用程序，文本消息被发布到Amazon Simple Queue Service（Amazon SQS）队列。随后，运行在EC2实例上的另一个应用程序向客户发送会议邀请和会议确认的电子邮件消息。在成功安排会议后，此应用程序将会议信息存储在Amazon DynamoDB数据库中。\n随着公司的扩展，客户报告称他们的会议邀请到达所需时间更长。解决这个问题，解决方案架构师应该建议什么？",
+ "options": [
+  "A. 在DynamoDB数据库前添加一个DynamoDB Accelerator（DAX）集群。",
+  "B. 在接受预约请求的Web应用程序前添加一个Amazon API Gateway API。",
+  "C. 添加一个Amazon CloudFront分发，将原点设置为接受预约请求的Web应用程序。",
+  "D. 为发送会议邀请的应用程序添加一个Auto Scaling组。配置Auto Scaling组以根据SQS队列的深度进行扩展。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "本题核心在于处理异步消息的横向扩展能力。系统瓶颈出现在消息消费环节，会议邀请延迟源于SQS队列积压导致处理能力不足。Auto Scaling组基于队列深度动态调整计算资源，直接匹配消息生产与消费速率，符合SQS最佳实践。DAX优化数据库读取而非写入，API Gateway和CloudFront作用于请求入口层，均不解决下游处理延迟问题。"
+ }
+}

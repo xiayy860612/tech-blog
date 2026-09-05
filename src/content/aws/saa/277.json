@@ -1,0 +1,18 @@
+{
+ "index": 277,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司想要创建一个应用程序，用于以分层结构关系存储员工数据。公司需要对员工数据进行高流量查询的最低延迟响应，并必须保护任何敏感数据。公司还需要在员工数据中存在任何财务信息时每月接收电子邮件通知。\n解决方案架构师应采取哪些步骤来满足这些要求？（选择两个）",
+ "options": [
+  "A. 使用 Amazon Redshift 存储员工数据的层次结构。每月将数据卸载到 Amazon S3。",
+  "B. 使用 Amazon DynamoDB 存储员工数据的层次结构。每月将数据导出到 Amazon S3。",
+  "C. 为 AWS 账户配置 Amazon Macie。将 Macie 集成到 Amazon EventBridge 以向 AWS Lambda 发送每月事件。",
+  "D. 使用 Amazon Athena 分析存储在 Amazon S3 中的员工数据。将 Athena 与 Amazon QuickSight 集成以发布分析仪表板，并与用户共享仪表板。",
+  "E. 为 AWS 账户配置 Amazon Macie。将 Macie 集成到 Amazon EventBridge 通过 Amazon Simple Notification Service (Amazon SNS) 订阅发送每月通知。"
+ ],
+ "answer": {
+  "正确答案": "BE",
+  "解析": "在这种情况下，以下两个步骤是最为合适的解决方案：\n使用 Amazon DynamoDB 存储员工数据的层次结构，每月将数据导出到 Amazon S3 (选项 B)：DynamoDB 是一种高性能、高可靠性且能提供低延迟响应的 NoSQL 数据库。通过将数据存储在 DynamoDB 中，可以满足高流量查询的低延迟需求。同时，将数据每月导出到 Amazon S3，以备份数据和提供存档。\n为 AWS 账户配置 Amazon Macie 并将其与 Amazon EventBridge 和 Amazon SNS 集成，发送每月通知 (选项 E)：Amazon Macie 是一种数据安全服务，可以用于检测敏感数据。集成 Macie 到 EventBridge 通过 SNS 订阅发送每月通知，以便检测到员工数据中任何存在的财务信息，确保数据安全并进行监控。",
+  "AI解析": "该题核心在于高并发低延迟数据存储与敏感信息监控。DynamoDB作为键值数据库支持分层结构存储，具备高吞吐量和毫秒级响应，满足查询需求；Macie通过机器学习自动识别敏感数据（如财务信息），集成EventBridge后触发SNS实现定期邮件通知。B选项确保数据访问性能，E选项实现合规检测与通知机制，其余选项或存储类型不匹配（Redshift为OLAP），或功能冗余（Athena侧重分析）。"
+ }
+}

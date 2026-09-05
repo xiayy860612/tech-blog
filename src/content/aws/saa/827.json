@@ -1,0 +1,18 @@
+{
+ "qid": "2264604798",
+ "index": 827,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家在AWS上运行的金融服务公司已经设计了符合行业标准的安全控制。行业标准包括国家标准与技术研究所（NIST）和支付卡行业数据安全标准（PCI DSS）。公司的第三方审计员需要证明设计的控制已经被实施并且正常运行。公司在AWS组织中拥有数百个AWS账户。公司需要监控跨账户的控制的当前状态。",
+ "options": [
+  "A. 从AWS组织管理账户中指定一个账户作为Amazon Inspector委派管理员账户。将Inspector与组织集成，以发现和扫描所有AWS账户中的资源。在Inspector中启用NIST和PCI DSS的行业标准。",
+  "B. 从AWS组织管理账户中指定一个账户作为Amazon GuardDuty委派管理员账户。在指定的GuardDuty管理员账户中，启用GuardDuty来保护所有成员账户。在GuardDuty中启用NIST和PCI DSS的行业标准。",
+  "C. 在AWS组织管理账户中配置一个AWS CloudTrail组织跟踪。指定一个账户作为合规性账户。在合规性账户中启用CloudTrail安全标准，符合NIST和PCI DSS。",
+  "D. 从AWS组织管理账户中指定一个账户作为AWS Security Hub委派管理员账户。在指定的Security Hub管理员账户中，启用Security Hub以监控所有成员账户。在Security Hub中启用NIST和PCI DSS的标准。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "这个问题要求满足公司设计的安全控制已经被实施并且正常运行，并且需要监控跨账户的控制的当前状态。选项D提到了指定一个账户作为AWS Security Hub委派管理员账户，并在指定的Security Hub管理员账户中启用Security Hub来监控所有成员账户。然后在Security Hub中启用NIST和PCI\nDSS的标准，这样就可以监控所有账户的安全状态，同时也满足了第三方审计员的需求。\n其他选项中，选项A提到了使用Amazon\nInspector，选项B提到了使用Amazon\nGuardDuty，选项C提到了使用AWS\nCloudTrail，但它们都没有提及跨账户监控安全状态，因此不符合题目要求。",
+  "AI解析": "本题核心在于集中监控多账户合规状态。AWS Security Hub作为统一安全服务，支持启用NIST和PCI DSS等标准框架，通过委派管理员账户聚合所有成员账户的安全检测数据，实时评估控制措施实施状态。其跨账户集成能力与行业标准预置模板，相比仅提供漏洞扫描的Inspector、威胁检测的GuardDuty或日志记录的CloudTrail，更直接满足审计要求的持续性合规验证需求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529125627",
+ "index": 570,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在创建一个REST API。该公司对TLS的使用有严格的要求。公司要求API端点使用TLSv1.3。公司还要求特定的公共第三方证书颁发机构（CA）签发TLS证书。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用本地计算机创建由第三方CA签发的证书。将证书导入AWS Certificate Manager（ACM）。在Amazon API Gateway中创建一个HTTP API，并使用自定义域配置自定义域来使用该证书。",
+  "B. 在AWS Certificate Manager（ACM）中创建由第三方CA签发的证书。在Amazon API Gateway中创建一个HTTP API，并使用自定义域配置自定义域来使用该证书。",
+  "C. 使用AWS Certificate Manager（ACM）创建由第三方CA签发的证书。将证书导入AWS Certificate Manager（ACM）。创建一个AWS Lambda函数并配置Lambda函数URL以使用该证书。",
+  "D. 在AWS Certificate Manager（ACM）中创建由第三方CA签发的证书。创建一个AWS Lambda函数并配置Lambda函数URL以使用该证书。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "要满足公司的TLS要求，应该选择选项B。该选项建议使用AWS Certificate Manager（ACM）创建由第三方CA签发的证书，然后在Amazon API Gateway中创建HTTP API，并使用自定义域配置来使用该证书。这将满足TLSv1.3的要求，并确保证书由指定的第三方CA签发。\n其他选项都存在一些问题。选项A提到在本地计算机上创建证书，然后导入到ACM，这增加了复杂性，并不符合最佳做法。选项C提到将证书导入ACM，然后在Lambda函数上使用证书，但这不符合TLS的一般配置方式。选项D提到在ACM中创建证书，然后在Lambda函数上使用证书，但同样不是最佳做法，因为通常TLS证书是用于HTTP API和自定义域。因此，选项B是最佳选择。",
+  "AI解析": "题目考查AWS服务中如何配置符合TLSv1.3及第三方CA签发要求的API端点。核心在于证书必须通过AWS Certificate Manager（ACM）直接由第三方CA签发，且需通过API Gateway自定义域名绑定。选项B正确：ACM仅支持直接生成第三方CA签发证书（需完成CA验证流程），且HTTP API的自定义域名配置强制使用TLS1.3；而Lambda函数URL不支持自定义证书，导入本地生成证书无法保证由指定CA签发，故排除其他选项。"
+ }
+}

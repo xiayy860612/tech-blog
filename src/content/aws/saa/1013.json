@@ -1,0 +1,18 @@
+{
+ "qid": "2949543553",
+ "index": 1013,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家数字图像处理公司希望将其本地的单体应用程序迁移到 AWS 云。该公司处理成千上万的图像，并在处理工作流中生成大文件。\n该公司需要一种解决方案来管理不断增长的图像处理作业数量。该解决方案还必须减少图像处理工作流中的手动任务。公司不希望管理解决方案的底层基础设施。\n哪种解决方案将以最低的操作开销满足这些要求？",
+ "options": [
+  "A. 使用 Amazon Elastic Container Service (Amazon ECS) 和 Amazon EC2 竞价实例来处理图像。配置 Amazon Simple Queue Service (Amazon SQS) 来协调工作流。将处理后的文件存储在 Amazon Elastic File System (Amazon EFS) 中。",
+  "B. 使用 AWS Batch 作业来处理图像。使用 AWS Step Functions 来协调工作流。将处理后的文件存储在 Amazon S3 存储桶中。",
+  "C. 使用 AWS Lambda 函数和 Amazon EC2 竞价实例来处理图像。将处理后的文件存储在 Amazon FSx 中。",
+  "D. 部署一组 Amazon EC2 实例来处理图像。使用 AWS Step Functions 来协调工作流。将处理后的文件存储在 Amazon Elastic Block Store (Amazon EBS) 卷中。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS Batch 可以自动管理和调度批处理作业，允许用户提交图像处理作业，而不需要管理底层的计算资源。\nAWS Step Functions 提供了工作流编排的功能，可以帮助自动化和协调多个处理步骤，减少手动干预。\nAmazon S3 是一个高效且经济的存储解决方案，适合存储大量的处理文件，并且能够轻松扩展以处理不断增长的数据。\n整体上，该解决方案以最低的操作开销满足了公司的需求，确保了高效性和可扩展性。",
+  "AI解析": "AWS 服务选择需基于托管程度、自动化能力及适用场景。题目要求减少手动任务且无需管理基础设施。AWS Batch 作为全托管服务，可自动配置和管理计算资源，适用于批处理作业，降低运维复杂性。AWS Step Functions 提供无服务器工作流编排，自动化任务协调，消除手动干预。Amazon S3 专为大规模文件存储设计，具备高扩展性和持久性。选项 A 的 ECS 和 EC2 需用户管理集群及实例；选项 C 的 Lambda 存在执行时间限制，EC2 仍需运维；选项 D 的 EC2 组和 EBS 涉及资源手动扩展及存储限制。AWS 官方文档强调 Batch 与 Step Functions 的组合适用于批处理工作流自动化，S3 为云存储最佳实践。"
+ }
+}

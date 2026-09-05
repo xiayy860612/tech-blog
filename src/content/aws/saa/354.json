@@ -1,0 +1,18 @@
+{
+ "qid": "1529124275",
+ "index": 354,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将旧的应用程序迁移到AWS。该应用程序每小时运行一个CPU密集型的批处理作业。批处理作业平均需要15分钟才能在本地服务器上完成。该服务器具有64个虚拟CPU（vCPU）和512 GiB的内存。\n哪种解决方案将以最少的运维开销在15分钟内运行批处理作业？",
+ "options": [
+  "A. 使用具有功能伸缩的AWS Lambda。",
+  "B. 使用Amazon Elastic Container Service（Amazon ECS）与AWS Fargate。",
+  "C. 使用Amazon Lightsail与AWS Auto Scaling。",
+  "D. 在Amazon EC2上使用AWS Batch。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "本题聚焦CPU密集型批处理作业的云迁移方案选择，核心在于平衡计算资源适配性与运维复杂度。AWS Batch专为批处理场景设计，通过动态调配EC2实例自动匹配作业需求（如64vCPU/512GiB规格），无需手动管理底层基础设施，满足15分钟执行窗口的同时实现最小运维；Lambda受限于执行时长与资源上限，Fargate需额外处理容器编排，Lightsail则偏向固定规格实例，三者均无法在同等条件下兼顾计算效率与运维简化。"
+ }
+}

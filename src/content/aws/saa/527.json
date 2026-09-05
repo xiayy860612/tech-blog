@@ -1,0 +1,18 @@
+{
+ "qid": "1529125584",
+ "index": 527,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个数据分析公司希望将其批处理处理系统迁移到AWS。该公司每天定期通过FTP接收数千个小型数据文件。在传统的批处理作业中，这些数据文件将在夜间处理。然而，批处理作业需要数小时才能完成。\n公司希望AWS解决方案能够尽快处理传入的数据文件，同时最大限度减少发送文件的FTP客户端的更改。解决方案必须在成功处理文件后删除传入的数据文件。每个文件的处理时间需要在3到8分钟之间。\n哪种解决方案可以以最高效的方式满足这些要求？",
+ "options": [
+  "A. 使用运行FTP服务器的Amazon EC2实例，将传入文件存储为Amazon S3 Glacier灵活检索中的对象。在AWS Batch中配置作业队列。使用Amazon EventBridge规则在每晚从S3 Glacier灵活检索中处理对象。在作业处理对象后删除这些对象。",
+  "B. 使用运行FTP服务器的Amazon EC2实例，将传入文件存储在Amazon Elastic Block Store（Amazon EBS）卷上。在AWS Batch中配置作业队列。使用Amazon EventBridge规则每晚从EBS卷中处理这些文件。在作业处理文件后删除这些文件。",
+  "C. 使用AWS Transfer Family创建一个FTP服务器，将传入文件存储在Amazon Elastic Block Store（Amazon EBS）卷上。在AWS Batch中配置作业队列。当每个文件到达时使用Amazon S3事件通知来触发AWS Batch中的作业。在作业处理文件后删除这些文件。",
+  "D. 使用AWS Transfer Family创建一个FTP服务器，将传入文件存储在Amazon S3标准存储中。创建一个AWS Lambda函数来处理这些文件，并在处理完文件后删除它们。使用S3事件通知来在文件到达时触发Lambda函数。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项 D利用AWS Transfer Family将传入文件存储在Amazon S3中，结合了AWS Lambda函数处理文件并在完成后删除它们。使用S3事件通知能够触发Lambda函数，以尽快处理文件，满足对快速处理文件的要求，同时保持操作上的高效性。",
+  "AI解析": "题目核心在于实现实时文件处理、最小化客户端变更及自动删除已处理文件。AWS Transfer Family提供托管FTP服务，无需修改客户端协议即可接入，直接满足最小改动需求。将文件存入S3标准存储后，S3事件通知可即时触发Lambda函数处理，处理时间在Lambda支持的15分钟限制内，且按需触发无需等待批量调度，实现高效处理。Lambda处理完成后直接删除S3文件，流程无缝衔接。相较其他选项，使用Glacier或EBS会引入存储层级延迟或扩展性限制，Batch作业调度则无法满足实时性要求。"
+ }
+}

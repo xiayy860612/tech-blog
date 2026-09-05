@@ -1,0 +1,18 @@
+{
+ "qid": "1908084766",
+ "index": 649,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将其本地 Microsoft SQL Server Enterprise 版数据库迁移到 AWS。该公司的在线应用程序使用该数据库来处理交易。数据分析团队使用同一生产数据库来运行分析处理报告。公司希望通过尽可能使用托管服务来减少运营开销。\n哪种解决方案将以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 迁移到 Amazon RDS for Microsoft SQL Server。使用读副本进行报告。",
+  "B. 迁移到 Amazon EC2 上的 Microsoft SQL Server。使用 Always On 读副本进行报告。",
+  "C. 迁移到 Amazon DynamoDB。使用 DynamoDB 按需副本进行报告。",
+  "D. 迁移到 Amazon Aurora MySQL。使用 Aurora 读副本进行报告。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中的Amazon RDS for Microsoft SQL Server是一种托管服务，可以最小化运营开销。使用Amazon RDS，您可以轻松地创建和管理SQL Server数据库，而且RDS提供了读副本功能，可用于报告目的。这种方式既能满足在线应用程序的交易处理需求，又能满足数据分析团队的报告处理需求。\n其他选项：\n选项B中的Amazon EC2上的Microsoft SQL Server需要更多的自我管理和配置，相比之下，运营开销更大。\n选项C中的Amazon DynamoDB是一种NoSQL数据库服务，不适合迁移Microsoft SQL Server数据库，并且不提供传统SQL Server的完整功能。\n选项D中的Amazon Aurora MySQL也是一种托管服务，但是由于源数据库是Microsoft SQL Server，迁移到MySQL可能需要更多的转换和调整，增加了运营开销。",
+  "AI解析": "本题核心在于同时满足事务处理与分析查询需求，同时最大化使用托管服务降低运维成本。Amazon RDS for SQL Server 作为全托管数据库服务，原生支持创建读副本分离读写流量，通过读副本承载分析报告查询，避免OLTP与OLAP争抢资源，且无需自行维护基础设施。DynamoDB属NoSQL不兼容原有SQL结构，Aurora MySQL需改动数据库类型，EC2方案需自行管理实例，均会增加迁移复杂度或运维负担。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 182,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个异步API，用于接受用户请求，并根据请求类型将请求分派到适当的微服务进行处理。公司使用Amazon API Gateway来部署API前端，以及一个AWS Lambda函数，它调用Amazon DynamoDB来存储用户请求，然后将它们分派到处理微服务。\n公司已根据其预算尽可能为DynamoDB提供了吞吐量，但公司仍然遇到可用性问题并丢失用户请求。\n解决此问题而不影响现有用户，解决方案架构师应该采取什么措施？",
+ "options": [
+  "A. 在API Gateway上添加带有服务器端限制的限流。",
+  "B. 使用DynamoDB Accelerator (DAX) 和Lambda来缓冲写入DynamoDB。",
+  "C. 在DynamoDB表中为用户请求创建一个辅助索引。",
+  "D. 使用Amazon Simple Queue Service (Amazon SQS) 队列和Lambda来缓冲写入DynamoDB。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了解决DynamoDB吞吐不足导致的可用性问题和用户请求丢失，最佳的解决方案是选项D。使用Amazon SQS队列和Lambda来缓冲写入DynamoDB可以有效地平滑请求流，避免超出DynamoDB的吞吐限制。这样，即使DynamoDB暂时无法处理所有的写入请求，这些请求也不会丢失，而是被排队等待处理。\n选项A中，虽然限流可以一定程度上帮助控制请求速率，但它并不提供持久性的请求排队和缓冲功能，因此不适合应对吞吐不足的情况。选项B中，DynamoDB Accelerator (DAX) 可以提高DynamoDB的性能，但不提供请求缓冲功能，也不适合解决吞吐不足的问题。选项C中，创建辅助索引有助于查询，但不会解决吞吐不足导致的可用性问题。\n因此，选项D是最佳选择，它可以有效地解决吞吐不足问题，并确保不会丢失用户请求。",
+  "AI解析": "AWS服务组合中处理高并发写入的场景需要考虑异步缓冲机制。问题根源在于超出DynamoDB配置的吞吐量导致请求丢失，直接扩容受限于预算。选项D引入SQS队列作为缓冲区，用户请求先写入队列，由Lambda按DynamoDB处理能力分批消费队列消息，避免突发流量压垮数据库。SQS与Lambda集成可实现自动扩展，保障数据持久性，确保所有请求最终被处理。其他选项均未涉及流量削峰或异步解耦，而直接操作DynamoDB或调整索引可能引入额外负载。AWS架构最佳实践推荐使用队列解耦组件以处理不可预测的流量（参考AWS Well-Architected Framework中关于可靠性支柱的设计原则）。"
+ }
+}

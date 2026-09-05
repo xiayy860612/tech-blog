@@ -1,0 +1,18 @@
+{
+ "qid": "2264604868",
+ "index": 897,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司在AWS云中运行工作负载。公司希望集中收集安全数据，以评估整个公司的安全性并改善工作负载的保护。\n哪种解决方案将以最少的开发工作量满足这些要求？",
+ "options": [
+  "A. 在AWS Lake Formation中配置一个数据湖。使用AWS Glue爬虫将安全数据摄入到数据湖中。",
+  "B. 配置一个AWS Lambda函数以收集以.csv格式的安全数据。将数据上传到一个Amazon S3存储桶中。",
+  "C. 在Amazon Security Lake中配置一个数据湖来收集安全数据。将数据上传到一个Amazon S3存储桶中。",
+  "D. 配置一个AWS Database Migration Service (AWS DMS)复制实例来将安全数据加载到一个Amazon RDS集群中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提出了一个最简单的解决方案，即在Amazon\nSecurity Lake中配置一个数据湖来集中收集安全数据，并将数据上传到Amazon S3存储桶中。这种方法不需要额外的开发工作，因为Amazon Security Lake是AWS提供的一项托管服务，可以直接用于安全数据收集。其他选项涉及配置数据湖、使用Lambda函数或AWS DMS，都需要更多的开发工作和配置。",
+  "AI解析": "题目考查AWS安全数据集中管理方案的选择。Amazon Security Lake作为完全托管的专项服务，能够自动聚合多源安全数据并转换为标准OCSF格式存储于S3，实现零代码配置；相较其他选项，A需手动构建数据湖，B依赖函数开发，D针对数据库迁移，均需额外开发或适配，而Security Lake通过预置集成能力直接满足需求，符合最小开发量原则。"
+ }
+}

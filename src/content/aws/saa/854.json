@@ -1,0 +1,18 @@
+{
+ "qid": "2264604825",
+ "index": 854,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望配置其\nAmazon CloudFront 分发以使用 SSL/TLS 证书。公司不想使用分发的默认域名，而是想要使用不同的域名。\n哪种解决方案可以部署证书而不产生额外费用？",
+ "options": [
+  "A. 在 us-east-1 区域从 AWS 证书管理器 (ACM) 请求 Amazon 颁发的私有证书。",
+  "B. 在 us-west-1 区域从 AWS 证书管理器 (ACM) 请求 Amazon 颁发的私有证书。",
+  "C. 在 us-east-1 区域从 AWS 证书管理器 (ACM) 请求 Amazon 颁发的公共证书。",
+  "D. 在 us-west-1 区域从 AWS 证书管理器 (ACM) 请求 Amazon 颁发的公共证书。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项 C 是最佳选择。在 AWS 证书管理器 (ACM) 的 us-east-1 区域请求 Amazon 颁发的公共证书是免费的，而且可以用于 CloudFront 分发。公共证书可以用于 CloudFront 分发的自定义域名，而且不会产生额外费用。相比之下，选项 A 和选项 B 中的私有证书需要付费，而选项 D 中的公共证书虽然是免费的，但在 us-west-1 区域请求则不能用于 CloudFront 分发。",
+  "AI解析": "AWS文档指出，为CloudFront分发配置SSL/TLS证书时，必须使用在us-east-1区域申请的ACM公共证书。私有证书不适用于公共域名且需要额外费用管理。选项C正确，因为公共证书支持自定义域名且免费，而其他选项涉及错误区域或证书类型。"
+ }
+}

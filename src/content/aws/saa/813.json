@@ -1,0 +1,18 @@
+{
+ "qid": "2264604784",
+ "index": 813,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在公司的数据中心中运行一个容器应用程序的Kubernetes集群。该应用程序使用高级消息队列协议（AMQP）与消息队列进行通信。数据中心无法快速扩展以满足公司不断扩大的业务需求。公司希望将工作负载迁移到AWS。\n哪种解决方案将以最小的运维开销满足这些要求？",
+ "options": [
+  "A. 将容器应用程序迁移到Amazon Elastic Container Service（Amazon ECS）。使用Amazon Simple Queue Service（Amazon SQS）检索消息。",
+  "B. 将容器应用程序迁移到Amazon Elastic Kubernetes Service（Amazon EKS）。使用Amazon MQ检索消息。",
+  "C. 使用高可用的Amazon EC2实例来运行应用程序。使用Amazon MQ检索消息。",
+  "D. 使用AWS Lambda函数来运行应用程序。使用Amazon Simple Queue Service（Amazon SQS）检索消息。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B提供了最佳的解决方案。通过将容器应用程序迁移到Amazon Elastic Kubernetes Service（Amazon EKS），可以轻松地在AWS中管理Kubernetes集群，而不需要管理底层的容器和服务器。使用Amazon MQ来检索消息，可以方便地与现有的AMQP消息队列集成，而不需要更改应用程序代码。其他选项中，选项A和D分别提到了使用Amazon ECS和AWS Lambda，但它们在处理AMQP消息方面没有提供与Amazon MQ类似的便捷性。选项C提到了直接在Amazon EC2实例上运行应用程序，但这需要更多的运维工作，并且不具备与Amazon\nMQ类似的集成优势。",
+  "AI解析": "本题聚焦容器编排服务延续性和协议适配性两大核心。原架构采用Kubernetes和AMQP协议，迁移需确保兼容性并降低运维成本。Amazon EKS作为全托管Kubernetes服务，可直接继承现有容器编排逻辑，免除集群底层设施运维；Amazon MQ是AWS托管的ActiveMQ/RabbitMQ服务，原生支持AMQP协议，无需重构消息通信架构。其他方案中ECS/Lambda需改变编排模式，EC2需自主维护集群，SQS仅支持专属协议，均涉及架构改造或增加运维负担。"
+ }
+}

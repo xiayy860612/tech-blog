@@ -1,0 +1,18 @@
+{
+ "qid": "1908084798",
+ "index": 681,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要一种解决方案，以强制Amazon EC2实例上的数据加密。该解决方案必须自动识别不符合规定的资源并对发现的情况执行合规策略。哪种解决方案将以最小的管理开销满足这些要求？",
+ "options": [
+  "A. 使用IAM策略，允许用户仅创建加密的Amazon Elastic Block Store (Amazon EBS)卷。使用AWS Config和AWS Systems Manager自动化检测和纠正未加密的EBS卷。",
+  "B. 使用AWS Key Management Service (AWS KMS)来管理对加密的Amazon Elastic Block Store (Amazon EBS)卷的访问。使用AWS Lambda和Amazon EventBridge自动检测和纠正未加密的EBS卷。",
+  "C. 使用Amazon Macie检测未加密的Amazon Elastic Block Store (Amazon EBS)卷。使用AWS Systems Manager Automation规则自动加密现有和新的EBS卷。",
+  "D. 使用Amazon Inspector检测未加密的Amazon Elastic Block Store (Amazon EBS)卷。使用AWS Systems Manager Automation规则自动加密现有和新的EBS卷。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "IAM策略限制用户只能创建加密的EBS卷，确保新卷是加密的。\nAWS Config可以用于检测违规，确保EBS卷按照预期的加密要求进行创建。\nAWS Systems Manager自动化提供了一种自动执行任务的方式，可以用于检测和纠正未加密的EBS卷。\n尽管选项A中使用了AWS Config和AWS Systems Manager自动化，但主要的策略是通过IAM来强制执行加密要求。这使得新创建的EBS卷始终是加密的，减少了手动操作的需求，从而降低了操作开销。",
+  "AI解析": "AWS服务组合用于合规性管理与自动修复。IAM策略限制用户仅能创建加密EBS卷，从源头防止违规资源产生。AWS Config持续监控资源配置，识别未加密的EBS卷，记录合规状态变化。AWS Systems Manager Automation提供预定义文档，例如AWS-EncryptVolumes，可自动对不合规EBS卷执行加密操作。此方案结合预防性策略与自动化修复，无需手动干预，满足最小管理开销需求。选项B/C/D中的Macie、Inspector、Lambda+EventBridge组合分别侧重数据分类、漏洞扫描、事件驱动架构，均非专为EBS卷加密合规场景设计。"
+ }
+}

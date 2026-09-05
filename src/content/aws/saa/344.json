@@ -1,0 +1,18 @@
+{
+ "qid": "1529124265",
+ "index": 344,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望限制对其主要Web应用程序之一的内容的访问，并使用AWS上可用的授权技术来保护内容。该公司希望实施一个无服务器架构和一个适用于少于100个用户的身份验证解决方案。该解决方案需要与主要Web应用程序集成，并全球提供Web内容。该解决方案还必须在公司用户基数增长的同时提供最低的登录延迟。\n哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 使用Amazon Cognito进行身份验证。使用Lambda@Edge进行授权。使用Amazon CloudFront全球提供Web应用程序。",
+  "B. 使用AWS Directory Service for Microsoft Active Directory进行身份验证。使用AWS Lambda进行授权。使用应用负载均衡器全球提供Web应用程序。",
+  "C. 使用Amazon Cognito进行身份验证。使用AWS Lambda进行授权。使用Amazon S3 Transfer Acceleration全球提供Web应用程序。",
+  "D. 使用AWS Directory Service for Microsoft Active Directory进行身份验证。使用Lambda@Edge进行授权。使用AWS Elastic Beanstalk全球提供Web应用程序。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中，使用Amazon Cognito进行身份验证可以提供适合少于100个用户的身份验证解决方案，并且无需费用（在一定用户数限制内）。使用Lambda@Edge进行授权可以在全球范围内提供授权，而且Amazon CloudFront也可以全球提供Web内容，实现最低的登录延迟。其他选项中的某些组合可能会导致更高的成本或更多的复杂性。",
+  "AI解析": "该题核心在于无服务器架构下的身份验证与全球内容分发优化。Amazon Cognito专为Web/移动应用提供轻量级身份管理，支持快速集成且无需维护服务器，契合用户基数小的需求。Lambda@Edge依托CloudFront边缘节点执行授权逻辑，实现就近处理权限验证，确保用户增长时登录延迟最低。CloudFront作为全球CDN加速内容分发，与Lambda@Edge结合形成无服务器授权链路，避免回源延迟。其他方案中，Directory Service适用于企业AD集成场景而非轻量级验证，S3传输加速或应用负载均衡器在全局低延迟和授权效率上均弱于CloudFront+Lambda@Edge组合。"
+ }
+}

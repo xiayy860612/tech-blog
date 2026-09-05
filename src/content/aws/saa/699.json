@@ -1,0 +1,19 @@
+{
+ "qid": "1908084816",
+ "index": 699,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家游戏公司希望在多个 AWS 区域启动一个新的面向互联网的应用程序。该应用程序将使用 TCP 和 UDP 协议进行通信。公司需要为全球用户提供高可用性和最小延迟。\n解决方案架构师应该采取哪些组合操作来满足这些要求？（选择两个）",
+ "options": [
+  "A. 在每个区域的应用程序前面创建内部 Network Load Balancer。",
+  "B. 在每个区域的应用程序前面创建外部 Application Load Balancer。",
+  "C. 创建一个 AWS Global Accelerator 加速器，将流量路由到每个区域的负载均衡器。",
+  "D. 配置 Amazon Route 53 使用地理位置路由策略来分发流量。",
+  "E. 配置 Amazon CloudFront 处理流量，并将请求路由到每个区域的应用程序。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "A 在每个区域的应用程序前面创建内部 Network Load Balancer (NLB) 可以提供 TCP 和 UDP 协议的负载均衡，并确保高可用性和最小延迟。\nC 创建一个 AWS Global Accelerator 加速器可以将流量路由到每个区域的负载均衡器，以提供全球用户的高可用性和最小延迟。",
+  "AI解析": "AWS Global Accelerator 通过固定入口点将用户流量路由至最近的边缘节点，优化网络路径，减少延迟并提高可用性。Network Load Balancer (NLB) 支持 TCP/UDP 协议，适用于四层流量分发。Application Load Balancer (ALB) 仅处理 HTTP/HTTPS，不适用。Route 53 的地理路由基于 DNS 解析，未优化实时网络状况；CloudFront 主要针对 HTTP(S) 内容分发，不支持 TCP/UDP。Global Accelerator 与 NLB 结合，同时满足协议支持和全局流量优化（AWS 文档：Global Accelerator 网络层加速，NLB 协议支持）。"
+ }
+}

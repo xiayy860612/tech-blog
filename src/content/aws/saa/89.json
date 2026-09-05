@@ -1,0 +1,17 @@
+{
+ "index": 89,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地运行大型的Microsoft SharePoint部署，需要Microsoft Windows共享文件存储。该公司希望将这个工作负载迁移到AWS云，并正在考虑各种存储选项。存储解决方案必须具有高可用性，并与Active Directory集成以进行访问控制。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 配置Amazon EFS存储并设置Active Directory域进行身份验证。",
+  "B. 在两个可用区域中创建一个AWS Storage Gateway文件网关上的SMB文件共享。",
+  "C. 创建一个Amazon S3存储桶，并配置Microsoft Windows Server将其挂载为卷。",
+  "D. 在AWS上创建Amazon FSx for Windows File Server文件系统，并设置Active Directory域进行身份验证。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "要满足题目中的要求，您需要一个高可用性的存储解决方案，同时也要与Active Directory集成以实现访问控制。在这种情况下，Amazon FSx for Windows File Server是最佳选择。\nAmazon FSx for Windows File Server是一项托管的Windows文件共享服务，它与Active Directory集成紧密，能够提供高可用性的文件存储。您可以轻松设置和配置Active Directory域以进行身份验证和授权，这样可以实现对文件的访问控制。\n其他选项的解释：\nA Amazon EFS是一种文件存储服务，但它没有本地Active Directory集成，因此不符合要求。\nB AWS Storage Gateway是一种混合云存储服务，但对于要求高可用性的文件共享，Amazon FSx更适合。\nC Amazon S3是一种对象存储服务，不适合直接用于文件共享，并且需要自己处理Active Directory集成。",
+  "AI解析": "Microsoft SharePoint与Windows文件存储迁移到AWS需考虑兼容性、高可用性和Active Directory集成。Amazon FSx for Windows File Server专为Windows设计，原生支持SMB协议，无缝集成Active Directory，内置多AZ冗余确保高可用性。EFS基于NFS适用于Linux，Storage Gateway适合混合云，S3作为对象存储不适合传统文件系统挂载（AWS官方文档指出FSx for Windows提供完全托管的原生Windows文件系统服务）。正确选项为D。"
+ }
+}

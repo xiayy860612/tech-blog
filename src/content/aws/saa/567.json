@@ -1,0 +1,18 @@
+{
+ "qid": "1529125624",
+ "index": 567,
+ "total": 1018,
+ "type": "单选题",
+ "question": "解决架构师正在为一个新的用于存储和查看工程图纸的Web应用程序设计存储架构。所有应用程序组件将部署在AWS基础架构上。应用程序设计必须支持缓存，以最小化用户等待工程图纸加载的时间。应用程序必须能够存储以PB为单位的数据量。\n解决架构师应该使用哪种存储和缓存的组合？",
+ "options": [
+  "A. Amazon S3与Amazon CloudFront",
+  "B. Amazon S3 Glacier与Amazon ElastiCache",
+  "C. Amazon Elastic Block Store (Amazon EBS) 卷与Amazon CloudFront",
+  "D. AWS Storage Gateway与Amazon ElastiCache"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "在这种情决定中，应该选择选项A，即使用Amazon S3与Amazon CloudFront的组合。Amazon S3是一种高度可扩展且持久的对象存储服务，非常适合存储大量数据，包括工程图纸。Amazon CloudFront是AWS的内容分发网络（CDN），它可以加速静态内容的分发并提供缓存功能，从而减少用户等待工程图纸加载的时间。这种组合提供了高性能、可伸缩性和可用性，同时最小化了存储和传输成本。\n其他选项都存在一些问题。选项B提到Amazon S3 Glacier，但它是一种归档存储服务，不适合快速访问工程图纸。选项C提到Amazon EBS卷，但它通常用于EC2实例的块存储，不适合存储大规模对象数据。选项D提到AWS Storage Gateway，但它通常用于将本地存储与云存储集成，而不是用于存储和缓存大规模工程图纸数据。因此，选项A是最佳选择。",
+  "AI解析": "AWS存储服务中，Amazon S3专为大规模、高扩展性对象存储设计，支持PB级数据且适用于频繁访问场景。Amazon CloudFront作为内容分发网络（CDN），通过边缘节点缓存静态内容，显著降低延迟。Amazon S3 Glacier用于归档存储，检索延迟高，不适合需要快速访问的场景。Amazon EBS是块存储，扩展性受限，无法应对PB级需求。AWS Storage Gateway主要用于混合云场景，非纯云存储方案。结合存储规模、访问速度需求，S3提供存储容量，CloudFront优化内容分发速度。来源：AWS官方文档对S3及CloudFront的定位描述。选项分析：B、C、D中存储或缓存方案均不符合低延迟或PB级存储要求。"
+ }
+}

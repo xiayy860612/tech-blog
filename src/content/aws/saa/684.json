@@ -1,0 +1,18 @@
+{
+ "qid": "1908084801",
+ "index": 684,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司的网站流量不可预测，并使用AWS Lambda函数直接访问私有的Amazon RDS for PostgreSQL数据库实例。公司希望保持可预测的数据库性能，并确保Lambda调用不会因连接过多而使数据库过载。\n解决方案架构师应该采取什么措施来满足这些要求？",
+ "options": [
+  "A. 将客户端驱动程序指向RDS自定义端点。将Lambda函数部署在VPC内。",
+  "B. 将客户端驱动程序指向RDS代理端点。将Lambda函数部署在VPC内。",
+  "C. 将客户端驱动程序指向RDS自定义端点。将Lambda函数部署在VPC外。",
+  "D. 将客户端驱动程序指向RDS代理端点。将Lambda函数部署在VPC外。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "使用RDS代理可以帮助控制数据库连接，并提供连接池功能，从而更有效地管理数据库资源。将Lambda函数部署在VPC内可以确保安全性和网络隔离，同时可以访问RDS代理端点。",
+  "AI解析": "AWS Lambda函数访问私有RDS PostgreSQL实例时，需通过RDS Proxy管理数据库连接以避免过载。RDS Proxy提供连接池，有效控制并发连接数，确保性能稳定。Lambda函数必须部署在VPC内才能与私有RDS实例通信。选项B正确结合了RDS Proxy和VPC部署，而其他选项未同时满足连接管理和网络访问要求。AWS文档指出，RDS Proxy适用于无服务器应用，优化数据库连接，且Lambda访问VPC内资源需配置VPC。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529122101",
+ "index": 28,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司提供使用UDP连接的Voice over Internet Protocol (VoIP) 服务。该服务由在Auto Scaling组中运行的Amazon EC2实例组成，公司在多个AWS区域中进行部署。公司需要将用户路由到延迟最低的区域，并需要在区域之间进行自动故障切换。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 部署一个Network Load Balancer（NLB）和相关的目标组。将目标组与Auto Scaling组关联。在每个区域中将NLB用作AWS Global Accelerator的终点。",
+  "B. 部署一个Application Load Balancer（ALB）和相关的目标组。将目标组与Auto Scaling组关联。在每个区域中将ALB用作AWS Global Accelerator的终点。",
+  "C. 部署一个Network Load Balancer（NLB）和相关的目标组。将目标组与Auto Scaling组关联。创建一个Amazon Route 53延迟记录，指向每个NLB的别名。创建一个使用延迟记录作为源的Amazon CloudFront分发。",
+  "D. 部署一个Application Load Balancer（ALB）和相关的目标组。将目标组与Auto Scaling组关联。创建一个Amazon Route 53加权记录，指向每个ALB的别名。部署一个使用加权记录作为源的Amazon CloudFront分发。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提供了最佳解决方案，以满足需求。使用Network Load Balancer（NLB）可以有效地管理UDP连接，并将NLB用作AWS Global Accelerator的终点。这允许将用户路由到具有最低延迟的区域，并实现自动故障切换。选项B提到使用Application Load Balancer（ALB），但VoIP服务通常需要Network Load Balancer（NLB）来处理UDP连接。选项C和选项D提到了Amazon Route 53和Amazon CloudFront的使用，但这并不是直接满足要求的最佳方式。选项A中的NLB和AWS Global Accelerator组合是更适合VoIP服务的选择。",
+  "AI解析": "该题核心在于跨区域低延迟路由与UDP协议支持。AWS Global Accelerator通过Anycast IP和边缘站点优化路径，直接降低延迟并内置健康检查实现自动故障转移。Network Load Balancer（NLB）是唯一支持UDP协议的负载均衡器，与Auto Scaling组结合可动态扩展VoIP服务。Global Accelerator将NLB作为终端节点，实现用户到最优区域的智能路由，而Route 53延迟策略需依赖DNS解析且缺少内置实时故障切换机制，CloudFront侧重缓存分发而非实时协议优化。正确方案需同时满足协议适配与全局流量管理。"
+ }
+}

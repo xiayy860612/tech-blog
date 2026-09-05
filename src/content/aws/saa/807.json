@@ -1,0 +1,18 @@
+{
+ "qid": "2264604778",
+ "index": 807,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon\nElastic Container Service (Amazon ECS)上运行其工作负载。ECS任务定义使用的容器映像需要扫描常见漏洞和暴露（CVE）。新创建的容器映像也需要进行扫描。哪种解决方案将在对工作负载的更改最少的情况下满足这些要求？",
+ "options": [
+  "A. 使用Amazon Elastic Container Registry (Amazon ECR)作为私有镜像存储库来存储容器映像。为ECR基本扫描指定推送过滤器。",
+  "B. 将容器映像存储在一个Amazon S3存储桶中。使用Amazon Macie来扫描这些映像。使用S3事件通知来针对每个s3:ObjectCreated:Put事件类型的事件启动Macie扫描。",
+  "C. 将工作负载部署到Amazon Elastic Kubernetes Service (Amazon EKS)上。使用Amazon Elastic Container Registry (Amazon ECR)作为私有镜像存储库。为ECR增强扫描指定推送过滤器。",
+  "D. 将容器映像存储在启用了版本控制的Amazon S3存储桶中。为s3:ObjectCreated:∗事件配置S3事件通知来调用一个AWS Lambda函数。配置Lambda函数来启动Amazon Inspector扫描。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提供了最简单、最直接的解决方案，使用Amazon Elastic Container Registry (Amazon ECR)的基本扫描功能可以在每次推送新镜像时自动对镜像进行扫描，而无需对工作负载进行任何修改。其他选项涉及使用Amazon Macie、Amazon EKS或Amazon S3存储桶，并且需要更多的配置和更改。",
+  "AI解析": "Amazon Elastic Container Registry (Amazon ECR) 集成漏洞扫描功能，支持在推送镜像时自动触发基本扫描。问题要求最小化工作负载变更，使用现有 ECS 架构无需迁移至其他服务或存储。Amazon ECR 的原生集成可满足扫描需求，而 Amazon Macie（用于数据分类）、迁移至 EKS（改变编排平台）、S3+Lambda+Inspector（非容器专用流程）均引入额外复杂性或功能不匹配。AWS 官方文档指出 ECR 提供推送镜像时的自动扫描，符合题干场景。选项 A 无需调整现有部署流程，直接利用 ECR 功能实现扫描需求。"
+ }
+}

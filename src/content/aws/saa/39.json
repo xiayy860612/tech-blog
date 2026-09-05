@@ -1,0 +1,18 @@
+{
+ "qid": "1529122112",
+ "index": 39,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有成千上万个边缘设备，每天共生成1 TB的状态警报。每个警报的大小约为2 KB。解决方案架构师需要实施一个方案来摄取和存储这些警报以供将来分析。公司需要一个高可用性的解决方案，但又需要最小化成本，并且不希望管理额外的基础设施。此外，公司希望保留过去14天的数据以供立即分析，并将任何超过14天的数据存档。在满足这些要求的情况下，哪个操作效率最高的解决方案是什么？",
+ "options": [
+  "A. 创建一个Amazon Kinesis Data Firehose传递流以摄取这些警报。配置Kinesis Data Firehose流将警报传递到Amazon S3存储桶。设置S3生命周期配置，以在14天后将数据迁移到Amazon S3 Glacier。",
+  "B. 在两个可用区域中启动Amazon EC2实例，并将它们放置在弹性负载均衡器(Elastic Load Balancer)后面以摄取这些警报。在EC2实例上创建一个脚本，用于将警报存储在Amazon S3存储桶中。设置S3生命周期配置，以在14天后将数据迁移到Amazon S3 Glacier。",
+  "C. 创建一个Amazon Kinesis Data Firehose传递流以摄取这些警报。配置Kinesis Data Firehose流将警报传递到Amazon OpenSearch Service (Amazon Elasticsearch Service)集群。设置Amazon OpenSearch Service (Amazon Elasticsearch Service)集群每天手动快照，并删除14天前的数据。",
+  "D. 创建一个Amazon Simple Queue Service (Amazon SQS)标准队列以摄取这些警报，并将消息保留期设置为14天。配置消费者轮询SQS队列，检查消息的年龄，并根据需要分析消息数据。如果消息已经有14天，消费者应该将消息复制到Amazon S3存储桶中，并从SQS队列中删除消息。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "这个解决方案符合要求，具有高可用性，同时最小化了成本和管理需求。使用Amazon Kinesis Data Firehose可以轻松摄取和传递警报数据，而Amazon S3是高度可用的存储服务。使用S3生命周期配置将数据迁移到Amazon S3 Glacier可以帮助降低长期存储的成本。其他选项涉及到更多的自管理或不如A方案高效。",
+  "AI解析": "这道题考察对托管服务的选择和存储策略的适用性。AWS文档强调使用完全托管的服务来减少运维负担，同时利用S3生命周期策略进行自动化数据分层。Kinesis Data Firehose专为流数据摄取设计，支持直接存入S3并自动分批压缩，减少写入次数降低成本。S3的生命周期配置可无缝迁移数据至Glacier，符合归档需求。其他选项或涉及基础设施管理（B、D），或依赖成本较高的分析服务（C），或无法有效处理数据保留（D）。正确答案A通过全托管服务组合在操作效率和成本优化上最优。"
+ }
+}

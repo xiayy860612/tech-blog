@@ -1,0 +1,19 @@
+{
+ "qid": "1908085528",
+ "index": 794,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司正在设计一个在AWS云中紧密耦合的高性能计算（HPC）环境。该公司需要包括可优化HPC环境的网络和存储功能。\n哪种解决方案组合将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 在AWS Global Accelerator中创建加速器。为加速器配置自定义路由。",
+  "B. 创建一个Amazon FSx for Lustre文件系统。使用临时存储配置文件系统。",
+  "C. 创建一个Amazon CloudFront分发。将查看者协议策略配置为HTTP和HTTPS。",
+  "D. 启动Amazon EC2实例。将弹性适配器 (EFA) 附加到实例。",
+  "E. 创建一个AWS Elastic Beanstalk部署来管理环境。"
+ ],
+ "answer": {
+  "正确答案": "BD",
+  "解析": "A AWS Global Accelerator 用于提高全球范围内的网络性能和可用性，但对于紧密耦合的高性能计算环境来说，通常不是必需的。因此，不是最佳选择。\nB Amazon FSx for Lustre 提供了一个高性能的文件系统，适用于大规模的高性能计算工作负载。它可以与临时存储配置一起使用，以提供更高的性能和可扩展性。\nC Amazon CloudFront 是一个内容分发网络，用于加速静态和动态内容的分发。对于紧密耦合的高性能计算环境来说，通常不需要使用 CloudFront，因此不是最佳选择。\nD 弹性适配器 (Elastic Fabric Adapter, EFA) 是专门设计用于提供高性能互连的网络适配器，可用于紧密耦合的高性能计算环境。它提供了低延迟和高吞吐量的网络连接，适用于需要大量数据传输的 HPC 应用。\nE AWS Elastic Beanstalk 用于简化应用程序的部署和管理，但对于紧密耦合的高性能计算环境来说，通常不是最佳选择。\n因此，最佳解决方案组合是 B 和 D。",
+  "AI解析": "题目考察在AWS中构建高性能计算（HPC）环境的网络与存储优化方案。AWS官方文档指出，紧密耦合的HPC场景需要低延迟网络和高吞吐量存储。Amazon FSx for Lustre（B）专为HPC设计，提供并行文件系统特性，临时存储模式适合短期、高吞吐作业。弹性适配器（EFA）（D）是支持OS-bypass功能的网络接口，适用于节点间大规模并行通信，如MPI应用。Global Accelerator（A）优化的是公网流量路由，CloudFront（C）属于CDN服务，Elastic Beanstalk（E）用于应用部署管理，均不直接涉及HPC底层网络或存储性能优化。"
+ }
+}

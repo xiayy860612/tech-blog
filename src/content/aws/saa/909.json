@@ -1,0 +1,18 @@
+{
+ "qid": "2949540250",
+ "index": 909,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS云上托管其多层公共Web应用程序。Web应用程序运行在Amazon\nEC2实例上，其数据库运行在Amazon RDS上。公司预计在即将到来的假期周末期间销售量会大幅增加。解决方案架构师需要构建一个解决方案，以分析Web应用程序的性能，并确保分析的粒度不超过2分钟。\n解决方案架构师应该怎么做才能满足这一要求？",
+ "options": [
+  "A. 将Amazon CloudWatch日志发送到Amazon Redshift。使用Amazon QuickSight进行进一步分析。",
+  "B. 在所有EC2实例上启用详细监控。使用Amazon CloudWatch指标进行进一步分析。",
+  "C. 创建一个AWS Lambda函数，从Amazon CloudWatch Logs中获取EC2日志。使用Amazon CloudWatch指标进行进一步分析。",
+  "D. 将EC2日志发送到Amazon S3。使用Amazon Redshift从S3存储桶中获取日志，以处理原始数据，并使用Amazon QuickSight进行进一步分析。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "启用详细监控（Detailed Monitoring）可以将Amazon EC2实例的监控粒度从默认的5分钟缩小到1分钟。这意味着可以更频繁地捕获和分析EC2实例的性能数据。Amazon CloudWatch提供了丰富的监控指标，这些指标可以直接用于分析应用程序的性能，并且满足2分钟粒度的要求，是最符合要求的选项。",
+  "AI解析": "AWS CloudWatch的监控功能中，EC2实例默认每隔5分钟收集一次指标数据。启用详细监控后，数据收集频率提升至1分钟一次，满足题目中不超过2分钟粒度的要求。AWS官方文档指出，详细监控提供更精细的指标采集，适用于需要高频率监控的场景。选项B通过启用详细监控直接实现所需的数据采集间隔，而其他选项涉及日志处理、ETL流程或第三方工具，可能引入延迟或复杂度，无法保证分析实时性。"
+ }
+}

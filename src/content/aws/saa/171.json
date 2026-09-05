@@ -1,0 +1,17 @@
+{
+ "index": 171,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的订单系统将来自客户的请求发送到Amazon EC2实例。EC2实例处理订单，然后将订单存储在Amazon RDS上的数据库中。用户报告称，当系统出现故障时，他们必须重新处理订单。公司希望能够提供一个具有弹性的解决方案，可以在系统故障时自动处理订单。\n解决方案架构师应该采取什么措施以满足这些要求？",
+ "options": [
+  "A. 将EC2实例移动到Auto Scaling组。创建一个Amazon EventBridge (Amazon CloudWatch Events)规则以定位Amazon Elastic Container Service (Amazon ECS)任务。",
+  "B. 将EC2实例移动到Auto Scaling组，位于Application Load Balancer (ALB)后面。更新订单系统以将消息发送到ALB终端。",
+  "C. 将EC2实例移动到Auto Scaling组。配置订单系统以将消息发送到Amazon Simple Queue Service (Amazon SQS)队列。配置EC2实例以从队列中消费消息。",
+  "D. 创建一个Amazon Simple Notification Service (Amazon SNS)主题。创建一个AWS Lambda函数，并订阅该函数到SNS主题。配置订单系统以将消息发送到SNS主题。使用AWS Systems Manager Run Command发送命令给EC2实例，以处理消息。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "要实现订单系统的弹性和自动处理，最佳做法是将EC2实例放置在Auto Scaling组中，同时配置订单系统以将消息发送到Amazon SQS队列。这种配置可以确保即使系统出现故障，消息仍然得以保存，并且EC2实例可以从队列中获取并处理这些消息，从而提供了弹性和可靠性。其他选项可能不提供相同级别的弹性和自动处理。",
+  "AI解析": "该题目涉及AWS中构建弹性架构的设计原则。AWS最佳实践建议在分布式系统中使用消息队列解耦组件，确保消息的可靠传递和处理。Amazon SQS作为全托管的消息队列服务，能够缓冲请求，防止消息丢失，并支持消费者自动重试。配合Auto Scaling组自动调整EC2实例数量，即使实例故障，新实例会继续处理队列中的消息，保障订单处理的可靠性。选项C通过SQS解耦订单系统和处理层，实现故障时自动恢复，符合无状态服务与弹性扩展的设计模式。其他选项未解决消息持久化或引入不必要的复杂性。"
+ }
+}

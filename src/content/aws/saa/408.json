@@ -1,0 +1,18 @@
+{
+ "qid": "1529124332",
+ "index": 408,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一位解决方案架构师必须将一个运行在Windows Internet Information Services (IIS)上的Web应用程序迁移到AWS。该应用程序目前依赖于用户在本地网络附加存储（NAS）上托管的文件共享。解决方案架构师已提出将IIS Web服务器迁移到连接到存储解决方案的多个可用区的Amazon EC2实例上，并配置一个附加到实例的弹性负载均衡器。\n以下替代本地文件共享的选项中，哪一个具有最高的弹性和耐久性？",
+ "options": [
+  "A. 将文件共享迁移到Amazon RDS。",
+  "B. 将文件共享迁移到AWS Storage Gateway。",
+  "C. 将文件共享迁移到Amazon FSx for Windows File Server。",
+  "D. 将文件共享迁移到Amazon Elastic File System (Amazon EFS)。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C建议将文件共享迁移到Amazon FSx for Windows File Server，这是AWS提供的受支持的托管Windows文件共享解决方案。FSx for Windows File Server提供了高度的弹性和耐久性，以满足企业级应用程序的存储需求。它支持多个可用区，提供高可用性，并自动进行备份，可恢复文件版本，以及提供数据持久性。\n选项A建议将文件共享迁移到Amazon RDS，但Amazon RDS是用于关系数据库的服务，而不是文件共享。\n选项B建议使用AWS Storage Gateway，它主要用于将本地存储与云存储集成，而不是提供文件共享的解决方案。\n选项D建议将文件共享迁移到Amazon EFS，虽然EFS是AWS的托管文件系统服务，但它是NFS文件系统，而不是Windows文件共享，不一定适合IIS Web应用程序的需求。最适合的解决方案是选项C，将文件共享迁移到Amazon FSx for Windows File Server。",
+  "AI解析": "该题核心考查Windows文件存储服务的AWS迁移方案选择。Amazon FSx for Windows File Server作为全托管服务，原生支持SMB协议和Windows文件系统特性，通过多可用区部署架构自动实现数据冗余，具备99.99%可用性及跨AZ数据复制能力，完美适配IIS等Windows应用对文件共享的高弹性和持久化需求；相较而言，EFS仅适用于Linux环境（NFS协议），RDS为数据库服务，Storage Gateway侧重混合云场景，均无法在兼容性及架构完整性上同时满足要求。"
+ }
+}

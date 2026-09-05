@@ -1,0 +1,19 @@
+{
+ "qid": "1529124346",
+ "index": 422,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一个解决方案架构师想要使用以下的 JSON 文本作为基于身份的策略，以授予特定权限：\n\n{\"statement\": [{\"Action\":z[\"ssm:ListDocuments\",\"ssm:GetDocument\"],\"Effect\":\"AlLow\",\"Resource\": \"*\",\"Sid\": \"\"}],\"Version\": \"2012-10-17\"}\n\n解决方案架构师可以将这个策略附加给哪些 IAM 主体？（选择两个。）",
+ "options": [
+  "A. 角色",
+  "B. 用户组",
+  "C. 组织",
+  "D. Amazon 弹性容器服务（Amazon ECS）资源",
+  "E. Amazon EC2 资源"
+ ],
+ "answer": {
+  "正确答案": "AB",
+  "解析": null,
+  "AI解析": "AWS IAM策略可用于附加的主体类型包括用户、用户组、角色。题目中的策略是基于身份的策略（identity-based policy），根据AWS官方文档，此类策略直接绑定到IAM用户、用户组或角色。选项A（角色）、B（用户组）属于IAM主体的标准类型。选项C（组织）使用服务控制策略（SCP），不属于基于身份的策略；选项D、E为AWS服务资源，需通过角色关联，策略不直接附加资源。AWS官方文档明确限定了基于身份策略的适用范围。"
+ }
+}

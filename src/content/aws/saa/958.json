@@ -1,0 +1,18 @@
+{
+ "qid": "2949540299",
+ "index": 958,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司在开发AWS账户中运行多个Amazon RDS数据库实例。所有实例都有标签来标识它们为开发资源。公司需要这些开发数据库实例仅在工作时间内运行。\n哪种解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 创建一个Amazon CloudWatch警报以识别需要停止的RDS实例。创建一个AWS Lambda函数来启动和停止RDS实例。",
+  "B. 创建一个AWS Trusted Advisor报告以识别需要启动和停止的RDS实例。创建一个AWS Lambda函数来启动和停止RDS实例。",
+  "C. 创建AWS Systems Manager状态管理（State Manager）关联以启动和停止RDS实例。",
+  "D. 创建一个Amazon EventBridge规则来调用AWS Lambda函数以启动和停止RDS实例。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon EventBridge的作用： 使用Amazon EventBridge（之前称为CloudWatch Events），你可以创建规则来根据特定时间表触发AWS Lambda函数。这样可以根据工作时间安排自动启动和停止RDS实例。这种方法能够以最少的操作开销实现自动化，因为EventBridge规则可以根据预设的时间表自动执行Lambda函数。",
+  "AI解析": "本题考查AWS定时启停RDS实例的自动化方案选择，核心在于事件驱动架构的应用。Amazon EventBridge支持基于时间表的规则调度，直接触发Lambda函数执行启停操作，无需手动维护资源状态或依赖第三方报告。A选项需额外配置警报触发条件，B选项误用Trusted Advisor（仅提供优化建议），C选项State Manager用于配置合规性管理而非启停控制，D方案通过事件规则与函数计算的无缝集成实现全自动化，符合最小运维开销要求。"
+ }
+}

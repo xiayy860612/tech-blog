@@ -1,0 +1,19 @@
+{
+ "qid": "2264604851",
+ "index": 880,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在Amazon S3上托管了一个高流量的静态网站，使用了一个默认 TTL 为0秒的Amazon\nCloudFront分发。\n该公司希望实现缓存以提高网站性能。然而，该公司还希望确保在部署后不超过几分钟提供过期的内容。\n一个解决方案架构师应该实施哪些缓存方法的组合来满足这些要求？（选择两个）",
+ "options": [
+  "A. 将CloudFront的默认 TTL 设置为2分钟。",
+  "B. 在S3存储桶上设置默认 TTL 为2分钟。",
+  "C. 在Amazon S3的对象中添加Cache-Control private指令。",
+  "D. 创建一个AWS Lambda@Edge函数，在HTTP响应中添加Expires头。配置函数在查看器响应时运行。",
+  "E. 在Amazon S3的对象中添加Cache-Control max-age指令为24小时。在部署时，创建一个CloudFront失效以清除边缘缓存中的任何更改的文件。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "A将CloudFront的默认TTL设置为2分钟可以确保CloudFront缓存的对象在缓存过期后最多存活2分钟。\nC在Amazon S3的对象中添加Cache-Control private指令可以防止对象被公共缓存（如CloudFront）缓存，从而确保对象只被私有缓存缓存。\n因此，选择A和C来满足公司的要求是正确的。",
+  "AI解析": "Amazon CloudFront的默认TTL控制边缘节点缓存时间，设置为2分钟可平衡性能与内容更新需求。Cache-Control private指令限制客户端（如浏览器）缓存，避免用户本地保留旧内容。两者结合确保CloudFront缓存短期内容提升性能，同时客户端及时获取更新。AWS文档指出，默认TTL优先级高于源站头且private不影响CloudFront缓存行为，但实际需配置。答案依据题干默认设置推断。选项A直接调整缓存时间，选项C限制客户端缓存，共同满足要求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529125643",
+ "index": 586,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在设计一个解决方案，以捕获不同Web应用程序中的客户活动，进行分析并进行预测。Web应用程序中的客户活动是不可预测的，可能会突然增加。公司需要一个能与其他Web应用程序集成的解决方案。该解决方案必须包括用于安全目的的授权步骤。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在存储公司接收到的信息的Amazon Elastic File System（Amazon EFS）文件系统中，配置一个位于Amazon Elastic Container Service（Amazon ECS）容器实例前面的网关负载均衡器（Gateway Load Balancer，GWLB）。授权在GWLB上解决。",
+  "B. 在存储公司接收到的信息的Amazon S3存储桶前面，配置一个Amazon Kinesis数据流的Amazon API Gateway端点。使用AWS Lambda函数来解决授权问题。",
+  "C. 在存储公司接收到的信息的Amazon S3存储桶前面，配置一个Amazon Kinesis Data Firehose的Amazon API Gateway端点。使用API Gateway Lambda授权器来解决授权问题。",
+  "D. 在存储公司接收到的信息的Amazon Elastic File System（Amazon EFS）文件系统中，配置一个位于Amazon Elastic Container Service（Amazon ECS）容器实例前面的网关负载均衡器（Gateway Load Balancer，GWLB）。使用AWS Lambda函数来解决授权问题。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "这个场景需要一个解决方案来捕获客户活动、进行分析、并解决授权问题。选项C是最合适的选择，因为它结合了Amazon API Gateway来前置Amazon Kinesis Data Firehose，从而实现了数据捕获。此外，它还使用API Gateway Lambda授权器来解决授权问题，确保了安全性。其他选项没有提供类似的完整解决方案。",
+  "AI解析": "该题考查如何设计一个可扩展、安全的实时数据摄取与分析架构。AWS官方文档中，API Gateway支持创建REST API并与Kinesis Data Firehose集成，实现数据直接传输至S3。Kinesis Data Firehose专为自动扩展和持久化数据至存储或分析服务设计，适合流量突增场景。Lambda授权器是API Gateway原生功能，通过在API请求前触发Lambda验证权限，无需额外组件。选项C的架构组合满足高扩展性、实时数据捕获及安全授权需求，而选项B的Kinesis数据流需自行实现数据持久化逻辑，选项A/D的EFS和GWLB未针对实时流数据处理优化。"
+ }
+}

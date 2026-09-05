@@ -1,0 +1,18 @@
+{
+ "qid": "2264604810",
+ "index": 839,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家拥有世界各地记者的新闻公司正在AWS上托管其广播系统。记者通过软件在他们的手机上发送实时广播，使用实时消息传输协议（RTMP）发送实时流。\n解决方案架构师必须设计一个解决方案，使记者能够发送最高质量的流。该解决方案必须提供加速的TCP连接返回广播系统。\n为了满足这些要求，解决方案架构师应该使用什么？",
+ "options": [
+  "A. Amazon CloudFront",
+  "B. AWS Global Accelerator",
+  "C. AWS Client VPN",
+  "D. Amazon EC2实例和AWS弹性IP地址"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个问题要求设计一个解决方案，使记者能够以最高质量发送实时流，并提供加速的TCP连接回广播系统。选项B提到AWS Global Accelerator，它是一个全局加速器服务，可以为用户提供快速、可靠的TCP和UDP流量路由。使用AWS\nGlobal Accelerator可以确保记者发送的实时流以最高质量传输，并提供加速的TCP连接，以便实时广播系统能够及时接收和处理流。\n其他选项中，Amazon CloudFront是一个内容分发网络（CDN），主要用于加速静态和动态内容的分发，而不是实时流。AWS Client VPN用于提供对VPC资源的安全远程访问，并不适用于加速TCP连接。选项D提到使用Amazon EC2实例和AWS弹性IP地址，但这并不提供加速TCP连接的功能。",
+  "AI解析": "本题核心在于优化跨国实时流传输的TCP连接性能。AWS Global Accelerator通过专用网络基础设施优化流量路径，利用边缘站点入口和AWS骨干网降低延迟，直接提升RTMP协议所需的稳定高带宽传输质量。CloudFront侧重内容分发缓存，Client VPN关注加密隧道，弹性IP仅解决静态地址问题，均无法满足实时流加速的核心需求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529122105",
+ "index": 32,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上运行在线市场Web应用程序。该应用程序在高峰时段为数十万用户提供服务。公司需要一种可扩展的、接近实时的解决方案，以与几个其他内部应用程序共享数百万条财务交易的详细信息。还需要处理交易以删除敏感数据，然后将其存储在文档数据库中以实现低延迟检索。解决方案架构师应该推荐哪种方法来满足这些要求？",
+ "options": [
+  "A. 将交易数据存储在Amazon DynamoDB中。在DynamoDB中设置规则，在每次写入时删除每笔交易中的敏感数据。使用DynamoDB Streams将交易数据与其他应用程序共享。",
+  "B. 将交易数据流式传输到Amazon Kinesis Data Firehose，将数据存储在Amazon DynamoDB和Amazon S3中。使用AWS Lambda与Kinesis Data Firehose集成以删除敏感数据。其他应用程序可以消费存储在Amazon S3中的数据。",
+  "C. 将交易数据流式传输到Amazon Kinesis Data Streams。使用AWS Lambda集成删除每笔交易中的敏感数据，然后将交易数据存储在Amazon DynamoDB中。其他应用程序可以从Kinesis数据流中消费交易数据。",
+  "D. 将批量交易数据存储在Amazon S3中作为文件。使用AWS Lambda处理每个文件并删除敏感数据，然后更新Amazon S3中的文件。然后，Lambda函数将数据存储在Amazon DynamoDB中。其他应用程序可以消费存储在Amazon S3中的交易文件。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是正确答案，因为它利用Amazon Kinesis Data Streams进行数据流式传输，允许近实时处理。AWS Lambda可用于删除敏感数据，处理后将交易数据存储在Amazon DynamoDB中，确保低延迟检索。其他应用程序可以直接从Kinesis数据流中消费数据，满足高并发用户的需求和实时数据共享的要求。这种架构提供了高度的可扩展性和灵活性，适合处理大量交易数据。其他选项未能充分满足实时性和敏感数据处理的要求。",
+  "AI解析": "题目核心在于处理高吞吐量实时数据流并实现敏感信息过滤。Kinesis Data Streams专为实时数据流设计，支持毫秒级延迟与水平扩展，契合数十万用户的高峰需求。Lambda无服务器架构可在数据流经Kinesis时动态清洗敏感字段，避免DynamoDB写入后处理带来的性能损耗。清洗后的数据存入DynamoDB满足文档型数据库低延迟检索需求，同时Kinesis数据流提供多消费者模式，其他应用程序通过独立迭代器实时获取数据，实现高效解耦。"
+ }
+}

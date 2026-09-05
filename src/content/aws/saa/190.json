@@ -1,0 +1,17 @@
+{
+ "index": 190,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在其数据中心中存储了700 TB的备份数据，需要将其数据迁移到AWS。备份数据需要供不经常的监管请求访问，并且必须保留7年。迁移必须在1个月内完成。公司在其公共互联网连接上有500 Mbps的专用带宽可用于数据传输。解决方案架构师应该采取哪些措施以以最低成本进行数据迁移和存储？",
+ "options": [
+  "A. 订购AWS Snowball设备来传输数据。使用生命周期策略将文件转移到Amazon S3 Glacier Deep Archive。",
+  "B. 在数据中心和Amazon VPC之间部署VPN连接。使用AWS CLI将数据从本地复制到Amazon S3 Glacier。",
+  "C. 配置一个500 Mbps的AWS Direct Connect连接，并将数据传输到Amazon S3。使用生命周期策略将文件转移到Amazon S3 Glacier Deep Archive。",
+  "D. 使用AWS DataSync来传输数据，并在本地部署DataSync代理。使用DataSync任务将文件从本地NAS存储复制到Amazon S3 Glacier。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "AWS Snowball设备适用于大规模数据传输，尤其当网络带宽不足以在指定时间内完成传输时。700TB数据通过500Mbps互联网传输需约137天，远超1个月限制。物理迁移工具如Snowball可避免网络瓶颈，确保迁移按时完成。Amazon S3 Glacier Deep Archive作为成本最低的存储类别，适合长期保留且访问频率极低的场景。生命周期策略自动化转移数据至Deep Archive无需额外操作成本。其他选项依赖的网络传输方式无法满足时间要求，或涉及更高成本的连接配置。答案A符合题干中时间、成本和存储需求。"
+ }
+}

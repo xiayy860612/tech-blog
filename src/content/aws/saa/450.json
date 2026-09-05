@@ -1,0 +1,20 @@
+{
+ "qid": "1529124374",
+ "index": 450,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司正在将其应用程序和数据库迁移到AWS云中。公司将使用Amazon Elastic Container Service（Amazon ECS）、AWS Direct Connect和Amazon RDS。\n公司的运维团队将负责管理以下哪些活动？（选择三个。）",
+ "options": [
+  "A. Amazon RDS基础架构层、操作系统和平台的管理",
+  "B. 创建Amazon RDS数据库实例并配置计划维护窗口",
+  "C. 针对Amazon ECS上的监控、补丁管理、日志管理和主机入侵检测进行额外软件组件的配置",
+  "D. 安装Amazon RDS的所有小版本和主版本的补丁",
+  "E. 确保AWS Direct Connect数据中心中Amazon RDS基础设施的物理安全",
+  "F. 加密通过Direct Connect传输的数据"
+ ],
+ "answer": {
+  "正确答案": "BCF",
+  "解析": null,
+  "AI解析": "本题核心在于区分AWS责任共担模型中客户与云服务商的职责边界。对于Amazon RDS，客户需创建实例、设置维护窗口（B项），但基础设施层和版本补丁（A/D项）由AWS管理；在ECS中，监控、日志、入侵检测等应用层配置属于客户责任（C项）；Direct Connect物理安全（E项）由AWS保障，但数据传输加密需客户自主实施（F项）。因此，运维团队需聚焦应用层配置、服务参数设定及数据传输安全。"
+ }
+}

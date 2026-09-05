@@ -1,0 +1,18 @@
+{
+ "qid": "1529124397",
+ "index": 473,
+ "total": 1018,
+ "type": "单选题",
+ "question": "该公司在AWS不同区域中拥有多个VPC，以支持和运行与其他区域中的工作负载隔离的工作负载。由于最近的应用程序启动要求，公司的VPC必须与所有其他区域的VPC进行通信。\n哪种解决方案将以最少的管理工作满足这些要求？",
+ "options": [
+  "A. 使用VPC对等连接来管理单个区域内的VPC通信。使用跨区域的VPC对等连接来管理VPC通信。",
+  "B. 使用AWS Direct Connect网关跨所有区域连接VPC，以连接区域内的VPC并管理VPC通信。",
+  "C. 使用AWS Transit Gateway来管理单个区域内的VPC通信，并使用Transit Gateway对等连接来管理VPC通信。",
+  "D. 使用AWS PrivateLink跨所有区域连接VPC，以连接区域内的VPC并管理VPC通信。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "AWS Transit Gateway是用于连接多个VPC和区域的中心化服务，可简化VPC之间的网络连接。使用Transit Gateway可以在单个区域内管理VPC通信，而使用Transit Gateway对等连接可以实现不同区域之间的VPC通信。这种方式能够以最少的管理工作来满足要求。其他选项可能需要更多的管理和配置来实现相同的功能。",
+  "AI解析": "AWS Transit Gateway作为云中的路由器，可汇聚多个VPC、VPN连接及本地网络，实现高效互联互通。它能集中管理跨区域VPC通信，无需为各区域单独配置复杂路由和连接。其支持动态与静态路由、路由传播，确保通信灵活可靠。同时，Transit Gateway的对等连接功能简化了跨区域VPC间通信管理，让不同区域VPC像在同一区域一样通信，满足公司需求。"
+ }
+}

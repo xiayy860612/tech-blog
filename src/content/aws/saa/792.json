@@ -1,0 +1,18 @@
+{
+ "qid": "1908085526",
+ "index": 792,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司拥有一款面向客户的移动应用程序。应用程序的数据是敏感的，必须在静止时加密。公司使用AWS Key Management Service (AWS KMS)。\n公司需要一个解决方案，防止意外删除KMS密钥。该解决方案必须使用Amazon Simple Notification Service (Amazon SNS)在用户尝试删除KMS密钥时向管理员发送电子邮件通知。\n哪种解决方案将以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 创建一个Amazon EventBridge规则，当用户尝试删除KMS密钥时触发。配置一个AWS Config规则，取消对KMS密钥的任何删除。将AWS Config规则添加为EventBridge规则的目标。创建一个SNS主题来通知管理员。",
+  "B. 创建一个具有自定义逻辑以阻止KMS密钥删除的AWS Lambda函数。创建一个Amazon CloudWatch警报，在用户尝试删除KMS密钥时触发。创建一个Amazon EventBridge规则，在执行DeleteKey操作时调用Lambda函数。创建一个SNS主题。配置EventBridge规则发布SNS消息通知管理员。",
+  "C. 创建一个Amazon EventBridge规则，当执行KMS DeleteKey操作时触发。配置规则以启动AWS Systems Manager Automation运行簿。配置运行簿以取消对KMS密钥的删除。创建一个SNS主题。配置EventBridge规则发布SNS消息通知管理员。",
+  "D. 创建一个AWS CloudTrail跟踪。配置跟踪将日志传递到一个新的Amazon CloudWatch日志组。基于CloudWatch日志组的指标过滤器创建一个CloudWatch警报。配置警报使用Amazon SNS，在执行KMS DeleteKey操作时通知管理员。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "C选项中，使用Amazon EventBridge来监视KMS DeleteKey操作，并配置规则来触发AWS Systems Manager Automation运行簿。此运行簿可以取消对KMS密钥的删除。然后，配置EventBridge规则将SNS消息发布到通知管理员的主题中。\nA选项中，AWS Config规则不是用来防止删除KMS密钥的适当解决方案。\nB选项中，虽然可以使用Lambda函数来自定义逻辑以阻止KMS密钥的删除，但这会增加操作的复杂性。\nD选项中，CloudTrail可以记录KMS操作，但它不会阻止对KMS密钥的意外删除，而是提供跟踪和审计。",
+  "AI解析": "该题目涉及AWS KMS密钥保护和事件响应的实现方式，重点在于防止密钥删除并发送通知。AWS官方文档指出，EventBridge可以监控KMS的API事件（如DeleteKey），触发自动化操作。Systems Manager Automation运行手册支持预定义的安全补救动作，例如取消未授权的删除操作。选项C利用EventBridge捕捉删除事件后，通过Systems Manager自动化直接阻止删除，并集成SNS通知，完全使用托管服务，无需自定义代码或复杂配置。相比之下，其他选项要么缺乏阻止机制（D），要么需要额外开发（B）或依赖非实时配置规则（A）。因此，选项C的设计符合最小运营开销的要求。"
+ }
+}

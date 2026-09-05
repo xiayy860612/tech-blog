@@ -1,0 +1,18 @@
+{
+ "qid": "1908085467",
+ "index": 733,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在其企业数据中心和us-east-1地区的VPC之间拥有AWS Direct Connect连接。该公司最近收购了一个拥有几个VPC和一个在eu-west-2地区的本地数据中心与其Direct Connect连接的公司。公司和公司的VPC的CIDR块不重叠。公司需要两个地区和数据中心之间的连接。公司需要一个可扩展的解决方案，同时减少运营开销。\n解决这些要求，解决方案架构师应该怎么做？",
+ "options": [
+  "A. 在us-east-1的VPC和eu-west-2的VPC之间建立跨地区VPC对等连接。",
+  "B. 从us-east-1的Direct Connect连接创建到eu-west-2的VPC的私有虚拟接口。",
+  "C. 在由Amazon EC2托管的全网状VPN网络中建立VPN设备。使用AWS VPN CloudHub在数据中心和每个VPC之间发送和接收数据。",
+  "D. 将现有的Direct Connect连接连接到Direct Connect网关。将每个地区的VPC的虚拟私有网关的流量路由到Direct Connect网关。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "使用Direct Connect网关可以提供扩展性，并且减少了操作开销。通过将现有的Direct Connect连接连接到Direct Connect网关，可以在两个地区之间轻松地建立连接，并通过路由流量到Direct Connect网关来实现数据中心与每个VPC之间的连接。",
+  "AI解析": "AWS Direct Connect网关允许通过单一连接将多个Amazon VPC（跨不同区域）连接到本地网络。使用虚拟私有网关将每个VPC关联到Direct Connect网关，可简化跨区域和本地数据中心的流量路由，避免复杂的VPN配置或跨区域对等连接。此方法符合减少运营开销和扩展性要求。选项D正确，其他选项或涉及额外管理成本或无法满足所有连接需求。来源：AWS Direct Connect文档关于跨区域连接的最佳实践。"
+ }
+}

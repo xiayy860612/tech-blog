@@ -1,0 +1,17 @@
+{
+ "index": 117,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在开发一个文件共享应用程序，将使用Amazon S3存储桶进行存储。公司希望通过Amazon CloudFront分发来提供所有的文件，并不希望文件可以通过直接访问S3 URL来访问。\n解决方案架构师应该采取哪些措施来满足这些要求？",
+ "options": [
+  "A. 为每个S3存储桶编写单独的策略，仅授予CloudFront访问的读取权限。",
+  "B. 创建一个IAM用户，授予该用户对S3存储桶中的对象的读取权限，然后将用户分配给CloudFront。",
+  "C. 编写一个S3存储桶策略，将CloudFront分发ID指定为Principal，并将目标S3存储桶指定为Amazon Resource Name（ARN）。",
+  "D. 创建一个Origin Access Identity (OAI)，将OAI分配给CloudFront分发，然后配置S3存储桶权限，以便只有OAI具有读取权限。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为满足这些要求，最佳做法是使用选项D，即创建一个Origin Access Identity (OAI)，将OAI分配给CloudFront分发，并配置S3存储桶权限，以便只有OAI具有读取权限。\n通过创建OAI，您可以确保只有CloudFront分发有权限访问S3存储桶中的内容，而不会通过直接访问S3 URL来访问。这有助于提高安全性和控制文件的访问。\n其他选项的解释：\nA编写单独的策略可能会更加繁琐，并且需要为每个存储桶分别设置策略。\nB 创建IAM用户并将其分配给CloudFront不是一个最佳实践，因为S3可以与CloudFront更紧密集成，而不需要创建用户。\nC尽管可以创建S3存储桶策略，但通常更推荐使用OAI来提供更精细的控制和安全性。",
+  "AI解析": "Amazon CloudFront与Amazon S3的集成场景中，确保仅通过CloudFront分发访问S3对象，需使用Origin Access Identity（OAI）。AWS官方文档指出，OAI是CloudFront的特殊身份，用于授权从分发请求数据的权限。配置时需将OAI关联到分发并在S3存储桶策略中限制仅允许该OAI的访问。选项D正确描述了该过程。选项C错误地将分发ID作为Principal，但S3策略中无法直接使用分发ID作为授权主体；选项B中的IAM用户不适用于CloudFront身份验证；选项A未提及OAI，无法确保权限隔离。"
+ }
+}

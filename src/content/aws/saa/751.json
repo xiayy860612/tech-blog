@@ -1,0 +1,19 @@
+{
+ "qid": "1908085485",
+ "index": 751,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司有一个基于虚拟机（VMs）的多层付款处理应用程序。各层之间的通信通过第三方中间件解决方案异步进行，该解决方案能够保证精确一次性交付。\n公司需要一种解决方案，需要管理的基础设施最少。该解决方案必须为应用程序消息传递保证精确一次性交付。\n哪种行动组合能够满足这些要求？（选择两个）",
+ "options": [
+  "A. 在架构中使用 AWS Lambda 作为计算层。",
+  "B. 在架构中使用 Amazon EC2 实例作为计算层。",
+  "C. 使用 Amazon Simple Notification Service（Amazon SNS）作为计算层之间的消息组件。",
+  "D. 使用 Amazon Simple Queue Service（Amazon SQS）FIFO 队列作为计算层之间的消息组件。",
+  "E. 在架构中使用基于 Amazon Elastic Kubernetes Service（Amazon EKS）的容器作为计算层。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": "为了实现所需的解决方案并最大程度地减少基础设施管理，应该使用 AWS Lambda 作为计算层，并使用 Amazon SQS FIFO 队列作为计算层之间的消息组件。AWS Lambda 提供了一种无服务器计算模型，可以减少基础设施管理，而 Amazon SQS FIFO 队列可以保证精确一次性交付，确保消息在各层之间的可靠传递。",
+  "AI解析": "AWS的无服务器计算服务Lambda消除了基础设施管理，符合最小化管理需求。Lambda由AWS全托管，无需配置或维护服务器。FIFO队列是SQS的一种队列类型，支持严格的消息顺序和仅一次处理，确保消息传递的精确一次性。SNS作为消息组件无法单独支持仅一次交付，EC2和EKS需要更多基础设施管理。AWS官方文档指出，Lambda适用于事件驱动、无服务器架构，而SQS FIFO队列专为需要精确顺序和仅一次处理场景设计。"
+ }
+}

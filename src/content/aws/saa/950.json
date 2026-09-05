@@ -1,0 +1,18 @@
+{
+ "qid": "2949540291",
+ "index": 950,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个嵌入了凭证的自定义应用程序，该应用程序从 Amazon RDS for MySQL 数据库集群中检索信息。公司需要使应用程序更安全，并且希望尽可能减少编程工作。公司已经在 RDS for MySQL 数据库上为应用程序用户创建了凭证。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 将凭证存储在 AWS Key Management Service (AWS KMS) 中。创建 AWS KMS 中的密钥。配置应用程序从 AWS KMS 加载数据库凭证。启用自动密钥轮换。",
+  "B. 将凭证存储在加密的本地存储中。配置应用程序从本地存储加载数据库凭证。通过创建一个 cron 作业设置凭证轮换计划。",
+  "C. 将凭证存储在 AWS Secrets Manager 中。配置应用程序从 Secrets Manager 加载数据库凭证。通过为 Secrets Manager 创建 AWS Lambda 函数设置凭证轮换计划。",
+  "D. 将凭证存储在 AWS Systems Manager Parameter Store 中。配置应用程序从 Parameter Store 加载数据库凭证。通过使用 Parameter Store 设置 RDS for MySQL 数据库中的凭证轮换计划。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "AWS Secrets Manager 是一个专门设计用于管理和轮换敏感凭证的服务。它提供了存储、自动轮换、检索凭证的功能，并且可以通过 AWS Lambda 函数自动轮换凭证。这种方法符合最小编程工作量的要求，并提供了所需的安全性和自动化凭证管理。",
+  "AI解析": "AWS提供多种服务用于凭证管理，其中AWS Secrets Manager专为安全存储和自动轮换敏感信息设计。官方文档指出，Secrets Manager支持直接集成RDS数据库凭证的自动轮换，无需自定义代码。选项A的KMS主要用于加密而非凭证管理，密钥轮换不涉及凭证本身。选项B的本地存储存在安全风险且需手动维护。选项D的Parameter Store虽能存储参数，但凭证轮换需额外配置Lambda函数，而Secrets Manager提供原生支持。选项C通过Secrets Manager自动处理凭证存储和轮换，无需开发额外功能，满足安全和最小化编程需求。"
+ }
+}

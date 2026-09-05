@@ -1,0 +1,18 @@
+{
+ "qid": "1529122080",
+ "index": 8,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将分布式应用程序迁移到AWS。该应用程序为可变工作负载提供服务。传统平台由一个协调多个计算节点上的作业的主服务器组成。公司希望使用一种解决方案来现代化该应用程序，以最大程度地提高弹性和可伸缩性。解决方案架构师应该如何设计架构以满足这些要求？",
+ "options": [
+  "A. 配置Amazon Simple Queue Service (Amazon SQS)队列作为作业的目标。使用Amazon EC2实例实现计算节点，这些实例由Auto Scaling组管理。配置EC2 Auto Scaling以使用预定的自动伸缩。",
+  "B. 配置Amazon Simple Queue Service (Amazon SQS)队列作为作业的目标。使用Amazon EC2实例实现计算节点，这些实例由Auto Scaling组管理。根据队列的大小配置EC2 Auto Scaling。",
+  "C. 使用Amazon EC2实例实现主服务器和计算节点，这些实例由Auto Scaling组管理。将AWS CloudTrail配置为作业的目标。根据主服务器的负载配置EC2 Auto Scaling。",
+  "D. 使用Amazon EC2实例实现主服务器和计算节点，这些实例由Auto Scaling组管理。将Amazon EventBridge (Amazon CloudWatch Events)配置为作业的目标。根据计算节点的负载配置EC2 Auto Scaling。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B，即配置Amazon SQS队列作为作业的目标，并根据队列的大小配置EC2 Auto Scaling，是满足要求的最佳解决方案。这种解决方案可以根据队列中积压的作业数量来动态调整计算节点的数量，以应对可变的工作负载，从而提高弹性和可伸缩性。选项A中的预定自动伸缩是根据时间表配置的，可能无法适应可变的工作负载。选项C中使用CloudTrail作为作业的目标，但CloudTrail主要用于日志记录和审计，并不适合作为作业调度的解决方案。选项D中使用EventBridge (CloudWatch Events)作为作业的目标，但这通常用于事件驱动的架构，不适合作业调度。选项B提供了最灵活的解决方案，以根据队列大小自动调整计算节点的数量，从而实现了弹性和可伸缩性。",
+  "AI解析": "这道题目考察在AWS中设计弹性、可扩展架构的能力。AWS最佳实践文档指出，消息队列与自动伸缩策略结合是实现可变工作负载的关键。选项B使用SQS作为作业目标，将队列深度作为指标触发Auto Scaling，直接根据待处理作业数量调整计算资源，符合无服务器化、自动扩展的设计原则。选项A的预定伸缩无法响应实时负载波动，选项C的CloudTrail不涉及任务调度，选项D的EventBridge未体现队列机制且依赖节点负载指标，均无法满足动态伸缩需求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2949540301",
+ "index": 960,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司使用AWS来托管其公共电子商务网站。网站使用AWS Global Accelerator来处理来自互联网的流量。Global\nAccelerator将流量转发到一个Application Load Balancer (ALB)，ALB是Auto Scaling组的入口点。\n公司最近发现网站受到DDoS攻击。公司需要一个解决方案来减轻未来的攻击。\n哪个解决方案将以最少的实施工作量满足这些要求？",
+ "options": [
+  "A. 为Global Accelerator配置一个AWS WAF Web ACL，通过使用基于速率的规则来阻止流量。",
+  "B. 配置一个AWS Lambda函数来读取ALB指标，以通过更新VPC网络ACL来阻止攻击。",
+  "C. 在ALB上配置一个AWS WAF Web ACL，通过使用基于速率的规则来阻止流量。",
+  "D. 在Global Accelerator前配置一个Amazon CloudFront分发。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS WAF Web ACL的作用：\nAWS WAF（Web Application Firewall）可以帮助保护Web应用程序免受常见的Web攻击。配置AWS\nWAF Web ACL来为Global Accelerator设置基于速率的规则，可以有效地缓解DDoS攻击，防止恶意流量影响网站。这是因为WAF可以直接与Global Accelerator集成，快速应用规则来限制流量。",
+  "AI解析": "AWS Global Accelerator支持直接关联AWS WAF Web ACL，用于在流量到达应用资源前实施防护。AWS文档指出，Global Accelerator与WAF集成可针对应用程序层攻击（如DDoS）提供防护。选项A在Global Accelerator层配置基于速率的规则，能够在流量入口点阻止恶意请求，减少后端资源负载。选项C的ALB层防护处于架构后端，无法提前缓解攻击；选项D引入CloudFront会增加架构复杂性；选项B依赖Lambda和手动调整ACL，响应速度和自动化程度不足。正确答案符合AWS推荐架构中边缘防护的最佳实践。"
+ }
+}

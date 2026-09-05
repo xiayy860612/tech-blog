@@ -1,0 +1,19 @@
+{
+ "qid": "1908084756",
+ "index": 639,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司有一个应用工作流，使用AWS Lambda函数从Amazon S3下载和解密文件。这些文件使用AWS Key Management Service（AWS KMS）密钥进行加密。解决方案架构师需要设计一个解决方案，确保设置了必要的权限。\n哪种组合的操作能够完成这个任务？（选择两个）",
+ "options": [
+  "A. 在Lambda函数的资源策略中附加kms:decrypt权限。",
+  "B. 在KMS密钥的策略中，为Lambda IAM角色授予decrypt权限。",
+  "C. 在KMS密钥的策略中，为Lambda资源策略授予decrypt权限。",
+  "D. 创建一个新的IAM策略，具有kms:decrypt权限，并将该策略附加到Lambda函数。",
+  "E. 创建一个新的IAM角色，具有kms:decrypt权限，并将执行角色附加到Lambda函数。"
+ ],
+ "answer": {
+  "正确答案": "BE",
+  "解析": "B 在 KMS 密钥的策略中，为 Lambda IAM 角色授予 decrypt 权限，这样 Lambda 函数就可以使用密钥进行解密操作。\nE 创建一个新的 IAM 角色，具有 kms:decrypt 权限，并将执行角色附加到 Lambda 函数，以便 Lambda 函数可以使用这个角色执行解密操作。",
+  "AI解析": "AWS KMS密钥的策略需要显式允许请求者使用密钥，即使IAM角色拥有相关权限，若未在KMS密钥策略中授权，请求会被拒绝。确保Lambda执行角色具有kms:Decrypt权限的最有效方法是将该角色添加到KMS密钥策略中。同时，Lambda函数需要一个执行角色来承担权限，创建具有所需权限的IAM角色并附加到函数是标准做法。选项B正确配置了KMS密钥策略，选项E提供了Lambda执行所需的角色和权限。其余选项或涉及不适用资源策略，或未正确关联IAM角色与KMS策略。参考AWS文档中的KMS密钥策略和Lambda执行角色权限配置部分。"
+ }
+}

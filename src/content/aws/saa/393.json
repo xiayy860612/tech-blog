@@ -1,0 +1,18 @@
+{
+ "qid": "1529124314",
+ "index": 393,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS云中运行多层电子商务Web应用程序。该应用程序在Amazon EC2实例上运行，使用Amazon RDS for MySQL Multi-AZ DB实例。Amazon RDS配置了最新一代DB实例，拥有2,000 GB的存储空间，采用General Purpose SSD（gp3）Amazon Elastic Block Store（Amazon EBS）卷。在高需求时，数据库性能会影响应用程序。\n数据库管理员分析了Amazon CloudWatch Logs中的日志，发现当读写IOPS的数量高于20,000时，应用程序性能总是下降。\n解决方案架构师应该采取什么措施来提高应用程序性能？",
+ "options": [
+  "A. 用磁性卷替换卷。",
+  "B. 增加gp3卷上的IOPS数量。",
+  "C. 用Provisioned IOPS SSD（io2）卷替换卷。",
+  "D. 用两个1,000 GB gp3卷替换2,000 GB的gp3卷。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "要提高应用程序性能，可以考虑将Amazon RDS gp3卷替换为Provisioned IOPS SSD（io2）卷。io2卷提供了更高的IOPS性能，并可以根据需求进行配置。在高需求时，io2卷通常能够提供更好的性能，适用于要求更高IOPS的场景。\n其他选项不会直接解决性能问题。将卷替换为磁性卷（选项A）通常会降低性能，而增加IOPS数量（选项B）不会提高gp3卷的性能限制。选择两个1,000 GB gp3卷（选项D）也不会解决性能问题，因为gp3卷本身可能无法提供所需的IOPS。因此，最佳选择是选择io2卷以提高性能。",
+  "AI解析": "Amazon RDS的不同存储类型及其性能特性是关键。当数据库的读写IOPS持续超过20,000时，使用General Purpose SSD（gp3）卷可能无法满足需求，因为gp3的默认最大IOPS为16,000（即使通过配置扩展，其成本效益可能不如其他选项）。Provisioned IOPS SSD（io2）卷专为需要高IOPS和低延迟的场景设计，支持更高的预配置IOPS（最高256,000）。选项C通过更换为io2卷，能够直接提供更高的IOPS容量以适应高负载，解决性能瓶颈。其他选项如调整gp3的IOPS或分割卷无法有效突破gp3的IOPS限制或改善性能。AWS文档中明确区分了不同存储类型的适用场景，io2适用于对性能和稳定性要求极高的数据库工作负载。"
+ }
+}

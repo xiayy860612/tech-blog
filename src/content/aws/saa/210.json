@@ -1,0 +1,17 @@
+{
+ "index": 210,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司托管多个生产应用程序。其中一个应用程序包含来自多个AWS区域的Amazon EC2、AWS Lambda、Amazon RDS、Amazon Simple Notification Service (Amazon SNS) 和Amazon Simple Queue Service (Amazon SQS) 的资源。所有公司资源都标记有一个标签名称为“application”和与每个应用程序对应的值。解决方案架构师必须提供最快的解决方案，以识别所有带有标签的组件。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用AWS CloudTrail生成带有应用程序标签的资源列表。",
+  "B. 使用AWS CLI查询所有区域的每个服务，以报告带有标签的组件。",
+  "C. 在Amazon CloudWatch Logs Insights中运行查询，以报告带有应用程序标签的组件。",
+  "D. 使用AWS Resource Groups标签编辑器运行查询，以全局报告带有应用程序标签的资源。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了快速识别带有应用程序标签的所有组件，最佳解决方案是选项D。AWS Resource Groups标签编辑器允许您运行查询，以全局报告带有应用程序标签的资源。这是一个方便且高效的方式，可以帮助您管理和识别带有特定标签的资源。\n选项A中，虽然AWS CloudTrail可用于记录AWS API调用，但它通常用于审计和安全监控，不是最佳的资源标签查询工具。\n选项B中，使用AWS CLI查询每个服务跨所有区域可能不是最快的方式，而且工作量很大。\n选项C中，虽然Amazon CloudWatch Logs Insights用于分析日志数据，但它不是专门用于资源标签查询的工具，可能不如AWS Resource Groups标签编辑器方便。\n因此，选项D是最佳选择，它提供了一种快速识别带有应用程序标签的资源的方法。",
+  "AI解析": "AWS Resource Groups标签编辑器允许用户跨所有AWS区域和服务快速查询具有特定标签的资源。该服务专为集中管理资源标签设计，支持全局搜索，无需逐区域或逐服务查询。AWS CLI（选项B）需手动查询各区域和服务，效率低下；CloudTrail（选项A）用于审计API活动，无法直接生成资源列表；CloudWatch Logs Insights（选项C）用于日志分析，与标签无关。AWS官方文档指出Resource Groups可基于标签聚合资源（来源：AWS Resource Groups用户指南）。"
+ }
+}

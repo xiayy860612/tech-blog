@@ -1,0 +1,18 @@
+{
+ "qid": "1529125614",
+ "index": 557,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个公司在同一个 AWS 账户的 us-west-2 区域中有两个 VPC。公司需要允许这些 VPC 之间的网络流量。每个月这两个 VPC 之间大约会有 500GB 的数据传输。\n最经济的连接这些 VPC 的解决方案是什么？",
+ "options": [
+  "A. 实现 AWS Transit Gateway 来连接这些 VPC。更新每个 VPC 的路由表，以便在 VPC 之间使用 Transit Gateway 进行通信。",
+  "B. 在这些 VPC 之间实现 AWS Site-to-Site VPN 隧道。更新每个 VPC 的路由表，以便使用 VPN 隧道进行 VPC 间通信。",
+  "C. 在这些 VPC 之间建立 VPC 对等连接。更新每个 VPC 的路由表，以便使用 VPC 对等连接进行 VPC 间通信。",
+  "D. 在这些 VPC 之间建立 1GB 的 AWS Direct Connect 连接。更新每个 VPC 的路由表，以便使用 Direct Connect 连接进行 VPC 间通信。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "在这种情况下，最经济且符合需求的解决方案是使用 VPC 对等连接（选项 C）。VPC 对等连接允许在同一账户内的不同 VPC 之间进行网络通信，并且不产生额外的跨区域数据传输费用。考虑到两个 VPC 之间的数据传输量不大（约 500GB），使用 VPC 对等连接是更经济的选择，因为它不需要消耗更高成本的 AWS Transit Gateway（选项 A）、VPN 隧道（选项 B）或 AWS Direct Connect 连接（选项 D）。",
+  "AI解析": "该题核心考查同一AWS区域VPC间经济互联方案的选择。VPC对等连接作为原生服务，允许同一区域内VPC通过私有IP直接通信，无需网关设备或公网传输，依据AWS定价模型，同区域VPC对等不收取数据传输费，仅存在路由表配置成本，较Transit Gateway（收取每VPC接入费和流量处理费）、Site-to-Site VPN（涉及网关小时费和跨AZ流量费）及Direct Connect（需支付端口费和专线月费）具有显著成本优势，完全契合题设经济性要求。"
+ }
+}

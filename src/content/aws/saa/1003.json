@@ -1,0 +1,18 @@
+{
+ "qid": "2949543543",
+ "index": 1003,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在\nUs-east-1 区域托管其企业资源规划（ERP）系统。该系统运行在 Amazon EC2 实例上。客户使用托管在 EC2 实例上的公共 API 与 ERP 系统交换信息。国际客户报告从其数据中心访问 API 的响应时间较慢。\n哪种解决方案将以最低的成本提高国际客户的响应时间？",
+ "options": [
+  "A. 创建一个 AWS Direct Connect 连接，具有公共虚拟接口（VIF），为每个客户的数据中心提供连接到 us-east-1 的能力。通过 Direct Connect 网关将客户的 API 请求路由到 ERP 系统 API。",
+  "B. 在 API 前面设置一个 Amazon CloudFront 分发。配置 CachingOptimized 管理缓存策略以提高缓存效率。",
+  "C. 设置 AWS Global Accelerator。为必要的端口配置监听器。为适当的区域配置端点组以分配流量。在组中为 API 创建一个端点。",
+  "D. 使用 AWS Site-to-Site VPN 在区域和客户网络之间建立专用 VPN 隧道。通过 VPN 连接路由流量到 API。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "使用 Amazon CloudFront 可以将内容缓存到全球各地的边缘位置，从而加速国际客户对 API 的访问。通过将常用的数据缓存到离用户更近的地点，CloudFront 能显著降低延迟并提高响应速度。这是成本效益高且易于实施的解决方案，特别是对于需要快速访问的公共 API。",
+  "AI解析": "答案B的正确性基于Amazon CloudFront的内容分发网络（CDN）特性。AWS文档指出，CloudFront通过将内容缓存到全球分布的边缘节点，减少客户端与源站之间的物理距离，从而降低延迟。配置CachingOptimized策略可自动应用最佳缓存设置，提高命中率。对于API这类可能频繁请求相同数据的场景，缓存有效减少对后端EC2实例的直接调用，同时节省数据传输成本。其他选项如Direct Connect或Global Accelerator虽能优化网络路径，但初期投入及持续费用更高；VPN则依赖公网且管理复杂。因此，B选项以较低成本实现性能提升。"
+ }
+}

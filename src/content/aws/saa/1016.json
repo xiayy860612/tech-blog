@@ -1,0 +1,18 @@
+{
+ "qid": "2949543556",
+ "index": 1016,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在 Amazon\nEC2 实例上运行 Amazon Elastic Kubernetes Service (Amazon\nEKS) 集群的应用程序。该应用程序有一个用户界面（UI），使用 Amazon DynamoDB，并且数据服务使用 Amazon S3 作为应用程序部署的一部分。\n公司必须确保 UI 的 EKS\nPods 仅能访问 Amazon DynamoDB，而数据服务的 EKS Pods 仅能访问 Amazon S3。公司使用 AWS 身份和访问管理 (IAM)。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 创建用于 Amazon S3 和 DynamoDB 访问的单独 IAM 策略，附加所需权限。将这两个 IAM 策略附加到 EC2 实例配置文件上。使用基于角色的访问控制 (RBAC) 控制各自 EKS Pods 对 Amazon S3 或 DynamoDB 的访问。",
+  "B. 创建用于 Amazon S3 和 DynamoDB 访问的单独 IAM 策略，附加所需权限。将 Amazon S3 IAM 策略直接附加到数据服务的 EKS Pods 上，将 DynamoDB 策略附加到 UI 的 EKS Pods 上。",
+  "C. 为 UI 和数据服务创建单独的 Kubernetes 服务账户，以假设 IAM 角色。将 AmazonS3FullAccess 策略附加到数据服务账户，将 AmazonDynamoDBFullAccess 策略附加到 UI 服务账户。",
+  "D. 为 UI 和数据服务创建单独的 Kubernetes 服务账户，以假设 IAM 角色。使用 IAM Role for Service Accounts (IRSA) 为 UI 的 EKS Pods 提供对 Amazon S3 的访问，为数据服务的 EKS Pods 提供对 DynamoDB 的访问。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "这个选项直接为 UI 和数据服务创建不同的 Kubernetes 服务账户，并为每个服务账户分配相应的 IAM 策略。\n通过这种方式，UI 的 EKS\nPods 只能访问 DynamoDB，而数据服务的 EKS\nPods 只能访问 S3，满足了公司的安全要求。\n这也是一种较为简便的实现方式，因为 Kubernetes 本身已经提供了服务账户的支持。",
+  "AI解析": "该题考察在Amazon EKS中结合IAM角色与Kubernetes服务账户实现细粒度权限控制。AWS官方文档强调，通过将IAM角色绑定到不同服务账户，可使Pod继承相应权限。选项C通过为不同服务创建独立服务账户并附加对应IAM策略，直接赋予UI Pods DynamoDB权限，数据服务Pod S3权限。而选项D使用IRSA但权限分配方向错误，导致不符合题干要求。选项B将策略直接附加到Pod不符合IAM模型，选项A在实例配置文件层级无法区分Pod权限。正确做法应为服务账户关联正确策略的选项C。"
+ }
+}

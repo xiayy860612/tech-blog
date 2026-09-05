@@ -1,0 +1,17 @@
+{
+ "index": 59,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上运行其基础架构，并为其文档管理应用程序拥有70万注册用户。公司打算创建一个产品，将大型PDF文件转换为JPG图像文件。PDF文件平均大小为5 MB。公司需要存储原始文件和转换后的文件。解决方案架构师必须设计一个可扩展的解决方案，以满足随着时间快速增长的需求。",
+ "options": [
+  "A. 将PDF文件保存到Amazon S3。配置S3 PUT事件以调用AWS Lambda函数，将文件转换为.jpg格式并将其存储回Amazon S3。",
+  "B. 将PDF文件保存到Amazon DynamoDB，使用DynamoDB Streams功能以调用AWS Lambda函数，将文件转换为.jpg格式并将其存储回DynamoDB。",
+  "C. 将PDF文件上传到包括Amazon EC2实例、Amazon Elastic Block Store（Amazon EBS）存储和Auto Scaling组的AWS Elastic Beanstalk应用程序。在EC2实例中使用程序将文件转换为.jpg格式。将.pdf文件和.jpg文件保存在EBS存储中。",
+  "D. 将PDF文件上传到包括Amazon EC2实例、Amazon Elastic File System（Amazon EFS）存储和Auto Scaling组的AWS Elastic Beanstalk应用程序。在EC2实例中使用程序将文件转换为.jpg格式。将.pdf文件和.jpg文件保存在EBS存储中。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A是最符合要求的答案。通过将PDF文件保存在Amazon S3中，可以利用S3的高度可扩展性和耐用性。配置S3 PUT事件可以触发AWS Lambda函数来执行文件转换操作，这样可以自动进行转换和存储，而无需显式地管理EC2实例或Elastic Beanstalk应用程序。\n选项B中使用DynamoDB来存储文件并触发Lambda函数，虽然是一种可行的方法，但通常不适合存储和处理大文件，特别是考虑到PDF文件平均大小为5 MB。选项C和D提到了使用Elastic Beanstalk应用程序和EC2实例，这将需要更多的管理和维护，并且可能不如Amazon S3 + Lambda来处理大量文件转换任务。所以，选项A是最具成本效益的解决方案。",
+  "AI解析": "AWS架构设计中的存储服务与无服务器计算应用。Amazon S3常用于存储大型对象，结合Lambda实现事件驱动处理。DynamoDB适合键值存储而非大文件，存储PDF会导致性能与成本问题。Elastic Beanstalk方案依赖EC2和块存储，扩展性和管理复杂度较高。Lambda+S3无需预置资源，按需自动扩展，契合处理突增流量与长期增长需求。"
+ }
+}

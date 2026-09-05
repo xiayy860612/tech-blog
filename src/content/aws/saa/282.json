@@ -1,0 +1,17 @@
+{
+ "index": 282,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家研究公司运行由模拟应用程序和可视化应用程序提供支持的实验。模拟应用程序在 Linux 上运行，并且每 5 分钟将中间数据输出到 NFS 共享。可视化应用程序是一个 Windows 桌面应用程序，显示模拟输出，并需要一个 SMB 文件系统。\n公司维护两个同步文件系统。这种策略导致数据重复和资源使用效率低下。公司需要将这些应用程序迁移到 AWS，而不对任何应用程序进行代码更改。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 将两个应用程序迁移到 AWS Lambda。创建一个 Amazon S3 存储桶用于应用程序之间的数据交换。",
+  "B. 将两个应用程序迁移到 Amazon Elastic Container Service (Amazon ECS)。为存储配置 Amazon FSx File Gateway。",
+  "C. 将模拟应用程序迁移到 Linux Amazon EC2 实例。将可视化应用程序迁移到 Windows EC2 实例。配置 Amazon Simple Queue Service (Amazon SQS) 用于应用程序之间的数据交换。",
+  "D. 将模拟应用程序迁移到 Linux Amazon EC2 实例。将可视化应用程序迁移到 Windows EC2 实例。为存储配置 Amazon FSx for NetApp ONTAP。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "这种情况下最为合适的解决方案是将模拟应用程序迁移到 Linux Amazon EC2 实例，将可视化应用程序迁移到 Windows EC2 实例，并使用 Amazon FSx for NetApp ONTAP 来作为存储。这样可以在两个不同的 EC2 实例上运行每个应用程序而不需要对应用程序代码进行更改，并提供所需的文件系统支持。 Amazon FSx for NetApp ONTAP 提供支持 SMB 的文件系统，因此可以满足 Windows 可视化应用程序的要求，并在 EC2 实例之间提供共享存储而无需数据重复。其他选项并没有提供适当的文件系统支持或者没有解决数据重复的问题。",
+  "AI解析": "该题核心考查多协议文件共享架构设计。Amazon FSx for NetApp ONTAP 作为云原生多协议文件存储服务，原生支持NFS（Linux模拟程序所需）和SMB（Windows可视化程序所需），通过单一存储端点实现两种文件协议的无缝访问，完全兼容现有应用架构无需代码改造，从根本上解决数据冗余问题。其他方案中，S3缺乏文件系统接口，ECS容器化改造非必要且FSx File Gateway定位混合云场景，SQS作为消息队列无法替代文件系统交互需求。"
+ }
+}

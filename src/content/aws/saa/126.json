@@ -1,0 +1,17 @@
+{
+ "index": 126,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家游戏公司正在设计一个高可用架构。该应用程序在修改后的Linux内核上运行，仅支持基于UDP的流量。公司需要前端层提供尽可能最好的用户体验。该层必须具有低延迟，将流量路由到最近的边缘位置，并为进入应用程序端点提供静态IP地址。\n为满足这些要求，解决方案架构师应该采取什么措施？",
+ "options": [
+  "A. 配置Amazon Route 53将请求转发到应用程序负载均衡器。在AWS Application Auto Scaling中使用AWS Lambda来处理应用程序。",
+  "B. 配置Amazon CloudFront将请求转发到网络负载均衡器。在AWS Application Auto Scaling组中使用AWS Lambda来处理应用程序。",
+  "C. 配置AWS Global Accelerator将请求转发到网络负载均衡器。在EC2 Auto Scaling组中使用Amazon EC2实例来处理应用程序。",
+  "D. 配置Amazon API Gateway将请求转发到应用程序负载均衡器。在EC2 Auto Scaling组中使用Amazon EC2实例来处理应用程序。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是最佳答案，因为它使用了AWS Global Accelerator，可以将请求路由到最近的边缘位置，从而实现低延迟。使用网络负载均衡器（Network Load Balancer）有助于处理UDP流量。同时，使用EC2 Auto Scaling组中的Amazon EC2实例来处理应用程序，这有助于实现高可用性和可扩展性。\n选项A和选项D都使用了应用程序负载均衡器（Application Load Balancer），这不是最适合UDP流量的选项。\n选项B使用了CloudFront，但它通常用于加速内容传递，而不适合处理UDP流量。",
+  "AI解析": "该题涉及AWS全球网络加速服务与负载均衡方案的结合使用。AWS官方文档指出，Global Accelerator通过Anycast IP提供静态入口点，利用Amazon全球网络优化路径降低延迟，将流量定向至最近的边缘站点。网络负载均衡器（NLB）支持UDP协议及保留客户端源IP，与仅支持HTTP/HTTPS的应用负载均衡器（ALB）形成对比。EC2 Auto Scaling组适用于需要自定义内核等底层控制的场景，而Lambda无此能力。选项C组合Global Accelerator的流量分发能力、NLB的协议支持特性以及EC2实例的底层控制，完全适配题干中UDP流量、低延迟、静态IP三大需求。其他选项在协议支持性（A/D使用ALB）、IP固定性（B使用CloudFront）或计算资源适配性（A/B使用Lambda）方面存在不匹配。"
+ }
+}

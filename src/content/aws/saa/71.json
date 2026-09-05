@@ -1,0 +1,17 @@
+{
+ "index": 71,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要为其应用程序配置一个实时数据摄入架构。公司需要一个API、一个在数据流式传输时转换数据的过程，以及一个用于数据存储的解决方案。\n哪种解决方案在操作开销最少的情况下满足这些要求？",
+ "options": [
+  "A. 部署Amazon EC2实例来托管一个API，将数据发送到Amazon Kinesis数据流。创建一个使用Kinesis数据流作为数据源的Amazon Kinesis Data Firehose传输流。使用AWS Lambda函数转换数据。使用Kinesis Data Firehose传输流将数据发送到Amazon S3。",
+  "B. 部署Amazon EC2实例来托管一个API，将数据发送到AWS Glue。在EC2实例上停止源/目标检查。使用AWS Glue转换数据，并将数据发送到Amazon S3。",
+  "C. 配置Amazon API Gateway API以将数据发送到Amazon Kinesis数据流。创建一个使用Kinesis数据流作为数据源的Amazon Kinesis Data Firehose传输流。使用AWS Lambda函数转换数据。使用Kinesis Data Firehose传输流将数据发送到Amazon S3。",
+  "D. 配置Amazon API Gateway API以将数据发送到AWS Glue。使用AWS Lambda函数转换数据。使用AWS Glue将数据发送到Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "Amazon API Gateway作为托管服务无需基础设施管理，适合接收数据。Amazon Kinesis Data Streams处理实时数据流，Kinesis Data Firehose结合Lambda转换数据无需服务器管理，最后存储到Amazon S3。API Gateway与Kinesis集成直接，避免了EC2实例的运维负担。AWS官方文档指出，此类架构通过完全托管服务实现低运维实时数据处理。选项A涉及EC2运维，选项B和D使用AWS Glue（针对批处理），不符合实时场景。选项C采用全托管服务，操作开销最小。"
+ }
+}

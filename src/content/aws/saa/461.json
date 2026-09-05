@@ -1,0 +1,18 @@
+{
+ "qid": "1529124385",
+ "index": 461,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个处理客户订单的应用程序。该公司将应用程序托管在一个Amazon EC2实例上，该实例将订单保存到Amazon Aurora数据库中。偶尔在高流量时，工作负载无法足够快地处理订单。\n解决架构师应该采取什么措施，以确保将订单可靠地尽快写入数据库？",
+ "options": [
+  "A. 在高流量时增加EC2实例的实例大小。将订单写入Amazon Simple Notification Service (Amazon SNS)。将数据库端点订阅到SNS主题。",
+  "B. 将订单写入Amazon Simple Queue Service (Amazon SQS)队列。使用位于Application Load Balancer后面的Auto Scaling组中的EC2实例来从SQS队列中读取并将订单处理到数据库中。",
+  "C. 将订单写入Amazon Simple Notification Service (Amazon SNS)。将数据库端点订阅到SNS主题。使用位于Application Load Balancer后面的Auto Scaling组中的EC2实例来从SNS主题中读取。",
+  "D. 当EC2实例达到CPU阈值限制时，将订单写入Amazon Simple Queue Service (Amazon SQS)队列。使用计划的EC2实例自动扩展组来从SQS队列中读取并将订单处理到数据库中。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B提供了一种可靠的解决方案，将订单写入Amazon SQS队列，然后使用Auto Scaling组中的EC2实例来处理订单。这种方式可以解耦应用程序和数据库，降低了数据库的负担，并确保了订单的可靠性处理。如果流量较高，您可以根据需要自动扩展EC2实例。其他选项中的SNS主题虽然可以通知其他组件，但不太适合实现订单的可靠写入数据库。自动调整EC2实例大小和计划的EC2实例自动扩展组也没有提供订单的可靠性处理。",
+  "AI解析": "该题核心在于解决高流量时订单处理的可靠性及效率。Amazon SQS提供消息队列服务，能有效解耦应用程序组件并缓冲请求，确保订单数据不会因瞬时流量激增而丢失。通过将订单写入SQS队列，系统将异步处理与数据库写入分离，同时结合Auto Scaling组动态调整EC2实例数量，实现横向扩展，提升处理能力。Application Load Balancer确保流量合理分配，而SQS的消息持久化特性保障了数据可靠性，最终实现高吞吐量下订单的稳定入库。"
+ }
+}

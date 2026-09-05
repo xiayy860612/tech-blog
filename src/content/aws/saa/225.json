@@ -1,0 +1,18 @@
+{
+ "index": 225,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司通过在Amazon EC2实例上运行的RESTful Web服务应用程序从数千个远程设备收集数据。EC2实例接收原始数据，对原始数据进行转换，并将所有数据存储在Amazon S3存储桶中。远程设备的数量不久将增加到百万级。公司需要一个高度可扩展的解决方案，以最小化运维开销。\n解决方案架构师应该采取哪两种步骤以满足这些要求？（选择两个）",
+ "options": [
+  "A. 使用AWS Glue处理Amazon S3中的原始数据。",
+  "B. 使用Amazon Route 53将流量路由到不同的EC2实例。",
+  "C. 添加更多的EC2实例以容纳不断增加的数据量。",
+  "D. 将原始数据发送到Amazon Simple Queue Service（Amazon SQS）。使用EC2实例来处理数据。",
+  "E. 使用Amazon API Gateway将原始数据发送到Amazon Kinesis数据流。配置Amazon Kinesis Data Firehose使用数据流作为源将数据传送到Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "AE",
+  "解析": "A 使用AWS Glue处理Amazon S3中的原始数据：AWS Glue是一种托管的ETL（提取、转换和加载）服务，它可以自动处理原始数据，进行转换和加载到目标存储，这对于数据处理非常有帮助。\nE使用Amazon API Gateway将原始数据发送到Amazon Kinesis数据流，然后配置Amazon Kinesis Data Firehose使用数据流作为源将数据传送到Amazon S3：这个方法可以实现高度可扩展性，Amazon Kinesis数据流可以处理数百万级的远程设备数据流，而Amazon Kinesis Data Firehose可以方便地将数据传送到Amazon S3，减少了运维开销。\n其他选项：\nB 使用Amazon Route 53进行流量路由通常用于域名解析，不适合解决数据处理问题。\nC 添加更多的EC2实例可能在短期内增加处理能力，但不是一个高度可扩展的解决方案，而且需要更多的管理和维护。\nD 将原始数据发送到Amazon SQS并使用EC2实例处理数据增加了复杂性，不如使用AWS Glue来处理数据简便。",
+  "AI解析": "本题考查高并发场景下数据处理架构的核心优化思路。核心知识点在于利用无服务器服务实现自动扩展和降低运维成本。AWS Glue作为全托管ETL服务可直接处理S3数据，无需管理基础设施；Amazon API Gateway对接Kinesis Data Streams实现海量数据实时接收，配合Kinesis Data Firehose自动持久化到S3，形成完全托管的流式处理链路。这两项技术组合替代传统EC2处理模式，彻底消除服务器扩容需求，完全匹配百万级设备扩展场景。"
+ }
+}

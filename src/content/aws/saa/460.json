@@ -1,0 +1,18 @@
+{
+ "qid": "1529124384",
+ "index": 460,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在开发一个单一的AWS区域内的移动游戏应用。该应用在多个Amazon EC2实例上运行，这些实例位于一个自动扩展组中。公司将应用数据存储在Amazon DynamoDB中。该应用程序通过TCP和UDP流量在用户和服务器之间通信。该应用将在全球范围内使用。公司希望确保所有用户的最低可能延迟。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS Global Accelerator创建一个加速器。在加速器端点后面创建一个使用Global Accelerator集成并监听TCP和UDP端口的应用负载均衡器（ALB）。更新自动扩展组，以在ALB上注册实例。",
+  "B. 使用AWS Global Accelerator创建一个加速器。在加速器端点后面创建一个使用Global Accelerator集成并监听TCP和UDP端口的网络负载均衡器（NLB）。更新自动扩展组，以在NLB上注册实例。",
+  "C. 创建Amazon CloudFront内容交付网络（CDN）端点。在端点后面创建一个网络负载均衡器（NLB），该NLB监听TCP和UDP端口。更新自动扩展组，以在NLB上注册实例。更新CloudFront以使用NLB作为源。",
+  "D. 创建Amazon CloudFront内容交付网络（CDN）端点。在端点后面创建一个使用Global Accelerator集成并监听TCP和UDP端口的应用负载均衡器（ALB）。更新自动扩展组，以在ALB上注册实例。更新CloudFront以使用ALB作为源。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了确保全球用户的最低延迟，最佳解决方案是使用AWS Global Accelerator和Network Load Balancer（NLB）。Global Accelerator可以帮助将用户路由到最近的服务器，以降低延迟。NLB可以处理TCP和UDP流量，以满足应用的通信需求。其他选项中的CloudFront主要用于内容分发，不适用于TCP和UDP流量的路由。因此，选项B是最适合的选择。",
+  "AI解析": "AWS Global Accelerator通过Anycast IP优化全球用户的流量路由，利用AWS骨干网络减少延迟，适合需要低延迟的实时应用。网络负载均衡器（NLB）支持TCP和UDP协议，而应用负载均衡器（ALB）仅支持HTTP/HTTPS。CloudFront主要用于HTTP(S)内容分发，不适用于非HTTP流量。选项B正确结合Global Accelerator与NLB，满足TCP/UDP需求，确保全球用户最低延迟。其他选项因协议不匹配或服务用途不符被排除。来源：AWS文档中的Global Accelerator和负载均衡器类型说明。"
+ }
+}

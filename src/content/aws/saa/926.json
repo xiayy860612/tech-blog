@@ -1,0 +1,18 @@
+{
+ "qid": "2949540267",
+ "index": 926,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个AWS云中的应用程序。该应用程序托管在应用程序负载均衡器（ALB）后面的Amazon EC2实例上。公司使用Amazon Route 53进行DNS解析。\n公司需要一个托管解决方案，并且需要主动参与检测DDoS攻击的功能。\n哪个解决方案将满足这些要求？",
+ "options": [
+  "A. 启用AWS Config。配置一个AWS Config托管规则来检测DDoS攻击。",
+  "B. 启用AWS WAF在ALB上。创建一个AWS WAF web ACL，配置规则来检测和防止DDoS攻击。将web ACL与ALB关联。",
+  "C. 将ALB访问日志存储在Amazon S3桶中。配置Amazon GuardDuty来检测并采取自动预防措施应对DDoS攻击。",
+  "D. 订阅AWS Shield Advanced。在Route 53中配置托管区域。将ALB资源添加为受保护资源。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "AWS Shield Advanced 提供了全面的DDoS保护和24/7的响应支持。它能够自动检测和缓解DDoS攻击，并提供与AWS安全团队的主动合作。\n通过将ALB和Route 53托管区域添加为受保护资源，AWS Shield Advanced可以帮助保护这些资源免受DDoS攻击，并在攻击发生时提供快速响应。",
+  "AI解析": "AWS Shield Advanced 是针对 DDoS 攻击的托管服务，提供自动检测和缓解能力，并支持与 Route 53、ALB 集成。题干强调需要托管方案和主动检测 DDoS 的能力，其他选项如 AWS WAF 侧重应用层防护，GuardDuty 基于日志分析，AWS Config 用于合规审计，均不直接满足托管型 DDoS 防护需求。AWS 官方文档指出 Shield Advanced 专为复杂 DDoS 防护设计，可直接保护 ELB、Route 53 等资源。"
+ }
+}

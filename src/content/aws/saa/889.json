@@ -1,0 +1,18 @@
+{
+ "qid": "2264604860",
+ "index": 889,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要为一个生成许多不可再现文件的应用程序优化其Amazon S3存储成本。每个文件大小约为5 MB，存储在Amazon S3标准存储中。\n公司必须将文件存储4年，然后才能删除文件。文件必须立即可访问。文件在对象创建后的前30天经常被访问，但在此后很少被访问。\n哪种解决方案能够最经济地满足这些要求？",
+ "options": [
+  "A. 创建一个S3生命周期策略，在对象创建后的30天后将文件移动到S3 Glacier Instant Retrieval。在对象创建后的4年后删除文件。",
+  "B. 创建一个S3生命周期策略，在对象创建后的30天后将文件移动到S3 One Zone-Infrequent Access（S3 One Zone-IA）。在对象创建后的4年后删除文件。",
+  "C. 创建一个S3生命周期策略，在对象创建后的30天后将文件移动到S3 Standard-Infrequent Access（S3 Standard-IA）。在对象创建后的4年后删除文件。",
+  "D. 创建一个S3生命周期策略，在对象创建后的30天后将文件移动到S3 Standard-Infrequent Access（S3 Standard-IA）。在对象创建后的4年后将文件移动到S3 Glacier Flexible Retrieval。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "本题要求优化S3存储成本，关键条件是：1) 文件必须立即可访问；2) 前30天频繁访问，之后很少访问；3) 存储4年后删除。选项C将30天后的文件移至S3 Standard-IA，它虽然比标准存储便宜，但仍提供高可用性和立即检索，满足“立即可访问”要求。S3 One Zone-IA（B）价格更低，但数据只存于单可用区，可用性较低。S3 Glacier Instant Retrieval（A）适用于访问频率极低的数据，但对本题“很少访问”的场景，Standard-IA通常更具成本效益。选项D将文件最终移至Glacier Flexible Retrieval，但题干未要求长期归档，且“立即可访问”要求在此阶段可能无法满足。因此C方案最经济且满足所有要求",
+  "AI解析": "Amazon S3存储类别的选择需平衡成本与数据访问需求。根据题干，文件在30天后很少访问但需立即可用，且需保存4年。S3 Standard-IA（选项C）适用于不频繁访问但需要立即检索的场景，且相比S3 One Zone-IA（选项B）提供更高持久性（跨多可用区存储），适合不可再现文件。选项D在4年后转移至Glacier Flexible Retrieval不符合“立即可访问”要求。选项A中的Glacier Instant Retrieval虽支持快速检索，但存储成本未必比Standard-IA更低。题干强调“立即可访问”和存储4年，S3 Standard-IA满足条件且成本合理。"
+ }
+}

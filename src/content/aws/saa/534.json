@@ -1,0 +1,18 @@
+{
+ "qid": "1529125591",
+ "index": 534,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在为其工作负载构建Amazon Elastic Kubernetes Service (Amazon EKS)集群。所有存储在Amazon EKS中的机密信息必须在Kubernetes etcd键值存储中进行加密。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 创建一个新的AWS Key Management Service (AWS KMS)密钥。使用AWS Secrets Manager来管理、轮转和存储在Amazon EKS中的所有机密信息。",
+  "B. 创建一个新的AWS Key Management Service (AWS KMS)密钥。在Amazon EKS集群上启用Amazon EKS KMS机密加密。",
+  "C. 使用默认选项创建Amazon EKS集群。使用Amazon Elastic Block Store (Amazon EBS) Container Storage Interface (CSI)驱动作为附加组件。",
+  "D. 创建一个具有别名 /aws/ebs 别名的新的AWS Key Management Service (AWS KMS)密钥。为该账户启用默认的Amazon Elastic Block Store (Amazon EBS)卷加密。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B中，通过创建新的AWS KMS密钥并在Amazon EKS集群上启用Amazon EKS KMS机密加密，可以满足存储在Amazon EKS中的机密信息加密的要求。",
+  "AI解析": "正确选项B涉及在Amazon EKS集群上启用KMS机密加密功能，这与加密Kubernetes etcd中存储的机密直接相关。AWS官方文档指出，启用EKS KMS机密加密允许使用用户控制的KMS密钥对Kubernetes Secrets进行加密，确保数据在etcd中的静态加密。选项A的Secrets Manager用于外部管理机密，不涉及etcd加密。选项C的EBS CSI驱动用于存储卷管理，与Secrets加密无关。选项D的EBS卷加密仅适用于存储卷，而非etcd存储的机密数据。正确答案B直接满足题干要求。参考资料：AWS EKS文档关于KMS加密的说明。"
+ }
+}

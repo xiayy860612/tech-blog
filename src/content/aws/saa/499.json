@@ -1,0 +1,19 @@
+{
+ "qid": "1529124423",
+ "index": 499,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司有多台基于 Windows 的文件服务器在本地。公司希望将其文件迁移和整合到 Amazon FSx for Windows File Server 文件系统中。必须保留文件权限以确保访问权限不发生变化。\n哪些解决方案可以满足这些要求？（选择两个。）",
+ "options": [
+  "A. 在本地部署 AWS DataSync 代理。安排 DataSync 任务将数据传输到 FSx for Windows File Server 文件系统。",
+  "B. 使用 AWS CLI 将每个文件服务器上的共享内容复制到 Amazon S3 存储桶。安排 AWS DataSync 任务将数据传输到 FSx for Windows File Server 文件系统。",
+  "C. 从每台文件服务器中移除驱动器。将驱动器寄送到 AWS，用于导入到 Amazon S3。安排 AWS DataSync 任务将数据传输到 FSx for Windows File Server 文件系统。",
+  "D. 订购 AWS Snowcone 设备。将设备连接到本地网络。在设备上启动 AWS DataSync 代理。安排 DataSync 任务将数据传输到 FSx for Windows File Server 文件系统。",
+  "E. 订购 AWS Snowball Edge Storage Optimized 设备。将设备连接到本地网络。使用 AWS CLI 将数据复制到设备。将设备寄送回 AWS，用于导入到 Amazon S3。安排 AWS DataSync 任务将数据传输到 FSx for Windows File Server 文件系统。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": null,
+  "AI解析": "迁移Windows文件服务器至FSx需确保保留NTFS权限，DataSync支持元数据（包括权限）完整传输。选项A通过本地DataSync代理直接迁移，D利用Snowcone设备部署DataSync代理进行离线传输，二者均保持权限结构。B、C、E涉及S3存储环节，S3不保留Windows文件系统权限元数据，导致权限丢失，无法满足要求。"
+ }
+}

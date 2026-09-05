@@ -1,0 +1,18 @@
+{
+ "qid": "1529122093",
+ "index": 20,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司想在AWS上推出一个每天一个交易的网站。每天将以24小时的时间窗口特别展示一款特价产品。公司希望在高峰时段能够处理数百万次每小时的请求，且具有毫秒级的延迟。哪种解决方案将以最小的操作开销满足这些要求？",
+ "options": [
+  "A. 使用Amazon S3在不同的S3存储桶中托管完整的网站。添加Amazon CloudFront分发。将S3存储桶设置为分发的源。将订单数据存储在Amazon S3中。",
+  "B. 在Amazon EC2实例上部署完整的网站，这些实例在多个可用区中运行，并放置在Auto Scaling组中。添加一个应用程序负载均衡器（ALB）来分发网站流量。为后端API添加另一个ALB。将数据存储在Amazon RDS for MySQL中。",
+  "C. 将完整的应用程序迁移到容器中运行。将容器托管在Amazon Elastic Kubernetes Service（Amazon EKS）上。使用Kubernetes Cluster Autoscaler来增加和减少处理流量突发的Pod的数量。将数据存储在Amazon RDS for MySQL中。",
+  "D. 使用Amazon S3存储桶托管网站的静态内容。部署Amazon CloudFront分发。将S3存储桶设置为来源。使用Amazon API Gateway和AWS Lambda函数作为后端API。将数据存储在Amazon DynamoDB中。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在这种情况下，最适合的解决方案是使用Amazon S3存储静态内容，Amazon CloudFront加速网站访问，Amazon API Gateway和AWS Lambda函数提供后端API，并将数据存储在Amazon DynamoDB中。这个方案具有以下优势：静态内容存储在Amazon S3中，可以通过CloudFront实现全球加速，以提供高性能和低延迟的网站访问。Amazon DynamoDB是一个高度可扩展的NoSQL数据库，适用于处理大量请求，并且能够提供毫秒级的延迟。使用AWS Lambda函数来处理后端API请求，无需管理服务器，可以根据需求自动扩展。通过这种方式可以减少操作开销，因为不需要管理EC2实例、数据库服务器或容器集群。其他选项AB和C都涉及到更多的操作和管理，而且不一定能够提供与选项D相同的高性能和低延迟。因此，选项D是最佳选择。",
+  "AI解析": "该问题考察在AWS上构建高扩展性、低延迟应用的托管服务选型。来源参考AWS无服务器架构最佳实践。选项A使用S3存储订单数据，无法处理动态请求且S3不适合高频写入。选项B和C依赖EC2/EKS，需管理基础设施，运维成本较高。选项D采用全托管服务：S3+CloudFront分发静态内容，API Gateway+Lambda自动扩展处理API，DynamoDB提供毫秒级读写，整体架构无运维负担，满足突发流量需求。"
+ }
+}

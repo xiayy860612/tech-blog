@@ -1,0 +1,17 @@
+{
+ "index": 165,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个基于Windows的应用程序，必须迁移到AWS。该应用程序需要使用一个共享的Windows文件系统，附加到部署在多个可用区的多个Amazon EC2 Windows实例上。\n解决方案架构师应该采取哪些措施来满足这个需求？",
+ "options": [
+  "A. 配置AWS Storage Gateway为卷网关模式。将卷挂载到每个Windows实例。",
+  "B. 配置Amazon FSx for Windows File Server。将Amazon FSx文件系统挂载到每个Windows实例。",
+  "C. 使用Amazon Elastic File System (Amazon EFS)配置一个文件系统。将EFS文件系统挂载到每个Windows实例。",
+  "D. 配置一个具有所需大小的Amazon Elastic Block Store (Amazon EBS)卷。将每个EC2实例附加到该卷。在卷内将文件系统挂载到每个Windows实例。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了实现在多个EC2 Windows实例之间共享Windows文件系统，最佳做法是使用Amazon FSx for Windows File Server。Amazon FSx提供了一种高性能的、完全托管的Windows文件系统解决方案，可以轻松地共享文件系统，并且可以跨多个实例访问。选项A提到AWS Storage Gateway，但通常不用于共享Windows文件系统。选项C中的Amazon EFS是一种托管的NFS文件系统，而非Windows文件系统，不适用于这种情况。选项D提到使用Amazon EBS卷，但在多个实例之间共享EBS卷通常需要文件系统级别的复杂性和额外的配置。所以，选项B是满足要求的最佳解决方案。",
+  "AI解析": "该题核心考查Windows共享文件系统在AWS多可用区部署的实现。Amazon FSx for Windows File Server是原生支持SMB协议、完全兼容Windows环境的托管服务，可直接提供多可用区高可用架构，满足多实例并发访问需求；EFS仅支持Linux/NFS协议，EBS卷无法跨实例共享，Storage Gateway卷网关则主要面向混合云场景，三者均不符合Windows文件系统共享的核心技术要求。"
+ }
+}

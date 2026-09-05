@@ -1,0 +1,18 @@
+{
+ "qid": "1908084767",
+ "index": 650,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon S3存储桶中存储大量的图像文件。这些图像文件在第一个180天需要立即可用。在接下来的180天里，这些图像的访问频率较低。在360天后，这些图像需要被归档，但必须在请求时立即可用。在5年后，只有审计员能够访问这些图像。审计员必须能够在12小时内检索图像。在这个过程中，图像不能丢失。一个开发者将在第一个180天内使用S3标准存储。开发者需要配置一个S3生命周期规则。\n哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 在180天后将对象转移到S3 One Zone-Infrequent Access（S3 One Zone-IA）。在360天后转移到S3 Glacier Instant Retrieval，5年后转移到S3 Glacier Deep Archive。",
+  "B. 在180天后将对象转移到S3 One Zone-Infrequent Access（S3 One Zone-IA）。在360天后转移到S3 Glacier Flexible Retrieval，5年后转移到S3 Glacier Deep Archive。",
+  "C. 在180天后将对象转移到S3 Standard-Infrequent Access（S3 Standard-IA）。在360天后转移到S3 Glacier Instant Retrieval，5年后转移到S3 Glacier Deep Archive。",
+  "D. 在180天后将对象转移到S3 Standard-Infrequent Access（S3 Standard-IA）。在360天后转移到S3 Glacier Flexible Retrieval，5年后转移到S3 Glacier Deep Archive。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C中的配置将对象在180天后转移到S3 Standard-Infrequent Access（S3 Standard-IA），在360天后转移到S3 Glacier Instant Retrieval，5年后转移到S3 Glacier Deep Archive。这样的配置最符合题目中对不同时间段的访问要求，并且是最具成本效益的方案。\n其他选项：\n选项A和选项B中使用了S3 One Zone-Infrequent Access，但在需要立即可用时，S3 One Zone-IA不如S3 Standard-IA稳定可靠。因此，选项A和选项B不是最佳选择。\n选项D中的S3 Glacier Flexible Retrieval相对于选项C中的S3 Glacier Instant Retrieval来说，不如Instant Retrieval对于检索时间的要求严格。所以，选项D不是最佳选择。",
+  "AI解析": "题目考察如何根据数据访问模式和保留需求配置Amazon S3生命周期规则。Amazon S3文档指出，Standard-IA适用于不常访问但需要快速检索的数据，且存储在多个可用区，确保高持久性。Glacier Instant Retrieval适合需要即时访问的归档数据，而Glacier Deep Archive用于长期保留且允许数小时检索时间的场景。选项C在180天后使用Standard-IA（多AZ保障数据不丢失），360天迁移到Glacier Instant Retrieval（立即可用），5年后转至Deep Archive（审计需12小时检索），完全符合各阶段需求。其他选项或使用单AZ存储（增加丢失风险），或未满足即时检索要求。"
+ }
+}

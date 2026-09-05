@@ -1,0 +1,18 @@
+{
+ "qid": "1529125630",
+ "index": 573,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个金融服务公司推出了一个新的应用程序，使用Amazon RDS for MySQL数据库。该公司使用该应用程序来跟踪股市趋势。公司只需要在每周末的最后2小时运行该应用程序。公司需要优化运行数据库的成本。\n哪种解决方案将在最具成本效益的情况下满足这些要求？",
+ "options": [
+  "A. 将现有的RDS for MySQL数据库迁移到Aurora Serverless v2 MySQL数据库集群。",
+  "B. 将现有的RDS for MySQL数据库迁移到Aurora MySQL数据库集群。",
+  "C. 将现有的RDS for MySQL数据库迁移到运行MySQL的Amazon EC2实例。购买EC2实例的预留实例。",
+  "D. 将现有的RDS for MySQL数据库迁移到使用MySQL容器镜像运行任务的Amazon Elastic Container Service (Amazon ECS)集群。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "在这种情决定中，公司需要在每周末的最后2小时运行应用程序，同时优化运行数据库的成本。最经济的选择是选项A，即将现有的RDS for MySQL数据库迁移到Aurora Serverless v2 MySQL数据库集群。Aurora Serverless v2是一种按需自动缩放的数据库服务，它可以根据实际使用情况自动扩展和收缩容量。在应用程序运行时，您可以启动Aurora Serverless v2集群，而在不使用时，可以停止它，从而最大程度地降低成本。\n其他选项都不如选项A具有成本效益。选项B提到将数据库迁移到Aurora MySQL，但它不具备与Aurora Serverless相同的自动缩放能力。选项C提到将数据库迁移到EC2实例，但需要购买预留实例，而且不具备自动缩放能力。选项D提到将数据库迁移到Amazon ECS集群，但它与数据库运行的方式不太适合。因此，选项A是最佳选择。",
+  "AI解析": "本题核心考查AWS数据库服务的成本优化策略。Aurora Serverless v2采用按需自动扩展机制，在无流量时可缩容至零容量，仅按实际消耗的计算/存储资源计费，完美适配每周仅需短期运行的场景；相较之下标准Aurora集群（B）需持续支付预置容量费用，EC2预留实例（C）虽降低单价但需长期绑定资源，ECS容器化部署（D）仍依赖底层EC2实例的持续运行成本。答案A通过无服务器架构实现精确的按用量计费，是唯一满足间歇性业务低成本要求的解决方案。"
+ }
+}

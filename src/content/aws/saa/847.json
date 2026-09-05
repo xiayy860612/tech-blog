@@ -1,0 +1,18 @@
+{
+ "qid": "2264604818",
+ "index": 847,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Oracle\nDatabase Enterprise Edition上运行其应用程序。公司需要将应用程序和数据库迁移到AWS。在迁移到AWS时，公司可以使用自带许可证（BYOL）模型。该应用程序使用需要特权访问的第三方数据库功能。解决方案架构师必须为数据库迁移设计一个解决方案。哪种解决方案能够在成本上最有效地满足这些要求？",
+ "options": [
+  "A. 使用本地工具将数据库迁移到Amazon RDS for Oracle。用AWS Lambda替换第三方功能。",
+  "B. 使用本地工具将数据库迁移到Amazon RDS Custom for Oracle。定制新数据库设置以支持第三方功能。",
+  "C. 使用AWS数据库迁移服务（AWS DMS）将数据库迁移到Amazon DynamoDB。定制新数据库设置以支持第三方功能。",
+  "D. 使用AWS数据库迁移服务（AWS DMS）将数据库迁移到Amazon RDS for PostgreSQL。重写应用程序代码以消除对第三方功能的依赖。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B是最具成本效益的解决方案。Amazon\nRDS Custom for Oracle允许您在RDS中使用自己的Oracle数据库许可证，并提供了对自定义设置的支持。通过将数据库迁移到Amazon\nRDS Custom for Oracle，公司可以继续使用其BYOL模型，并且可以定制新数据库设置以支持需要特权访问的第三方功能，而无需对应用程序进行大规模更改。其他选项可能会导致更大的成本，因为它们涉及将数据库迁移到不同的服务（如DynamoDB或PostgreSQL）或要求重写应用程序代码。",
+  "AI解析": "本题聚焦AWS数据库迁移场景中特权功能支持与BYOL成本优化。核心知识点在于Amazon RDS Custom for Oracle允许操作系统级访问和数据库定制化配置，突破标准RDS的管理限制，兼容需特权访问的第三方功能；同时支持BYOL模式直接沿用企业原有Oracle许可证，避免额外许可费用。其他选项或受限于托管服务权限（A/D）、或强制变更数据库类型导致重构代价（C/D），仅B同时满足功能适配与成本最优。"
+ }
+}

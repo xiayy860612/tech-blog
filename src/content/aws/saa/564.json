@@ -1,0 +1,18 @@
+{
+ "qid": "1529125621",
+ "index": 564,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个处理事务数据的本地MySQL数据库，他们正在将数据库迁移到AWS云中。迁移后的数据库必须与公司使用的数据库的应用程序兼容。迁移后的数据库还必须在需求增加时自动扩展。哪种迁移解决方案将满足这些要求？",
+ "options": [
+  "A. 使用本地MySQL工具将数据库迁移到Amazon RDS for MySQL。配置弹性存储扩展。",
+  "B. 使用mysqldump工具将数据库迁移到Amazon Redshift。为Amazon Redshift集群启用自动扩展。",
+  "C. 使用AWS数据库迁移服务（AWS DMS）将数据库迁移到Amazon Aurora。启用Aurora自动扩展。",
+  "D. 使用AWS数据库迁移服务（AWS DMS）将数据库迁移到Amazon DynamoDB。配置自动扩展策略。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "在这种情决定，公司需要将本地MySQL数据库迁移到AWS云，并保持与现有应用程序的兼容性。选项C建议使用AWS Database Migration Service (AWS DMS) 将数据库迁移到Amazon Aurora，同时启用Aurora自动扩展。Amazon Aurora是与MySQL兼容的关系数据库引擎，它提供了可伸缩性，并且可以在需要时自动扩展以满足需求。这种方案是满足公司要求的最佳选择。\n其他选项存在一些问题。选项A提到使用Amazon RDS，但RDS不支持MySQL的自动扩展。选项B提到将数据库迁移到Amazon Redshift，这是一个数据仓库解决方案，不适合处理事务数据。选项D提到将数据库迁移到Amazon DynamoDB，但DynamoDB是一种NoSQL数据库，不适合处理与MySQL兼容的事务数据。",
+  "AI解析": "本题主要涉及AWS数据库迁移与托管服务的选择。根据AWS最佳实践，Amazon Aurora与MySQL兼容，且支持自动扩展能力。AWS DMS适用于数据库迁移，而Amazon Aurora Serverless可依据负载自动调整容量。选项A的RDS弹性存储仅扩展存储，不涉及计算资源自动扩展；选项B的Redshift为数据仓库，不适用于事务处理；选项D的DynamoDB属于NoSQL数据库，与MySQL应用程序存在兼容性问题。正确答案C采用兼容MySQL的Aurora并启用自动扩展，符合题干要求。AWS Aurora文档明确其自动扩展功能适用于动态工作负载。"
+ }
+}

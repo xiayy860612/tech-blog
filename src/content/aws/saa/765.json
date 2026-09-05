@@ -1,0 +1,18 @@
+{
+ "qid": "1908085499",
+ "index": 765,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的开发人员希望以安全的方式访问公司运行最新版本的 Amazon Linux 的 Amazon EC2 实例的 SSH。开发人员远程工作，也在公司办公室工作。\n公司希望将 AWS 服务作为解决方案的一部分。EC2 实例托管在 VPC 私有子网中，并通过部署在公共子网中的 NAT 网关访问互联网。\n解决方案架构师应该采取什么措施以最具成本效益地满足这些要求？",
+ "options": [
+  "A. 在与 EC2 实例相同的子网中创建一个堡垒主机。授予开发人员 ec2:CreateVpnConnection IAM 权限。安装 EC2 实例连接，以便开发人员可以连接到 EC2 实例。",
+  "B. 在公司网络和 VPC 之间创建一个 AWS Site-to-Site VPN 连接。指导开发人员在公司网络上使用站点到站点 VPN 连接来访问 EC2 实例。指导开发人员在远程工作时设置另一个 VPN 连接来访问 EC2 实例。",
+  "C. 在 VPC 的公共子网中创建一个堡垒主机。配置堡垒主机的安全组和 SSH 密钥，仅允许来自开发人员公司和远程网络的连接和 SSH 认证。指导开发人员通过使用 SSH 连接到达 EC2 实例来通过堡垒主机进行连接。",
+  "D. 将 AmazonSSMManagedInstanceCore IAM 策略附加到与 EC2 实例关联的 IAM 角色。指导开发人员使用 AWS Systems Manager Session Manager 访问 EC2 实例。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了以最具成本效益的方式满足这些要求，最佳解决方案是将 AmazonSSMManagedInstanceCore IAM 策略附加到与 EC2 实例关联的 IAM 角色，并指导开发人员使用 AWS Systems Manager Session Manager 访问 EC2 实例。这种方法不需要额外的基础设施（如堡垒主机或 VPN 连接），并且提供了一个安全的方式让开发人员远程访问 EC2 实例。AWS Systems Manager Session Manager 提供了一种安全且受管的方法来远程连接到 EC2 实例，而不需要暴露 SSH 端口或设置 VPN 连接。",
+  "AI解析": "Amazon EC2 实例位于 VPC 私有子网，需通过 NAT 网关访问互联网。安全访问 EC2 的 SSH 需最小化成本并利用 AWS 服务。AWS Systems Manager Session Manager 无需暴露端口或维护堡垒主机，直接通过 IAM 策略和 AWS 管理控制台建立安全连接。选项 D 通过附加 AmazonSSMManagedInstanceCore 策略并启用 Session Manager，无需额外基础设施，符合成本效益。选项 A、B、C 分别涉及 VPN 或堡垒主机，会增加复杂性和成本。Session Manager 文档强调其在私有实例访问中的安全性和无代理特性，使其成为最佳实践。"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "qid": "1908084771",
+ "index": 654,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在一个具有目标组的Auto Scaling组中的Amazon EC2实例上运行一个Web应用程序。该公司设计了该应用程序以支持会话粘附（sticky sessions）以提供更好的用户体验。\n该应用程序必须作为一个终端点公开在互联网上。必须在终端点上应用WAF以提供额外的安全性。\n必须在终端点上配置会话粘附（sticky sessions）。\n哪种组合的步骤将满足这些要求？（选择两个）",
+ "options": [
+  "A. 创建一个公共Network Load Balancer。指定应用目标组。",
+  "B. 创建一个Gateway Load Balancer。指定应用目标组。",
+  "C. 创建一个公共Application Load Balancer。指定应用目标组。",
+  "D. 创建第二个目标组。向EC2实例添加弹性IP地址。",
+  "E. 在AWS WAF中创建一个Web ACL。将Web ACL与终端点关联。"
+ ],
+ "answer": {
+  "正确答案": "CE",
+  "解析": "选项C涉及到创建一个公共Application Load Balancer（ALB），并在其上指定应用目标组。Application Load Balancer支持在终端上启用粘性会话（sticky sessions）。\n选项E涉及到在AWS WAF中创建一个Web ACL，并将Web ACL与终端点关联。AWS WAF用于提供Web应用程序防火墙，增强终端点的安全性。\n其他选项：\n选项A中的Network Load Balancer不支持在终端上启用粘性会话（sticky sessions）。\n选项B中的Gateway Load Balancer不是用于HTTP/HTTPS流量的应用负载均衡器，因此不适用于这种情况。\n选项D中的创建第二个目标组并向EC2实例添加弹性IP地址似乎与要求无关，因为它不涉及会话粘附（sticky sessions）。",
+  "AI解析": "为满足需求，需合理配置负载均衡器与安全防护。创建公共Application Load Balancer并指定应用目标组（C），因其支持会话粘附，能提升用户体验。同时在AWS WAF中创建Web ACL并与之关联（E），可增强Web应用程序的安全性，抵御网络攻击。此组合步骤既能保障应用的可用性，又能提供必要的安全防护，符合公司对于Web应用程序的部署要求。"
+ }
+}

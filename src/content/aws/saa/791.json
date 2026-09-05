@@ -1,0 +1,18 @@
+{
+ "qid": "1908085525",
+ "index": 791,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个分析公司使用Amazon VPC来运行其多层服务。该公司希望使用RESTful API向数百万用户提供网络分析服务。用户必须通过使用身份验证服务进行验证才能访问API。\n哪种解决方案将以最高的运营效率满足这些要求？",
+ "options": [
+  "A. 配置Amazon Cognito用户池进行用户身份验证。使用Cognito授权者实现Amazon API Gateway REST API。",
+  "B. 配置Amazon Cognito身份池进行用户身份验证。使用Cognito授权者实现Amazon API Gateway HTTP API。",
+  "C. 配置AWS Lambda函数来处理用户身份验证。使用Lambda授权者实现Amazon API Gateway REST API。",
+  "D. 配置IAM用户来处理用户身份验证。使用IAM授权者实现Amazon API Gateway HTTP API。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon Cognito提供了一个易于使用的身份验证服务，可以与API Gateway集成以保护REST API。用户池是Cognito的一部分，它提供了对用户的身份验证和管理。使用Cognito用户池可以轻松实现对用户进行验证，并确保只有经过验证的用户可以访问API。\nB选项中，Cognito身份池通常用于授予用户对AWS资源的访问权限，而不是用于用户身份验证。虽然HTTP API是一种API Gateway的形式，但是REST API更适合与Cognito集成。\nC选项中，虽然可以使用Lambda函数来处理用户身份验证，但是与Cognito相比，它需要更多的自定义和管理。\nD选项中，IAM用户通常用于访问AWS资源，而不是用于Web服务的用户身份验证。使用IAM授权者会增加管理复杂性，因为必须手动为每个用户配置IAM权限。",
+  "AI解析": "Amazon Cognito用户池专为管理用户身份验证设计，可直接处理用户注册、登录，并与API Gateway REST API集成。Cognito授权者简化了身份验证流程，无需自行维护基础设施。Amazon API Gateway REST API支持Cognito授权者，通过托管的Cognito服务验证用户，有效应对数百万用户的扩展需求。选项B的身份池侧重于临时AWS凭证而非用户认证；选项C的Lambda授权者增加自定义代码维护成本；选项D的IAM用户不适合大规模外部用户场景。题目明确要求RESTful API，选项A的组合符合运营效率优先原则。"
+ }
+}

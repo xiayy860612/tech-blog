@@ -1,0 +1,17 @@
+{
+ "index": 235,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个用于图像共享的三层应用程序。该应用程序使用Amazon EC2实例作为前端层，另一个EC2实例作为应用程序层，第三个EC2实例用作MySQL数据库。解决方案架构师必须设计一个可伸缩和高可用的解决方案，需要对应用程序的更改量最小。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用Amazon S3托管前端层。使用AWS Lambda函数作为应用程序层。将数据库移至Amazon DynamoDB表。使用Amazon S3存储和提供用户的图像。",
+  "B. 使用具有负载均衡的Multi-AZ AWS Elastic Beanstalk环境来托管前端层和应用程序层。将数据库移到Amazon RDS数据库实例，并具有多个只读副本以提供用户的图像。",
+  "C. 使用Amazon S3托管前端层。使用位于Auto Scaling组中的一组EC2实例作为应用程序层。将数据库移至内存优化实例类型以存储和提供用户的图像。",
+  "D. 使用具有负载均衡的Multi-AZ AWS Elastic Beanstalk环境来托管前端层和应用程序层。将数据库移到Amazon RDS Multi-AZ数据库实例。使用Amazon S3存储和提供用户的图像。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项A建议使用Amazon S3和AWS Lambda来托管前端和应用程序层，并将数据库移至DynamoDB。虽然这些服务提供了可伸缩性，但会对应用程序进行较大的更改。\n选项B建议使用负载均衡的Multi-AZ AWS Elastic Beanstalk环境，但建议将数据库移至Amazon RDS，并不提供存储和提供图像的解决方案。\n选项C建议使用Amazon S3和Auto Scaling组来托管前端和应用程序层，但建议将数据库移至内存优化实例类型，也没有提供存储和提供图像的解决方案。\n选项D建议使用Multi-AZ AWS Elastic Beanstalk环境来托管前端和应用程序层，将数据库移至Amazon RDS Multi-AZ数据库实例以实现高可用性，同时使用Amazon S3来存储和提供用户的图像。这个解决方案对应用程序的更改最小，同时提供了高可用性和可伸缩性。",
+  "AI解析": "该试题考察如何利用AWS服务构建可扩展、高可用的三层架构。AWS文档中指出，Elastic Beanstalk支持多可用区部署与负载均衡，可自动管理Web层的扩展和容错。Amazon RDS Multi-AZ部署通过同步复制实现数据库故障转移，S3作为对象存储服务具备11个9的持久性和自动扩展能力。选项D将前端和应用层托管至Elastic Beanstalk环境，数据库采用RDS Multi-AZ，用户图像存储使用S3，这三项服务均属于托管型服务，无需修改应用代码即可实现各层的高可用架构。其他选项在数据库高可用实现方式（如选项B的只读副本）、应用层架构（如选项A的Lambda函数）或存储方案（如选项C未分离静态资源）等方面存在不足。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908085452",
+ "index": 718,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将大量数据从本地存储迁移到 AWS。同一 AWS 区域中的 Windows、Mac 和 Linux 基础的 Amazon EC2 实例将使用 SMB 和 NFS 存储协议访问数据。公司将经常访问一部分数据。公司将不经常访问其余数据。公司需要设计一个托管数据的解决方案。\n哪种解决方案能够以最小的操作开销满足这些需求？",
+ "options": [
+  "A. 创建一个使用 EFS Intelligent-Tiering 的 Amazon Elastic File System (Amazon EFS) 卷。使用 AWS DataSync 将数据迁移到 EFS 卷。",
+  "B. 创建一个 Amazon FSx for ONTAP 实例。使用自动分层策略创建一个使用 auto tiering 策略的 FSx for ONTAP 文件系统根卷。将数据迁移到 FSx for ONTAP 卷。",
+  "C. 创建一个使用 S3 Intelligent-Tiering 的 Amazon S3 存储桶。使用 AWS Storage Gateway Amazon S3 File Gateway 将数据迁移到 S3 存储桶。",
+  "D. 创建一个 Amazon FSx for OpenZFS 文件系统。将数据迁移到新卷。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "在这种情况下，最合适的解决方案是创建一个 Amazon FSx for ONTAP 实例。Amazon FSx for ONTAP 提供了一个高性能的文件存储解决方案，支持多种操作系统，并且可以使用 SMB 和 NFS 协议进行访问。通过创建一个使用自动分层策略的 FSx for ONTAP 文件系统，可以确保经常访问的数据存储在性能较高的层级上，而不经常访问的数据则会被自动转移到更便宜的存储层级上，从而降低成本。这种方法提供了最小的操作开销，并且可以满足 Windows、Mac 和 Linux 基础的 EC2 实例对数据的访问需求。",
+  "AI解析": "AWS考核存储服务选型，涉及多协议支持与分层存储策略。来源：AWS官方文档对FSx for ONTAP的描述。选项B中，FSx for ONTAP支持SMB和NFS，提供自动分层策略，自动将数据在性能层与成本优化层之间迁移，无需人工干预，最小化操作开销。选项A的EFS仅支持NFS，不满足SMB需求。选项C的S3需通过Gateway间接访问，增加操作复杂性。选项D的OpenZFS不支持SMB。"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "qid": "1529125558",
+ "index": 501,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司在Amazon EC2上运行一个网站，该网站使用内容管理系统（CMS）。CMS在单个EC2实例上运行，并使用Amazon Aurora MySQL Multi-AZ DB实例作为数据层。网站图像存储在一个Amazon Elastic Block Store（Amazon EBS）卷中，该卷被挂载在EC2实例内部。\n\n解决方案架构师应采取哪些组合行动来改善网站的性能和可靠性？（选择两个。）",
+ "options": [
+  "A. 将网站图像移动到每个EC2实例上挂载的Amazon S3存储桶中。",
+  "B. 使用NFS共享从主EC2实例共享网站图像。在其他EC2实例上挂载此共享。",
+  "C. 将网站图像移动到每个EC2实例上挂载的Amazon Elastic File System（Amazon EFS）文件系统中。",
+  "D. 从现有EC2实例创建Amazon Machine Image（AMI）。使用AMI在一个Auto Scaling组中作为Application Load Balancer后面的新实例进行配置。配置Auto Scaling组以维护至少两个实例。为网站在AWS Global Accelerator中配置一个加速器。",
+  "E. 从现有EC2实例创建Amazon Machine Image（AMI）。使用AMI在一个Auto Scaling组中作为Application Load Balancer后面的新实例进行配置。配置Auto Scaling组以维护至少两个实例。为网站配置一个Amazon CloudFront分发。"
+ ],
+ "answer": {
+  "正确答案": "CE",
+  "解析": null,
+  "AI解析": "Amazon Aurora MySQL Multi-AZ DB实例已提供数据库的高可用性，但当前架构中CMS运行在单实例EC2上，且网站图像存储在单点EBS卷中，存在单点故障风险。图像存储需支持多实例共享访问，Amazon EFS作为托管网络文件系统，可跨多个可用区提供共享存储，允许Auto Scaling组内的多个EC2实例同时访问同一文件系统，消除存储层单点依赖。使用Auto Scaling组和Application Load Balancer可实现EC2实例的水平扩展，自动替换不健康实例，提升应用层可用性。Amazon CloudFront通过缓存静态内容（如图像）到边缘节点，减少源站负载，降低延迟，提升全球用户访问速度。EFS与CloudFront的结合既解决了存储共享问题，又优化了内容分发效率。选项B的NFS需自行维护，选项D的Global Accelerator主要优化网络路径而非静态内容分发，选项A的S3无法直接作为文件系统挂载。"
+ }
+}

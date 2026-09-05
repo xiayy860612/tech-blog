@@ -1,0 +1,18 @@
+{
+ "qid": "1908084757",
+ "index": 640,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望监控其AWS成本以进行财务审查。云操作团队正在AWS Organizations管理账户中设计一种架构，以查询所有成员账户的AWS Cost and Usage Reports。该团队必须每月运行此查询并提供账单的详细分析。\n哪种解决方案是最具可扩展性和成本效益，以满足这些要求？",
+ "options": [
+  "A. 在管理账户中启用Cost and Usage Reports。将报告传送到Amazon Kinesis。使用Amazon EMR进行分析。",
+  "B. 在管理账户中启用Cost and Usage Reports。将报告传送到Amazon S3。使用Amazon Athena进行分析。",
+  "C. 为成员账户启用Cost and Usage Reports。将报告传送到Amazon S3。使用Amazon Redshift进行分析。",
+  "D. 为成员账户启用Cost and Usage Reports。将报告传送到Amazon Kinesis。使用Amazon QuickSight进行分析。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B是最具可扩展性和成本效益的解决方案。启用Cost and Usage Reports并将报告传送到Amazon S3可以提供稳定且经济高效的存储。然后，使用Amazon Athena进行分析，它是一个无服务器的交互式查询服务，可以直接在S3上运行SQL查询，无需提前设置或管理基础设施。相比之下，选项A和D中使用Amazon Kinesis和Amazon EMR可能会增加复杂性和成本，而选项C中使用Amazon Redshift也可能涉及更高的成本。",
+  "AI解析": "AWS提供Cost and Usage Reports（CUR）用于详细记录资源使用情况和成本数据。AWS Organizations管理账户集中收集所有成员账户的CUR时，需考虑存储与查询的扩展性及成本。官方文档建议将CUR存储在Amazon S3，因其具备高持久性、低成本特性，适合大规模数据存储。Amazon Athena作为无服务器交互式查询服务，可直接分析S3中的数据，无需预置资源，按扫描数据量付费，适合周期性分析任务。对比其他选项，Kinesis适用于实时流处理，EMR、Redshift涉及集群管理及更高成本，QuickSight主要用于可视化而非原始数据处理。选项B的架构避免了成员账户单独配置的复杂性，符合AWS成本优化原则。"
+ }
+}

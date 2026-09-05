@@ -1,0 +1,17 @@
+{
+ "index": 143,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在本地构建一个容器化应用程序，并决定将该应用程序迁移到AWS。应用程序一部署后不久将有成千上万的用户。公司不确定如何在规模上管理容器的部署。公司需要以最小化运维开销的方式在高可用架构中部署容器化应用程序。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 将容器镜像存储在Amazon Elastic Container Registry（Amazon ECR）存储库中。使用AWS Fargate启动类型的Amazon Elastic Container Service（Amazon ECS）集群来运行容器。使用目标跟踪根据需求自动扩展。",
+  "B. 将容器镜像存储在Amazon Elastic Container Registry（Amazon ECR）存储库中。使用Amazon EC2启动类型的Amazon Elastic Container Service（Amazon ECS）集群来运行容器。使用目标跟踪根据需求自动扩展。",
+  "C. 将容器镜像存储在在Amazon EC2实例上运行的存储库中。在分布在多个可用区的EC2实例上运行容器。监视Amazon CloudWatch中的平均CPU利用率。根据需要启动新的EC2实例。",
+  "D. 创建包含容器镜像的Amazon EC2 Amazon Machine Image（AMI）。在多个可用区的Auto Scaling组中启动EC2实例。使用Amazon CloudWatch警报在平均CPU利用率阈值被触发时扩展EC2实例。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中，使用Amazon ECR存储容器镜像，并使用AWS Fargate启动类型的Amazon ECS集群来运行容器是一种无服务器容器运行的方式，可以减少运维工作。使用目标跟踪可以根据需求自动扩展容器实例，以满足高可用性和高可伸缩性的要求。选项B中，虽然也使用Amazon ECR存储容器镜像，但需要管理EC2实例，增加了运维复杂性。选项C需要自己管理容器部署和EC2实例，也增加了运维开销。选项D中，虽然使用了Auto Scaling，但需要自行创建和管理EC2 AMI，增加了复杂性。因此，A是最适合的选择。",
+  "AI解析": "本题考察在AWS上部署容器化应用的高可用架构设计及最小化运维的最佳实践。AWS官方文档推荐使用AWS Fargate启动类型的Amazon ECS，因为它无需管理底层服务器，自动处理容量扩展和跨可用区部署。Amazon ECR为托管容器镜像服务，与ECS天然集成。目标跟踪策略基于应用指标（如CPU、内存）自动调整服务容量，实现弹性扩展。选项B需自行管理EC2实例，运维成本高；选项C和D依赖传统EC2部署，增加了手动配置和监控负担。正确答案A完全依托托管服务，符合\"最小运维开销\"要求。"
+ }
+}

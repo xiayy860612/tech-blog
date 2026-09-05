@@ -1,0 +1,18 @@
+{
+ "qid": "1529124409",
+ "index": 485,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS上构建一个三层应用。展示层将提供静态网站，逻辑层是一个容器化应用。该应用将在关系型数据库中存储数据。公司希望简化部署并降低运营成本。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用Amazon S3托管静态内容。使用Amazon Elastic Container Service（Amazon ECS）与AWS Fargate提供计算能力。使用托管的Amazon RDS集群作为数据库。",
+  "B. 使用Amazon CloudFront托管静态内容。使用Amazon Elastic Container Service（Amazon ECS）与Amazon EC2提供计算能力。使用托管的Amazon RDS集群作为数据库。",
+  "C. 使用Amazon S3托管静态内容。使用Amazon Elastic Kubernetes Service（Amazon EKS）与AWS Fargate提供计算能力。使用托管的Amazon RDS集群作为数据库。",
+  "D. 使用Amazon EC2预留实例托管静态内容。使用Amazon Elastic Kubernetes Service（Amazon EKS）与Amazon EC2提供计算能力。使用托管的Amazon RDS集群作为数据库。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "在满足简化部署和降低成本的要求下，选项A是最佳选择。\nAmazon S3用于托管静态内容，这是一种成本较低的存储方式。\n使用Amazon Elastic Container Service（Amazon ECS）与AWS Fargate提供计算能力，它提供了弹性和自动化的容器化部署方式，无需管理底层基础设施。\n使用托管的Amazon RDS集群作为数据库，可以减少数据库管理的复杂性，而且Amazon RDS提供了可靠、自动化的管理服务。\n这个方案简化了部署流程，同时使用了托管服务来降低运营成本。",
+  "AI解析": "AWS的三层架构设计中，静态内容托管通常采用Amazon S3，因其无需服务器管理且成本低。逻辑层的容器化应用适合AWS Fargate，免去基础设施运维。关系型数据库选用Amazon RDS，作为全托管服务减少运营负担。选项A的组合充分利用了这些AWS托管服务，实现部署简化和成本优化。选项B的CloudFront主要用于内容分发而非托管，且EC2需手动管理；选项C的EKS复杂度高于ECS；选项D的EC2实例托管静态内容成本高且管理复杂。参考AWS架构最佳实践，托管服务优先原则。（AWS Well-Architected Framework）"
+ }
+}

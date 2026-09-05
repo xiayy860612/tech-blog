@@ -1,0 +1,19 @@
+{
+ "qid": "1529124407",
+ "index": 483,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司希望从许多独立的AWS账户迁移到一个统一的、多账户架构。公司计划为不同的业务部门创建许多新的AWS账户。公司需要通过使用一个集中的企业目录服务对这些AWS账户的访问进行身份验证。\n解决方案架构师应推荐哪两种组合操作以满足这些要求？（选择两个）",
+ "options": [
+  "A. 在AWS Organizations中创建一个新的组织，打开所有功能。在该组织中创建新的AWS账户。",
+  "B. 设置Amazon Cognito身份池。配置AWS IAM身份中心（AWS Single Sign-On）以接受Amazon Cognito身份验证。",
+  "C. 配置服务控制策略（SCP）来管理AWS账户。将AWS IAM身份中心（AWS Single Sign-On）添加到AWS Directory Service中。",
+  "D. 在AWS Organizations中创建一个新的组织。配置组织的身份验证机制直接使用AWS Directory Service。",
+  "E. 在组织中设置AWS IAM身份中心（AWS Single Sign-On）。配置IAM身份中心，并将其集成到公司的企业目录服务中。"
+ ],
+ "answer": {
+  "正确答案": "AE",
+  "解析": "为满足要求，最佳组合是选项A和E。\n选项A建议在AWS Organizations中创建一个新组织，并为该组织中的不同业务部门创建新的AWS账户，这样公司可以实现多账户架构。\n选项E建议在组织中设置AWS IAM身份中心（AWS Single Sign-On），并将其配置为集成公司的企业目录服务。这样可以实现集中的身份验证，并方便管理对各个AWS账户的访问。",
+  "AI解析": "AWS Organizations用于集中管理多个AWS账户，创建组织并开启所有功能允许使用如服务控制策略（SCP）和AWS IAM身份中心等高级功能。AWS文档指出，组织是构建多账户环境的基础。AWS IAM身份中心（原AWS SSO）支持与企业目录服务（如Microsoft Active Directory或AWS Directory Service）集成，提供集中身份验证。AWS解决方案架构师指南中提到，IAM身份中心是实现跨账户单点登录的标准方法，需与现有目录服务联合。选项C涉及SCP策略管理，但SCP不处理身份验证集成。选项D错误，因AWS Organizations本身不直接处理认证机制，而是依赖IAM身份中心。选项B的Amazon Cognito面向应用程序用户身份验证，非企业员工目录场景。"
+ }
+}

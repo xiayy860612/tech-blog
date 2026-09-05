@@ -1,0 +1,18 @@
+{
+ "qid": "1908085529",
+ "index": 795,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司需要一个解决方案，防止带有不良内容的照片被上传到公司的Web应用程序。解决方案不能涉及训练机器学习（ML）模型。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用Amazon SageMaker Autopilot创建和部署模型。创建一个实时端点，当上传新照片时，Web应用程序调用该端点。",
+  "B. 创建一个AWS Lambda函数，使用Amazon Rekognition检测不良内容。创建一个Lambda函数URL，当上传新照片时，Web应用程序调用该URL。",
+  "C. 创建一个Amazon CloudFront函数，使用Amazon Comprehend检测不良内容。将该函数与Web应用程序关联。",
+  "D. 创建一个AWS Lambda函数，使用Amazon Rekognition Video检测不良内容。创建一个Lambda函数URL，当上传新照片时，Web应用程序调用该URL。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "B选项中，使用AWS Lambda函数结合Amazon Rekognition可以很容易地实现检测照片中的不良内容。当有新照片上传时，Web应用程序可以调用Lambda函数来进行内容检测。这种解决方案不需要训练机器学习模型，而且可以快速实现。\nA选项中，Amazon SageMaker Autopilot用于自动构建和部署机器学习模型，但是题目要求不能涉及训练ML模型。\nC选项中，虽然可以使用Amazon Comprehend检测文本中的不良内容，但是这种方式不适用于图片内容的检测。\nD选项中，Amazon Rekognition Video用于视频内容的检测，而不是图片。",
+  "AI解析": "Amazon Rekognition是AWS提供的预训练AI服务，具备检测图像中不当内容的功能，无需用户自行训练模型。AWS Lambda支持无服务器架构，通过函数URL可直接触发，适合实时处理上传事件。选项A涉及SageMaker Autopilot，属于训练模型的范畴，不符合题干限制。选项C中的Comprehend专注于文本分析，无法处理图像内容。选项D使用Rekognition Video，主要面向视频流检测，处理单张静态图像的场景下效率不佳。参考AWS官方文档，Rekognition的Moderation API专门用于识别图像中的不良内容，Lambda函数与函数URL组合可构建轻量级审核流程。"
+ }
+}

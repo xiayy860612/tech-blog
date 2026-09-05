@@ -1,0 +1,18 @@
+{
+ "qid": "2949540335",
+ "index": 994,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家流媒体公司正在重建其基础设施，以适应用户每天对视频内容日益增长的需求。\n该公司需要处理大小为 TB 的视频，以屏蔽视频中的某些内容。视频处理可能需要长达 20 分钟。\n公司需要一个能够随需求扩展并保持成本效益的解决方案。\n哪个解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用 AWS Lambda 函数处理视频。将视频元数据存储在 Amazon DynamoDB 中。将视频内容存储在 Amazon S3 Intelligent-Tiering 中。",
+  "B. 使用 Amazon Elastic Container Service (Amazon ECS) 和 AWS Fargate 实现微服务来处理视频。将视频元数据存储在 Amazon Aurora 中。将视频内容存储在 Amazon S3 Intelligent-Tiering 中。",
+  "C. 使用 Amazon EC2 实例在应用程序负载均衡器 (ALB) 后面的自动缩放组中处理视频。将视频内容存储在 Amazon S3 Standard 中。使用 Amazon Simple Queue Service (Amazon SQS) 进行排队并解耦处理任务。",
+  "D. 在 Amazon EC2 上的 Amazon Elastic Kubernetes Service (Amazon EKS) 上部署一个容器化的视频处理应用程序。将视频元数据存储在单个可用区的 Amazon RDS 中。将视频内容存储在 Amazon S3 Glacier Deep Archive 中。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "此方案允许公司根据需求进行扩展。使用 ECS 和 Fargate 可以自动管理和扩展容器，而不需要管理底层服务器。Amazon\nAurora 提供了高可用性和可扩展性，适合存储视频元数据。同时，S3 Intelligent-Tiering\n提供了成本优化，适用于访问模式不确定的对象。该方案在处理大规模视频时能够保持灵活性和成本效益。",
+  "AI解析": "AWS的服务选择需结合任务类型、扩展性和成本效益。题干中视频处理需20分钟，超过AWS Lambda的15分钟限制，选项A不可行。Amazon ECS与Fargate支持无服务器容器化部署，无需管理底层架构，适合长时间运行的微服务，具备弹性伸缩能力。Aurora作为关系型数据库，适用于结构化元数据存储，支持复杂查询。S3 Intelligent-Tiering通过自动分层存储优化成本，适合访问模式不固定的视频内容。选项D的Glacier Deep Archive检索延迟高，不适合频繁处理的场景；选项C的EC2需更多运维管理，成本效益不及Fargate。根据AWS最佳实践，选项B组合在扩展性、任务时长适配及存储成本控制上更优。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124355",
+ "index": 431,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司想要使用机器学习（ML）算法来构建和训练模型。该公司将使用这些模型来可视化复杂场景，并检测客户数据中的趋势。架构团队希望将其ML模型与报告平台集成，以分析增强的数据，并将数据直接用于其业务智能仪表板。\n哪种解决方案将以最低的运营开销满足这些要求？",
+ "options": [
+  "A. 使用AWS Glue创建ML转换以构建和训练模型。使用Amazon OpenSearch Service可视化数据。",
+  "B. 使用Amazon SageMaker构建和训练模型。使用Amazon QuickSight可视化数据。",
+  "C. 使用AWS Marketplace中的预构建ML Amazon Machine Image（AMI）来构建和训练模型。使用Amazon OpenSearch Service可视化数据。",
+  "D. 使用Amazon QuickSight通过使用计算字段来构建和训练模型。使用Amazon QuickSight可视化数据。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon SageMaker是AWS提供的完整的机器学习平台，可用于构建、训练和部署机器学习模型，非常适合这个场景。\nAmazon QuickSight是一款AWS的业务智能工具，可用于可视化数据和创建业务仪表板，因此也符合要求。\n选项A中，AWS Glue主要用于ETL任务，不是构建和训练ML模型的最佳工具。\n选项C中，使用预构建的ML Amazon Machine Image可能不如Amazon SageMaker灵活，并且可能需要更多的自定义工作。\n选项D中，使用Amazon QuickSight来构建和训练ML模型通常不是标准做法，而Amazon QuickSight更适合用于数据可视化。\n因此，选项B是最适合满足要求且运营开销最低的选择。",
+  "AI解析": "AWS服务中，Amazon SageMaker是专为机器学习设计的全托管服务，支持构建、训练和部署模型，减少基础设施管理负担。Amazon QuickSight是与AWS数据服务深度集成的BI工具，支持直接连接数据源并创建交互式仪表板。选项A的AWS Glue主要用于ETL，不擅长模型训练；OpenSearch侧重搜索分析而非业务可视化。选项C的预构建AMI需自行管理基础设施，增加运维成本。选项D的QuickSight计算字段无法处理复杂模型训练。正确答案B通过托管服务组合最小化运维工作，满足端到端的ML建模和BI可视化需求。"
+ }
+}

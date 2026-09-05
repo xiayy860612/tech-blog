@@ -1,0 +1,18 @@
+{
+ "qid": "1908085512",
+ "index": 778,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个公司有一个包含参考数据集的Amazon Elastic File System（Amazon EFS）文件系统。该公司在Amazon EC2实例上有应用程序需要读取数据集。然而，这些应用程序不能修改数据集。公司希望使用IAM访问控制来阻止这些应用程序修改或删除数据集。\n\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在EC2实例内以只读模式挂载EFS文件系统。",
+  "B. 为EFS文件系统创建一个资源策略，拒绝附加到EC2实例的IAM角色执行elasticlesystem:ClientWrite操作。",
+  "C. 为EFS文件系统创建一个身份策略，在EFS文件系统上拒绝执行elasticlesystem:ClientWrite操作。",
+  "D. 为每个应用程序创建一个EFS访问点。使用Portable Operating System Interface（POSIX）文件权限，允许根目录中的文件只读访问。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "创建一个身份策略并在 Amazon EFS 文件系统上拒绝执行 elasticlesystem:ClientWrite 操作是最佳的解决方案。这样，即使应用程序附加了具有写入权限的 IAM 角色，也无法修改或删除数据集。这种方法提供了对数据集的保护，并确保数据的完整性。",
+  "AI解析": "这道题考查对 IAM 访问控制的理解和应用。在这种场景下，创建一个身份策略拒绝在 EFS 文件系统上执行 elasticlesystem:ClientWrite 操作，能有效阻止应用程序修改或删除数据集。A 选项只读挂载不能从根本上通过 IAM 控制；B 选项资源策略针对对象错误；D 选项创建访问点和 POSIX 权限并非直接通过 IAM 实现。所以应选 C 选项。"
+ }
+}

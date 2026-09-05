@@ -1,0 +1,17 @@
+{
+ "index": 205,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望管理Amazon Machine Images (AMIs)。公司目前将AMIs复制到与其创建AMIs的AWS Region相同的地方。公司需要设计一个应用程序，可以捕获AWS API调用并在公司帐户内调用Amazon EC2 CreateImage API操作时发送警报。\n哪种解决方案可以以最小的运营开销满足这些需求？",
+ "options": [
+  "A. 创建一个AWS Lambda函数，用于查询AWS CloudTrail日志并在检测到CreateImage API调用时发送警报。",
+  "B. 配置AWS CloudTrail，当日志被发送到Amazon S3时触发Amazon Simple Notification Service (Amazon SNS)通知。使用Amazon Athena创建新表，当检测到API调用时进行查询。",
+  "C. 创建一个Amazon EventBridge (Amazon CloudWatch Events)规则，以监测CreateImage API调用。配置目标为Amazon Simple Notification Service (Amazon SNS)主题，以在检测到CreateImage API调用时发送警报。",
+  "D. 配置Amazon Simple Queue Service (Amazon SQS) FIFO队列作为AWS CloudTrail日志的目标。创建一个AWS Lambda函数，在检测到CreateImage API调用时发送警报到Amazon Simple Notification Service (Amazon SNS)主题。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了以最小的运营开销满足这一需求，最佳的解决方案是选项C。Amazon EventBridge是AWS的事件总线服务，可以监视AWS API调用并触发相关操作。在这种情况下，您可以创建一个EventBridge规则以监测CreateImage API调用，然后将触发的事件发送到Amazon SNS主题，从而触发警报。这个解决方案不需要手动查询日志或进行额外的设置，因此操作开销最小。\n选项A中，虽然AWS Lambda可以用于查询CloudTrail日志并发送警报，但需要手动编写Lambda函数，增加了操作开销。选项B中，需要使用Amazon Athena进行查询，并配置CloudTrail到S3通知，也需要更多的手动设置和查询工作。选项D中，引入了SQS队列，增加了一些复杂性和操作开销。\n因此，选项C是最佳选择，因为它提供了最小的操作开销并满足了监测CreateImage API调用并发送警报的需求。",
+  "AI解析": "EventBridge规则可以直接监控CloudTrail事件流中的特定API操作（如`CreateImage`），无需依赖日志存储或额外处理。根据AWS文档，EventBridge与CloudTrail集成后，能够实时捕获API调用并触发目标动作（如SNS通知）。选项A需主动查询日志，存在延迟和调度开销。选项B依赖Athena周期性查询，效率较低。选项D引入SQS队列和Lambda处理，增加了架构复杂性。选项C通过原生集成实现自动化，符合最小运营开销要求。答案：C"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124289",
+ "index": 368,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司已经将一个应用程序迁移到了Amazon EC2 Linux实例上。其中一个EC2实例按计划运行多个1小时的任务。这些任务由不同的团队编写，没有共同的编程语言。公司担心在单个实例上运行这些任务时的性能和可扩展性。解决这些问题，解决方案架构师需要实施一个解决方案。\n哪个解决方案将在最少的运营开销下满足这些需求？",
+ "options": [
+  "A. 使用AWS Batch作为作业运行任务。使用Amazon EventBridge（Amazon CloudWatch Events）调度作业。",
+  "B. 将EC2实例转换为容器。使用AWS App Runner按需创建容器来运行任务作业。",
+  "C. 将任务复制到AWS Lambda函数中。使用Amazon EventBridge（Amazon CloudWatch Events）调度Lambda函数。",
+  "D. 创建一个运行任务的EC2实例的Amazon Machine Image（AMI）。使用AMI创建一个Auto Scaling组，以运行多个实例的副本。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "使用AWS Batch和Amazon EventBridge（Amazon CloudWatch Events）的组合是最适合此场景的解决方案。AWS Batch可用于批处理作业的管理和调度，而Amazon EventBridge可以用于调度这些作业，无需大量的运维工作。其他选项都需要更多的配置和管理，而且不如AWS Batch和EventBridge组合灵活和高效。",
+  "AI解析": "AWS Batch专为运行批量计算作业设计，支持动态分配和管理AWS计算资源，例如Amazon EC2和Spot Instances，自动匹配作业的资源需求。任务调度通过Amazon EventBridge实现，无需手动干预基础设施。不同编程语言编写的任务无需修改即可作为独立作业提交。AWS Batch处理队列、调度及扩展，替代手动管理EC2实例，减少运营负担。对比其他选项，容器化改造（B）涉及额外迁移成本；Lambda执行时长受限（C）；Auto Scaling（D）需维护AMI及实例副本，运维复杂。答案对应AWS官方文档对Batch和EventBridge的场景推荐。正确选项为A。"
+ }
+}

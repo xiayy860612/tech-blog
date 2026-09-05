@@ -1,0 +1,18 @@
+{
+ "qid": "1908085435",
+ "index": 701,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司将最近的海洋调查中的 200 TB 数据复制到 AWS Snowball Edge Storage Optimized 设备上。该公司在 AWS 上托管了一个高性能计算 (HPC) 集群，用于寻找石油和天然气储藏地。解决方案架构师必须为集群提供对 Snowball Edge Storage Optimized 设备上的数据具有一致的亚毫秒延迟和高吞吐量的访问。公司正在将设备寄回 AWS。\n\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 创建一个 Amazon S3 存储桶。将数据导入到 S3 存储桶中。配置一个 AWS Storage Gateway 文件网关来使用 S3 存储桶。从 HPC 集群实例访问文件网关。",
+  "B. 创建一个 Amazon S3 存储桶。将数据导入到 S3 存储桶中。配置一个 Amazon FSx for Lustre 文件系统，并将其与 S3 存储桶集成。从 HPC 集群实例访问 FSx for Lustre 文件系统。",
+  "C. 创建一个 Amazon S3 存储桶和一个 Amazon Elastic File System (Amazon EFS) 文件系统。将数据导入到 S3 存储桶中。将数据从 S3 存储桶复制到 EFS 文件系统。从 HPC 集群实例访问 EFS 文件系统。",
+  "D. 创建一个 Amazon FSx for Lustre 文件系统。将数据直接导入到 FSx for Lustre 文件系统中。从 HPC 集群实例访问 FSx for Lustre 文件系统。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon FSx for Lustre 文件系统提供了对大规模数据集的高性能访问，并且具有低延迟。直接将数据导入到 FSx for Lustre 文件系统中，可以提供一致的亚毫秒延迟和高吞吐量的访问。与其他选项相比，这种方法不需要额外的数据复制过程，并且可以直接从 HPC 集群实例访问数据。",
+  "AI解析": "AWS高性能计算场景需兼顾低延迟与高吞吐量，FSx for Lustre专为HPC设计，提供亚毫秒级延迟和并行文件系统架构。当Snowball Edge设备数据直接导入FSx for Lustre时，避免了S3中间存储的元数据转换开销，确保数据路径最简化。其他方案中，S3作为持久层需通过FSx二次同步（选项B）、EFS基于NFS协议吞吐受限（选项C）、Storage Gateway代理层增加延迟（选项A），均无法满足HPC对存储性能的极限需求。"
+ }
+}

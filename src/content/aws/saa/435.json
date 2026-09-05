@@ -1,0 +1,18 @@
+{
+ "qid": "1529124359",
+ "index": 435,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司将其本地的PostgreSQL数据库迁移到Amazon RDS for PostgreSQL DB实例。公司成功推出了一个新产品，导致数据库的工作负载增加。公司希望在不增加基础设施的情况下应对更大的工作负载。\n哪种解决方案将最具成本效益地满足这些要求？",
+ "options": [
+  "A. 为总工作负载购买保留的DB实例。将Amazon RDS for PostgreSQL DB实例扩大。",
+  "B. 将Amazon RDS for PostgreSQL DB实例设为多可用区（Multi-AZ）DB实例。",
+  "C. 为总工作负载购买保留的DB实例。添加另一个Amazon RDS for PostgreSQL DB实例。",
+  "D. 将Amazon RDS for PostgreSQL DB实例设为按需（on-demand）DB实例。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "为了应对公司新产品推出后增加的工作负载，并且不想增加基础设施，那么解决方案应该具有成本效益并且不影响现有的基础设施资源。考虑到A选项为总工作负载购买保留的DB实例，同时将Amazon RDS for PostgreSQL DB实例扩大，这种方案既满足了业务需求又不会增加成本。其他选项如多可用区实例或按需实例都需要额外的资源或额外的费用，因此不符合成本效益的要求。"
+ }
+}

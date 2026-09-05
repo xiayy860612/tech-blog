@@ -1,0 +1,19 @@
+{
+ "qid": "1908085438",
+ "index": 704,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在一个 VPC 中运行一个三层应用程序。数据库层使用 Amazon RDS for MySQL 数据库实例。\n公司计划将 RDS for MySQL 数据库实例迁移到一个 Amazon Aurora PostgreSQL 数据库集群。公司需要一个解决方案来复制迁移到新数据库期间发生的数据更改。\n哪种步骤的组合能够满足这些要求？（选择两个。）",
+ "options": [
+  "A. 使用 AWS Database Migration Service (AWS DMS) Schema Conversion 来转换数据库对象。",
+  "B. 使用 AWS Database Migration Service (AWS DMS) Schema Conversion 在 RDS for MySQL 数据库实例上创建一个 Aurora PostgreSQL 只读副本。",
+  "C. 为 RDS for MySQL 数据库实例配置一个 Aurora MySQL 只读副本。",
+  "D. 使用 AWS Database Migration Service (AWS DMS) 任务定义带有变更数据捕获 (CDC) 的数据迁移。",
+  "E. 当只读副本滞后为零时，将 Aurora PostgreSQL 只读副本提升为独立的 Aurora PostgreSQL 数据库集群。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": "步骤 A 使用 AWS Database Migration Service (AWS DMS) Schema Conversion 来转换数据库对象，确保将 RDS for MySQL 数据库实例的结构转换为 Aurora PostgreSQL 的结构。步骤 D 使用 AWS Database Migration Service (AWS DMS) 任务定义带有变更数据捕获 (CDC) 的数据迁移，以便在迁移过程中捕获和复制数据更改。这两个步骤的组合可以实现数据库迁移，并确保数据在迁移期间保持一致。",
+  "AI解析": "AWS DMS的Schema Conversion工具用于将源数据库的架构转换为目标数据库兼容的格式，例如将MySQL对象转换为PostgreSQL（A选项）。同时，DMS的任务通过变更数据捕获（CDC）功能确保在迁移过程中源数据库的持续更改能够复制到目标数据库（D选项）。对于异构数据库（如MySQL到PostgreSQL），无法直接创建跨引擎的只读副本（B错误），仅同引擎支持只读副本（C错误）。提升只读副本的前提是存在可用副本，但B选项不可行，因此E选项无法成立。此方案基于[AWS DMS文档](https://docs.aws.amazon.com/dms/)中关于异构迁移的推荐方法。"
+ }
+}

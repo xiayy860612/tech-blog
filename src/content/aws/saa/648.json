@@ -1,0 +1,18 @@
+{
+ "qid": "1908084765",
+ "index": 648,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司在本地运行一个基于高IOPS Amazon Elastic Block Store（Amazon EBS）块存储的PostgreSQL数据库。每天的峰值I/O事务每秒不超过15,000 IOPS。公司希望将数据库迁移到Amazon RDS for PostgreSQL，并独立于磁盘存储容量来配置磁盘IOPS性能。\n\n哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 配置通用型 SSD（gp2）EBS 卷存储类型，并提供 15,000 IOPS。",
+  "B. 配置预配置 IOPS SSD（io1）EBS 卷存储类型，并提供 15,000 IOPS。",
+  "C. 配置通用型 SSD（gp3）EBS 卷存储类型，并提供 15,000 IOPS。",
+  "D. 配置EBS 磁性卷类型以实现最大 IOPS。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "通用型 SSD（gp3）是一种性能和成本之间的平衡选择。它具有良好的性能，并且比预配置 IOPS SSD（io1）更经济实惠。\n配置通用型 SSD（gp3）并提供 15,000 IOPS 可以满足数据库每天的峰值 I/O 事务，同时也不会增加额外的成本。",
+  "AI解析": "Amazon Elastic Block Store（EBS）的不同存储类型在性能与成本上的差异是关键。通用型 SSD（gp3）允许独立配置IOPS和存储容量，突破了gp2的IOPS与容量绑定的限制，且比预配置IOPS SSD（io1）更具成本优势。根据AWS文档，gp3卷支持高达16,000 IOPS（无需额外存储扩容），而io1需要为相同IOPS支付更高费用。磁性卷的IOPS性能无法满足15,000的需求。选项C通过gp3以较低成本直接配置所需IOPS，符合题干中“独立于磁盘存储容量”和“最具成本效益”的要求。"
+ }
+}

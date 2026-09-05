@@ -1,0 +1,18 @@
+{
+ "qid": "1529125623",
+ "index": 566,
+ "total": 1018,
+ "type": "单选题",
+ "question": "解决架构师正在设计一个工作负载，用于存储建筑物中各商户的每小时能源消耗。传感器将通过HTTP请求将数据传送到数据库，以累积每个商户的使用情况。解决架构师必须在可能的情况下使用托管服务。将来，解决架构师将为工作负载添加独立的组件。\n哪种解决方案将在运营开销最低的情况下满足这些要求？",
+ "options": [
+  "A. 使用Amazon API Gateway与AWS Lambda函数接收传感器数据，处理数据，并将数据存储在Amazon DynamoDB表中。",
+  "B. 使用受Amazon EC2实例自动扩展组支持的Elastic Load Balancer接收和处理传感器数据。使用Amazon S3存储已处理的数据。",
+  "C. 使用Amazon API Gateway与AWS Lambda函数接收传感器数据，处理数据，并将数据存储在Amazon EC2实例上的Microsoft SQL Server Express数据库中。",
+  "D. 使用受Amazon EC2实例自动扩展组支持的Elastic Load Balancer接收和处理传感器数据。使用Amazon Elastic File System (Amazon EFS)共享文件系统来存储已处理的数据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "在这种情决定中，解决架构师需要使用托管服务，同时降低运营开销。选项A建议使用Amazon API Gateway与AWS Lambda函数，这是一种无服务器计算服务，用于接收传感器数据、处理数据，并将数据存储在Amazon DynamoDB中。这个方案不需要管理EC2实例，因为它是基于服务器的计算模型，因此具有最低的运营开销。\n其他选项都需要管理EC2实例，这将引入更多的运营复杂性和开销。选项B提到使用Elastic Load Balancer和EC2实例来处理数据并将其存储在Amazon S3中，但需要管理EC2实例。选项C提到使用EC2实例上的Microsoft SQL Server数据库，也需要管理EC2实例。选项D提到使用Elastic Load Balancer和EC2实例来处理数据并将其存储在Amazon EFS中，同样需要管理EC2实例。因此，选项A是最佳选择，因为它最大程度地减少了运营开销。",
+  "AI解析": "AWS服务选择中，Amazon API Gateway和AWS Lambda均为无服务器托管服务，无需管理基础设施，可自动扩展。Amazon DynamoDB作为托管NoSQL数据库，提供低延迟和高扩展性，无需处理服务器维护。选项B、C、D均涉及Amazon EC2实例，需手动管理服务器、扩展及维护，导致运营开销增加。题目要求优先使用托管服务并最小化运营成本，选项A的组合满足要求。AWS架构最佳实践推荐尽可能采用无服务器和托管服务以减少运维负担。"
+ }
+}

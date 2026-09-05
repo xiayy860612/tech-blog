@@ -1,0 +1,18 @@
+{
+ "qid": "1529124272",
+ "index": 351,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在为一个在线多人游戏设计网络。该游戏使用UDP网络协议，并将部署在八个AWS区域。网络架构需要最小化延迟和数据包丢失，以为终端用户提供高质量的游戏体验。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在每个区域设置一个Transit Gateway。在每个Transit Gateway之间创建区域间对等附件。",
+  "B. 使用AWS Global Accelerator，配置具有UDP监听器和每个区域中的端点组。",
+  "C. 使用Amazon CloudFront，并启用UDP。在每个区域中配置一个源。",
+  "D. 在每个区域之间建立VPC对等网络。为每个VPC启用UDP。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS Global Accelerator（选项B）是一种用于提供全球范围的负载均衡和加速的服务，特别适用于具有低延迟和高可用性要求的应用程序，如多人游戏。Global Accelerator可以通过其UDP监听器和端点组在多个AWS区域中进行流量管理，以最小化延迟和数据包丢失，提供高质量的游戏体验。\n其他选项中，选项A中的Transit Gateway虽然可以在AWS区域之间创建连接，但不提供负载均衡和加速。选项C中的CloudFront主要用于分发内容，不适用于UDP多人游戏。选项D中的VPC对等网络不提供全球负载均衡和加速功能。",
+  "AI解析": "该题核心在于优化全球分布的实时UDP应用网络性能。AWS Global Accelerator通过Anycast IP将用户流量接入最近的边缘节点，利用AWS骨干网以最优路径路由至最近可用区域，通过持续探测路径质量动态调整，显著降低延迟与丢包率；其UDP监听器直接支持无连接协议，端点组实现多区域流量负载均衡，相较Transit Gateway跨区域中转、VPC对等全连接架构的复杂性与延迟劣势，以及CloudFront侧重HTTP/TCP缓存而非实时UDP传输的特性，B选项能最精准满足游戏场景需求。"
+ }
+}

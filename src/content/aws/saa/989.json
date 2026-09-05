@@ -1,0 +1,18 @@
+{
+ "qid": "2949540330",
+ "index": 989,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司计划将一个遗留应用程序迁移到 AWS。该应用程序当前使用 NFS 与本地存储解决方案进行通信，以存储应用数据。应用程序无法修改以使用任何其他通信协议，除了 NFS。\n解决方案架构师应推荐在迁移后使用哪种存储解决方案？",
+ "options": [
+  "A. AWS DataSync",
+  "B. Amazon Elastic Block Store (Amazon EBS)",
+  "C. Amazon Elastic File System (Amazon EFS)",
+  "D. Amazon EMR 文件系统 (Amazon EMRFS)"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Amazon EFS 是一个完全托管的文件存储服务，支持 NFS 协议，非常适合需要共享文件访问的应用程序。由于应用程序无法修改以使用其他协议，EFS\n是最佳选择，因为它能够在 AWS 上无缝支持 NFS。",
+  "AI解析": "Amazon Elastic File System (EFS) 是 AWS 提供的全托管网络文件系统，支持标准的 NFSv4 协议。由于应用程序仅能使用 NFS 协议且无法修改，EFS 能够无缝替代现有本地 NFS 存储，无需调整应用架构。[A] AWS DataSync 用于数据迁移而非存储服务；[B] Amazon EBS 是块存储，需挂载到单个 EC2 实例且不原生支持多实例共享访问；[D] EMRFS 是专为 Amazon EMR 优化的 Hadoop 文件系统。根据 AWS 官方文档，EFS 设计目标之一即为兼容 NFS 协议的迁移场景。"
+ }
+}

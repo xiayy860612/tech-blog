@@ -1,0 +1,18 @@
+{
+ "qid": "2949540260",
+ "index": 919,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将其托管在Amazon\nEC2上的单体架构的Web应用程序迁移到无服务器微服务架构。公司希望使用支持事件驱动、松耦合架构的AWS服务。公司希望使用发布/订阅（pub/sub）模式。\n哪种解决方案将最具成本效益地满足这些要求？",
+ "options": [
+  "A. 配置一个Amazon API Gateway REST API来调用AWS Lambda函数，该函数将事件发布到Amazon Simple Queue Service（Amazon SQS）队列。配置一个或多个订阅者从SQS队列读取事件。",
+  "B. 配置一个Amazon API Gateway REST API来调用AWS Lambda函数，该函数将事件发布到Amazon Simple Notification Service（Amazon SNS）主题。配置一个或多个订阅者从SNS主题接收事件。",
+  "C. 配置一个Amazon API Gateway WebSocket API以写入Amazon Kinesis Data Streams中的数据流，并启用增强的推送功能。配置一个或多个订阅者从数据流接收事件。",
+  "D. 配置一个Amazon API Gateway HTTP API来调用AWS Lambda函数，该函数将事件发布到Amazon Simple Notification Service（Amazon SNS）主题。配置一个或多个订阅者从主题接收事件。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS SNS：SNS支持发布/订阅模式，可以将消息推送到多个订阅者，包括Lambda函数、SQS队列、HTTP/S端点等。SNS的pub/sub模式适合于事件驱动、松耦合的架构。\n成本效益：使用SNS和Lambda结合可以高效地处理事件发布和分发，避免了需要为每个订阅者设置单独的队列或数据流的复杂性。\n简单性和扩展性：SNS的发布/订阅模式允许多个订阅者接收相同的事件消息，提供了良好的扩展性和灵活性。",
+  "AI解析": "该题核心在于事件驱动架构中实现发布/订阅模式的最佳实践。AWS的发布/订阅模型需通过Amazon SNS实现，其主题（Topic）支持多订阅者异步接收广播消息，天然满足松耦合要求。APIGateway REST API触发Lambda写入SNS主题后，消息将自动推送至所有订阅终端（如Lambda、SQS队列等），无需轮询且仅单次发布计费，成本效益显著高于需主动拉取或重复投递的方案（如SQS多队列轮询或Kinesis流处理）。选项B通过SNS原生Pub/Sub机制精准匹配需求。"
+ }
+}

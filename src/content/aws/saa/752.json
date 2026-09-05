@@ -1,0 +1,18 @@
+{
+ "qid": "1908085486",
+ "index": 752,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个每晚的批处理例程，通过 SFTP 接收每天从本地文件系统接收的报告文件。公司希望将解决方案迁移到 AWS 云。解决方案必须具有高可用性和弹性。解决方案还必须最小化操作工作量。\n哪种解决方案符合这些要求？",
+ "options": [
+  "A. 部署 AWS Transfer for SFTP 和 Amazon Elastic File System（Amazon EFS）文件系统进行存储。使用一个具有定期扩展策略的 Auto Scaling 组中的 Amazon EC2 实例来运行批处理操作。",
+  "B. 部署运行 Linux 和 SFTP 服务的 Amazon EC2 实例。使用 Amazon Elastic Block Store（Amazon EBS）卷进行存储。使用具有最小实例数量和期望实例数量设置为 1 的 Auto Scaling 组。",
+  "C. 部署运行 Linux 和 SFTP 服务的 Amazon EC2 实例。使用 Amazon Elastic File System（Amazon EFS）文件系统进行存储。使用具有最小实例数量和期望实例数量设置为 1 的 Auto Scaling 组。",
+  "D. 部署 AWS Transfer for SFTP 和一个 Amazon S3 存储桶进行存储。修改应用程序，将批处理文件从 Amazon S3 拉到 Amazon EC2 实例进行处理。使用具有定期扩展策略的 EC2 实例在 Auto Scaling 组中运行批处理操作。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了实现高可用性和弹性，并且最小化操作工作量，应该部署 AWS Transfer for SFTP 和一个 Amazon S3 存储桶进行存储。将批处理文件存储在 Amazon S3 中提供了高可用性和持久性，而 AWS Transfer for SFTP 简化了 SFTP 服务的管理。同时，使用 EC2 实例在 Auto Scaling 组中运行批处理操作可以确保在需要时自动扩展计算资源。",
+  "AI解析": "本题考查云迁移场景下高可用架构设计与托管服务运用。核心在于利用AWS全托管服务降低运维负担，SFTP服务首选AWS Transfer for SFTP（无需维护EC2），存储层采用S3实现高可用和持久性，与原生服务深度集成。批处理作业通过Auto Scaling定期策略自动启停EC2实例，既满足弹性又避免资源闲置。EFS或自建SFTP方案（如其他选项）需维护文件系统或实例，增加运维复杂度，不符合最小化操作要求。"
+ }
+}

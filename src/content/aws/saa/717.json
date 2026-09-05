@@ -1,0 +1,18 @@
+{
+ "qid": "1908085451",
+ "index": 717,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的应用程序使用 Apache Hadoop 和 Apache Spark 在本地处理数据。现有基础设施不具备可扩展性，管理起来也很复杂。解决方案架构师必须设计一个可扩展的解决方案，以减少操作复杂性。解决方案必须保持数据处理在本地进行。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用 AWS 站点到站点 VPN 访问本地 Hadoop 分布式文件系统 (HDFS) 数据和应用程序。使用 Amazon EMR 集群处理数据。",
+  "B. 使用 AWS DataSync 连接到本地 Hadoop 分布式文件系统 (HDFS) 集群。创建一个 Amazon EMR 集群来处理数据。",
+  "C. 将 Apache Hadoop 应用程序和 Apache Spark 应用程序迁移到 AWS Outposts 上的 Amazon EMR 集群。使用 EMR 集群处理数据。",
+  "D. 使用 AWS Snowball 设备将数据迁移到 Amazon S3 存储桶。创建一个 Amazon EMR 集群来处理数据。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项 C 提供了一个解决方案，将现有的 Apache Hadoop 和 Apache Spark 应用程序迁移到 AWS Outposts 上的 Amazon EMR 集群。这个解决方案保持了数据处理在本地进行，同时提供了可扩展性和降低操作复杂性的好处。AWS Outposts 提供了一个在本地扩展 AWS 服务的方式，因此您可以在本地进行数据处理，同时仍然能够享受 AWS 云的优势。",
+  "AI解析": "本题考查混合云架构下本地数据处理优化方案。核心知识点在于AWS Outposts能将云服务延伸至本地数据中心，满足数据驻留要求。Amazon EMR作为托管集群服务可简化Hadoop/Spark运维，实现自动扩展。选项C通过Outposts部署EMR，既保留本地数据处理特性，又通过AWS全托管架构降低运维复杂度。其他选项或涉及数据迁移至公有云（A/B/D违反本地处理要求），或未解决基础设施管理问题。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 107,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家全球性公司在us-east-1地区和ap-southeast-2地区为其忠诚俱乐部用户使用Amazon API Gateway设计REST API。解决方案架构师必须设计一种解决方案，以保护这些API Gateway托管的REST API，跨多个AWS账户，免受SQL注入和跨站脚本攻击。\n哪种解决方案可以以最少的管理工作满足这些要求？",
+ "options": [
+  "A. 在两个地区设置AWS WAF。将区域性Web ACL与API阶段关联。",
+  "B. 在两个地区设置AWS Firewall Manager。在集中配置AWS WAF规则。",
+  "C. 在两个地区设置AWS Shield。将区域性Web ACL与API阶段关联。",
+  "D. 在两个地区中的一个地区设置AWS Shield。将区域性Web ACL与API阶段关联。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B中，AWS Firewall Manager允许您在多个AWS账户和多个地区集中配置AWS WAF规则，从而减少管理工作。这使您可以保护位于不同地区的API Gateway REST API，并减轻管理工作的负担。\n选项A中，AWS WAF需要在每个地区分别设置，可能会增加管理复杂性。\n选项C和D中，AWS Shield用于DDoS攻击防护，而不是SQL注入和跨站脚本攻击的防护，因此不适合这种情况。",
+  "AI解析": "AWS Firewall Manager允许在多个AWS账户和资源中集中管理AWS WAF规则，减少跨区域和跨账户的重复配置。AWS文档指出Firewall Manager适用于需要统一安全策略的场景。选项B通过Firewall Manager集中管理WAF规则，满足跨区域和账户需求，简化管理。选项A需要在每个区域单独配置Web ACL，增加管理工作量。选项C和D中的AWS Shield专注于DDoS防护，不涉及SQL注入或XSS攻击防护。正确答案为B。"
+ }
+}

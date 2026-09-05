@@ -1,0 +1,17 @@
+{
+ "index": 63,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在多个Amazon EC2实例上托管一个应用程序。该应用程序处理来自Amazon SQS队列的消息，将其写入Amazon RDS表，并从队列中删除消息。偶尔在RDS表中发现重复记录。SQS队列不包含任何重复消息。解决架构师应该采取什么措施以确保消息只被处理一次？",
+ "options": [
+  "A. 使用CreateQueue API调用创建一个新队列。",
+  "B. 使用AddPermission API调用添加适当的权限。",
+  "C. 使用ReceiveMessage API调用设置适当的等待时间。",
+  "D. 使用ChangeMessageVisibility API调用增加可见性超时。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "消息处理过程中若耗时超过默认的可见性超时，消息可能被重复处理。SQS的可见性超时控制消息被接收后的隐藏时间，超时后未被删除的消息会重新变为可用状态。ChangeMessageVisibility API允许在处理消息时动态延长该超时，确保消息在处理完成前不可见，避免重复处理。AWS文档提及通过调整可见性超时可解决处理时间过长导致的重复问题。选项D正确。其他选项不涉及可见性超时的调整，无法解决重复处理。"
+ }
+}

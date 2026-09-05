@@ -1,0 +1,18 @@
+{
+ "qid": "2949540315",
+ "index": 974,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家天气预报公司不断地从各种传感器收集温度读数。现有的数据摄取过程将读数聚合成较大的 Apache Parquet 文件。然后，过程使用 KMS 管理的密钥进行客户端加密（CSE-KMS）。最后，该过程将文件写入 Amazon S3存储桶，为每个日历日使用不同的前缀。\n公司希望偶尔对数据运行 SQL 查询，以获取特定日历日的样本移动平均值。\n哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 配置 Amazon Athena 以读取加密的文件。直接在 Amazon S3 中运行 SQL 查询。",
+  "B. 使用 Amazon S3 Select 直接在 Amazon S3 中对数据运行 SQL 查询。",
+  "C. 配置 Amazon Redshift 以读取加密的文件。使用 Redshift Spectrum 和 Redshift 查询编辑器 v2 直接在 Amazon S3 中运行 SQL 查询。",
+  "D. 配置 Amazon EMR Serverless 以读取加密的文件。使用 Apache SparkSQL 直接在 Amazon S3 中运行 SQL 查询。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon Athena 可以直接读取存储在 Amazon S3 中的加密文件，并且支持对 Apache Parquet 文件运行 SQL 查询。Athena 支持使用\nKMS 密钥加密的数据，且可以直接在 S3 上运行查询，不需要将数据移动到其他存储位置。这使得 Athena 成为一种成本效益高的解决方案，因为它避免了需要预先配置大量基础设施。",
+  "AI解析": "AWS服务支持加密数据查询的情况是关键。Amazon Athena能够读取使用KMS管理的客户端加密（CSE-KMS）的Parquet文件，无需预处理，且在S3中直接运行SQL查询。Athena的无服务器架构按扫描数据量计费，适合偶尔使用。Amazon S3 Select不支持CSE-KMS加密数据查询。Amazon Redshift Spectrum和EMR Serverless虽然也能处理加密数据，但引入额外组件或资源导致成本增加。选项A通过Athena直接查询加密数据，无需额外服务，符合成本效益。"
+ }
+}

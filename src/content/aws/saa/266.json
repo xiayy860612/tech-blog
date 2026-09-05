@@ -1,0 +1,17 @@
+{
+ "index": 266,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司有一百万用户使用其移动应用。公司必须近乎实时地分析数据使用情况。公司还必须近乎实时加密数据，并必须以 Apache Parquet 格式将数据存储在集中位置以供进一步处理。\n哪种解决方案可以以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 创建一个 Amazon Kinesis 数据流以将数据存储在 Amazon S3 中。创建一个 Amazon Kinesis 数据分析应用程序来分析数据。调用 AWS Lambda 函数将数据发送到 Kinesis 数据分析应用程序。",
+  "B. 创建一个 Amazon Kinesis 数据流以将数据存储在 Amazon S3 中。创建一个 Amazon EMR 集群来分析数据。调用 AWS Lambda 函数将数据发送到 EMR 集群。",
+  "C. 创建一个 Amazon Kinesis Data Firehose 传送流，将数据存储在 Amazon S3 中。创建一个 Amazon EMR 集群来分析数据。",
+  "D. 创建一个 Amazon Kinesis Data Firehose 传送流，将数据存储在 Amazon S3 中。创建一个 Amazon Kinesis 数据分析应用程序来分析数据。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项 D 使用 Amazon Kinesis Data Firehose 将数据以 Apache Parquet 格式存储在 Amazon S3 中，减少了操作负担。然后使用 Amazon Kinesis 数据分析应用程序对数据进行分析。这种方法减少了复杂性，实现了数据的快速存储和分析。",
+  "AI解析": "答案D中的方案结合了Amazon Kinesis Data Firehose和Kinesis Data Analytics。Amazon Kinesis Data Firehose支持自动将数据转换为Parquet格式并加密后存储到Amazon S3，无需自定义代码，符合实时处理和低运营开销需求。Kinesis Data Analytics可直接在数据流上运行SQL查询进行实时分析，无需管理基础设施。选项C中的EMR需要集群管理，选项A和B使用Kinesis数据流需额外步骤处理数据转换和存储，增加了运营复杂度。"
+ }
+}

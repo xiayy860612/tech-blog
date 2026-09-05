@@ -1,0 +1,17 @@
+{
+ "index": 340,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个由AWS Lake Formation管理的Amazon S3数据湖。公司希望通过将数据湖中的数据与存储在Amazon Aurora MySQL数据库中的运营数据进行连接，创建Amazon QuickSight中的可视化。公司希望强制执行基于列级的授权，以便公司的营销团队只能访问数据库中的子集列。\n哪种解决方案将以最少的运维开销满足这些要求？",
+ "options": [
+  "A. 使用Amazon EMR直接从数据库中将数据摄入到QuickSight SPICE引擎，仅包括所需的列。",
+  "B. 使用AWS Glue Studio将数据从数据库摄入到S3数据湖。将IAM策略附加到QuickSight用户，以强制执行基于列的访问控制。在QuickSight中使用Amazon S3作为数据源。",
+  "C. 使用AWS Glue Elastic Views为Amazon S3中的数据库创建一个物化视图。为QuickSight用户创建一个S3存储桶策略，以强制执行基于列的访问控制。在QuickSight中使用Amazon S3作为数据源。",
+  "D. 使用Lake Formation蓝图将数据从数据库摄入到S3数据湖。使用Lake Formation为QuickSight用户强制执行基于列的访问控制。在QuickSight中使用Amazon Athena作为数据源。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D中，使用Lake Formation可以非常方便地实施基于列级的访问控制，而不需要额外的IAM策略或存储桶策略。它是满足要求的最有效的方式，同时最小化了运维开销。其他选项都需要更多的手动配置和管理。",
+  "AI解析": "AWS Lake Formation 提供精细化的访问控制，包括列级别的权限管理，允许在数据湖中对不同用户或组设置细粒度的数据访问策略。Amazon Athena 作为查询引擎可与 Lake Formation 集成，直接应用这些策略。将 Aurora MySQL 数据摄入 S3 数据湖后，Lake Formation 统一管理权限，无需额外配置 IAM 策略或存储桶策略，降低运维复杂性。选项 A 依赖 SPICE 引擎预处理数据，不具备动态列级权限；选项 B 和 C 使用 IAM 或存储桶策略，无法实现列级别的访问控制。选项 D 通过 Lake Formation 原生支持列级授权，结合 Athena 查询，满足要求（AWS Lake Formation 文档）。"
+ }
+}

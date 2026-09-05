@@ -1,0 +1,18 @@
+{
+ "qid": "1529122085",
+ "index": 13,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司每月需要对其AWS基础设施进行维护。在这些维护活动期间，公司需要在多个AWS区域中轮换其Amazon RDS for MySQL数据库的凭据。哪种解决方案将以最小的操作开销满足这些要求？",
+ "options": [
+  "A. 将凭据存储为AWS Secrets Manager中的机密。为所需区域使用多区域机密复制。配置Secrets Manager以按计划轮换凭据。",
+  "B. 将凭据存储为AWS Systems Manager中的安全字符串参数。为所需区域使用多区域机密复制。配置Systems Manager以按计划轮换凭据。",
+  "C. 将凭据存储在启用了服务器端加密（SSE）的Amazon S3存储桶中。使用Amazon EventBridge (Amazon CloudWatch Events)来调用AWS Lambda函数以轮换凭据。",
+  "D. 使用AWS Key Management Service (AWS KMS)多区域客户管理密钥将凭据加密为机密。将机密存储在Amazon DynamoDB全局表中。使用AWS Lambda函数从DynamoDB检索机密。使用RDS API来轮换凭据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A，即将凭据存储为AWS Secrets Manager机密，为所需区域使用多区域机密复制，并配置Secrets Manager按计划轮换凭据，是满足要求的最佳解决方案。AWS Secrets Manager专门设计用于管理凭据，并提供了自动轮换功能，可以根据计划自动更改凭据，从而减少操作开销。选项B中的AWS Systems Manager提供了类似的功能，但并不专门设计用于凭据管理，而是用于配置和资源管理。选项C中将凭据存储在S3中，虽然可以实现轮换，但不如Secrets Manager方便，而且需要更多的自定义开发工作。选项D中使用KMS和DynamoDB，虽然可以实现凭据的加密和检索，但不提供轮换凭据的自动功能，需要手动实现凭据轮换。选项A提供了最简单和最符合要求的解决方案。",
+  "AI解析": "AWS Secrets Manager提供多区域机密复制和自动凭据轮换功能，无需自定义脚本即可跨区域同步并更新凭据。AWS官方文档指出，Secrets Manager支持按需或定时轮换数据库凭据，且通过多区域复制特性确保机密在指定区域间自动同步。选项B的Systems Manager参数存储不支持内置多区域复制与自动轮换；选项C依赖S3和自定义Lambda函数引入额外复杂性；选项D需手动处理加密与全局表同步逻辑。Secrets Manager原生集成这些能力，操作开销最低。"
+ }
+}

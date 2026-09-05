@@ -1,0 +1,18 @@
+{
+ "qid": "1529122113",
+ "index": 40,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的应用程序与多个软件即服务 (SaaS) 数据收集源集成。公司运行Amazon EC2实例来接收数据并将数据上传到Amazon S3存储桶以进行分析。同一台EC2实例在接收和上传数据完成后还向用户发送通知。公司已经注意到应用程序性能较慢，并希望尽可能提高性能。哪个解决方案在最小化操作开销的同时满足这些要求？",
+ "options": [
+  "A. 创建一个自动伸缩组，以便EC2实例可以进行横向扩展。配置S3事件通知以在上传到S3存储桶完成时将事件发送到Amazon Simple Notification Service (Amazon SNS)主题。",
+  "B. 创建Amazon AppFlow流程，以在每个SaaS来源和S3存储桶之间传输数据。配置S3事件通知以在上传到S3存储桶完成时将事件发送到Amazon Simple Notification Service (Amazon SNS)主题。",
+  "C. 为每个SaaS来源创建一个Amazon EventBridge (Amazon CloudWatch Events)规则以发送输出数据。将S3存储桶配置为规则的目标。创建第二个EventBridge (Cloud Watch Events)规则，以在上传到S3存储桶完成时发送事件。将Amazon Simple Notification Service (Amazon SNS)主题配置为第二个规则的目标。",
+  "D. 创建一个Docker容器以替代EC2实例。将容器化应用程序托管在Amazon Elastic Container Service (Amazon ECS)上。配置Amazon CloudWatch Container Insights以在上传到S3存储桶完成时将事件发送到Amazon Simple Notification Service (Amazon SNS)主题。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon AppFlow是一项托管的服务，用于轻松集成SaaS应用程序与AWS服务。这种方式能够降低操作开销，同时提供可靠的数据传输。通过配置S3事件通知，可以满足数据上传完成后发送通知的要求，而无需手动管理通知或创建自定义规则。其他选项都需要更多的自定义配置和管理，因此操作开销较高。",
+  "AI解析": "该题考察如何优化AWS架构中数据处理流程的性能和降低操作复杂度。正确选项为B。Amazon AppFlow是一项完全托管的集成服务，可直接在SaaS应用和S3之间传输数据，无需通过EC2中转，减轻了EC2实例的负载，从而提升整体性能。S3事件通知原生支持在对象上传完成后触发SNS通知，替代原有EC2处理通知的逻辑。相较于其他选项，该方案完全移除了EC2在数据收集和通知发送环节的职责，最大化利用托管服务，无需管理额外基础设施，符合最小化操作开销的要求。选项A未消除EC2的数据处理瓶颈；C需要维护多条EventBridge规则；D涉及容器重构且未解决核心性能问题。"
+ }
+}

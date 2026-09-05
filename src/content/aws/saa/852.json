@@ -1,0 +1,18 @@
+{
+ "qid": "2264604823",
+ "index": 852,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的 Web 应用程序由运行在 VPC 中的多个 Amazon EC2 实例组成，这些实例在一个 Application Load Balancer 后面运行。Amazon RDS\nFor MySQL 数据库实例包含数据。公司需要能够自动检测和应对其 AWS 环境中的可疑或意外行为。公司已经在其架构中添加了 AWS WAF。\n解决方案架构师接下来应该采取什么步骤来保护系统免受威胁？",
+ "options": [
+  "A. 使用 Amazon GuardDuty 进行威胁检测。配置 Amazon EventBridge 过滤 GuardDuty 的发现，并调用 AWS Lambda 函数来调整 AWS WAF 规则。",
+  "B. 使用 AWS Firewall Manager 进行威胁检测。配置 Amazon EventBridge 过滤 Firewall Manager 的发现，并调用 AWS Lambda 函数来调整 AWS WAF 的 Web ACL。",
+  "C. 使用 Amazon Inspector 进行威胁检测并更新 AWS WAF 规则。创建一个 VPC 网络 ACL 来限制对 Web 应用程序的访问。",
+  "D. 使用 Amazon Macie 进行威胁检测并更新 AWS WAF 规则。创建一个 VPC 网络 ACL 来限制对 Web 应用程序的访问。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 是最佳选择。Amazon\nGuardDuty 可以帮助自动检测可疑行为和安全风险。通过配置 Amazon EventBridge 来监听 GuardDuty 的发现，可以在检测到可疑活动时触发 AWS Lambda 函数，进而调整 AWS WAF 规则以防范攻击。相比之下，选项 B 中的 AWS Firewall Manager 主要用于管理网络防火墙规则，而不是针对可疑行为的检测。选项 C 和选项 D 中的 Amazon\nInspector 和 Amazon Macie 更适合于漏洞扫描和数据安全方面的监测，而不是针对网络流量的实时监测。",
+  "AI解析": "AWS WAF 用于保护 Web 应用，但题目要求自动检测和响应 AWS 环境中的威胁。Amazon GuardDuty 是一项威胁检测服务，可持续监视账户和网络活动，识别潜在威胁（如未经授权的实例启动、异常 API 调用）。当 GuardDuty 发现威胁时，可通过 Amazon EventBridge 捕获相关事件，触发 AWS Lambda 函数动态调整 AWS WAF 规则，从而实时阻断恶意流量。选项 A 整合了威胁检测、事件路由和自动化响应能力，符合题干需求。其他选项涉及的 Firewall Manager、Inspector、Macie 主要功能与实时威胁检测和自动响应的关联性较弱。"
+ }
+}

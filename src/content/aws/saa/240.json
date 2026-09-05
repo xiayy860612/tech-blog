@@ -1,0 +1,17 @@
+{
+ "index": 240,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家在线学习公司正在迁移到AWS云。该公司在PostgreSQL数据库中维护学生记录。公司需要一个解决方案，使其数据在多个AWS区域中始终在线和可用。\n哪种解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 将PostgreSQL数据库迁移到Amazon EC2实例上的PostgreSQL集群。",
+  "B. 将PostgreSQL数据库迁移到已启用Multi-AZ功能的Amazon RDS for PostgreSQL DB实例。",
+  "C. 将PostgreSQL数据库迁移到Amazon RDS for PostgreSQL DB实例。在另一个区域创建只读副本。",
+  "D. 将PostgreSQL数据库迁移到Amazon RDS for PostgreSQL DB实例。设置将DB快照复制到另一个区域。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "AWS的RDS支持跨区域只读副本，允许在另一个AWS区域中创建数据库的副本。此副本可提升为独立实例以实现故障转移，确保多区域可用性。相比其他选项，此方案由AWS自动处理复制，操作开销最低。选项C通过跨区域只读副本实现多区域可用性，无需手动管理复制或快照。选项B仅在同一区域多可用区，选项D的快照非实时，选项A需自行管理集群。来自AWS RDS文档对跨区域复制的说明。"
+ }
+}

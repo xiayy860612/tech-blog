@@ -1,0 +1,18 @@
+{
+ "qid": "1908084779",
+ "index": 662,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS上开发一款新的应用程序。该应用程序由一个Amazon Elastic Container Service（Amazon ECS）集群、一个包含应用程序资产的Amazon S3存储桶以及一个包含应用程序数据集的Amazon RDS for MySQL数据库组成。该数据集包含敏感信息。公司希望确保只有ECS集群能够访问RDS for MySQL数据库中的数据和S3存储桶中的数据。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 创建一个新的AWS Key Management Service（AWS KMS）客户管理的密钥，用于加密S3存储桶和RDS for MySQL数据库。确保KMS密钥策略包括ECS任务执行角色的加密和解密权限。",
+  "B. 创建一个AWS Key Management Service（AWS KMS）AWS托管的密钥，用于加密S3存储桶和RDS for MySQL数据库。确保S3存储桶策略将ECS任务执行角色指定为用户。",
+  "C. 创建一个将存储桶访问限制为ECS任务执行角色的S3存储桶策略。为Amazon RDS for MySQL创建一个VPC端点。更新RDS for MySQL安全组，仅允许来自ECS集群将生成任务的子网的访问。",
+  "D. 为Amazon RDS for MySQL创建一个VPC端点。更新RDS for MySQL安全组，仅允许来自ECS集群将生成任务的子网的访问。为Amazon S3创建一个VPC端点。更新S3存储桶策略，仅允许来自S3 VPC端点的访问。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D提到了为Amazon RDS for MySQL创建一个VPC端点，更新RDS for MySQL安全组以允许来自ECS集群生成任务的子网的访问，以及为Amazon S3创建一个VPC端点，更新S3存储桶策略以允许来自S3 VPC端点的访问。这样可以确保只有ECS集群能够访问RDS for MySQL数据库中的数据和S3存储桶中的数据。其他选项中，选项A和B提到了使用AWS KMS密钥来加密数据，但没有提及如何限制访问。选项C提到了使用S3存储桶策略限制访问，但没有提及RDS for MySQL的访问限制。因此，选项D是最合适的解决方案。",
+  "AI解析": "为保障数据安全及访问控制，D 选项为 RDS for MySQL 创建 VPC 端点并更新安全组，限制访问来源为 ECS 集群；为 S3 创建 VPC 端点并更新存储桶策略，也限制访问来源。这种双重措施能有效确保只有 ECS 集群能访问 RDS for MySQL 数据库和 S3 存储桶中的数据，满足公司需求。"
+ }
+}

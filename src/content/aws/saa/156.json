@@ -1,0 +1,17 @@
+{
+ "index": 156,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一款应用程序运行在Amazon EC2实例上，这些实例位于私有子网中。该应用程序需要访问一个Amazon DynamoDB表。\n在确保流量不离开AWS网络的情况下，下列哪种方式是访问表格的最安全方式？",
+ "options": [
+  "A. 使用DynamoDB的VPC端点。",
+  "B. 在公共子网中使用NAT网关。",
+  "C. 在私有子网中使用NAT实例。",
+  "D. 使用连接到VPC的Internet网关。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "使用DynamoDB的VPC端点是访问DynamoDB表并确保流量不离开AWS网络的最安全方式。VPC端点允许EC2实例在私有子网中直接访问DynamoDB表，而不必通过公共Internet，从而提供了更高级别的安全性和隐私保护。其他选项，如B、C和D，都涉及到流量通过公共Internet，这可能引入额外的安全风险。因此，最佳选择是使用VPC端点。",
+  "AI解析": "Amazon DynamoDB的VPC端点（Gateway类型）允许私有子网中的资源通过Amazon网络直接访问DynamoDB，无需经过Internet或NAT设备。这种方式确保了流量始终在AWS内部，降低了暴露风险，同时避免了NAT的复杂性和潜在延迟。NAT网关或实例仍需通过公共网络访问AWS服务，而Internet网关要求资源具有公网访问能力。AWS官方推荐使用VPC端点作为访问DynamoDB的最佳安全实践。选项A满足题干中流量不离开AWS且最安全的要求。"
+ }
+}

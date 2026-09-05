@@ -1,0 +1,18 @@
+{
+ "qid": "2264604841",
+ "index": 870,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望通过使用 AWS\n上可用的授权技术来限制其 Web 应用程序的内容访问。公司还希望实现一个基于无服务器架构的授权和认证系统，具有低登录延迟。解决方案必须与 Web 应用程序集成，并全球提供 Web 内容。目前，该应用程序的用户基数较小，但公司预计用户基数将增加。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 配置 Amazon Cognito 用于身份验证。使用 Lambda@Edge 进行授权。配置 Amazon CloudFront 以全球提供 Web 应用程序。",
+  "B. 配置 AWS Directory Service for Microsoft Active Directory 用于身份验证。使用 AWS Lambda 进行授权。使用应用程序负载均衡器全球提供 Web 应用程序。",
+  "C. 配置 Amazon Cognito 用于身份验证。使用 AWS Lambda 进行授权。使用 Amazon S3 Transfer Acceleration 全球提供 Web 应用程序。",
+  "D. 配置 AWS Directory Service for Microsoft Active Directory 用于身份验证。使用 Lambda@Edge 进行授权。使用 AWS Elastic Beanstalk 全球提供 Web 应用程序。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 建议使用 Amazon\nCognito 进行身份验证，并使用 Lambda@Edge 进行授权。Amazon Cognito 是一项托管服务，可提供用户注册、登录和身份验证功能，并与其他 AWS 服务集成。Lambda@Edge 可以在全球边缘位置执行 Lambda 函数，从而在用户最接近的位置对请求进行授权。其他选项并未结合无服务器架构和全球 Web 内容分发，并且不够灵活以适应应用程序用户基数的增长。",
+  "AI解析": "Amazon Cognito 提供用户身份认证功能，能够直接与 Web 应用程序集成。Lambda@Edge 允许在 CloudFront 边缘节点执行授权逻辑，减少延迟，适用于全球分布的请求处理。Amazon CloudFront 作为内容分发网络（CDN），确保 Web 内容全球高效访问。选项 B 中的 AWS Directory Service 更适合企业内部目录管理，不适用于无服务器架构。选项 C 的 S3 Transfer Acceleration 主要优化文件传输速度，而非全局内容分发。选项 D 的 Elastic Beanstalk 侧重应用部署，无法替代 CDN 的全球分发能力。正确答案 A 满足无服务器架构、低延迟、全球部署等核心要求。来源：AWS 官方文档关于 Cognito、Lambda@Edge、CloudFront 的功能描述。"
+ }
+}

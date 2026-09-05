@@ -1,0 +1,19 @@
+{
+ "qid": "1529124277",
+ "index": 356,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家游戏公司将其公共记分板从数据中心迁移到AWS云中。该公司使用Amazon EC2 Windows Server实例在一个应用负载均衡器后面托管其动态应用程序。公司需要一个高可用的存储解决方案，用于应用程序。该应用程序由静态文件和动态服务器端代码组成。\n一个解决方案架构师应该采取哪些步骤的组合来满足这些要求？（选择两个。）",
+ "options": [
+  "A. 将静态文件存储在Amazon S3上。使用Amazon CloudFront在边缘缓存对象。",
+  "B. 将静态文件存储在Amazon S3上。使用Amazon ElastiCache在边缘缓存对象。",
+  "C. 将服务器端代码存储在Amazon Elastic File System（Amazon EFS）上。在每个EC2实例上挂载EFS卷以共享文件。",
+  "D. 将服务器端代码存储在Amazon FSx for Windows File Server上。在每个EC2实例上挂载FSx for Windows File Server卷以\n共享文件。",
+  "E. 将服务器端代码存储在通用用途SSD（gp2）Amazon Elastic Block Store（Amazon EBS）卷上。在每个EC2实例上挂载EBS卷以共享\n文件。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": "为了实现高可用性存储解决方案，可以采取以下两个步骤的组合：\nA 将静态文件存储在Amazon S3上，并使用Amazon CloudFront在边缘缓存对象。Amazon S3提供了高可用性和耐用性，而Amazon CloudFront将加速静态内容的传递，并提高用户体验。\nD 将服务器端代码存储在Amazon FSx for Windows File Server上，并在每个EC2实例上挂载FSx for Windows File Server卷以共享文件。Amazon FSx for Windows File Server提供了高可用性的托管文件存储，适用于服务器端代码和文件共享。\n这两种步骤的组合可以满足高可用性存储和加速内容传递的要求。其他选项不如这两个选项适合高可用性和性能要求。",
+  "AI解析": "Amazon S3适用于静态文件存储，结合CloudFront实现边缘缓存，提升访问速度和降低延迟。静态内容分发为常见架构模式。Amazon FSx for Windows File Server专为Windows环境设计，提供兼容SMB协议的全托管文件存储，支持多EC2实例共享访问，符合高可用需求。EFS主要为Linux设计，EBS无法多实例共享，ElastiCache用于缓存数据库或会话数据而非静态文件。选项A和D分别对应静态和动态部分的最佳实践。"
+ }
+}

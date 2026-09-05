@@ -1,0 +1,17 @@
+{
+ "index": 69,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将一个多层应用程序从本地迁移到AWS云，以提高应用程序的性能。该应用程序由通过RESTful服务相互通信的应用程序层组成。当一个层次过载时，事务会丢失。解决方案架构师必须设计一个解决方案，以解决这些问题并使应用程序现代化。\n哪种解决方案满足这些要求并且在操作上最高效？",
+ "options": [
+  "A. 使用Amazon API Gateway，并将事务直接定向到AWS Lambda函数作为应用层。使用Amazon Simple Queue Service (Amazon SQS)作为应用服务之间的通信层。",
+  "B. 使用Amazon CloudWatch指标来分析应用程序的性能历史，确定在性能故障期间服务器的最大利用率。增加应用服务器的Amazon EC2实例的大小以满足最大需求。",
+  "C. 使用Amazon Simple Notification Service (Amazon SNS)处理运行在Amazon EC2上的应用程序服务器之间的消息传递。使用Amazon CloudWatch监视SNS队列长度，根据需要进行扩展和缩减。",
+  "D. 使用Amazon Simple Queue Service (Amazon SQS)处理运行在Amazon EC2上的应用程序服务器之间的消息传递。使用Amazon CloudWatch监视SQS队列长度，当检测到通信故障时进行扩展。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A建议使用Amazon API Gateway和AWS Lambda来构建应用程序层，这是现代化应用程序架构的一种常见方法。这种方法允许应用程序层以分布式和弹性的方式处理事务，同时使用Amazon SQS作为应用服务之间的通信层，可以确保消息不会丢失，并且可以实现松散耦合。这种架构可提高性能和可扩展性，并且在操作上是高效的。\n其他选项提供了一些解决问题的方法，但它们不如选项A来得现代化和高效。选项B提议增加EC2实例的大小，但这可能会导致浪费资源。选项C和D中的Amazon SNS和Amazon SQS在某些情况下可能有用，但它们通常用于不同类型的通信和解决不同的问题。",
+  "AI解析": "Amazon API Gateway提供托管RESTful API接口，与AWS Lambda集成实现无服务器架构，自动扩展处理请求，避免过载导致的性能问题。Amazon SQS作为消息队列服务，确保应用层间通信的可靠性和异步处理，防止事务丢失。选项B通过垂直扩展EC2实例应对峰值，缺乏弹性且运维成本高。选项C使用SNS发布/订阅模型，消息不持久化，无法保证可靠传输。选项D基于EC2和SQS，依赖运维扩展策略，操作复杂性高于无服务器方案。AWS无服务器计算及消息服务最佳实践推荐采用选项A架构，实现高效自动伸缩和现代化应用设计。"
+ }
+}

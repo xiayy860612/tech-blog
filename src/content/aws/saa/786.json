@@ -1,0 +1,18 @@
+{
+ "qid": "1908085520",
+ "index": 786,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS组织中拥有启用了所有功能的组织。该公司要求对任何现有或新的AWS账户中的所有API调用和登录进行审计。公司需要一个托管的解决方案来防止额外的工作并尽量降低成本。公司还需要知道任何AWS账户是否符合AWS基本安全最佳实践（FSBP）标准。\n\n哪种解决方案将以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 在组织管理账户中部署AWS Control Tower环境。在环境中启用AWS Security Hub和AWS Control Tower账户工厂。",
+  "B. 在专用的组织成员账户中部署AWS Control Tower环境。在环境中启用AWS Security Hub和AWS Control Tower账户工厂。",
+  "C. 使用AWS托管服务（AMS）Accelerate构建多账户着陆区（MALZ）。在MALZ中提交RFC以自助服务提供Amazon GuardDuty。",
+  "D. 使用AWS托管服务（AMS）Accelerate构建多账户着陆区（MALZ）。在MALZ中提交RFC以自助服务提供AWS Security Hub。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS Control Tower是一个服务，可帮助您使用最佳实践快速建立并运行一个多账户AWS环境。通过在组织管理账户中部署AWS Control Tower环境，并在环境中启用AWS Security Hub和AWS Control Tower账户工厂，您可以实现对所有现有或新的AWS账户中的所有API调用和登录进行审计。此外，AWS Control Tower还能够自动执行AWS基本安全最佳实践（FSBP）标准，并提供对AWS账户是否符合这些标准的可见性和报告。",
+  "AI解析": "AWS Control Tower 是 AWS 推荐的用于集中管理多账户环境的服务，通过预配置的着陆区（Landing Zone）自动化账户创建、策略实施和合规监控。AWS Security Hub 提供统一的视图聚合安全警报，并支持 AWS 基础安全最佳实践（FSBP）的合规性评估。组织管理账户是 Control Tower 的标准部署位置，确保所有成员账户自动继承安全配置。账户工厂功能允许标准化新账户创建，确保自动纳入审计范围。选项 C 和 D 涉及额外的手动 RFC 流程，与题干要求的“托管解决方案”和“最小运营开销”不符。选项 B 错误地将 Control Tower 部署在成员账户，违背官方架构。"
+ }
+}

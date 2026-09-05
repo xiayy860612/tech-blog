@@ -1,0 +1,18 @@
+{
+ "qid": "1529125579",
+ "index": 522,
+ "total": 1018,
+ "type": "单选题",
+ "question": "这家公司运行基于微服务的无服务器Web应用程序。该应用程序必须能够从多个Amazon DynamoDB表中检索数据。解决方案架构师需要为应用程序赋予检索数据的能力，且不对应用程序的基准性能产生影响。\n哪种解决方案能够在操作上最高效地满足这些要求？",
+ "options": [
+  "A. AWS AppSync管道解析器",
+  "B. 具有Lambda@Edge函数的Amazon CloudFront",
+  "C. 带有AWS Lambda函数的边缘优化Amazon API Gateway",
+  "D. 具有DynamoDB连接器的Amazon Athena联合查询"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS AppSync提供了管道解析器，允许构建数据获取管道以从多个数据源检索数据。它可以高效地管理多个数据源的数据检索，而不影响应用程序的基准性能，因此是满足要求的最佳选择。",
+  "AI解析": "AWS AppSync作为托管式GraphQL服务，支持通过管道解析器将多个操作串联，例如并行或顺序执行对不同DynamoDB表的查询请求。这允许在一个解析器内整合多个数据源的结果，减少网络延迟和多次调用带来的性能损耗。Lambda@Edge适用于边缘节点处理但主要优化CDN相关场景，Lambda+API Gateway可能引入额外调用层级，Athena联邦查询偏向分析场景且延迟较高。AppSync的GraphQL特性还能按需获取数据，避免冗余传输。AWS官方文档指出，管道解析器可将业务逻辑分解为可复用步骤，支持高效的多源数据聚合。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 128,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司最近开始将Amazon Aurora作为其全球电子商务应用程序的数据存储。当运行大型报告时，开发人员报告电子商务应用程序性能不佳。在查看Amazon CloudWatch中的指标后，解决方案架构师发现，当运行月度报告时，ReadIOPS和CPUUtilization指标出现峰值。\n什么是最经济的解决方案？",
+ "options": [
+  "A. 将月度报告迁移到Amazon Redshift。",
+  "B. 将月度报告迁移到Aurora副本。",
+  "C. 将Aurora数据库迁移到更大的实例类型。",
+  "D. 增加Aurora实例上的Provisioned IOPS。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "Amazon Aurora的只读副本允许将读取请求分流，减轻主实例的负载。当运行大型报告时，ReadIOPS和CPUUtilization的高峰表明主实例的性能瓶颈。使用Aurora副本处理报告查询可将这些资源密集型操作从主实例卸载，避免影响主应用程序的性能。AWS文档建议利用只读副本来处理分析或报告等读取繁重的工作负载，这种架构无需修改主实例配置或迁移数据仓库，成本更低。选项B符合AWS最佳实践，而其他选项涉及扩容或额外服务引入更高成本。"
+ }
+}

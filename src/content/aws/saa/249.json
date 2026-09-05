@@ -1,0 +1,17 @@
+{
+ "index": 249,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的安全团队要求捕获VPC Flow Logs中的网络流量。这些日志将在前90天频繁访问，然后间断访问。解决方案架构师在配置日志时应采取什么措施来满足这些需求？",
+ "options": [
+  "A. 使用Amazon CloudWatch作为目标。将CloudWatch日志组设置为在90天后到期。",
+  "B. 使用Amazon Kinesis作为目标。配置Kinesis流以始终保留日志90天。",
+  "C. 使用AWS CloudTrail作为目标。配置CloudTrail以保存到Amazon S3存储桶，并启用S3 Intelligent-Tiering。",
+  "D. 使用Amazon S3作为目标。启用S3生命周期策略，以在90天后将日志转换到S3标准不频繁访问（S3 Standard-IA）。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "要满足这个需求，你需要配置VPC Flow Logs并确保日志在前90天频繁访问，之后访问间断。选项D提供了正确的解决方法：\nD 使用Amazon S3作为目标，并启用S3生命周期策略以在90天后将日志转换到S3标准不频繁访问（S3 Standard-IA）。这种方式允许你在最初的90天内使用标准存储，然后将日志转移到更经济实惠的存储类别（S3 Standard-IA）以节省成本。这满足了频繁和间断访问的需求。\n其他选项的解释：\nA 使用Amazon CloudWatch作为目标的日志组在90天后到期，但没有提到将日志转移到更经济实惠的存储类别，因此不适合间断访问的需求。\nB 使用Amazon Kinesis作为目标并配置流以始终保留日志90天，这不提供存储成本的优化选项。\nC 使用AWS CloudTrail作为目标，配置CloudTrail保存到Amazon S3，并启用S3 Intelligent-Tiering。虽然这可以将日志存储在S3中，但未提到在90天后将日志转移到更便宜的存储类别。此外，CloudTrail主要用于审计AWS资源的操作，而不是VPC Flow Logs。",
+  "AI解析": "VPC Flow Logs支持将日志发布到Amazon CloudWatch Logs或Amazon S3。题目要求日志在前90天频繁访问，之后转为不频繁访问。Amazon S3生命周期策略允许自动将对象从标准存储转换为标准-不频繁访问（Standard-IA），适用于访问模式变化的场景。选项D采用S3存储并配置生命周期策略，满足90天后降低存储成本同时保留日志的需求。其他选项要么无法自动转换存储类别（A、B），要么目标服务不符合VPC Flow Logs配置要求（C）。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529125636",
+ "index": 579,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地使用本地附加存储运行对延迟敏感的应用程序。公司正在使用“搬离和升级”的方法将应用程序迁移到AWS云。公司不想改变应用程序架构。哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 配置Amazon EC2实例的Auto Scaling组。使用Amazon FSx for Lustre文件系统来运行应用程序。",
+  "B. 在Amazon EC2实例上托管应用程序。使用Amazon Elastic Block Store（Amazon EBS）GP2卷来运行应用程序。",
+  "C. 配置Amazon EC2实例的Auto Scaling组。使用Amazon FSx for OpenZFS文件系统来运行应用程序。",
+  "D. 在Amazon EC2实例上托管应用程序。使用Amazon Elastic Block Store（Amazon EBS）GP3卷来运行应用程序。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "本题聚焦于AWS迁移中对延迟敏感应用的成本优化存储选择。核心知识点在于Amazon EBS GP3卷相比GP2具有独立配置IOPS/吞吐量的能力，在保证低延迟性能的同时显著降低存储成本，且无需改动原有架构；而FSx系列文件系统需适配特定存储协议，可能引入架构调整或更高费用。选项D直接利用EC2结合GP3实现原架构无缝迁移，满足性能与成本的双重需求。"
+ }
+}

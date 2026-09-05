@@ -1,0 +1,17 @@
+{
+ "index": 118,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的网站为用户提供可下载的历史性能报告。该网站需要一个解决方案，以满足公司网站的全球需求。解决方案应具有成本效益，限制基础设施资源的预配，并提供尽可能快的响应时间。\n解决方案架构师应该推荐哪种组合以满足这些要求？",
+ "options": [
+  "A. Amazon CloudFront和Amazon S3",
+  "B. AWS Lambda和Amazon DynamoDB",
+  "C. 使用Amazon EC2 Auto Scaling的Application Load Balancer",
+  "D. Amazon Route 53与内部Application Load Balancers"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了满足这些要求，最佳做法是使用Amazon CloudFront和Amazon S3的组合。这种组合具有以下优势：\nA  Amazon CloudFront是一项全球内容分发服务，可以加速内容传递并降低响应时间。您可以将静态内容（如历史性能报告）存储在Amazon S3中，并通过CloudFront全球分发，从而提供快速的响应时间。\nB C和D选项分别涉及AWS Lambda、Amazon DynamoDB、Application Load Balancer和Amazon Route 53，这些服务通常用于不同的用例，但对于提供全球性可扩展性、成本效益、快速响应时间的需求来说，不如Amazon CloudFront和Amazon S3的组合来得合适。 Lambda通常用于执行特定的计算任务，DynamoDB是一个托管的NoSQL数据库，Application Load Balancer和Route 53用于应用程序负载均衡和DNS解析。这些服务可以与CloudFront和S3结合使用，但它们不是首要的解决方案。",
+  "AI解析": "这道题目涉及为全球用户提供静态内容分发的最佳实践。AWS文档指出，Amazon S3适用于存储静态内容，而Amazon CloudFront作为内容分发网络（CDN）能够缓存内容至边缘站点，降低延迟并提升全球访问速度。选项B中的Lambda和DynamoDB适用于无服务器计算和NoSQL数据库场景，与静态文件下载无关。选项C和D依赖EC2实例，意味着需要预置计算资源，不符合“限制基础设施资源”的要求。选项D的Route 53负责DNS路由，未直接解决内容分发性能问题。Amazon S3结合CloudFront可实现无需管理服务器、按需付费的全球加速方案。"
+ }
+}

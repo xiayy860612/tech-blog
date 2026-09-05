@@ -1,0 +1,18 @@
+{
+ "qid": "1529125628",
+ "index": 571,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上运行一个应用程序。该应用程序接收不一致的使用量。该应用程序使用AWS Direct Connect连接到本地的与MySQL兼容的数据库。本地数据库一直使用至少2 GiB的内存。公司希望将本地数据库迁移到托管的AWS服务。公司希望使用自动扩展功能来管理意外的工作负载增加。哪种解决方案将在管理开销最小的情况下满足这些要求？",
+ "options": [
+  "A. 配置一个具有默认读取和写入容量设置的Amazon DynamoDB数据库。",
+  "B. 配置一个具有最低容量为1个Aurora计算单元（ACU）的Amazon Aurora数据库。",
+  "C. 配置一个具有最低容量为1个Aurora计算单元（ACU）的Amazon Aurora Serverless v2数据库。",
+  "D. 配置一个拥有2 GiB内存的Amazon RDS for MySQL数据库。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "最佳解决方案是使用Amazon Aurora Serverless v2数据库，设置最低容量为1个Aurora计算单元（ACU）。Amazon Aurora Serverless v2允许根据工作负载需求自动扩展和缩小数据库容量，从而适应不一致的使用量。这降低了管理开销，并可以根据需要自动调整容量。其他选项（A、B、D）都需要手动管理容量，不如Amazon Aurora Serverless v2自动扩展功能灵活，因此管理开销更大。",
+  "AI解析": "AWS托管服务中，Amazon Aurora Serverless v2专为动态工作负载设计，支持自动扩展，可根据负载自动调整Aurora计算单元（ACU），无需手动干预。AWS官方文档指出，Aurora Serverless v2可在秒级别扩展，最低ACU为0.5，最高可动态扩展至与业务需求匹配的容量。选项A的DynamoDB是键值数据库，不兼容MySQL；选项B的Aurora标准版需手动配置容量；选项D的RDS MySQL虽支持自动扩展存储，但计算层扩展需手动调整实例大小。Aurora Serverless v2的自动化扩展能力和无服务器架构最小化管理开销，符合题干要求。"
+ }
+}

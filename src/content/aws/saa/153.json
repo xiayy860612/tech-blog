@@ -1,0 +1,17 @@
+{
+ "index": 153,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家游戏公司在AWS上托管一个基于浏览器的应用程序。应用程序的用户消耗大量存储在Amazon S3中的视频和图像。这些内容对所有用户都是相同的。\n该应用程序已经变得非常受欢迎，全球数百万用户访问这些媒体文件。公司希望向用户提供这些文件，同时减少对源的负载。\n哪种解决方案在最经济的情况下满足这些要求？",
+ "options": [
+  "A. 在Web服务器前部署AWS Global Accelerator加速器。",
+  "B. 在S3存储桶前部署Amazon CloudFront Web分发。",
+  "C. 在Web服务器前部署Amazon ElastiCache for Redis实例。",
+  "D. 在Web服务器前部署Amazon ElastiCache for Memcached实例。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了在全球范围内向用户提供媒体文件，并减轻Amazon S3的负载，最经济的解决方案是部署Amazon CloudFront。Amazon CloudFront是一项内容分发网络（CDN）服务，可将内容缓存到边缘位置，从而加速内容传递并减少对源的负载。选项A中的AWS Global Accelerator用于加速IP流量，不涉及内容缓存。选项C和D中的Amazon ElastiCache用于缓存数据，但不适用于媒体文件的分发。因此，选项B是最佳选择。",
+  "AI解析": "AWS服务中，Amazon CloudFront作为内容分发网络（CDN），专门用于加速静态和动态内容的全球访问。题干描述的场景需要减少对S3源的请求压力，并优化全球用户的访问速度。选项B通过将CloudFront部署在S3存储桶前，利用其边缘节点缓存内容，实现用户就近获取数据，避免每次请求直接回源S3，从而降低源站负载。其他选项如Global Accelerator优化网络路径但不缓存，ElastiCache用于应用层缓存动态数据，均不适用于静态文件分发场景。AWS文档明确推荐使用CloudFront加速S3内容分发（参考AWS Well-Architected Framework）。"
+ }
+}

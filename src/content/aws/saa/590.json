@@ -1,0 +1,18 @@
+{
+ "qid": "1529125647",
+ "index": 590,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在使用Amazon Elastic Kubernetes Service (Amazon EKS)来运行容器应用程序。该应用程序包括管理客户和下订单的微服务。公司需要将传入的请求路由到相应的微服务。\n\n哪种解决方案将最具成本效益地满足这一要求？",
+ "options": [
+  "A. 使用AWS负载均衡控制器来创建一个网络负载均衡器。",
+  "B. 使用AWS负载均衡控制器来创建一个应用程序负载均衡器。",
+  "C. 使用AWS Lambda函数将请求连接到Amazon EKS。",
+  "D. 使用Amazon API Gateway将请求连接到Amazon EKS。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "这道题考察在Amazon EKS环境中路由请求的经济性方案。AWS文档指出，Amazon API Gateway能够通过创建REST API或HTTP API，将不同路径映射到后端服务（如EKS中部署的微服务）。不同于传统负载均衡器（ALB/NLB）每个服务需单独配置实例的成本结构，API Gateway采用按请求数和数据传输量计费模式，尤其适合需要动态扩展且访问模式不固定的微服务场景。选项B的ALB尽管支持基于内容的路由，但每个ALB实例存在固定成本；选项D的API Gateway无需预置资源，仅按实际使用付费，成本更优。选项C的Lambda作为中间代理会增加延迟和编排复杂度，不符合直接路由需求。"
+ }
+}

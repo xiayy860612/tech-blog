@@ -1,0 +1,17 @@
+{
+ "index": 333,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望为客户提供使用本地Microsoft Active Directory 下载存储在Amazon S3中的文件的能力。客户的应用程序使用SFTP客户端来下载这些文件。\n哪种解决方案在不需要进行任何客户端应用程序更改的情况下，可以以最低的运维开销满足这些要求？",
+ "options": [
+  "A. 配置AWS Transfer Family与SFTP以访问Amazon S3，并配置集成的Active Directory身份验证。",
+  "B. 配置AWS数据库迁移服务（AWS DMS）以同步本地客户端和Amazon S3，并配置集成的Active Directory身份验证。",
+  "C. 配置AWS DataSync，使用AWS IAM Identity Center（AWS单点登录）在本地位置和S3位置之间进行同步。",
+  "D. 配置Windows Amazon EC2实例，使用SFTP将本地客户端与Amazon S3连接，并集成AWS Identity and Access Management（IAM）。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中，AWS Transfer Family支持SFTP与Amazon S3集成，而且可以进行Active Directory身份验证。这是最简单的解决方案，不需要对客户端应用程序进行任何更改，因此具有最低的运维开销。其他选项都需要更多的配置和复杂性。",
+  "AI解析": "AWS Transfer Family是一项完全托管的服务，支持SFTP协议直接访问Amazon S3存储桶（AWS官方文档）。选项A通过集成Active Directory身份验证，允许用户使用现有凭证访问文件，运维工作量最小。选项B的DMS适用于数据库迁移而非文件访问。选项C的DataSync用于数据同步而非客户端直接下载。选项D需要自行管理EC2实例，增加了运维复杂度。"
+ }
+}

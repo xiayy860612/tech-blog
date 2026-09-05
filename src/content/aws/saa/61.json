@@ -1,0 +1,17 @@
+{
+ "index": 61,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家医院最近部署了一个RESTful API，使用Amazon API Gateway和AWS Lambda。医院使用API Gateway和Lambda来上传PDF格式和JPEG格式的报告。医院需要修改Lambda代码以识别报告中的受保护健康信息（PHI）。",
+ "options": [
+  "A. 使用现有的Python库提取报告中的文本并从提取的文本中识别PHI。",
+  "B. 使用Amazon Textract提取报告中的文本。使用Amazon SageMaker从提取的文本中识别PHI。",
+  "C. 使用Amazon Textract提取报告中的文本。使用Amazon Comprehend Medical从提取的文本中识别PHI。",
+  "D. 使用Amazon Rekognition提取报告中的文本。使用Amazon Comprehend Medical从提取的文本中识别PHI。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是最符合要求的答案。Amazon Textract是一项用于提取文本和数据的服务，适用于扫描文档和报告。使用Textract可以有效地提取文本内容。然后，使用Amazon Comprehend Medical，它是专门设计用于识别和提取医疗相关信息的服务，包括受保护健康信息（PHI）。这个组合可以实现从报告中提取文本并识别PHI，而且操作开销较低。\n其他选项中，选项A提到了使用Python库，但这可能需要更多的自定义开发和维护，并且不如AWS的AI服务来自动识别PHI。选项B提到了使用Amazon Textract来提取文本，但没有提到使用Amazon Comprehend Medical来识别PHI。选项D提到了使用Amazon Rekognition，但Rekognition主要用于图像分析，不适合提取文本内容和识别PHI。所以，选项C是最具操作效率的解决方案。",
+  "AI解析": "该题考察AWS服务在处理医疗文档PHI识别场景中的应用。Amazon Textract专用于从文档（PDF/JPEG等）提取文本，支持扫描件和表格数据，而其他文本提取工具（如Rekognition）更侧重图像分析。PHI识别需医疗领域NLP能力，Comprehend Medical预置了医疗实体识别模型，能直接检测诊断报告中的姓名、地址等敏感信息，无需自行训练模型。选项C组合满足文档解析与医疗信息识别两个关键环节，符合AWS官方推荐架构（AWS医疗合规文档）。其他选项或使用了非专业文本提取工具（D），或采用了需要定制开发的方案（A/B）。"
+ }
+}

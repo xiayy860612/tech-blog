@@ -1,0 +1,19 @@
+{
+ "qid": "1529124307",
+ "index": 386,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一名新员工加入了一家公司，担任部署工程师。部署工程师将使用AWS CloudFormation模板创建多个AWS资源。解决方案架构师希望部署工程师在执行工作活动时遵循最小权限原则。\n解决这个目标，解决方案架构师应采取哪些组合操作？（选择两个。）",
+ "options": [
+  "A. 让部署工程师使用AWS账户根用户凭据执行AWS CloudFormation堆栈操作。",
+  "B. 为部署工程师创建一个新的IAM用户，并将IAM用户添加到具有PowerUsers IAM策略附加的组中。",
+  "C. 为部署工程师创建一个新的IAM用户，并将IAM用户添加到具有AdministratorAccess IAM策略附加的组中。",
+  "D. 为部署工程师创建一个新的IAM用户，并将IAM用户添加到只允许AWS CloudFormation操作的IAM策略附加的组中。",
+  "E. 为部署工程师创建一个IAM角色，明确定义与AWS CloudFormation堆栈相关的权限，并使用该IAM角色启动堆栈。"
+ ],
+ "answer": {
+  "正确答案": "DE",
+  "解析": null,
+  "AI解析": "AWS最小权限原则要求仅授予执行任务所需的最低权限。AWS官方文档建议避免使用根用户（排除A），管理员或PowerUser策略权限过大（排除B、C）。D选项创建仅允许CloudFormation操作的IAM策略，严格限制权限范围。E选项使用IAM角色，通过角色临时获取所需权限，进一步减少长期凭证风险。两者结合确保部署工程师仅在必要时获得必要权限，符合最小权限原则。来源：AWS Security最佳实践与IAM文档。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2949540311",
+ "index": 970,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家位于\nAp-northeast-1 区域的公司拥有数千台 AWS Outposts 服务器。公司在全球各地的远程位置部署了这些服务器。所有服务器定期下载由 100 个文件组成的新软件版本。在所有服务器运行新软件版本之前存在显著的延迟。\n公司必须减少新软件版本的部署延迟。\n哪个解决方案将以最低的运维开销满足这一要求？",
+ "options": [
+  "A. 在 ap-northeast-1 中创建一个 Amazon S3 存储桶。设置一个 Amazon CloudFront 分发，在 ap-northeast-1 中配置一个 CachingDisabled 缓存策略。将 S3 存储桶配置为源。使用签名 URL 下载软件。",
+  "B. 在 ap-northeast-1 中创建一个 Amazon S3 存储桶。创建一个位于 Us-east-1 区域的第二个 S3 存储桶。配置这两个存储桶之间的复制。设置一个 Amazon CloudFront 分发，使用 ap-northeast-1 作为主要源，us-east-1 作为辅助源。使用签名 URL 下载软件。",
+  "C. 在 ap-northeast-1 中创建一个 Amazon S3 存储桶。配置 Amazon S3 Transfer Acceleration。使用 S3 Transfer Acceleration 终端节点下载软件。",
+  "D. 在 ap-northeast-1 中创建一个 Amazon S3 存储桶。设置一个 Amazon CloudFront 分发。将 S3 存储桶配置为源。使用签名 URL 下载软件。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon CloudFront的优势： Amazon CloudFront 是一个全球内容分发网络（CDN），它可以将内容缓存到离用户更近的边缘位置，从而降低延迟。通过将 S3 存储桶配置为 CloudFront 的源，可以加速文件下载的速度，提高软件版本的部署效率。\n签名 URL的使用： 使用签名 URL\n允许对 S3 存储桶中的文件进行受控访问，并且结合\nCloudFront 的缓存能力，可以更快地将内容传输到所有 Outposts 服务器。",
+  "AI解析": "该题核心在于利用内容分发网络优化全球文件下载延迟。AWS Outposts部署在全球多个位置，通过Amazon CloudFront的全球边缘节点缓存S3存储桶中的软件包，可显著减少跨地域传输延迟。CloudFront自动选择最优节点分发内容，避免直接访问单一区域S3源站的长距离传输耗时。签名URL确保安全访问同时不增加缓存策略复杂度（CachingDisabled会强制回源，而默认缓存策略提升复用效率）。相比跨区域复制或Transfer Acceleration，CloudFront方案无需额外配置多存储桶或加速终端节点，运维成本最低。"
+ }
+}

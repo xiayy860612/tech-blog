@@ -1,0 +1,18 @@
+{
+ "qid": "1908084718",
+ "index": 601,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的基础设施由数百个使用Amazon Elastic Block Store（Amazon EBS）存储的Amazon EC2实例组成。解决方案架构师必须确保每个EC2实例在灾难后都能恢复。\n为了以最少的工作量满足这一要求，解决方案架构师应该采取哪些措施？",
+ "options": [
+  "A. 对每个EC2实例附加的EBS存储进行快照。创建一个AWS CloudFormation模板，以从EBS存储启动新的EC2实例。",
+  "B. 对每个EC2实例附加的EBS存储进行快照。使用AWS Elastic Beanstalk基于EC2模板设置环境并附加EBS存储。",
+  "C. 使用AWS Backup为整个EC2实例组设置备份计划。使用AWS Backup API或AWS CLI加速多个EC2实例的还原过程。",
+  "D. 创建一个AWS Lambda函数，对每个EC2实例附加的EBS存储进行快照并复制Amazon Machine Images（AMI）。创建另一个Lambda函数来执行使用复制的AMI进行还原并附加EBS存储。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了以最少的工作量确保每个EC2实例可以在灾难后恢复，最佳解决方案是选择选项C。使用AWS Backup为整个EC2实例组设置备份计划可以自动管理备份和还原，从而减少操作复杂性。AWS Backup提供了一个中心化的备份解决方案，适用于多个EC2实例。\n其他选项需要更多的手动操作和配置，而选项C提供了更简单的管理方式，特别是在需要管理数百个EC2实例时。",
+  "AI解析": "该题核心在于理解AWS灾难恢复的自动化备份机制。AWS Backup提供集中式管理，可为EC2实例组（含EBS卷）统一配置备份策略，自动执行全实例备份（含存储、配置及元数据），相比手动创建EBS快照或编写自定义脚本（如Lambda函数）显著减少操作复杂度。其原生集成特性允许通过API/CLI批量快速还原，避免逐项处理AMI或模板编排，完全满足最小工作量的核心需求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529122106",
+ "index": 33,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上托管其多层应用程序。出于合规性、治理、审计和安全性的考虑，公司必须跟踪其AWS资源的配置更改，并记录对这些资源的API调用历史。解决方案架构师应该采取哪些步骤来满足这些要求？",
+ "options": [
+  "A. 使用AWS CloudTrail跟踪配置更改，并使用AWS Config记录API调用。",
+  "B. 使用AWS Config跟踪配置更改，并使用AWS CloudTrail记录API调用。",
+  "C. 使用AWS Config跟踪配置更改，并使用Amazon CloudWatch记录API调用。",
+  "D. 使用AWS CloudTrail跟踪配置更改，并使用Amazon CloudWatch记录API调用。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "该题考查AWS云服务中配置管理与API监控的核心区别。AWS Config专门用于持续监控资源配置变更，生成资源历史记录以支持合规审计；AWS CloudTrail则聚焦于记录所有账户级别的API调用活动，提供操作溯源能力。二者分工明确：Config追踪资源状态变化，CloudTrail捕获操作行为日志，共同满足治理与安全审计需求。错误选项混淆了两者功能定位，或引入无关的CloudWatch监控服务。"
+ }
+}

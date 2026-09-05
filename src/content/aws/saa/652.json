@@ -1,0 +1,18 @@
+{
+ "qid": "1908084769",
+ "index": 652,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司维护着一个Amazon RDS数据库，该数据库将用户映射到成本中心。该公司在AWS Organizations中有一个组织账户。公司需要一个解决方案，该解决方案将为在组织中的特定AWS账户中创建的所有资源打标签。解决方案必须使用创建资源的用户的成本中心ID为每个资源打标签。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 将特定的AWS账户从组织的管理账户中移到一个新的组织单元(OU)。创建一个服务控制策略（SCP），要求所有现有资源在创建之前都必须具有正确的成本中心标签。将SCP应用到新的OU上。",
+  "B. 创建一个AWS Lambda函数，在Lambda函数中查找RDS数据库中适当的成本中心后，对资源进行标记。配置一个Amazon EventBridge规则，以响应AWS CloudTrail事件来调用Lambda函数。",
+  "C. 创建一个AWS CloudFormation堆栈，部署一个AWS Lambda函数。配置Lambda函数来查找RDS数据库中的适当成本中心并对资源进行标记。创建一个Amazon EventBridge定时规则，以调用CloudFormation堆栈。",
+  "D. 创建一个AWS Lambda函数，使用默认值为资源打标签。配置一个Amazon EventBridge规则，以响应AWS CloudTrail事件，当资源缺少成本中心标签时调用Lambda函数。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B中的方案使用了AWS Lambda函数，该函数在查找RDS数据库中适当的成本中心后对资源进行标记。通过配置Amazon EventBridge规则，可以响应AWS CloudTrail事件触发Lambda函数。这种方式可以确保每个资源都根据创建它的用户的成本中心ID进行标记。\n其他选项：\n选项A中的服务控制策略（SCP）是用于强制执行组织中账户级别的策略，但它不能直接操作资源标签。因此，选项A不符合要求。\n选项C中的CloudFormation堆栈和定时规则虽然可以用于自动化，但是不如Amazon EventBridge规则和CloudTrail事件来得直接有效。选项C可能会引入额外的复杂性。\n选项D中的Lambda函数只能使用默认值为资源打标签，并没有涉及到查找RDS数据库中的成本中心。这将导致资源被打上一个默认的标签，而不是正确的成本中心标签。",
+  "AI解析": "该题涉及AWS资源标签自动化及事件驱动架构的应用。AWS官方文档提到，使用AWS Lambda配合EventBridge规则响应CloudTrail事件可实现资源创建后的自动标签操作。选项B通过配置EventBridge监听CloudTrail事件触发Lambda，Lambda查询RDS数据库中的成本中心信息并完成标签，确保标签数据的动态性和准确性。选项A的SCP仅用于权限控制，无法主动添加标签。选项C的定时规则可能导致标签延迟。选项D的默认值无法适应不同用户的成本中心差异。"
+ }
+}

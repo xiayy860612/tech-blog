@@ -1,0 +1,18 @@
+{
+ "qid": "1908085484",
+ "index": 750,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一位解决方案架构师正在为一家公司的 AWS 账户设计 AWS 身份和访问管理（IAM）授权模型。公司指定了五名特定的员工拥有对 AWS 账户中的 AWS 服务和资源的完全访问权限。\n解决方案架构师为这五名指定的员工创建了一个 IAM 用户，并创建了一个 IAM 用户组。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 将 AdministratorAccess 资源-based 策略附加到 IAM 用户组。将五名指定的员工的 IAM 用户放置在 IAM 用户组中。",
+  "B. 将 SystemAdministrator 身份-based 策略附加到 IAM 用户组。将五名指定的员工的 IAM 用户放置在 IAM 用户组中。",
+  "C. 将 AdministratorAccess 身份-based 策略附加到 IAM 用户组。将五名指定的员工的 IAM 用户放置在 IAM 用户组中。",
+  "D. 将 SystemAdministrator 资源-based 策略附加到 IAM 用户组。将五名指定的员工的 IAM 用户放置在 IAM 用户组中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了满足要求，应该将 AdministratorAccess 身份-based 策略附加到 IAM 用户组，然后将五名指定的员工的 IAM 用户放置在该 IAM 用户组中。AdministratorAccess 策略为用户提供了对 AWS 账户中所有服务和资源的完全管理访问权限，因此适合于这种情况。",
+  "AI解析": "IAM授权模型核心在于正确应用策略类型和权限范围。身份型策略（Identity-based）直接附加于用户、组或角色，而资源型策略（Resource-based）绑定特定资源。AdministratorAccess是AWS预置的托管策略，提供完全访问权限，属于身份型策略，附加到用户组可使组内所有用户继承该权限。SystemAdministrator策略权限范围不明确，且资源型策略无法直接赋予用户组全局权限。因此，将AdministratorAccess身份型策略附加到用户组并纳入指定用户，是最简洁且符合要求的实现方式。"
+ }
+}

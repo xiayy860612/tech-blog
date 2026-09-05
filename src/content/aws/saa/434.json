@@ -1,0 +1,18 @@
+{
+ "qid": "1529124358",
+ "index": 434,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要在两周内将其20 TB大小的MySQL数据库从自己的本地数据中心迁移到AWS。公司希望以最小的停机时间完成迁移。\n哪种解决方案将最具成本效益地迁移数据库？",
+ "options": [
+  "A. 订购AWS Snowball Edge Storage Optimized设备。使用AWS Database Migration Service（AWS DMS）与AWS Schema Conversion Tool（AWS SCT）进行数据库迁移，并复制进行中的更改。将Snowball Edge设备发送至AWS以完成迁移，并继续进行中的复制。",
+  "B. 订购AWS Snowmobile车辆。使用AWS Database Migration Service（AWS DMS）与AWS Schema Conversion Tool（AWS SCT）进行数据库迁移，同时进行更改。将Snowmobile车辆发送回AWS以完成迁移，并继续进行中的复制。",
+  "C. 订购带有GPU的AWS Snowball Edge Compute Optimized设备。使用AWS Database Migration Service（AWS DMS）与AWS Schema Conversion Tool（AWS SCT）进行数据库迁移，同时进行更改。将Snowball设备发送至AWS以完成迁移，并继续进行中的复制。",
+  "D. 订购1 GB专用AWS Direct Connect连接，以与数据中心建立连接。使用AWS Database Migration Service（AWS DMS）与AWS Schema Conversion Tool（AWS SCT）进行数据库迁移，并复制进行中的更改。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提到了使用AWS Snowball Edge Storage Optimized设备，这是一种物理设备，用于快速迁移大量数据到AWS。这在迁移20 TB数据库时非常有用。\nAWS Database Migration Service（AWS DMS）和AWS Schema Conversion Tool（AWS SCT）可以协助数据库迁移和模式转换，使迁移更容易。\n选项B中提到了Snowmobile，但通常Snowmobile主要用于迁移极其大规模的数据中心，可能对20 TB数据库的迁移过于昂贵和复杂。\n选项C中提到了AWS Snowball Edge Compute Optimized设备，但通常用于计算密集型工作负载，不是用于数据库迁移的首选工具。\n选项D提到了AWS Direct Connect，但这通常用于建立数据中心与AWS之间的高速连接，不是用于数据库迁移的最经济方式。\n因此，选项A是最具成本效益的解决方案，以迁移20 TB数据库并最小化停机时间。",
+  "AI解析": "AWS建议在迁移大型数据库时，结合物理设备与数据库迁移服务以减少停机时间。AWS官方文档指出，Snowball Edge Storage Optimized适合TB级数据传输，相较于Snowmobile（PB级）或Direct Connect（依赖网络带宽），成本更低。AWS DMS支持持续复制，确保迁移过程中数据同步。选项A使用存储优化的Snowball Edge，符合20TB迁移需求，而选项B、C选择的设备超出实际规模或用途不匹配，选项D受限于网络带宽可能导致延迟。正确方法为物理设备初始传输加DMS持续同步。"
+ }
+}

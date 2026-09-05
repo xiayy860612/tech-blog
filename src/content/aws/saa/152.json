@@ -1,0 +1,17 @@
+{
+ "index": 152,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一名解决方案架构师正在为一个应用程序创建一个新的Amazon CloudFront分发。用户提交的一些信息是敏感的。该应用程序使用HTTPS，但需要另一层安全性。敏感信息应该在整个应用程序堆栈中受到保护，对信息的访问应该受到限制，只允许特定的应用程序进行访问。\n解决方案架构师应该采取哪种行动？",
+ "options": [
+  "A. 配置CloudFront签名URL。",
+  "B. 配置CloudFront签名Cookie。",
+  "C. 配置CloudFront字段级加密配置文件。",
+  "D. 配置CloudFront，并将Origin Protocol Policy设置为仅支持HTTPS，Viewer Protocol Policy设置为HTTPS Only。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了在整个应用程序堆栈中保护敏感信息，应该使用字段级加密。选项C中的CloudFront字段级加密配置文件允许你对特定字段的数据进行加密，以确保数据在传输过程中是安全的。选项A和B提到了CloudFront签名URL和签名Cookie，这些用于控制访问，但不提供数据加密。选项D中提到了设置Origin Protocol Policy和Viewer Protocol Policy，但与数据加密无关。因此，选项C是最佳选择。",
+  "AI解析": "Amazon CloudFront支持字段级加密功能，允许对特定敏感字段在边缘节点进行加密，后端应用必须持有对应私钥才能解密。该功能提供了额外的应用层加密，确保即使数据在传输或存储过程中被截获，敏感字段仍保持加密状态。选项C正确对应了题干中“另一层安全性”和限制访问的需求。其他选项中，签名URL/Cookie主要用于访问控制而非数据加密，选项D仅涉及传输层加密，无法满足字段级保护要求。来源：AWS官方文档关于CloudFront字段级加密的描述。"
+ }
+}

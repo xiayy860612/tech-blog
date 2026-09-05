@@ -1,0 +1,19 @@
+{
+ "qid": "2264604849",
+ "index": 878,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在 AWS 上运行一款电子商务应用程序。Amazon EC2 实例处理购买操作并将购买详情存储在一个 Amazon Aurora\nPostgreSQL DB 集群中。\n在高峰使用时段，客户经历应用程序超时问题。解决方案架构师需要重新设计应用程序，使其能够扩展以满足高峰使用需求。\n哪种操作组合将以最具成本效益的方式满足这些要求？（选择两个。）",
+ "options": [
+  "A. 配置一个新的 EC2 实例的 Auto Scaling 组，重试购买直到处理完成。更新应用程序使用 Amazon RDS Proxy 连接到 DB 集群。",
+  "B. 配置应用程序在 Aurora PostgreSQL DB 集群前使用 Amazon ElastiCache 集群。",
+  "C. 更新应用程序将购买请求发送到 Amazon Simple Queue Service (Amazon SQS) 队列。配置一个新的 EC2 实例的 Auto Scaling 组来读取 SQS 队列。",
+  "D. 配置一个 AWS Lambda 函数来重试购买直到处理完成。",
+  "E. 配置一个带有使用计划的 Amazon API Gateway REST API。"
+ ],
+ "answer": {
+  "正确答案": "BC",
+  "解析": "为了满足高峰使用需求并降低应用程序超时问题，需要采取措施来改进应用程序的扩展能力。以下是每个选项的分析：\n选项 A：配置新的 EC2 实例的 Auto Scaling 组，并使用 RDS Proxy。这可以帮助减少数据库连接的负载，但并没有解决请求的峰值处理问题。RDS Proxy 的主要作用是管理和池化数据库连接，减少对数据库的直接连接数压力，适用于数据库连接管理，但并不能解决处理峰值请求的问题。\n选项 B：在 Aurora\nPostgreSQL 数据库集群前使用 Amazon ElastiCache。ElastiCache 可以缓存频繁访问的数据，减少对数据库的直接读取请求，从而缓解数据库的负载，提升响应速度。这是一个有效的解决高峰期间数据库压力的方法。\n选项 C：将购买请求发送到\nAmazon SQS 队列，并配置一个新的 EC2 实例的\nAuto Scaling 组从队列中读取。这种方法通过解耦请求处理和实际处理逻辑，能够平滑地处理突发的高峰请求。SQS 队列可以吸收高峰期间的请求，后端实例可以按需扩展处理请求，确保系统的高可用性和可扩展性。\n选项 D：配置 AWS Lambda 函数重试票务购买请求。虽然 Lambda 可以实现一定的处理，但对于高峰期间的大量请求，使用 Lambda 可能会遇到并发限制，并且重试逻辑可能会增加处理复杂度，不如使用 SQS 队列和 Auto Scaling 的方案来得有效。\n选项 E：配置带有使用计划的\nAmazon API Gateway REST API。虽然 API Gateway 可以帮助管理 API 的调用流量和限制速率，但它并不能直接解决高峰期间的后端处理能力问题。它更多是用于 API 管理和速率限制控制。\n综合考虑，选项B和C是最具成本效益的解决方案",
+  "AI解析": "问题涉及在AWS上优化电子商务应用的扩展性和成本效益。正确选项为B、C。Amazon ElastiCache作为缓存层，减轻数据库读取压力，尤其高频访问数据，提升响应速度。Amazon SQS队列解耦前端请求和后端处理，允许异步处理购买操作，结合Auto Scaling根据队列负载动态调整EC2实例数量，弹性应对流量高峰，避免资源闲置。选项A的RDS Proxy虽优化数据库连接，但未异步处理请求；选项D的Lambda不适合长时间重试；选项E的API Gateway使用计划主要限制访问速率，不解决处理瓶颈。参考AWS架构最佳实践中的缓存和异步处理模式。"
+ }
+}

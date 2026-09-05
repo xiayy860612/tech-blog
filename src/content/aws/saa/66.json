@@ -1,0 +1,17 @@
+{
+ "index": 66,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的HTTP应用程序位于一个Network Load Balancer (NLB) 后面。NLB的目标组配置为使用一个Amazon EC2自动扩展组，该组中有多个运行Web服务的EC2实例。\n公司注意到NLB没有检测到应用程序的HTTP错误。这些错误需要手动重启运行Web服务的EC2实例。公司需要提高应用程序的可用性，而不需要编写自定义脚本或代码。",
+ "options": [
+  "A. 在NLB上启用HTTP健康检查，提供公司应用程序的URL。",
+  "B. 在EC2实例上添加一个定时任务（cron job），每分钟检查本地应用程序的日志。如果检测到HTTP错误，应用程序将重新启动。",
+  "C. 用Application Load Balancer替换NLB。通过提供公司应用程序的URL启用HTTP健康检查。配置一个自动扩展操作以替换不健康的实例。",
+  "D. 创建一个Amazon CloudWatch警报，监控NLB的UnhealthyHostCount指标。配置一个自动扩展操作，当警报处于ALARM状态时替换不健康的实例。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "AWS服务中负载均衡器类型的健康检查机制差异是关键。问题中的NLB属于第四层（传输层），其健康检查无法有效识别应用层（HTTP）错误。Application Load Balancer（ALB）作为第七层负载均衡器，支持HTTP健康检查，能够验证应用状态并标记不健康实例。自动扩展组结合ALB的健康检查可自动替换故障实例，无需自定义脚本。选项C正确替换NLB为ALB并配置健康检查，直接解决HTTP错误检测问题。选项A错误，因NLB不支持应用层健康检查；选项B涉及自定义脚本，不符合要求；选项D依赖于NLB原有健康检查机制，无法检测HTTP错误。"
+ }
+}

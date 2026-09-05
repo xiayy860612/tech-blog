@@ -1,0 +1,18 @@
+{
+ "index": 317,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司最近将其整个IT环境迁移到了AWS云。公司发现用户正在创建超大规模的Amazon EC2实例并修改安全组规则，而未使用适当的变更控制流程。解决方案架构师必须制定一种策略来跟踪和审计这些库存和配置更改。\n解决方案架构师应采取哪些措施以满足这些要求？（选择两个）",
+ "options": [
+  "A. 启用AWS CloudTrail并将其用于审计。",
+  "B. 对Amazon EC2实例使用数据生命周期策略。",
+  "C. 启用AWS Trusted Advisor并参考安全性仪表板。",
+  "D. 启用AWS Config并创建用于审计和合规性目的的规则。",
+  "E. 使用AWS CloudFormation模板还原以前的资源配置。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": "A 启用AWS CloudTrail并将其用于审计：AWS CloudTrail记录API活动，允许您跟踪对AWS资源的更改和操作，包括EC2实例和安全组。这是审计和监控环境中更改的有用工具。\nD 启用AWS Config并创建用于审计和合规性目的的规则：AWS Config提供详细的资源库存和配置历史记录。您可以创建自定义规则来执行政策并监视对资源的更改，包括EC2实例和安全组规则。这有助于确保合规性和审计。\n选项B，C和E与跟踪和审计EC2实例和安全组规则的更改不直接相关。",
+  "AI解析": "AWS CloudTrail记录AWS账户的API活动，包括EC2实例和安全组的创建、修改操作，通过分析日志可追溯变更来源和时间。《AWS CloudTrail用户指南》指出其适用于安全分析、资源变更跟踪。AWS Config持续监控资源配置，记录历史变更并评估是否符合自定义规则，识别偏离合规性的配置。《AWS Security Best Practices》强调Config用于合规审计和配置管理。数据生命周期策略管理数据存储周期，不涉及配置审计；Trusted Advisor侧重于成本优化、性能检查而非变更跟踪；CloudFormation用于部署资源，无法直接满足审计需求。"
+ }
+}

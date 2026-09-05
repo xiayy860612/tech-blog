@@ -1,0 +1,17 @@
+{
+ "index": 149,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司对其公共Web应用程序的安全性感到担忧，因为最近发生了网络攻击。该应用程序使用了一个应用负载均衡器（ALB）。一名解决方案架构师必须减少针对应用程序的DDoS攻击的风险。\n解决方案架构师应该采取什么措施来满足这一要求？",
+ "options": [
+  "A. 向ALB添加Amazon Inspector代理。",
+  "B. 配置Amazon Macie以防止攻击。",
+  "C. 启用AWS Shield Advanced以防止攻击。",
+  "D. 配置Amazon GuardDuty来监视ALB。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "启用AWS Shield Advanced是防范DDoS（分布式拒绝服务）攻击的最佳方式。AWS Shield Advanced提供高级的DDoS保护，包括实时攻击检测和自动缓解，以减少对应用程序的风险。其他选项，如A和D，不提供专门的DDoS保护。选项B提到了Amazon Macie，但它主要用于数据发现和分类，不是用于DDoS防护的服务。因此，选项C是最佳选择。",
+  "AI解析": "AWS Shield Advanced专为保护AWS资源（如ALB）抵御DDoS攻击设计，提供网络层和应用层的自动防护。Amazon Inspector用于漏洞评估，Amazon Macie关注数据隐私，Amazon GuardDuty侧重威胁检测。题干核心需求是直接缓解DDoS风险，AWS官方文档指出Shield Advanced是该场景的标准解决方案。选项C符合要求。"
+ }
+}

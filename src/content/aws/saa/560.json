@@ -1,0 +1,18 @@
+{
+ "qid": "1529125617",
+ "index": 560,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的网站每天处理数百万个请求，而请求的数量仍在增加。解决方案架构师需要改善Web应用的响应时间。解决方案架构师确定应用程序需要在从Amazon DynamoDB表中检索产品详细信息时减少延迟。\n哪种解决方案能以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 设置DynamoDB加速器（DAX）集群。将所有读请求通过DAX路由。",
+  "B. 在DynamoDB表和Web应用程序之间设置Amazon ElastiCache用于Redis。将所有读请求通过Redis路由。",
+  "C. 在DynamoDB表和Web应用程序之间设置Amazon ElastiCache用于Memcached。将所有读请求通过Memcached路由。",
+  "D. 在表上设置Amazon DynamoDB Streams，并让AWS Lambda从表中读取并填充Amazon ElastiCache。将所有读请求通过ElastiCache路由。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选择A中的DynamoDB加速器（DAX）集群是最能以最小运营开销满足要求的解决方案。DAX可以显著减少从DynamoDB表中检索数据时的延迟，并且能通过路由所有读请求来改善Web应用程序的响应时间。 DAX提供了一种高效且低操作开销的解决方案，可实现所需的性能改进。",
+  "AI解析": "题目考查DynamoDB读取性能优化。DynamoDB加速器（DAX）是专为DynamoDB设计的全托管内存缓存服务，通过微秒级响应直接集成数据库，自动处理缓存失效与数据同步，无需额外开发。相比其他需手动管理缓存逻辑的ElastiCache方案（B/C选项）或依赖Lambda异步填充缓存的复杂架构（D选项），DAX通过无缝路由读写请求以最小化延迟和运维成本，尤其适配高吞吐量场景的核心需求。"
+ }
+}

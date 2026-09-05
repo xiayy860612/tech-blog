@@ -1,0 +1,19 @@
+{
+ "qid": "1908084807",
+ "index": 690,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一个解决方案架构师正在为一个部署在多个可用区的Web应用程序设计共享存储解决方案。Web应用程序在一个自动扩展组中的Amazon EC2实例上运行。公司计划频繁更改内容。解决方案必须在更改发生后立即返回新内容的情况下具有强一致性。\n哪些解决方案满足这些要求？ （选择两个。）",
+ "options": [
+  "A. 使用AWS Storage Gateway Volume Gateway Internet Small Computer Systems Interface（iSCSI）块存储，将其挂载到各个EC2实例上。",
+  "B. 创建一个Amazon Elastic File System（Amazon EFS）文件系统。将EFS文件系统挂载到各个EC2实例上。",
+  "C. 创建一个共享的Amazon Elastic Block Store（Amazon EBS）卷。将EBS卷挂载到各个EC2实例上。",
+  "D. 使用AWS DataSync在自动扩展组中的EC2主机之间执行数据的持续同步。",
+  "E. 创建一个Amazon S3存储桶来存储Web内容。为Cache-Control头设置元数据为no-cache。使用Amazon CloudFront传递内容。"
+ ],
+ "answer": {
+  "正确答案": "BE",
+  "解析": "B 创建一个Amazon Elastic File System（Amazon EFS）文件系统，并将其挂载到各个EC2实例上。Amazon EFS提供了一个高度可扩展的共享文件系统，可以在多个EC2实例之间提供强一致性，并且能够立即反映文件更改。\nE 创建一个Amazon S3存储桶来存储Web内容，并将Cache-Control头的元数据设置为no-cache。使用Amazon CloudFront作为内容分发网络（CDN）来传递内容。这样可以确保即使在内容变更后，CDN也会立即传递新内容给终端用户，同时通过no-cache指示浏览器不缓存内容，以确保强一致性。",
+  "AI解析": "Amazon EFS文件系统为多可用区EC2实例提供共享存储，支持强一致性模型，确保文件修改后所有客户端立即可见最新数据。Amazon S3与CloudFront组合中，通过设置Cache-Control头为no-cache，CloudFront每次回源获取最新内容，避免缓存导致延迟，满足实时更新的强一致性要求。选项A的Storage Gateway未设计为多实例共享场景；选项C的EBS卷无法跨实例共享；选项D的DataSync无法保证实时同步。AWS文档指出EFS的强一致性及S3对象更新后CloudFront的no-cache配置可实现即时内容更新。"
+ }
+}

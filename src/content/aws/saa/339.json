@@ -1,0 +1,17 @@
+{
+ "index": 339,
+ "total": 1018,
+ "type": "单选题",
+ "question": "这家媒体公司的网站托管在AWS上，网站应用程序的架构包括一组位于Application Load Balancer (ALB)后面的Amazon EC2实例，以及一个托管在Amazon Aurora上的数据库。公司的网络安全团队报告称该应用程序容易受到SQL注入攻击。\n要解决这个问题，公司应该选择以下哪个选项？",
+ "options": [
+  "A. 在ALB前使用AWS WAF，并将适当的Web ACLs与AWS WAF关联。",
+  "B. 创建一个ALB监听规则来回应SQL注入攻击，并提供一个固定的响应。",
+  "C. 订阅AWS Shield Advanced，以自动阻止所有SQL注入尝试。",
+  "D. 设置Amazon Inspector以自动阻止所有SQL注入尝试。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中，使用AWS WAF (Web Application Firewall) 可以帮助防止SQL注入攻击。AWS WAF可用于过滤和阻止恶意SQL注入尝试，以增加应用程序的安全性。其他选项提供了不同的解决方案，但不是专门针对SQL注入攻击。",
+  "AI解析": "SQL注入防护需在应用层部署Web应用防火墙（WAF）检测恶意请求，AWS WAF通过预定义规则集（Web ACLs）识别并拦截注入攻击特征。ALB作为流量分发层无法直接处理SQL注入检测，AWS Shield专注于DDoS防护，Amazon Inspector仅提供漏洞评估而无实时阻断功能，因此将AWS WAF置于ALB前端形成安全过滤层是唯一有效方案。"
+ }
+}

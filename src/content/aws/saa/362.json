@@ -1,0 +1,18 @@
+{
+ "qid": "1529124283",
+ "index": 362,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个游戏系统，需要同时将唯一事件发送到分开的排行榜、匹配和身份验证服务。公司需要一个AWS事件驱动系统，可以保证事件的顺序。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. Amazon EventBridge事件总线",
+  "B. Amazon Simple Notification Service (Amazon SNS) FIFO主题",
+  "C. Amazon Simple Notification Service (Amazon SNS)标准主题",
+  "D. Amazon Simple Queue Service (Amazon SQS) FIFO队列"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon SQS FIFO队列是唯一一个可以保证事件按照特定顺序处理的选项。在这种情况下，由于需要保证事件的顺序，Amazon SQS FIFO队列是最适合的选择。\n其他选项不适合此需求，因为它们不能提供事件的有序处理保证。",
+  "AI解析": "AWS事件驱动系统中保证事件顺序的需求。Amazon SQS FIFO队列设计用于严格保证消息处理的顺序和唯一性，适用于需要精确事件顺序的场景。每个服务（如排行榜、匹配、身份验证）可配置独立的FIFO队列，生产者将同一事件分别发送至各队列，确保各服务按正确顺序处理。相比其他选项，SQS FIFO队列直接满足顺序性和唯一性要求，而SNS FIFO主题需配合SQS FIFO队列实现多订阅者场景。选项D提供了对单个队列顺序的严格保证，符合题目核心需求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124412",
+ "index": 488,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个电子商务公司在 AWS 云中运行一个与本地仓储解决方案集成的应用程序。该公司使用 Amazon Simple Notification Service (Amazon SNS) 将订单消息发送到本地的 HTTPS 端点，以便仓储应用程序处理订单。当地数据中心团队发现一些订单消息未被接收。\n一个解决方案架构师需要保留未传递的消息，并分析这些消息长达 14 天。\n哪种解决方案在开发工作上的投入最小，同时满足这些需求？",
+ "options": [
+  "A. 配置一个具有 Amazon Kinesis Data Stream 目标和 14 天保留期的 Amazon SNS 死信队列。",
+  "B. 在应用程序和 Amazon SNS 之间添加一个保留期为 14 天的 Amazon Simple Queue Service (Amazon SQS) 队列。",
+  "C. 配置一个具有 Amazon Simple Queue Service (Amazon SQS) 目标和 14 天保留期的 Amazon SNS 死信队列。",
+  "D. 配置一个具有 Amazon DynamoDB 目标并设置 14 天保留期的 Amazon SNS 死信队列，并设置 TTL 属性。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "这个问题需要一种方法来处理未传递的消息并使其可供分析。使用 Amazon SNS 死信队列可以保留未传递的消息。结合 Amazon SQS 作为死信队列的目标能够实现这一点。这样未传递的消息将被发送到 Amazon SQS 队列，并且可以设置队列的保留期为 14 天，以便进行消息的分析和处理。这种解决方案需要的开发工作最少，同时可以满足要求。",
+  "AI解析": "Amazon SNS支持配置死信队列（DLQ）来处理无法成功传递的消息。当目标端点不可达时，消息会被路由到指定的DLQ。Amazon SQS提供消息队列服务，支持设置最长14天的消息保留期，符合保留未传递消息需求。选项C通过配置SNS的DLQ为SQS并设置14天保留期，无需额外应用程序开发，直接利用现有服务集成即可实现。其他选项要么保留期不足（Kinesis Data Streams默认最长7天）、要么架构改动较大（添加前置SQS队列）、或存储方式不适合（DynamoDB需额外处理逻辑）。"
+ }
+}

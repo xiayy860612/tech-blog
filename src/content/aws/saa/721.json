@@ -1,0 +1,18 @@
+{
+ "qid": "1908085455",
+ "index": 721,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司在其本地位置和 AWS 账户之间建立了一个 AWS Direct Connect 连接。该 AWS 账户在同一 AWS 区域中有 30 个不同的 VPC。这些 VPC 使用私有虚拟接口 (VIF)。每个 VPC 都有一个不与公司控制的其他网络重叠的 CIDR 块。\n公司希望在保持每个 VPC 与所有其他 VPC 和本地网络通信的同时，集中管理网络架构。\n哪种解决方案将以最小的操作开销满足这些要求？",
+ "options": [
+  "A. 创建一个 Transit Gateway，并将 Direct Connect 连接与一个新的 Transit VIF 相关联。打开 Transit Gateway 的路由传播功能。",
+  "B. 创建一个 Direct Connect 网关。重新创建私有 VIF，以使用新的网关。通过创建新的虚拟专用网关，将每个 VPC 关联起来。",
+  "C. 创建一个 Transit VPC。将 Direct Connect 连接连接到 Transit VPC。在区域中的所有其他 VPC 之间创建对等连接。更新路由表。",
+  "D. 从本地到每个 VPC 创建 AWS Site-to-Site VPN 连接。确保每个连接的两个 VPN 隧道都处于 UP 状态。打开路由传播功能。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "创建一个 Transit Gateway 并将 Direct Connect 连接与之关联是最有效的解决方案。Transit Gateway 可以集中管理所有 VPC 之间的通信，并通过路由传播功能自动传播路由。",
+  "AI解析": "本题核心在于利用AWS Transit Gateway实现多VPC与本地网络的集中式路由管理。Transit Gateway作为区域级网络枢纽，通过Transit VIF与Direct Connect整合，可同时连接多个VPC并自动传播路由，消除逐一对等连接的繁琐配置。路由传播功能确保所有VPC和本地网络的CIDR块动态互通，同时保持独立非重叠地址空间。相较于选项B的Direct Connect网关需重构VIF、选项C的Transit VPC需手动维护全连接对等、选项D的VPN重复建设，选项A通过单一架构层实现全网自动化路由，运维成本最低。"
+ }
+}

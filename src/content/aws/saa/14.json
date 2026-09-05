@@ -1,0 +1,18 @@
+{
+ "qid": "1529122086",
+ "index": 14,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon EC2实例后面运行一款电子商务应用程序，实例在多个可用区中的Amazon EC2 Auto Scaling组中运行。Auto Scaling组根据CPU利用率指标进行扩展。电子商务应用程序将交易数据存储在托管在大型EC2实例上的MySQL 8.0数据库中。随着应用程序负载的增加，数据库的性能迅速下降。应用程序处理的读请求多于写事务。公司希望一个解决方案，可以根据不可预测的读工作负载需求自动扩展数据库，同时保持高可用性。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用Amazon Redshift，使用单一节点提供Leader和计算功能。",
+  "B. 使用Amazon RDS，使用单一可用区（Single-AZ）部署，配置Amazon RDS以在不同的可用区添加读取实例。",
+  "C. 使用Amazon Aurora，使用多可用区（Multi-AZ）部署，配置Aurora Auto Scaling与Aurora Replicas。",
+  "D. 使用Amazon ElastiCache for Memcached，搭配EC2 Spot实例。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C，即使用Amazon Aurora，使用多可用区（Multi-AZ）部署，并配置Aurora Auto Scaling与Aurora Replicas，是满足要求的最佳解决方案。Amazon Aurora是一种高性能、高可用性的关系型数据库，它可以自动扩展读取负载并提供高可用性，特别适用于处理不可预测的读工作负载。Multi-AZ部署提供了高可用性，Aurora Auto Scaling可以根据负载自动添加或删除Aurora Replicas来处理读取请求。选项A中的Amazon Redshift是数据仓库解决方案，不适用于电子商务应用程序的事务性数据库。选项B中的Amazon RDS虽然提到了多可用区，但它没有提到自动扩展的能力，而且单-AZ部署仍然可能成为性能瓶颈。选项D中的Amazon ElastiCache for Memcached不是关系型数据库，而是用于缓存的解决方案，不适用于存储事务数据。选项C提供了满足性能和高可用性要求的完整解决方案。",
+  "AI解析": "Amazon Aurora的多可用区（Multi-AZ）部署提供高可用性，主实例故障时自动切换到备用实例。Aurora Replicas支持横向扩展读取能力，最多可配置15个只读副本，且Aurora Auto Scaling可根据负载动态调整副本数量，自动应对不可预测的读流量。其他选项中，Redshift为分析型数据仓库，不适合OLTP场景；单可用区的RDS无法满足高可用性，且RDS的读取扩展灵活性低于Aurora；ElastiCache作为缓存层无法直接扩展数据库层的读能力。Aurora的设计符合题干中“自动扩展读”和“高可用性”的核心需求。来源：AWS官方文档对Aurora Auto Scaling和多可用区架构的描述。"
+ }
+}

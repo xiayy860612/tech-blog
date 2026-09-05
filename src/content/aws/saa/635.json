@@ -1,0 +1,18 @@
+{
+ "qid": "1908084752",
+ "index": 635,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个开发团队正在创建一个基于事件的应用程序，使用AWS Lambda函数。当文件被添加到一个Amazon S3存储桶时，将生成事件。开发团队目前已经将Amazon Simple Notification Service (Amazon SNS)配置为Amazon S3的事件目标。\n解决方案架构师应该采取什么措施以可伸缩的方式处理来自Amazon S3的事件？",
+ "options": [
+  "A. 创建一个SNS订阅，在Lambda运行之前在Amazon Elastic Container Service (Amazon ECS)中处理事件。",
+  "B. 创建一个SNS订阅，在Lambda运行之前在Amazon Elastic Kubernetes Service (Amazon EKS)中处理事件。",
+  "C. 创建一个SNS订阅，将事件发送到Amazon Simple Queue Service (Amazon SQS)。配置SQS队列以触发Lambda函数。",
+  "D. 创建一个SNS订阅，将事件发送到AWS Server Migration Service (AWS SMS)。配置Lambda函数从SMS事件中轮询。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是可伸缩的方式来处理来自Amazon S3的事件的有效方法。通过将事件发送到Amazon SQS队列，可以将处理过程解耦，使其更具伸缩性。然后，配置SQS队列以触发Lambda函数，以在需要时触发相应的处理逻辑。这种方式允许通过增加Lambda函数的实例来实现更好的并发性能，而不会受到SNS直接触发Lambda的限制。其他选项中，使用ECS或EKS可能不如SQS那样有效，因为它们需要更多的设置和维护。AWS SMS是用于服务器迁移的服务，与Lambda事件处理无关。",
+  "AI解析": "Amazon S3事件通过SNS发送，采用SQS队列作为缓冲层能够有效解耦生产者和消费者，增强系统的弹性和可扩展性。AWS文档建议在需要可靠消息传递和流量削峰时使用SQS。选项C通过SQS队列处理事件，Lambda从队列拉取消息，可自动扩展，避免因突发流量导致的资源不足或节流。选项A、B引入ECS/EKS增加了不必要的运维复杂性，选项D的AWS SMS用于服务器迁移，与事件处理无关。"
+ }
+}

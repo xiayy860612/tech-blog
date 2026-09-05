@@ -1,0 +1,18 @@
+{
+ "qid": "1908085468",
+ "index": 734,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在开发一个移动游戏，该游戏会将得分更新流式传输到后端处理器，然后在排行榜上发布结果。解决方案架构师需要设计一个能够处理大量流量突发、按接收顺序处理移动游戏更新，并将处理后的更新存储在高可用性数据库中的解决方案。该公司还希望尽量减少维护解决方案所需的管理开销。\n为满足这些要求，解决方案架构师应该怎么做？",
+ "options": [
+  "A. 将得分更新推送到Amazon Kinesis Data Streams。使用AWS Lambda在Kinesis Data Streams中处理更新。将处理后的更新存储在Amazon DynamoDB中。",
+  "B. 将得分更新推送到Amazon Kinesis Data Streams。使用设置了自动扩展的一组Amazon EC2实例处理更新。将处理后的更新存储在Amazon Redshift中。",
+  "C. 将得分更新推送到Amazon Simple Notification Service (Amazon SNS) 主题。订阅一个AWS Lambda函数来处理SNS主题上的更新。将处理后的更新存储在运行在Amazon EC2上的SQL数据库中。",
+  "D. 将得分更新推送到Amazon Simple Queue Service (Amazon SQS) 队列。使用设置了自动扩展的一组Amazon EC2实例处理SQS队列中的更新。将处理后的更新存储在Amazon RDS Multi-AZ DB实例中。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "使用Amazon Kinesis Data Streams能够处理大量流量，并且保证按照接收顺序处理更新。结合AWS Lambda可以实现无服务器处理，减少了管理开销。最终将处理后的更新存储在Amazon DynamoDB中，保证了高可用性和扩展性。",
+  "AI解析": "该题考察对AWS流数据处理服务及无服务器架构的理解。根据AWS架构最佳实践，Amazon Kinesis Data Streams专为实时流式数据设计，保障数据顺序且支持高吞吐量。AWS Lambda作为无服务器计算服务，无需管理基础设施，自动扩展处理能力，符合最小化维护需求。Amazon DynamoDB具备内置高可用性、自动扩展特性，适用于高频写入场景。选项B和D涉及EC2实例，增加运维复杂度；选项C的SNS不保证消息顺序，且EC2上的SQL数据库运维成本高。正确答案A通过全托管服务组合实现需求。"
+ }
+}

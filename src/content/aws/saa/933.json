@@ -1,0 +1,18 @@
+{
+ "qid": "2949540274",
+ "index": 933,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地环境中有多个\nMicrosoft Windows SMB 文件服务器和 Linux NFS 文件服务器用于文件共享。作为公司 AWS 迁移计划的一部分，公司希望在 AWS 云中整合这些文件服务器。\n公司需要一个托管的 AWS 存储服务，该服务支持 NFS 和 SMB 访问。该解决方案必须能够在协议之间共享，并且在可用区级别具有冗余。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 使用 Amazon FSx For NetApp ONTAP 进行存储。配置多协议访问。",
+  "B. 创建两个 Amazon EC2 实例。一个 EC2 实例用于 Windows SMB 文件服务器访问，另一个 EC2 实例用于 Linux NFS 文件服务器访问。",
+  "C. 使用 Amazon FSx For NetApp ONTAP 进行 SMB 访问。使用 Amazon FSx for Lustre 进行 NFS 访问。",
+  "D. 使用 Amazon S3 存储。通过 Amazon S3 文件网关访问 Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon FSx for NetApp ONTAP 是一个完全托管的服务，支持多协议访问，包括 SMB 和 NFS。它允许用户在同一个文件系统中同时使用这两种协议，这样就可以在 NFS 和 SMB 协议之间共享数据。此服务在可用区级别提供冗余，确保高可用性和数据保护。",
+  "AI解析": "本题考查AWS多协议文件存储服务的选型。Amazon FSx for NetApp ONTAP作为全托管服务，核心特性包括支持NFS/SMB多协议并发访问、跨协议数据共享及单可用区冗余架构，直接满足整合异构文件服务器且实现协议互通的迁移需求。其余选项或需自行管理服务器（B）、采用不同服务导致数据隔离（C），或协议不支持（D）。"
+ }
+}

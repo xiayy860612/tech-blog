@@ -1,0 +1,18 @@
+{
+ "qid": "1529122097",
+ "index": 24,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在设计一个应用程序。该应用程序使用AWS Lambda函数通过Amazon API Gateway接收信息，并将信息存储在Amazon Aurora PostgreSQL数据库中。在概念验证阶段，公司必须显着增加Lambda的配额以处理需要加载到数据库中的大量数据。解决方案架构师必须推荐一个新的设计，以提高可伸缩性并最小化配置工作。哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 重新设计Lambda函数代码为在Amazon EC2实例上运行的Apache Tomcat代码。使用本机Java Database Connectivity (JDBC)驱动程序连接数据库。",
+  "B. 将数据库平台从Aurora更改为Amazon DynamoDB，预配DynamoDB加速器（DAX）集群。使用DAX客户端SDK将现有的DynamoDB API调用指向DAX集群。",
+  "C. 设置两个Lambda函数。配置一个函数用于接收信息。配置另一个函数用于将信息加载到数据库中。使用Amazon Simple Notification Service (Amazon SNS)集成Lambda函数。",
+  "D. 设置两个Lambda函数。配置一个函数用于接收信息。配置另一个函数用于将信息加载到数据库中。使用Amazon Simple Queue Service (Amazon SQS)队列集成Lambda函数。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了提高可伸缩性并最小化配置工作，最佳的选择是设置两个Lambda函数，一个用于接收信息，另一个用于将信息加载到数据库中。这种方式可以将工作分解为两个独立的任务，可以根据需要独立调整和扩展每个Lambda函数。通过使用Amazon Simple Queue Service (Amazon SQS)队列来集成这两个Lambda函数，可以确保信息的可靠传递，从而满足高容量需求。其他选项提出了不同的方法，但它们不如选项D能够提供最佳的可伸缩性和配置最小化。",
+  "AI解析": "题目核心在于通过解耦处理流程提升可伸缩性。Lambda函数配额限制源于同步处理接收与写入数据的耦合，拆分功能并使用队列缓冲是AWS最佳实践。Amazon SQS支持异步消息处理，允许接收函数快速响应API Gateway并将消息存入队列，后触发独立Lambda按需扩展消费队列数据写入数据库，天然适配无服务器自动扩缩特性，无需预置资源。相较其他选项，SQS队列解耦彻底、缓冲能力强于SNS主题，且无需改造数据库或切换计算平台，配置成本最低。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124383",
+ "index": 459,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司希望在其软件即服务（SaaS）应用Salesforce帐户和Amazon S3之间安全地交换数据。公司必须使用AWS Key Management Service（AWS KMS）客户管理的密钥（CMKs）加密数据在静止状态下。公司还必须加密传输中的数据。公司已经为Salesforce帐户启用了API访问。",
+ "options": [
+  "A. 创建AWS Lambda函数以从Salesforce安全传输数据到Amazon S3。",
+  "B. 创建AWS Step Functions工作流。定义任务以从Salesforce安全传输数据到Amazon S3。",
+  "C. 创建Amazon AppFlow流程以从Salesforce安全传输数据到Amazon S3。",
+  "D. 创建Salesforce的自定义连接器，以从Salesforce安全传输数据到Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Amazon AppFlow是AWS的托管服务，可用于轻松地将数据从不同的SaaS应用程序传输到AWS服务，如Amazon S3。它提供了一种安全的方式来传输数据，还支持数据加密以满足数据在传输过程中的安全需求。此外，Amazon AppFlow可以直接与Salesforce集成，因此可以方便地实现从Salesforce到Amazon S3的数据传输。其他选项也可能是可行的，但Amazon AppFlow是一种更直接、更简单的选择，特别是在与Salesforce集成时。",
+  "AI解析": "本题核心在于实现跨平台数据加密传输与存储的安全要求。Amazon AppFlow作为AWS全托管集成服务，支持通过预建连接器直接对接Salesforce API，传输过程自动启用HTTPS加密满足传输加密需求，同时允许在S3存储层配置AWS KMS客户托管密钥（CMKs）实现静态加密，完全契合题干中双重加密约束条件，而其他方案或涉及自定义开发加密逻辑，或缺乏原生KMS集成能力。"
+ }
+}

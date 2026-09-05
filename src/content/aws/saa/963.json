@@ -1,0 +1,18 @@
+{
+ "qid": "2949540304",
+ "index": 963,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家全球电子商务公司使用单体架构。公司需要一个解决方案来管理不断增加的产品数据量。该解决方案必须可扩展并具有模块化服务架构。公司需要维护其结构化数据库模式。公司还需要一个存储解决方案来存储产品数据和产品图像。\n哪个解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 使用Auto Scaling组中的Amazon EC2实例来部署容器化应用程序。使用Application Load Balancer来分配Web流量。使用Amazon RDS DB实例来存储产品数据和产品图像。",
+  "B. 使用AWS Lambda函数来管理现有的单体应用程序。使用Amazon DynamoDB来存储产品数据和产品图像。使用Amazon Simple Notification Service (Amazon SNS) 进行Lambda函数之间的事件驱动通信。",
+  "C. 使用Amazon Elastic Kubernetes Service (Amazon EKS) 与Amazon EC2部署来部署容器化应用程序。使用Amazon Aurora集群来存储产品数据。使用AWS Step Functions来管理工作流。将产品图像存储在Amazon S3 Glacier Deep Archive中。",
+  "D. 使用Amazon Elastic Container Service (Amazon ECS) 和AWS Fargate来部署容器化应用程序。使用Amazon RDS的Multi-AZ部署来存储产品数据。将产品图像存储在Amazon S3桶中。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon ECS和AWS\nFargate的优势： 使用Amazon ECS（Elastic\nContainer Service）与AWS Fargate结合，可以简化容器化应用程序的部署和管理，避免了管理基础设施的复杂性。Fargate使得容器化应用程序的管理更加自动化和无服务器，从而减少了操作开销。\nAmazon RDS的Multi-AZ部署：\n使用Amazon RDS的Multi-AZ部署可以确保数据库的高可用性和容错能力，非常适合存储结构化数据如产品数据。\nAmazon S3的优势： 将产品图像存储在Amazon S3中是一个高效、可扩展且低操作开销的解决方案。S3提供了高可用性和弹性，适合存储大量的图像数据。",
+  "AI解析": "电子商务公司需在保留结构化数据库模式的前提下实现可扩展模块化架构，核心在于分离计算与存储、降低运维复杂度。D选项采用ECS+Fargate实现无服务器容器化部署，无需管理底层资源；RDS Multi-AZ满足结构化数据的高可用需求，S3专为图像类非结构化数据设计，三者结合通过AWS托管服务实现模块解耦，同时最小化运维操作。其他选项或未完全容器化（A）、破坏数据库结构（B）、误用归档存储（C），均无法兼顾全部条件。"
+ }
+}

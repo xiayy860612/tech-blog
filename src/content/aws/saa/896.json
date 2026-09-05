@@ -1,0 +1,18 @@
+{
+ "qid": "2264604867",
+ "index": 896,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司每周都要在工作周的第一天之前运行一个关键数据分析作业。该作业需要至少1小时才能完成分析。该作业是有状态的，不能容忍中断。公司需要一个在AWS上运行作业的解决方案。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 为作业创建一个容器。使用Amazon EventBridge Scheduler在Amazon Elastic Container Service (Amazon ECS)集群上调度作业以作为AWS Fargate任务运行。",
+  "B. 将作业配置为在AWS Lambda函数中运行。在Amazon EventBridge中创建一个调度规则以调用Lambda函数。",
+  "C. 配置Amazon EC2 Spot Instances的Auto Scaling组，这些实例运行Amazon Linux。在实例上配置一个crontab条目来运行分析。",
+  "D. 配置一个AWS DataSync任务来运行作业。配置一个cron表达式以按计划运行任务。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提出了一个满足要求的解决方案。使用AWS Fargate任务在Amazon ECS集群中调度作业，这样可以保证作业运行时会有足够的计算资源，并且不需要管理底层的计算基础架构。Amazon EventBridge Scheduler可以用来调度任务以在特定时间运行。其他选项涉及使用Lambda函数、EC2 Spot实例或DataSync任务，但它们没有提供适合运行长时间、有状态作业的解决方案。",
+  "AI解析": "该题考察AWS中定时运行长时间无中断任务的服务选择。Amazon ECS Fargate适用于容器化应用，提供无需管理服务器的无状态或有状态任务执行，支持持续时间超过1小时的作业。EventBridge Scheduler可精确编排任务触发时间。Lambda函数有15分钟超时限制；Spot Instances存在中断风险；DataSync专注于数据传输而非数据处理。参考AWS官方文档关于ECS Fargate的任务调度和EventBridge的定时功能说明，选项A满足所有需求。"
+ }
+}

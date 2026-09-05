@@ -1,0 +1,19 @@
+{
+ "qid": "1529124310",
+ "index": 389,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在一组Amazon EC2实例后面的Auto Scaling组中运行一个三层电子商务应用程序，这些实例在一个Application Load Balancer（ALB）后面运行。所有电子商务数据都存储在Amazon RDS for MariaDB Multi-AZ DB实例中。\n公司希望在交易过程中优化客户会话管理。应用程序必须可持久地存储会话数据。\n哪些解决方案将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 在ALB上启用粘性会话功能（session affinity）。",
+  "B. 使用Amazon DynamoDB表存储客户会话信息。",
+  "C. 部署Amazon Cognito用户池来管理用户会话信息。",
+  "D. 部署Amazon ElastiCache for Redis集群来存储客户会话信息。",
+  "E. 在应用程序中使用AWS Systems Manager Application Manager来管理用户会话信息。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": null,
+  "AI解析": "AWS架构设计中，客户会话管理涉及确保会话持久性和高可用性。Application Load Balancer（ALB）的粘性会话通过Cookie将用户请求定向到同一后端实例，减少会话状态不一致的风险。但实例故障时，本地存储的会话数据可能丢失。Amazon ElastiCache for Redis作为内存数据库，支持数据持久化（如AOF或快照），可跨实例共享会话数据，保证即使实例终止或扩展，会话信息仍保留。选项A和D分别解决请求路由和分布式持久存储的需求，共同满足应用程序的会话管理要求。其他选项如DynamoDB（B）虽也可持久存储，但未被选为答案；Cognito（C）侧重身份验证，Systems Manager（E）用于运维管理，均不符合场景。"
+ }
+}

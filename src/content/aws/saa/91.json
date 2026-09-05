@@ -1,0 +1,17 @@
+{
+ "index": 91,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在为托管在本地数据中心的游戏应用程序实施共享存储解决方案。该公司需要能够使用Lustre客户端来访问数据。该解决方案必须是全面托管的。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 创建一个AWS Storage Gateway文件网关。创建一个使用所需客户端协议的文件共享。将应用程序服务器连接到文件共享。",
+  "B. 创建一个Amazon EC2 Windows实例。在实例上安装和配置Windows文件共享角色。将应用程序服务器连接到文件共享。",
+  "C. 创建一个Amazon Elastic File System (Amazon EFS)文件系统，并配置它以支持Lustre。将文件系统附加到源服务器。将应用程序服务器连接到文件系统。",
+  "D. 创建一个Amazon FSx for Lustre文件系统。将文件系统附加到源服务器。将应用程序服务器连接到文件系统。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon FSx for Lustre是一种专门为高性能计算工作负载设计的托管Lustre文件系统服务。它满足题目要求，可以通过Lustre客户端来访问数据，同时也是全面托管的解决方案。\n其他选项的解释：\nA AWS Storage Gateway文件网关通常用于混合云存储，不是完全托管的Lustre解决方案。\nB 在EC2 Windows实例上安装和配置文件共享是一种方法，但不是全面托管的解决方案。\nC  Amazon EFS是一种托管的文件存储服务，但不直接支持Lustre客户端，需要Amazon FSx for Lustre来实现。",
+  "AI解析": "本题考察对AWS托管存储服务的理解，特别是支持Lustre协议的服务。AWS文档明确指出，Amazon FSx for Lustre是专为高性能计算设计的全托管文件系统，原生兼容Lustre客户端。选项A的Storage Gateway不支持Lustre协议；选项B需要手动管理EC2实例，不符合“全托管”要求；选项C的EFS基于NFS协议，无法配置为Lustre。只有选项D的FSx for Lustre直接满足全托管及协议兼容性需求。"
+ }
+}

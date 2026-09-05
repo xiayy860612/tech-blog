@@ -1,0 +1,18 @@
+{
+ "qid": "1529125586",
+ "index": 529,
+ "total": 1018,
+ "type": "单选题",
+ "question": "该公司拥有一款具有 TCP 和 UDP 多人在线游戏功能的在线游戏应用。公司使用 Amazon Route 53 将应用流量指向不同 AWS 区域中的多个网络负载均衡器（NLBs）。该公司需要提高应用性能，并为在线游戏在用户增长前降低延迟。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 在 NLBs 前面增加一个 Amazon CloudFront 分发。增加 Cache-Control max-age 参数。",
+  "B. 用 Application Load Balancers（ALBs）替换 NLBs。配置 Route 53 使用基于延迟的路由。",
+  "C. 在 NLBs 前面增加 AWS 全球加速器。配置一个全球加速器终点来使用正确的监听端口。",
+  "D. 在 NLBs 后面增加一个 Amazon API Gateway 终点。启用 API 缓存。针对不同阶段覆盖方法缓存。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项 C中，使用 AWS 全球加速器可以帮助提高全球范围内的应用性能，并降低延迟。通过配置全球加速器终点使用正确的监听端口，可以有效地优化游戏的性能，满足公司在用户增长前降低延迟的需求。",
+  "AI解析": "此题考察对 AWS 网络优化服务的理解，尤其是针对低延迟场景的解决方案。来源包括 AWS Global Accelerator 官方文档中关于 Anycast IP、流量路由优化及 TCP/UDP 协议支持的相关描述。选项 C 中的 AWS 全球加速器通过预置静态 IP 和 AWS 骨干网络，将用户流量直接路由至最近的 NLB，减少了公网跳数，适用于传输层协议（TCP/UDP）且对延迟敏感的游戏场景。选项 A 的 CloudFront 主要用于 HTTP(S) 内容分发缓存，与游戏实时交互需求不匹配；选项 B 的 ALB 仅支持应用层协议，无法替代 NLB 的 TCP/UDP 处理能力；选项 D 的 API Gateway 面向 REST/WebSocket 接口，与题目中底层协议需求无关。"
+ }
+}

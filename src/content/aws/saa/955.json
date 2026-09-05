@@ -1,0 +1,18 @@
+{
+ "qid": "2949540296",
+ "index": 955,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将其数据处理应用程序迁移到AWS云。该应用程序处理几个短暂的批处理作业，这些作业不能被中断。每个批处理作业完成后生成数据。数据在生成后会被访问30天，并保留2年。该公司希望将应用程序在AWS云中的运行成本保持尽可能低。哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 将数据处理应用程序迁移到Amazon EC2 Spot实例。将数据存储在Amazon S3 Standard中。在30天后将数据移动到Amazon S3 Glacier Instant Retrieval中。设置过期以在2年后删除数据。",
+  "B. 将数据处理应用程序迁移到Amazon EC2按需实例。将数据存储在Amazon S3 Glacier Instant Retrieval中。在30天后将数据移动到S3 Glacier Deep Archive中。设置过期以在2年后删除数据。",
+  "C. 部署Amazon EC2 Spot实例来运行批处理作业。将数据存储在Amazon S3 Standard中。在30天后将数据移动到Amazon S3 Glacier Flexible Retrieval中。设置过期以在2年后删除数据。",
+  "D. 部署Amazon EC2按需实例来运行批处理作业。将数据存储在Amazon S3 Standard中。在30天后将数据移动到Amazon S3 Glacier Deep Archive中。设置过期以在2年后删除数据。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "计算资源： 使用Amazon EC2 Spot实例运行批处理作业是最经济的选择，因为Spot实例的费用通常低于按需实例。\n数据存储： 对于短期访问的数据（30天），Amazon S3 Standard是合适的选择。由于数据访问频率低，使用低成本存储是有效的。\n数据存档： 数据在30天后需要存档。Amazon\nS3 Glacier Flexible Retrieval（以前的S3 Glacier）提供了比S3 Standard更低的存储成本，适合不频繁访问的数据。在数据存储超过30天后，将数据迁移到S3 Glacier Flexible Retrieval以节省成本。\n数据保留： 设置数据过期规则，以在2年后删除数据，确保管理成本并符合数据保留要求。",
+  "AI解析": "应用场景中批处理作业不可中断，但EC2 Spot实例适用于可中断的容错型任务。此处可能存在矛盾，正确答案为C，需按答案解析。AWS文档指出，Spot实例可显著降低成本，但需结合检查点机制处理中断（题目未明确是否采用）。存储方面，频繁访问阶段使用S3 Standard，30天后转换至Glacier Flexible Retrieval（原S3 Glacier），适合每月访问一次的场景，成本低于Standard和Instant Retrieval。Glacier Deep Archive适用于长期存档，访问延迟较高。选项C在存储生命周期配置上符合低成本要求，尽管作业不可中断，但答案以选项C为准。"
+ }
+}

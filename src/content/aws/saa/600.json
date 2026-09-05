@@ -1,0 +1,18 @@
+{
+ "qid": "1908084717",
+ "index": 600,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon RDS for PostgreSQL DB实例上运行其关键数据库。公司希望迁移到Amazon Aurora PostgreSQL，最小化停机时间和数据丢失。\n哪种解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 创建RDS for PostgreSQL DB实例的DB快照，以填充新的Aurora PostgreSQL DB集群。",
+  "B. 创建RDS for PostgreSQL DB实例的Aurora只读副本。将Aurora只读副本提升为新的Aurora PostgreSQL DB集群。",
+  "C. 使用从Amazon S3导入数据来迁移数据库到Aurora PostgreSQL DB集群。",
+  "D. 使用pg_dump实用程序备份RDS for PostgreSQL数据库。将备份还原到新的Aurora PostgreSQL DB集群。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了实现迁移到Amazon Aurora PostgreSQL，最小化停机时间和数据丢失，最佳解决方案是选择选项B。这个选项首先创建了一个Aurora只读副本，然后将该副本提升为一个新的Aurora PostgreSQL DB集群。这种方法可以保持较低的操作开销，同时减小了停机时间和数据丢失的风险。\n其他选项的操作开销较大，可能需要更多的时间和资源：\nA创建DB快照并使用它来填充新的Aurora PostgreSQL DB集群可能需要更多的步骤和时间。\nC 使用数据导入从Amazon S3迁移可能需要更多的操作和配置。\nD 使用pg_dump实用程序备份并还原数据库可能需要更多的操作，并且可能导致更多的停机时间。",
+  "AI解析": "Amazon RDS支持为现有的RDS for PostgreSQL实例创建Aurora PostgreSQL只读副本。此过程通过持续复制数据，确保源数据库与副本之间的同步。当准备就绪时，可以将只读副本提升为独立的Aurora集群，此时仅需短暂停止写入即可完成切换。这种方法无需手动导出/导入数据或处理快照的静态特性，减少了停机窗口与数据丢失风险。其他选项如快照恢复、S3导入或pg_dump均涉及数据导出或时间点恢复，无法实现持续同步，导致更长的停机时间或操作复杂性。"
+ }
+}

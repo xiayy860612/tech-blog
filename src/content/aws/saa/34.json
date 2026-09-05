@@ -1,0 +1,18 @@
+{
+ "qid": "1529122107",
+ "index": 34,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司准备在AWS云中启动一个面向公众的Web应用程序。架构包括位于弹性负载均衡器（ELB）后面的VPC中的Amazon EC2实例。第三方服务用于DNS。公司的解决方案架构师必须推荐一种解决方案来检测和保护免受大规模DDoS攻击。解决方案应满足这些要求的是哪个？",
+ "options": [
+  "A. 在帐户上启用Amazon GuardDuty。",
+  "B. 在EC2实例上启用Amazon Inspector。",
+  "C. 启用AWS Shield，并将Amazon Route 53分配给它。",
+  "D. 启用AWS Shield高级版，并将ELB分配给它。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "由于AWS云中的Web应用程序面向公众，需要考虑保护免受大规模DDoS攻击。AWSShield是一种防御DDoS攻击的服务，它可以检测并保护应用程序免受流量过大或流量模式异常的攻击。其中，AWSShield高级版可以提供更高的防御能力，并且AmazonRoute53与AWSShield的高级版配合使用，可以提高检测和响应攻击的效率。因此，推荐启用AWSShield高级版并分配给ELB来保护应用程序免受DDoS攻击。综上所述，答案是启用AWSShield高级版，并将ELB分配给它。"
+ }
+}

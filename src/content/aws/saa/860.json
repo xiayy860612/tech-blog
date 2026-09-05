@@ -1,0 +1,18 @@
+{
+ "qid": "2264604831",
+ "index": 860,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将其本地\nMySQL 数据库迁移到 AWS。数据库接受来自客户面向应用程序的定期导入，这导致大量的写操作。公司担心这些流量可能会导致应用程序性能问题。解决方案架构师应该如何设计 AWS 上的架构？",
+ "options": [
+  "A. 使用预配置 IOPS SSD 存储为 Amazon RDS for MySQL DB 实例提供资源。通过 Amazon CloudWatch 监控写操作指标。如有必要，调整预配置 IOPS。",
+  "B. 使用通用型 SSD 存储为 Amazon RDS for MySQL DB 实例提供资源。在 DB 实例前面放置一个 Amazon ElastiCache 集群。配置应用程序查询 ElastiCache。",
+  "C. 使用内存优化的实例类型为 Amazon DocumentDB（MongoDB 兼容性）实例提供资源。通过 Amazon CloudWatch 监控性能相关问题。如有必要，更改实例类型。",
+  "D. 在通用型性能模式下为 Amazon Elastic File System (Amazon EFS) 文件系统提供资源。通过 Amazon CloudWatch 监控 IOPS 瓶颈。如有必要，更改为预配置吞吐量性能模式。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 建议使用预配置 IOPS\nSSD 存储为 Amazon RDS for MySQL DB 实例提供资源。这样可以保证数据库有足够的 IOPS 来处理高写入量。通过 Amazon CloudWatch 监控写操作指标，以及根据需要调整预配置 IOPS，可以及时发现并解决性能问题。其他选项没有提及关于处理高写入量的解决方案，因此不符合题目要求。",
+  "AI解析": "这道题考核在AWS上处理高写入负载的数据库设计策略。来源参考AWS文档中关于RDS存储类型选择及性能优化的建议。选项A通过预配置IOPS SSD确保稳定的I/O能力，直接应对频繁写入场景，监控指标可动态调整资源。选项B缓存层主要优化读操作，不解决写瓶颈；选项C切换数据库类型与题干MySQL不符；选项D的EFS不适用于数据库存储场景。正确选项A针对写负载设计，符合AWS高IOPS场景推荐方案。"
+ }
+}

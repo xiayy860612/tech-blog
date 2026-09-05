@@ -1,0 +1,18 @@
+{
+ "qid": "1908084729",
+ "index": 612,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用Amazon Elastic Kubernetes Service (Amazon EKS)来运行一个容器应用程序。EKS集群在Kubernetes的secrets对象中存储敏感信息。公司希望确保这些信息被加密。\n哪种解决方案将以最少的运维开销满足这些要求？",
+ "options": [
+  "A. 使用容器应用程序使用AWS Key Management Service (AWS KMS)加密信息。",
+  "B. 使用AWS Key Management Service (AWS KMS)在EKS集群中启用secrets加密。",
+  "C. 使用AWS Lambda函数使用AWS Key Management Service (AWS KMS)加密信息。",
+  "D. 使用AWS Systems Manager Parameter Store使用AWS Key Management Service (AWS KMS)加密信息。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了确保Kubernetes secrets中的敏感信息被加密，最佳解决方案是选择选项B，即在EKS集群中启用secrets加密，使用AWS Key Management Service (AWS KMS)进行加密。这将以最少的运维开销来满足加密要求，而不需要更改应用程序或使用额外的组件。\n其他选项可能需要更多的开发和配置工作：\nA 要求应用程序自行加密信息，这可能需要更多的开发工作。\nC实现一个AWS Lambda函数来加密信息，需要额外的组件和代码来处理加密。\nD 使用AWS Systems Manager Parameter Store来加密信息，虽然可以使用AWS KMS进行加密，但Parameter Store通常用于管理配置参数而不是secrets，因此不太适合这种情况。",
+  "AI解析": "AWS EKS提供原生支持，通过集成AWS KMS对Kubernetes Secrets进行加密。在创建EKS集群时，可以启用加密配置，指定KMS密钥来加密存储在etcd中的Secrets。这种方法无需修改应用程序代码或引入额外组件，直接在集群级别实现加密。AWS官方文档指出，启用EKS的Secrets加密功能后，所有新创建的Secrets将自动使用指定的KMS密钥加密。选项B直接利用EKS内置的集成能力，而其他选项需要额外的开发或服务调用，增加了运维复杂度。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908084785",
+ "index": 668,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon RDS for PostgreSQL上运行其数据库。公司希望通过每30天轮换一次密码的方式，实现对主用户密码的安全管理。\n哪种解决方案在操作开销最小的情况下满足这些要求？",
+ "options": [
+  "A. 使用Amazon EventBridge定期调度一个自定义的AWS Lambda函数来每30天轮换一次密码。",
+  "B. 使用AWS CLI中的modify-db-instance命令来更改密码。",
+  "C. 集成AWS Secrets Manager与Amazon RDS for PostgreSQL，以自动化密码轮换。",
+  "D. 集成AWS Systems Manager Parameter Store与Amazon RDS for PostgreSQL，以自动化密码轮换。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了实现对主用户密码的安全管理，最好的解决方案是集成AWS Secrets Manager。AWS Secrets Manager可以用于存储、管理和轮换数据库密码、API密钥和其他敏感信息。在这种情况下，集成AWS Secrets Manager与Amazon RDS for PostgreSQL，可以使用其自动化密码轮换功能，以确保每30天自动更改密码，而无需显著的操作开销。",
+  "AI解析": "Amazon RDS与AWS Secrets Manager集成支持自动化的凭证轮换功能，此功能内置于Secrets Manager服务中。AWS官方文档指出，Secrets Manager可为RDS数据库实例配置自动密码轮换，无需编写额外代码或手动干预。选项A需自定义Lambda函数并维护调度；选项B依赖手动执行的CLI命令；选项D中的Parameter Store缺乏原生密码轮换能力。选项C利用Secrets Manager内置的自动化机制，直接满足最小操作开销需求。"
+ }
+}

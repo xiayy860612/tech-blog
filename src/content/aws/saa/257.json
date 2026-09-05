@@ -1,0 +1,17 @@
+{
+ "index": 257,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的应用程序每小时向 Amazon S3 存储桶中放置数百个 .csv 文件。这些文件的大小为 1GB。每次上传一个文件，公司需要将文件转换为 Apache Parquet 格式，并将输出文件放入一个 S3 存储桶中。\n哪种解决方案能以最小的运维开销满足这些要求？",
+ "options": [
+  "A. 创建一个 AWS Lambda 函数来下载 .csv 文件，将文件转换为 Parquet 格式，并将输出文件放入 S3 存储桶。为每个 S3 PUT 事件调用 Lambda 函数。",
+  "B. 创建一个 Apache Spark 作业来读取 .csv 文件，将文件转换为 Parquet 格式，并将输出文件放入 S3 存储桶。为每个 S3 PUT 事件创建一个 AWS Lambda 函数来调用 Spark 作业。",
+  "C. 为应用程序放置 .csv 文件的 S3 存储桶创建一个 AWS Glue 表和 AWS Glue 爬虫。定期使用 AWS Lambda 函数使用 Amazon Athena 查询 AWS Glue 表，将查询结果转换为 Parquet 格式，并将输出文件放入 S3 存储桶。",
+  "D. 创建一个 AWS Glue 提取、转换和加载（ETL）作业，将 .csv 文件转换为 Parquet 格式，并将输出文件放入 S3 存储桶。为每个 S3 PUT 事件创建一个 AWS Lambda 函数来调用 ETL 作业。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在所有选择中，选项 D 提供了最小的操作开销。通过创建一个 AWS Glue ETL 作业，该作业能够自动进行 .csv 文件到 Parquet 格式的转换，并将输出文件存储到 S3 存储桶中。这个解决方案能够处理每小时上传数百个 1GB 大小的文件，同时最大程度地减少操作人员的干预。通过创建一个与 S3 PUT 事件关联的 Lambda 函数来调用 ETL 作业，可以保证每次文件上传后都会自动启动相应的转换过程。",
+  "AI解析": "本题核心考察AWS数据转换服务的选型。AWS Glue作为全托管ETL服务，原生支持S3数据格式转换且无需管理基础设施，符合最小运维需求。D选项通过S3事件触发Lambda启动Glue作业，直接实现CSV到Parquet的自动转换，而Lambda仅承担轻量级触发功能，避免处理大文件时的性能瓶颈。其他选项或依赖计算密集型操作（Lambda直接处理1GB文件）、或引入冗余环节（Athena查询+定期触发），均无法兼顾效率与运维成本。"
+ }
+}

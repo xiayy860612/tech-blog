@@ -1,0 +1,18 @@
+{
+ "qid": "1908084800",
+ "index": 683,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将其Web应用程序从本地迁移到AWS。该公司位于接近eu-central-1区域。由于法规的原因，该公司无法在eu-central-1启动一些应用程序。公司希望实现单位毫秒的延迟。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在eu-central-1中部署应用程序。将公司的VPC从eu-central-1扩展到Amazon CloudFront中的边缘位置。",
+  "B. 在AWS Local Zones中部署应用程序，通过将公司的VPC从eu-central-1扩展到所选的Local Zone。",
+  "C. 在eu-central-1中部署应用程序。将公司的VPC从eu-central-1扩展到Amazon CloudFront中的区域边缘缓存。",
+  "D. 在AWS Wavelength Zones中部署应用程序，通过将公司的VPC从eu-central-1扩展到所选的Wavelength Zone。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS Local Zones是AWS基础设施的扩展，位于城市中心，可提供低延迟的计算和存储服务。通过将公司的VPC从eu-central-1扩展到AWS Local Zones，可以在公司所需的地理位置部署应用程序，并且能够实现单位毫秒级的低延迟。这种方法符合规定，因为可以选择不在eu-central-1 Region中部署应用程序。",
+  "AI解析": "AWS Local Zones允许将资源部署在靠近用户的特定位置，以满足低延迟要求。由于法规限制无法完全使用eu-central-1时，Local Zones可作为扩展，保持VPC连通性。CloudFront（选项A、C）用于缓存而非应用部署，Wavelength（选项D）针对5G移动边缘场景。B选项通过Local Zones部署应用并扩展VPC，符合低延迟和合规需求。来源：AWS文档关于Local Zones的定位及VPC扩展能力。"
+ }
+}

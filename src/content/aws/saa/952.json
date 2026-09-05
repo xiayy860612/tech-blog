@@ -1,0 +1,18 @@
+{
+ "qid": "2949540293",
+ "index": 952,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个拥有数千名用户的网页应用程序。该应用程序使用 8-10 个用户上传的图像来生成 AI 图像。用户可以每 6 小时下载一次生成的 AI 图像。公司还提供一个高级用户选项，允许用户随时下载生成的 AI 图像。\n公司还使用用户上传的图像每年进行两次 AI 模型训练。公司需要一个存储解决方案来存储这些图像。\n哪种存储解决方案最具成本效益？",
+ "options": [
+  "A. 将上传的图像移动到 Amazon S3 Glacier Deep Archive。将高级用户生成的 AI 图像移动到 S3 Standard。将非高级用户生成的 AI 图像移动到 S3 Standard-Infrequent Access (S3 Standard-IA)。",
+  "B. 将上传的图像移动到 Amazon S3 Glacier Deep Archive。将所有生成的 AI 图像移动到 S3 Glacier Flexible Retrieval。",
+  "C. 将上传的图像移动到 Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA)。将高级用户生成的 AI 图像移动到 S3 Standard。将非高级用户生成的 AI 图像移动到 S3 Standard-Infrequent Access (S3 Standard-IA)。",
+  "D. 将上传的图像移动到 Amazon S3 One Zone-Infrequent Access (S3 One Zone-IA)。将所有生成的 AI 图像移动到 S3 Glacier Flexible Retrieval。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "将用户上传的图像移动到 Amazon S3 Glacier Deep Archive 是一种非常低成本的长期存储解决方案，非常适合不经常访问的旧数据。高级用户生成的 AI 图像应存储在 S3 Standard，以便能够随时快速访问。非高级用户生成的 AI 图像可以存储在 S3 Standard-Infrequent Access\n(S3 Standard-IA)，因为这些图像只需在 6 小时后访问一次，不需要频繁读取但需要保留较长时间。",
+  "AI解析": "该题目涉及AWS存储服务的选择，主要考察不同存储类别的适用场景及成本优化。来源为AWS官方文档对S3存储类别的说明。选项A中，上传的图像极少访问，适合最低成本的Glacier Deep Archive。高级用户生成的图像需频繁访问，使用Standard。非高级用户每6小时访问一次，属于不频繁访问，适合Standard-IA。其他选项或将生成图像存入检索速度慢的Glacier（B、D），或上传图像使用成本较高的One Zone-IA（C、D），无法兼顾成本与访问需求。选项A在满足访问频率的同时最大限度降低了存储成本。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908085480",
+ "index": 746,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家金融服务公司想要关闭两个数据中心，并迁移超过 100 TB 的数据到 AWS。这些数据具有复杂的目录结构，存储在深层次的子文件夹中的数百万个小文件中。大部分数据是非结构化的，并且公司的文件存储由多个供应商提供的基于 SMB 的存储类型组成。公司不希望在迁移后更改其访问数据的应用程序。\n为了满足这些要求，解决方案架构师应该采取什么措施以最小化运维开销？",
+ "options": [
+  "A. 使用 AWS Direct Connect 将数据迁移到 Amazon S3。",
+  "B. 使用 AWS DataSync 将数据迁移到 Amazon FSx for Lustre。",
+  "C. 使用 AWS DataSync 将数据迁移到 Amazon FSx for Windows File Server。",
+  "D. 使用 AWS Direct Connect 将数据从本地文件存储迁移到 AWS Storage Gateway 的卷网关。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "由于数据是存储在基于 SMB 的存储类型中的，最好的选择是使用 AWS DataSync 将数据迁移到 Amazon FSx for Windows File Server。Amazon FSx for Windows File Server 提供了一个托管的 Windows 文件系统，支持 SMB 协议，因此可以保持现有应用程序对数据的访问方式不变。AWS DataSync 可以高效地将数据从现有的文件存储中迁移到 Amazon FSx for Windows File Server，而且迁移后不需要更改应用程序的访问方式。",
+  "AI解析": "题目考察迁移大量数据到AWS时选择合适的服务以保持兼容性与简化运维。根据AWS文档，AWS DataSync专为高效、自动化的数据传输设计，支持复杂结构和小文件，同时保留元数据。Amazon FSx for Windows File Server兼容SMB协议，适用于需维持原有Windows文件共享环境的场景。选项C结合两者，满足不更改应用程序访问方式的需求。选项B的Lustre不支持SMB，选项A的S3无法直接支持文件共享协议，选项D的卷网关提供块存储而非文件存储。"
+ }
+}

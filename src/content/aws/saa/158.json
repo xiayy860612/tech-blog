@@ -1,0 +1,17 @@
+{
+ "index": 158,
+ "total": 1018,
+ "type": "单选题",
+ "question": "某公司的基础架构包括Amazon EC2实例和Amazon RDS DB实例，它们都位于同一个AWS区域。该公司希望在另一个区域备份其数据。哪种解决方案在运维开销最小的情况下满足这些要求？",
+ "options": [
+  "A. 使用AWS Backup将EC2备份和RDS备份复制到另一个区域。",
+  "B. 使用Amazon Data Lifecycle Manager (Amazon DLM)将EC2备份和RDS备份复制到另一个区域。",
+  "C. 创建EC2实例的Amazon Machine Images (AMIs)。将这些AMIs复制到另一个区域。在另一个区域创建RDS DB实例的只读复制。",
+  "D. 创建Amazon Elastic Block Store (Amazon EBS)快照。将这些EBS快照复制到另一个区域。创建RDS快照。将RDS快照导出到Amazon S3。配置S3跨区域复制 (CRR) 到另一个区域。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS Backup是一个专门用于备份和恢复的服务，它可以帮助您以最小的运维开销将备份数据复制到另一个区域。选项A中的AWS Backup能够同时处理EC2和RDS备份的复制，并且是最直接的解决方案。其他选项涉及更多手动操作和复杂性，因此不如AWS Backup来得高效和简单。",
+  "AI解析": "AWS Backup是一项托管服务，支持跨区域复制多种AWS资源（如EC2和RDS）的备份，无需单独配置各服务的备份策略。Amazon DLM仅管理EBS快照生命周期，不涵盖RDS。手动复制AMIs和创建RDS只读副本需要多步骤操作，运维成本较高。导出RDS快照到S3并配置CRR涉及多个手动流程，复杂度高。AWS Backup通过统一界面自动化处理，运维开销最低。选项A正确。"
+ }
+}

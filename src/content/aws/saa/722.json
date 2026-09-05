@@ -1,0 +1,18 @@
+{
+ "qid": "1908085456",
+ "index": 722,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的应用程序运行在Amazon EC2实例上。EC2实例通过一个具有相关策略的IAM角色连接到Amazon RDS数据库。公司希望使用AWS Systems Manager对EC2实例进行打补丁，而不会中断正在运行的应用程序。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 创建一个新的IAM角色。将AmazonSSMManagedInstanceCore策略附加到新的IAM角色。将新的IAM角色附加到EC2实例和现有的IAM角色上。",
+  "B. 创建一个IAM用户。将AmazonSSMManagedInstanceCore策略附加到IAM用户。配置Systems Manager使用IAM用户管理EC2实例。",
+  "C. 启用系统管理器中的默认主机配置管理来管理EC2实例。",
+  "D. 从现有的IAM角色中删除现有的策略。将AmazonSSMManagedInstanceCore策略添加到现有的IAM角色中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "启用系统管理器中的默认主机配置管理是最简单且满足要求的解决方案。通过启用此功能，可以使 EC2 实例自动与 Systems Manager 进行集成，无需创建新的 IAM 角色或用户。默认情况下，此功能会为 EC2 实例自动创建必要的 IAM 角色，并确保应用程序的运行不会受到影响。",
+  "AI解析": "AWS Systems Manager（SSM）的Patch Manager功能需要EC2实例具备正确的配置和权限才能执行补丁操作。AWS官方文档指出，启用默认主机管理配置（Default Host Management Configuration）可自动为实例配置所需的IAM策略（如AmazonSSMManagedInstanceCore）并确保SSM Agent正常运行，无需手动调整现有IAM角色。选项C直接启用此功能，避免了手动修改角色可能导致的权限冲突或应用中断。选项A和D涉及不必要或破坏性的IAM角色更改，选项B错误地使用IAM用户而非实例角色。"
+ }
+}

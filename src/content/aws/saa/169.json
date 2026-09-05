@@ -1,0 +1,17 @@
+{
+ "index": 169,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在Amazon EC2实例上运行批处理应用程序。该应用程序包括一个后端，其中包含多个Amazon RDS数据库。该应用程序导致数据库上的读操作次数很高。一名解决方案架构师必须减少数据库读取次数，同时确保高可用性。\n要满足此要求，解决方案架构师应该采取以下哪项操作？",
+ "options": [
+  "A. 添加Amazon RDS只读副本。",
+  "B. 使用Amazon ElastiCache for Redis。",
+  "C. 使用Amazon Route 53 DNS缓存。",
+  "D. 使用Amazon ElastiCache for Memcached。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了减少数据库读取次数，可以使用Amazon RDS只读副本。只读副本可以分担主数据库的读负载，从而降低主数据库上的读操作次数，同时确保高可用性。Amazon ElastiCache for Redis和Amazon ElastiCache for Memcached是内存缓存服务，通常用于缓存数据以加速读取，但它们不会减少主数据库的读操作次数。Amazon Route 53 DNS缓存用于加速DNS查找，不会直接减少数据库读操作",
+  "AI解析": "Amazon RDS只读副本允许创建数据库的副本，这些副本可处理读请求，从而分散主数据库的读负载，减少主实例的压力。只读副本提升高可用性，在主实例故障时可被提升为独立实例。该能力直接对应题干中减少读操作次数和高可用性需求。Amazon ElastiCache主要用于缓存热点数据，虽能减轻读取但需应用层修改，且不直接具备数据库故障转移功能。Route 53缓存仅涉及DNS层而非数据库查询。RDS只读副本是AWS官方推荐的读扩展方案，文档指出其适用于读密集型场景且支持故障转移。"
+ }
+}

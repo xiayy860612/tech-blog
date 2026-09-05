@@ -1,0 +1,17 @@
+{
+ "index": 315,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用Amazon EC2实例运行一个脚本来轮询和处理Amazon Simple Queue Service (Amazon SQS) 队列中的消息。公司希望降低操作成本，同时保持其处理队列中增加的消息数量的能力。\n解决方案架构师应该推荐什么来满足这些要求？",
+ "options": [
+  "A. 增加EC2实例的大小以更快地处理消息。",
+  "B. 使用Amazon EventBridge在EC2实例处于低利用率时关闭实例。",
+  "C. 将EC2实例上的脚本迁移到具有适当运行时的AWS Lambda函数。",
+  "D. 使用AWS Systems Manager Run Command按需运行脚本。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了降低操作成本并能够处理不断增加的消息数量，最佳做法是将EC2实例上的脚本迁移到AWS Lambda函数（选项C）。AWS Lambda是一种无服务器计算服务，可以根据需要扩展，无需费用预付，因此可以在不增加EC2实例大小的情况下处理更多的消息。选项A中的增加EC2实例的大小可能会增加成本，但不一定能够处理更多的消息。选项B中的使用Amazon EventBridge关闭EC2实例可能会导致不必要的停机，而不是更高的处理能力。选项D中的AWS Systems Manager Run Command是用于在EC2实例上运行命令的工具，不是为了处理SQS消息的最佳解决方案。",
+  "AI解析": "该题考察AWS无服务器服务的成本优化和扩展性。根据AWS最佳实践，将轮询和处理SQS队列的脚本迁移到Lambda函数可消除EC2实例持续运行的成本，Lambda按请求计费且自动扩展。选项A增加EC2实例大小会导致更高费用；选项B关闭实例可能影响处理能力；选项D按需运行脚本无法保证即时响应。AWS文档指出Lambda与SQS集成可高效处理消息，避免资源闲置。"
+ }
+}

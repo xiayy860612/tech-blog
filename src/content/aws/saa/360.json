@@ -1,0 +1,18 @@
+{
+ "qid": "1529124281",
+ "index": 360,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上托管了一款多人游戏应用程序。公司希望应用程序能够以亚毫秒级的延迟读取数据，并能够对历史数据运行一次性查询。\n哪种解决方案将以最少的运维开销来满足这些要求？",
+ "options": [
+  "A. 对于频繁访问的数据，使用Amazon RDS。定期运行自定义脚本将数据导出到Amazon S3存储桶。",
+  "B. 直接将数据存储在Amazon S3存储桶中。使用S3生命周期策略将较旧的数据移动到S3 Glacier Deep Archive以进行长期存储。通过Amazon Athena在Amazon S3中对数据运行一次性查询。",
+  "C. 使用Amazon DynamoDB与DynamoDB Accelerator (DAX)来存储频繁访问的数据。使用DynamoDB表导出将数据导出到Amazon S3存储桶。通过Amazon Athena在Amazon S3中对数据运行一次性查询。",
+  "D. 对于频繁访问的数据，使用Amazon DynamoDB。打开数据流到Amazon Kinesis Data Streams。使用Amazon Kinesis Data Firehose从Kinesis Data Streams中读取数据。将记录存储在Amazon S3存储桶中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C中使用Amazon DynamoDB和DynamoDB Accelerator (DAX)来存储频繁访问的数据，这可以提供亚毫秒级的读取延迟。然后，可以使用DynamoDB表导出将数据导出到Amazon S3存储桶，再通过Amazon Athena对数据运行一次性查询，同时最小化了运维开销。\n选项A中将数据导出到Amazon S3需要定期运行自定义脚本，增加了运维工作量。\n选项B中使用Amazon S3存储数据，虽然可以长期存储数据并运行一次性查询，但亚毫秒级的读取延迟无法满足要求。\n选项D中使用Kinesis Data Streams和Amazon S3存储数据，但这会增加复杂性，不如选项C简单且高效。",
+  "AI解析": "该题考察AWS数据库与数据分析服务的适用场景及集成方案。来源AWS白皮书“Database Options on AWS”。选项C中，DynamoDB作为键值数据库支持高频低延迟访问，DAX作为内存缓存进一步将读取延迟降至微秒级。DynamoDB表导出功能自动将数据同步至S3，无需额外脚本，运维成本低。Athena直接分析S3数据满足历史查询需求。其余选项或延迟不达标（A/B），或架构冗余（D）。正确答案C通过DAX实现亚毫秒级读取，利用托管服务实现零运维数据管道。"
+ }
+}

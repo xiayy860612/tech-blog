@@ -1,0 +1,18 @@
+{
+ "qid": "1908084731",
+ "index": 614,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon Elastic Kubernetes Service (Amazon EKS)上运行关键的、面向客户的应用程序。该应用程序具有微服务架构。公司需要实施一个解决方案，将应用程序的指标和日志从应用程序中集中收集、汇总和摘要。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 在现有的EKS集群中运行Amazon CloudWatch代理。在CloudWatch控制台中查看指标和日志。",
+  "B. 在现有的EKS集群中运行AWS App Mesh。在App Mesh控制台中查看指标和日志。",
+  "C. 配置AWS CloudTrail以捕获数据事件。使用Amazon OpenSearch Service查询CloudTrail。",
+  "D. 在现有的EKS集群中配置Amazon CloudWatch Container Insights。在CloudWatch控制台中查看指标和日志。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了集中收集、汇总和摘要应用程序的指标和日志，最佳解决方案是选择选项D，即配置Amazon CloudWatch Container Insights在现有的EKS集群中。这将允许您查看指标和日志在CloudWatch控制台中，为微服务架构提供了强大的监控和日志分析功能。\n其他选项不太适合这种情况：\nA运行Amazon CloudWatch代理可以收集指标和日志，但不提供集中汇总和摘要功能。\nB运行AWS App Mesh用于微服务通信和路由，与集中收集、汇总和摘要指标和日志无关。\nC AWS CloudTrail用于审计AWS API活动，而不用于应用程序指标和日志的集中收集和分析。 Amazon OpenSearch Service用于搜索和分析，但不提供应用程序监控功能。",
+  "AI解析": "题目考察在Amazon EKS上集中收集、汇总应用程序指标和日志的解决方案。Amazon CloudWatch Container Insights专为容器环境设计，能够自动收集并聚合性能指标和日志，无需额外手动配置，适用于微服务架构。AWS文档指出，Container Insights直接集成到CloudWatch，提供预构建的仪表板和汇总的指标。选项A的CloudWatch代理需手动配置，不提供自动汇总；选项B的App Mesh主要处理服务网格流量监控，不涵盖日志收集；选项C的CloudTrail用于API审计，与应用日志无关。选项D利用Container Insights特性满足所有需求。"
+ }
+}

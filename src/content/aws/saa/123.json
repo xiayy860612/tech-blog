@@ -1,0 +1,17 @@
+{
+ "index": 123,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上运行其电子商务应用程序。每个新订单都作为消息发布到一个RabbitMQ队列中，该队列运行在一个Amazon EC2实例中，位于单个可用区。这些消息由一个不同的应用程序处理，该应用程序运行在另一个EC2实例上。该应用程序将订单详细信息存储在另一个EC2实例上的PostgreSQL数据库中。所有EC2实例都位于同一可用区。\n公司需要重新设计其架构，以提供最高的可用性和最小的运营开销。\n解决方案架构师应采取什么措施以满足这些要求？",
+ "options": [
+  "A. 将队列迁移到Amazon MQ上的冗余对（主/备）RabbitMQ实例。为托管应用程序的EC2实例创建一个Multi-AZ自动扩展组。为托管PostgreSQL数据库的EC2实例创建另一个Multi-AZ自动扩展组。",
+  "B. 将队列迁移到Amazon MQ上的冗余对（主/备）RabbitMQ实例。为托管应用程序的EC2实例创建一个Multi-AZ自动扩展组。将数据库迁移到运行在Amazon RDS for PostgreSQL的Multi-AZ部署上。",
+  "C. 为托管RabbitMQ队列的EC2实例创建一个Multi-AZ自动扩展组。为托管应用程序的EC2实例创建另一个Multi-AZ自动扩展组。将数据库迁移到运行在Amazon RDS for PostgreSQL的Multi-AZ部署上。",
+  "D. 为托管RabbitMQ队列的EC2实例创建一个Multi-AZ自动扩展组。为托管应用程序的EC2实例创建另一个Multi-AZ自动扩展组。为托管PostgreSQL数据库的EC2实例创建第三个Multi-AZ自动扩展组。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B是最佳解决方案。它建议采取以下步骤来提高可用性并减少运营开销：\n将队列迁移到Amazon MQ上的冗余对（主/备）RabbitMQ实例：这将提供更高的可用性和冗余，以确保消息队列的稳定性。\n为托管应用程序的EC2实例创建一个Multi-AZ自动扩展组：这将确保应用程序具有自动伸缩能力，以应对负载变化，并提供更高的可用性。\n将数据库迁移到运行在Amazon RDS for PostgreSQL的Multi-AZ部署上：Amazon RDS提供了可扩展性和高可用性，以确保数据库的稳定性和冗余。\n其他选项（A C D）中，没有提到迁移到Amazon MQ或Amazon RDS，这两者都可以提供更高的可用性和冗余。因此，选项B是最佳选择。",
+  "AI解析": "AWS架构设计中，高可用性和降低运营开销通常通过使用托管服务和多可用区（Multi-AZ）部署实现。Amazon MQ提供主/备RabbitMQ实例，自动处理消息队列的冗余，避免单点故障。Multi-AZ自动扩展组确保应用实例分布在多个可用区，实例故障时自动替换。RDS PostgreSQL的Multi-AZ部署自动处理数据库的主从复制和故障转移，无需手动干预。选项C和D依赖EC2自建服务，需手动配置高可用，增加运营开销。选项A在数据库层仍使用EC2，未完全利用托管服务。AWS文档推荐使用RDS和Amazon MQ等托管服务简化运维并提高可用性。"
+ }
+}

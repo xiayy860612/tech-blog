@@ -1,0 +1,18 @@
+{
+ "qid": "1529125580",
+ "index": 523,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望分析和排查与 IAM 权限相关的“访问被拒绝”（Access Denied）和“未授权”（Unauthorized）错误。该公司已经启用了 AWS CloudTrail。\n哪种解决方案可以以最小的工作量满足这些要求？",
+ "options": [
+  "A. 使用 AWS Glue 并编写自定义脚本来查询 CloudTrail 日志中的错误。",
+  "B. 使用 AWS Batch 并编写自定义脚本来查询 CloudTrail 日志中的错误。",
+  "C. 使用 Amazon Athena 查询 CloudTrail 日志以识别错误。",
+  "D. 使用 Amazon QuickSight 查询 CloudTrail 日志。创建一个仪表板以识别错误。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "使用 Amazon Athena 可以有效地查询 CloudTrail 日志，帮助识别“访问被拒绝”和“未授权”错误。Amazon Athena 提供了一种便捷的方式通过 SQL 查询存储在 S3 中的 CloudTrail 日志，是满足公司需求的一种简单且高效的方式，同时也减少了操作上的工作量。",
+  "AI解析": "该题核心考查AWS服务在日志分析场景的适用性。CloudTrail日志存储在S3中，Amazon Athena作为无服务器查询服务，可直接通过标准SQL分析S3数据，无需数据迁移或预处理，能快速定位\"访问被拒绝\"等IAM错误。相较其他选项，Athena免除编写脚本（AWS Glue/Batch）或构建可视化（QuickSight）的额外步骤，符合最小工作量要求。"
+ }
+}

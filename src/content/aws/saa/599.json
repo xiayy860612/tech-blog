@@ -1,0 +1,18 @@
+{
+ "qid": "1529125656",
+ "index": 599,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司计划将一个基于TCP的应用程序迁移到公司的VPC。该应用程序通过公司数据中心的硬件设备在一个非标准的TCP端口上公开访问。这个公共端点可以以低延迟处理多达每秒300万个请求。公司要求在AWS中的新公共端点具有相同的性能水平。\n解决方案架构师应该推荐什么来满足这个要求？",
+ "options": [
+  "A. 部署Network Load Balancer（NLB）。配置NLB以在应用程序所需的TCP端口上公开访问。",
+  "B. 部署Application Load Balancer（ALB）。配置ALB以在应用程序所需的TCP端口上公开访问。",
+  "C. 部署Amazon CloudFront分发，监听应用程序所需的TCP端口。使用Application Load Balancer作为源。",
+  "D. 部署配置了应用程序所需的TCP端口的Amazon API Gateway API。配置AWS Lambda函数以处理请求的预配置并发。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了满足要求，应该部署一个Network Load Balancer（NLB），并将其配置为在应用程序所需的TCP端口上公开访问。NLB是一种专门设计用于处理TCP流量的负载均衡器，能够提供高性能和低延迟，可以满足处理多达每秒300万个请求的性能要求。\n其他选项不适合这种情况：\nB Application Load Balancer（ALB）通常用于处理HTTP和HTTPS流量，不适合TCP应用程序。\nC Amazon CloudFront是用于分发内容的CDN服务，不适合处理TCP流量。\nD Amazon API Gateway通常用于RESTful API和HTTP服务，不适合处理TCP流量",
+  "AI解析": "AWS的Network Load Balancer（NLB）专为高性能、低延迟的TCP/UDP流量设计，支持处理每秒数百万请求，适用于非标准TCP端口场景。Application Load Balancer（ALB）面向HTTP/HTTPS，适用于应用层路由。Amazon CloudFront用于HTTP(S)内容分发，不直接支持自定义TCP端口。Amazon API Gateway与Lambda组合针对无服务器架构，通常无法满足低延迟的高吞吐量TCP需求。NLB直接暴露TCP端口并保持原生性能，符合题目要求。AWS文档指出NLB适用于高吞吐、低延迟的四层负载均衡。"
+ }
+}

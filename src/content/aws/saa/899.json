@@ -1,0 +1,19 @@
+{
+ "qid": "2264604870",
+ "index": 899,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司希望使用Amazon\nElastic Container Service（Amazon ECS）在混合环境中运行其本地应用程序。该应用程序目前在本地容器上运行。\n公司需要一个可以在本地、混合或云环境中进行扩展的单一容器解决方案。公司必须在AWS云中运行新的应用程序容器，并且必须使用负载均衡器处理HTTP流量。\n哪种操作组合将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 设置一个ECS集群，为云应用程序容器使用AWS Fargate启动类型。为本地应用程序容器使用Amazon ECS Anywhere外部启动类型。",
+  "B. 为云ECS服务设置一个应用程序负载均衡器。",
+  "C. 为云ECS服务设置一个网络负载均衡器。",
+  "D. 设置一个ECS集群，为AWS Fargate启动类型使用。为云应用程序容器和本地应用程序容器都使用Fargate。",
+  "E. 设置一个使用Amazon EC2启动类型的ECS集群，为云应用程序容器使用。使用Amazon ECS Anywhere和AWS Fargate启动类型为本地应用程序容器。"
+ ],
+ "answer": {
+  "正确答案": "AB",
+  "解析": "选项A提出了一个解决方案，其中在AWS云中使用AWS Fargate启动类型，而在本地使用Amazon ECS Anywhere外部启动类型。这个组合允许应用程序在不同环境中扩展，并且在AWS云中可以利用Fargate的托管容器特性。选项B中提到使用应用程序负载均衡器，这是在AWS云中部署ECS服务时需要的一种负载均衡器类型，可以满足要求。其他选项中提到的负载均衡器类型不适用于ECS服务。",
+  "AI解析": "题目考察在混合环境中使用Amazon ECS的配置及负载均衡器的选择。AWS文档指出，ECS Anywhere允许在本地运行任务，而Fargate适用于云环境。应用负载均衡器（ALB）专为HTTP/HTTPS流量设计，网络负载均衡器（NLB）适用于较低层流量。选项A正确整合了Fargate和ECS Anywhere，选项B正确选择了ALB处理HTTP流量。选项D错误，因Fargate无法用于本地；选项C错误，因NLB不适用HTTP；选项E错误，因混合使用EC2和Fargate不符合单一集群要求。正确组合是A和B。"
+ }
+}

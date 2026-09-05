@@ -1,0 +1,17 @@
+{
+ "index": 140,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司将其分析应用程序托管在AWS云中。该应用程序每月生成约300MB的数据，数据以JSON格式存储。该公司正在评估灾难恢复解决方案以备份数据。如果需要，数据必须在毫秒内访问，数据必须保留30天。\n哪种解决方案以最经济的方式满足这些要求？",
+ "options": [
+  "A. Amazon OpenSearch Service (Amazon Elasticsearch Service)",
+  "B. Amazon S3 Glacier",
+  "C. Amazon S3 Standard",
+  "D. Amazon RDS for PostgreSQL"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "该题核心考查AWS存储服务的适用场景。Amazon S3 Standard提供毫秒级访问延迟和高持久性，适用于需要即时读取的活跃数据备份，其存储成本低于即时访问型数据库服务。S3 Glacier虽成本更低但存在检索延迟，OpenSearch/RDS侧重实时查询而非纯存储，因此每月300MB的JSON数据在30天保留期内采用标准存储层（C）可同时满足经济性与访问性能需求。"
+ }
+}

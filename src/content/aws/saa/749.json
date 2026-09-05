@@ -1,0 +1,18 @@
+{
+ "qid": "1908085483",
+ "index": 749,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在 AWS Organizations 中建立了一个包含 10 个 AWS 账户的组织。解决方案架构师必须设计一个解决方案，为数千名员工提供对这些账户的访问权限。公司已经有了一个现有的身份提供者（IdP）。公司希望使用现有的 IdP 对 AWS 进行身份验证。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 在所需的 AWS 账户中为员工创建 IAM 用户。将 IAM 用户连接到现有的 IdP。为 IAM 用户配置联合身份验证。",
+  "B. 设置具有从现有 IdP 同步的用户电子邮件地址和密码的 AWS 账户根用户。",
+  "C. 配置 AWS IAM Identity Center（AWS Single Sign-On）。将 IAM Identity Center 连接到现有的 IdP。从现有的 IdP 提供用户和组。",
+  "D. 使用 AWS 资源访问管理器（AWS RAM）将对 AWS 账户的访问权限分享给现有 IdP 中的用户。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了实现这些要求，应该配置 AWS IAM Identity Center（AWS Single Sign-On），并将其连接到现有的 IdP。IAM Identity Center 提供了一种统一的身份验证解决方案，可以将现有的 IdP 与 AWS 账户集成起来，并且可以从现有的 IdP 自动获取用户和组。这种方法简化了对用户的管理，并提供了单点登录的便利性。",
+  "AI解析": "该题考查AWS多账户统一身份验证方案的核心设计逻辑。AWS IAM Identity Center（原AWS SSO）专为集中管理多账户访问权限设计，支持直接集成外部身份提供商（IdP），无需逐账户创建IAM用户或同步凭证。通过将现有IdP的用户/组映射至AWS组织，即可实现跨账户单点登录，满足大规模员工统一认证需求，且完全遵循最小权限原则。其他选项或涉及重复创建用户（A）、误用根账户（B），或混淆资源分享与身份验证机制（D）。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 48,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司想要将其本地应用程序迁移到AWS。该应用程序生成的输出文件大小从数十GB到数百TB不等。该应用程序的数据必须以标准文件系统结构进行存储。该公司希望一个能够自动扩展、高度可用且需要最少操作开销的解决方案。",
+ "options": [
+  "A. 将应用程序迁移到Amazon Elastic Container Service (Amazon ECS) 上以运行容器，并使用Amazon S3进行存储。",
+  "B. 将应用程序迁移到Amazon Elastic Kubernetes Service (Amazon EKS) 上以运行容器，并使用Amazon Elastic Block Store (Amazon EBS) 进行存储。",
+  "C. 将应用程序迁移到Amazon EC2 实例中，放入一个Multi-AZ Auto Scaling组中，并使用Amazon Elastic File System (Amazon EFS) 进行存储。",
+  "D. 将应用程序迁移到Amazon EC2 实例中，放入一个Multi-AZ Auto Scaling组中，并使用Amazon Elastic Block Store (Amazon EBS) 进行存储。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选择C是因为Amazon EFS是一种高度可用的文件存储解决方案，适合在多个EC2实例之间共享数据。Multi-AZ Auto Scaling组确保了应用程序的高可用性和自动扩展，而Amazon EFS提供了标准文件系统结构，适用于存储各种大小的文件。选项A中，Amazon S3虽然适用于对象存储，但不提供标准文件系统结构，且不适合应用程序的文件存储需求。选项B中，Amazon EBS适用于块存储，不提供标准文件系统结构，可能不适合存储大量文件。选项D中，Amazon EBS适用于块存储，与Amazon EC2实例关联，但同样不提供标准文件系统结构，因此不适合此需求。",
+  "AI解析": "这道题目考察对AWS存储服务和计算资源扩展方案的理解。AWS文档中，Amazon EFS被设计为可扩展的共享文件系统，支持多AZ部署，自动扩展存储容量，无需预配置。Amazon EC2搭配Multi-AZ Auto Scaling组确保计算资源的高可用性和弹性伸缩。选项C中EFS的特性符合处理数十GB到数百TB文件、标准文件系统结构以及最小运维的需求，而选项A的S3是对象存储不适用于文件系统接口，选项B/D的EBS属于块存储，缺乏跨AZ共享能力，需手动扩展。"
+ }
+}

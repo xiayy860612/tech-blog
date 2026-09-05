@@ -1,0 +1,17 @@
+{
+ "index": 252,
+ "total": 1018,
+ "type": "单选题",
+ "question": "IAM策略1和策略2分别附加在一个IAM组上。\nPolicy 1：\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"iam:Get*\",\n                \"iam:List*\",\n                \"kms:List*\",\n                \"ec2:*\",\n                \"ds:*\",\n                \"logs:Get*\",\n                \"logs:Describe*\"\n            ],\n            \"Resource\": \"*\"\n        }\n    ]\n}\nPolicy 2：\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Deny\",\n            \"Action\": \"ds:Delete*\",\n            \"Resource\": \"*\"\n        }\n    ]\n}\n一名云工程师被添加为IAM用户到这个IAM组。该云工程师能够执行哪些操作？",
+ "options": [
+  "A. 删除 IAM 用户",
+  "B. 删除目录",
+  "C. 删除 Amazon EC2 实例",
+  "D. 从 Amazon CloudWatch Logs 中删除日志"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "根据提供的策略：\n策略1允许 IAM Get/List 相关操作、KMS List 相关操作、EC2 所有操作、DS 所有操作、以及 CloudWatch Logs 的 Get/Describe 操作，作用于所有资源。\n策略2拒绝对 DS（Directory Service）的删除操作。\n根据这些策略，云工程师将能够执行以下操作：\n因此，该云工程师能够执行删除 Amazon EC2 实例的操作（选项 C）。",
+  "AI解析": "IAM策略评估遵循显式拒绝优先原则。策略1允许`ec2:*`，覆盖所有EC2操作，包括删除实例。策略2仅拒绝`ds:Delete*`，不影响EC2权限。其他选项（删除IAM用户、目录、日志）未在策略1中被明确允许，或直接被策略2拒绝。正确答案为C。参考AWS IAM文档关于策略评估逻辑。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529125616",
+ "index": 559,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的解决方案架构师正在设计一个使用AWS Organizations的AWS多账户解决方案。解决方案架构师已经将公司的账户组织成了组织单位（OUs）。\n解决方案架构师需要一个解决方案，用于识别OU层次结构的任何更改。该解决方案还需要通知公司的运维团队有关任何更改。\n哪种解决方案能以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 使用AWS Control Tower来创建AWS账户。使用账户漂移通知来识别OU层次结构的更改。",
+  "B. 使用AWS Control Tower来创建AWS账户。使用AWS Config聚合规则来识别OU层次结构的更改。",
+  "C. 使用AWS Service Catalog在Organizations中创建账户。使用AWS CloudTrail组织跟踪来识别OU层次结构的更改。",
+  "D. 使用AWS CloudFormation模板在Organizations中创建账户。使用栈上的漂移检测操作来识别OU层次结构的更改。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "AWS Control Tower提供账户工厂功能用于集中管理多账户创建，同时内置账户漂移检测机制。根据AWS官方文档，账户漂移通知可自动检测账户从Control Tower配置的OU中移动或删除的情况，并生成事件通知运维团队。选项A利用内置功能实现自动化监控，无需额外配置规则或自定义跟踪逻辑，相比其他选项减少运维工作量。选项B需手动配置和维护聚合规则，选项C依赖CloudTrail日志分析，选项D的漂移检测仅适用于CloudFormation堆栈资源。"
+ }
+}

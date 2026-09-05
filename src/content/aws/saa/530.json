@@ -1,0 +1,18 @@
+{
+ "qid": "1529125587",
+ "index": 530,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司需要与第三方数据提供源进行集成。该数据提供源会发送一个 webhook 来通知外部服务新数据已经准备好可以被使用。开发人员编写了一个 AWS Lambda 函数，用于在公司接收 webhook 回调时检索数据。开发人员必须让 Lambda 函数可供第三方调用。\n哪种解决方案可以在操作上实现最高效率以满足要求？",
+ "options": [
+  "A. 为 Lambda 函数创建一个函数 URL。将 Lambda 函数的 URL 提供给第三方用于 webhook。",
+  "B. 在 Lambda 函数前部署一个应用负载均衡器（ALB）。将 ALB 的 URL 提供给第三方用于 webhook。",
+  "C. 创建一个Amazon Simple Notification Service（Amazon SNS）主题。将主题附加到 Lambda 函数。将 SNS 主题的公共主机名提供给第三方用于 webhook。",
+  "D. 创建一个Amazon Simple Queue Service（Amazon SQS）队列。将队列附加到 Lambda 函数。将 SQS 队列的公共主机名提供给第三方用于 webhook。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 中，直接为 Lambda 函数创建一个函数 URL，将这个 URL 提供给第三方作为 webhook，这是最直接和操作效率最高的方法，以满足第三方调用 Lambda 函数的需求。",
+  "AI解析": "AWS Lambda 函数 URL 允许直接通过 HTTP(S) 端点访问函数，无需配置 API Gateway 或其他服务。该功能专为需要简单、低延迟触发的场景设计，减少了架构复杂性和维护成本。相比之下，ALB 需要配置路由、目标组和可能的安全组规则，SNS 或 SQS 依赖中间服务且需要处理消息格式或队列轮询机制，增加了第三方集成的步骤。根据 AWS 文档，函数 URL 是无需 API Gateway 时快速暴露 Lambda 的最简方案。[A] 选项直接满足需求，其他选项引入不必要的组件。"
+ }
+}

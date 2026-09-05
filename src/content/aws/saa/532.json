@@ -1,0 +1,18 @@
+{
+ "qid": "1529125589",
+ "index": 532,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司将数据存储在 Amazon S3 中。根据规定，数据不得包含个人身份信息 (PII)。公司最近发现 S3 存储桶中有一些包含 PII 的对象。公司需要自动检测 S3 存储桶中的 PII，并通知公司的安全团队。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 使用 Amazon Macie。创建一个 Amazon EventBridge 规则，过滤 Macie 发现的敏感数据事件类型，并向安全团队发送 Amazon Simple Notification Service (Amazon SNS) 通知。",
+  "B. 使用 Amazon GuardDuty。创建一个 Amazon EventBridge 规则，过滤 GuardDuty 发现的关键事件类型，并向安全团队发送 Amazon Simple Notification Service (Amazon SNS) 通知。",
+  "C. 使用 Amazon Macie。创建一个 Amazon EventBridge 规则，过滤 Macie 发现的敏感数据:S3Object/Personal 事件类型，并向安全团队发送 Amazon Simple Queue Service (Amazon SQS) 通知。",
+  "D. 使用 Amazon GuardDuty。创建一个 Amazon EventBridge 规则，过滤 GuardDuty 发现的关键事件类型，并向安全团队发送 Amazon Simple Queue Service (Amazon SQS) 通知。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon Macie 是一种专门用于发现和保护数据的服务，可用于检测 S3 存储桶中的敏感信息。使用 Amazon EventBridge 规则过滤 Macie 发现的敏感数据事件类型，可通过 Amazon SNS 向安全团队发送通知。这种组合可以自动检测 S3 存储桶中的 PII，并通知安全团队进行进一步处理。",
+  "AI解析": "该题核心在于通过AWS服务自动检测S3存储桶中的敏感数据并触发通知。Amazon Macie专用于利用机器学习识别敏感数据（如PII），符合检测需求，而GuardDuty侧重威胁检测而非内容分析。EventBridge规则可监听Macie生成的敏感数据事件类型，过滤后通过SNS实现实时推送通知至安全团队，SQS则适用于异步消息队列场景。正确方案需结合Macie的事件触发机制与SNS的通知功能。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 52,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon Route 53中注册了其域名。该公司在ca-central-1地区使用Amazon API Gateway作为其后端微服务API的公共接口。第三方服务安全地使用这些API。公司希望设计其API Gateway URL，使用公司的域名和相应的证书，以便第三方服务可以使用HTTPS。",
+ "options": [
+  "A. 在API Gateway中创建阶段变量，名称为\"Endpoint-URL\"，值为\"Company Domain Name\"，以覆盖默认URL。将与公司域名相关的公共证书导入到AWS证书管理器（ACM）。",
+  "B. 在Route 53中创建DNS记录，使用公司的域名。将别名记录指向区域API Gateway阶段端点。将与公司域名相关的公共证书导入到us-east-1区域的AWS证书管理器（ACM）。",
+  "C. 创建一个区域API Gateway端点。将API Gateway端点与公司的域名相关联。将与公司域名相关的公共证书导入到相同区域的AWS证书管理器（ACM）。将证书附加到API Gateway端点。配置Route 53以将流量路由到API Gateway端点。",
+  "D. 创建一个区域API Gateway端点。将API Gateway端点与公司的域名相关联。将与公司域名相关的公共证书导入到us-east-1区域的AWS证书管理器（ACM）。将证书附加到API Gateway API。在Route 53中创建DNS记录，使用公司的域名。将A记录指向公司的域名。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "AWS服务集成中，配置API Gateway自定义域名需将证书导入同一区域的ACM，并创建Route 53记录指向API Gateway端点。AWS官方文档指出，区域API Gateway端点必须使用同一区域的ACM证书，且通过Route 53别名记录路由。选项C正确描述了该流程：创建区域端点，导入证书到同区域ACM，附加证书并配置DNS。选项B、D错误地指定了us-east-1区域证书，适用于边缘优化端点而非区域端点。选项A使用阶段变量无法满足自定义域名需求。"
+ }
+}

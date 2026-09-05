@@ -1,0 +1,17 @@
+{
+ "index": 238,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一名解决方案架构师需要为公司的应用程序设计一个新的微服务。客户端必须能够调用HTTPS端点来访问该微服务。该微服务还必须使用AWS Identity and Access Management（IAM）来验证调用。解决方案架构师将使用一个编写在Go 1.x中的单个AWS Lambda函数来实现这个微服务的逻辑。\n哪种解决方案将以操作效率最高的方式部署这个函数？",
+ "options": [
+  "A. 创建一个Amazon API Gateway REST API。配置方法以使用Lambda函数。在API上启用IAM身份验证。",
+  "B. 为函数创建Lambda函数URL。指定AWS_IAM作为身份验证类型。",
+  "C. 创建一个Amazon CloudFront分发。将函数部署到Lambda@Edge。将IAM身份验证逻辑集成到Lambda@Edge函数中。",
+  "D. 创建一个Amazon CloudFront分发。将函数部署到CloudFront Functions。指定AWS_IAM作为身份验证类型。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A建议创建一个Amazon API Gateway REST API，这将提供一个HTTPS端点，然后将方法配置为使用Lambda函数。还可以在API上启用IAM身份验证，以确保调用者经过身份验证才能访问该微服务。\n选项B提到创建Lambda函数URL，但未提供完整的解决方案，缺乏详细的IAM身份验证。\n选项C和D提到使用CloudFront分发，但这对于提供HTTPS端点和使用IAM身份验证不是必要的，而且增加了不必要的复杂性。\n因此，选项A是最操作效率最高的解决方案，因为它提供了一个全面的API Gateway，同时支持HTTPS和IAM身份验证。",
+  "AI解析": "本题聚焦AWS服务集成与身份验证机制的选择。核心知识点在于API Gateway与Lambda函数URL的权限控制差异。根据AWS架构最佳实践，启用IAM身份验证的API Gateway REST API（选项A）直接在前端处理HTTPS终端和签名验证，无需额外代码逻辑，天然支持微服务架构的API管理需求。Lambda函数URL（选项B）虽能实现基础认证，但缺乏API层级的精细化控制能力；CloudFront集成方案（C、D）需额外处理边缘节点身份验证逻辑，增加操作复杂度。正确方案需满足端到端HTTPS、集中式IAM验证与最小运维负担，故选A。"
+ }
+}

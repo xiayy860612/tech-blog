@@ -1,0 +1,18 @@
+{
+ "qid": "2949540302",
+ "index": 961,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司使用Amazon\nDynamoDB表来存储从设备接收到的数据。DynamoDB表支持一个面向客户的网站，以显示客户设备上的最新活动。公司为该表配置了预置的读取和写入吞吐量。\n公司希望每日计算客户设备数据的性能指标。解决方案必须对表的预置读取和写入容量产生最小的影响。\n哪个解决方案将满足这些要求？",
+ "options": [
+  "A. 使用Amazon Athena SQL查询，结合Amazon Athena DynamoDB连接器，以定期计算性能指标。",
+  "B. 使用AWS Glue作业，结合AWS Glue DynamoDB导出连接器，以定期计算性能指标。",
+  "C. 使用Amazon Redshift COPY命令以定期计算性能指标。",
+  "D. 使用Amazon EMR作业，结合Apache Hive外部表，以定期计算性能指标。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon Athena的优势：\nAmazon Athena是一项交互式查询服务，能够使用SQL对存储在Amazon S3中的数据进行查询。结合Amazon Athena的DynamoDB连接器，可以在不影响DynamoDB表的预置吞吐量的情况下，定期计算性能指标。这是因为Athena查询的底层数据存储在S3中，因此可以避免对DynamoDB表的直接读写操作。",
+  "AI解析": "Amazon Athena是一项无服务器查询服务，可直接分析Amazon S3中的数据，支持通过DynamoDB连接器读取表数据。AWS官方文档指出，Athena通过连接器访问DynamoDB时，利用扫描操作但可通过适当配置减少对预置吞吐量的消耗。选项A中的Athena结合连接器，能够直接查询DynamoDB或已导出至S3的历史数据，避免高频访问生产表。其他选项涉及AWS Glue、Redshift、EMR等工具，可能需持续读取DynamoDB或依赖额外导出步骤，增加吞吐量压力。"
+ }
+}

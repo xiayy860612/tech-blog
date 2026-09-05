@@ -1,0 +1,18 @@
+{
+ "qid": "1529124300",
+ "index": 379,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将其本地工作负载迁移到AWS云。该公司已经在使用多个Amazon EC2实例和Amazon RDS数据库实例。公司希望一个解决方案，能够在工作时间之外自动启动和停止EC2实例和数据库实例。解决方案必须最小化成本和基础设施维护。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用弹性调整（elastic resize）来扩展EC2实例。在工作时间之外将DB实例缩减到零。",
+  "B. 探索AWS Marketplace以寻找合作伙伴解决方案，可以根据时间表自动启动和停止EC2实例和DB实例。",
+  "C. 启动另一个EC2实例。配置一个crontab时间表来运行shell脚本，以按时间表启动和停止现有的EC2实例和DB实例。",
+  "D. 创建一个AWS Lambda函数，用于启动和停止EC2实例和DB实例。配置Amazon EventBridge以按时间表触发Lambda函数。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了自动启动和停止EC2实例和DB实例，最好的解决方案是使用AWS Lambda函数，然后使用Amazon EventBridge来按时间表触发Lambda函数。这种方式是高度自动化的，无需手动操作，可以根据时间表自动启动和停止资源，同时也能最小化成本和基础设施维护。其他选项可能需要更多手动操作或不如Lambda函数和EventBridge那样灵活和自动化。",
+  "AI解析": "AWS提供通过Lambda和EventBridge按计划自动启停EC2和RDS实例的方案。Lambda作为无服务器计算服务仅在函数执行时计费，EventBridge提供定时触发能力，无需维护基础设施。选项A错误，弹性调整适用于Redshift而非EC2/RDS，且RDS无法缩容到零；选项B引入第三方工具增加成本和管理；选项C需额外维护EC2实例。AWS官方文档推荐使用Lambda与EventBridge组合实现定时任务，符合最小化成本与维护的需求。"
+ }
+}

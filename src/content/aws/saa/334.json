@@ -1,0 +1,17 @@
+{
+ "index": 334,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在经历需求的突然增加。公司需要从Amazon Machine Image (AMI)创建大型Amazon EC2实例。这些实例将在一个Auto Scaling组中运行。公司需要一个解决方案，以提供最小的初始化延迟以满足需求。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用\"aws ec2 register-image\"命令从快照创建一个AMI。使用AWS Step Functions来替换Auto Scaling组中的AMI。",
+  "B. 在快照上启用Amazon Elastic Block Store (Amazon EBS)快速快照恢复功能。使用该快照来创建一个AMI。然后用新的AMI替换Auto Scaling组中的AMI。",
+  "C. 启用AMI的创建并在Amazon Data Lifecycle Manager (Amazon DLM)中定义生命周期规则。创建一个AWS Lambda函数来修改Auto Scaling组中的AMI。",
+  "D. 使用Amazon EventBridge来调用AWS Backup生命周期策略以创建AMI。在EventBridge中将Auto Scaling组的容量限制配置为事件源。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B中，启用Amazon Elastic Block Store (Amazon EBS)快速快照恢复功能可以快速创建AMI。这可以提供最小的初始化延迟，以满足需求，而无需复杂的额外配置或操作。其他选项涉及更多的手动配置和操作。",
+  "AI解析": "题目考察Amazon EC2和Auto Scaling组快速扩展时优化AMI初始化延迟的方法。来源包括Amazon EBS快速快照恢复（FSR）的官方文档。选项B通过启用FSR预先准备快照，加快从快照创建EBS卷的速度，减少实例启动时间。其他选项未直接解决快照恢复延迟问题，步骤或工具不针对初始化优化。正确答案B。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 197,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个媒体公司在本地收集和分析用户活动数据。公司希望将这项功能迁移到AWS。用户活动数据存储将继续增长，将达到PB级别。公司需要构建一个高可用的数据接入解决方案，以便通过SQL进行对现有数据和新数据的按需分析。\n哪种解决方案能够以最少的运维开销满足这些要求？",
+ "options": [
+  "A. 将活动数据发送到Amazon Kinesis数据流。配置数据流将数据传送到Amazon S3存储桶。",
+  "B. 将活动数据发送到Amazon Kinesis Data Firehose传送流。配置传送流将数据传送到Amazon Redshift集群。",
+  "C. 将活动数据放入Amazon S3存储桶。配置Amazon S3在数据到达存储桶时运行AWS Lambda函数。",
+  "D. 在多个可用区上部署Amazon EC2实例上的数据接入服务。配置服务将数据转发到Amazon RDS Multi-AZ数据库。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon Kinesis Data Firehose是一种托管的数据传送服务，可以将数据轻松地传送到Amazon Redshift集群，而不需要管理复杂的数据传送逻辑。\nAmazon Redshift是一种专用的数据仓库，支持SQL查询，非常适合用于对PB级别数据进行分析。\nAmazon S3和AWS Lambda可以组合使用，但需要更多的管理和配置来构建数据传送和数据处理逻辑。\n在多个可用区上部署Amazon EC2实例的方式需要更多的运维开销和复杂性。\n因此，答案B是满足要求且具有最少运维开销的解决方案。",
+  "AI解析": "题目考查AWS大数据分析架构设计，核心是实时数据接入与PB级分析能力。Amazon Kinesis Data Firehose作为全托管服务可自动扩展处理流数据，直接加载至Amazon Redshift数据仓库，后者专为PB级SQL分析优化且支持多节点并发计算。S3存储（选项A/C）需额外ETL处理且实时分析性能不足，EC2+RDS（选项D）存在运维负担且不适合海量数据分析。Redshift与Firehose的无缝集成实现低延迟数据注入与高性能查询，满足高可用和低运维需求。"
+ }
+}

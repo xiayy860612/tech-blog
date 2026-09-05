@@ -1,0 +1,18 @@
+{
+ "qid": "1529124330",
+ "index": 406,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在实施一个在AWS云中托管的游戏应用程序的共享存储解决方案。该公司需要能够使用Lustre客户端来访问数据。解决方案必须是完全托管的。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 创建一个AWS DataSync任务，将数据共享为可挂载的文件系统。将文件系统挂载到应用服务器。",
+  "B. 创建一个AWS Storage Gateway文件网关。创建一个使用所需客户端协议的文件共享。将应用服务器连接到文件共享。",
+  "C. 创建一个Amazon Elastic File System (Amazon EFS)文件系统，并配置它以支持Lustre。将文件系统连接到原始服务器。将应用服务器连接到文件系统。",
+  "D. 创建一个Amazon FSx for Lustre文件系统。将文件系统连接到原始服务器。将应用服务器连接到文件系统。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D建议创建Amazon FSx for Lustre文件系统，这是AWS的托管Lustre文件系统服务。FSx for Lustre专门设计用于高性能计算和文件共享工作负载，支持Lustre客户端，并且是一个完全托管的解决方案，非常适合游戏应用程序的共享存储需求。\n选项A提到使用AWS DataSync来共享数据，但它主要用于数据传输和同步，并不提供完全托管的文件系统。\n选项B提到使用AWS Storage Gateway文件网关，但它通常用于将本地存储与云存储集成，而不是提供完全托管的Lustre文件系统。\n选项C提到使用Amazon EFS文件系统，虽然EFS是AWS的托管文件系统服务，但它不直接支持Lustre客户端，因此不符合要求。Amazon FSx for Lustre是更适合Lustre客户端的解决方案。",
+  "AI解析": "AWS提供多种存储服务，其中Amazon FSx for Lustre是专为高性能计算（HPC）和大规模并行处理设计的完全托管服务，原生支持Lustre客户端协议。AWS DataSync（A）用于数据迁移而非持续性共享访问，Storage Gateway（B）支持SMB/NFS协议而非Lustre，Amazon EFS（C）基于NFS协议，无法直接支持Lustre客户端。只有FSx for Lustre（D）满足完全托管且兼容Lustre的要求。AWS官方文档明确指出，FSx for Lustre适用于需要高性能并行文件系统的场景，例如游戏渲染、机器学习训练等。"
+ }
+}

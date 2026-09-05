@@ -1,0 +1,17 @@
+{
+ "index": 261,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个公司计划为其多层 Web 应用程序使用 Amazon ElastiCache。解决方案架构师为 ElastiCache 集群创建了一个 Cache VPC，为应用程序的 Amazon EC2 实例创建了一个 App VPC。两个 VPC 都位于 us-east-1 区域。\n解决方案架构师必须实施一个解决方案，以使应用程序的 EC2 实例能够访问 ElastiCache 集群。\n哪种解决方案最具成本效益？",
+ "options": [
+  "A. 在 VPC 之间创建对等连接。在两个 VPC 中为对等连接添加路由表条目。配置 ElastiCache 集群的安全组入站规则，允许应用程序的安全组的入站连接。",
+  "B. 创建一个 Transit VPC。更新 Cache VPC 和 App VPC 中的 VPC 路由表，通过 Transit VPC 路由流量。配置 ElastiCache 集群的安全组入站规则，允许应用程序的安全组的入站连接。",
+  "C. 在 VPC 之间创建对等连接。在两个 VPC 中为对等连接添加路由表条目。配置对等连接的安全组入站规则，允许应用程序的安全组的入站连接。",
+  "D. 创建一个 Transit VPC。更新 Cache VPC 和 App VPC 中的 VPC 路由表，通过 Transit VPC 路由流量。配置 Transit VPC 的安全组入站规则，允许应用程序的安全组的入站连接。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 中，对等连接允许两个 VPC 直接通信，配置路由表和安全组使得应用程序的 EC2 实例可以与 ElastiCache 集群通信。这是一种成本效益较高的方法，不需要创建额外的 Transit VPC，并且直接使用对等连接就可以实现必要的通信。",
+  "AI解析": "Amazon ElastiCache 集群与应用程序 EC2 实例位于不同 VPC 时，需确保跨 VPC 通信。VPC 对等连接是一种直接且无带宽费用的互联方式，适用于同区域 VPC。建立对等连接后，双方 VPC 的路由表需添加指向对端的路由条目。ElastiCache 安全组需允许来自应用程序 EC2 所属安全组的入站流量，确保访问权限。Transit VPC 方案依赖第三方设备或 VPN，引入额外成本和管理复杂度，不符合成本最优原则。选项 C 错误在于安全组规则应配置在 ElastiCache 集群而非对等连接本身。AWS 官方文档强调 VPC 对等连接的低成本、低延迟特性，适合简单跨 VPC 通信场景。"
+ }
+}

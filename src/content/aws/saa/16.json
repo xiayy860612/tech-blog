@@ -1,0 +1,18 @@
+{
+ "qid": "1529122088",
+ "index": 16,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上托管了一个数据湖。数据湖包括存储在Amazon S3和Amazon RDS for PostgreSQL中的数据。公司需要一个报告解决方案，提供数据可视化，并包括数据湖中的所有数据源。只有公司的管理团队应该拥有对所有可视化的完全访问权限。公司的其余部分只能有有限的访问权限。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在Amazon QuickSight中创建一个分析。连接所有数据源并创建新数据集。发布可视化数据的仪表板。与适当的IAM角色共享仪表板。",
+  "B. 在Amazon QuickSight中创建一个分析。连接所有数据源并创建新数据集。发布可视化数据的仪表板。与适当的用户和组共享仪表板。",
+  "C. 为Amazon S3中的数据创建一个AWS Glue表和爬虫。创建一个AWS Glue提取、转换和加载（ETL）作业以生成报告。将报告发布到Amazon S3。使用S3桶策略限制对报告的访问。",
+  "D. 为Amazon S3中的数据创建一个AWS Glue表和爬虫。使用Amazon Athena Federated Query访问Amazon RDS for PostgreSQL中的数据。使用Amazon Athena生成报告。将报告发布到Amazon S3。使用S3桶策略限制对报告的访问。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "题目考查AWS数据可视化服务的权限控制机制。Amazon QuickSight支持多数据源整合（S3和RDS PostgreSQL），通过用户/组权限体系直接实现细粒度访问控制（管理团队完全访问、其他成员受限），无需依赖IAM角色或静态文件存储。选项C/D依赖ETL生成静态报告且权限管理基于S3策略，无法满足动态可视化需求；选项A使用IAM角色不符合用户组权限分层场景，故排除。"
+ }
+}

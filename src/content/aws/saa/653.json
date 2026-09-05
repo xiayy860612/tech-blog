@@ -1,0 +1,18 @@
+{
+ "qid": "1908084770",
+ "index": 653,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司最近将其Web应用程序迁移到AWS云。公司使用一个Amazon EC2实例来运行多个进程来托管应用程序。这些进程包括一个提供静态内容的Apache Web服务器。Apache Web服务器会向一个使用本地Redis服务器进行用户会话的PHP应用程序发出请求。\n公司希望重新设计架构，使其具有高可用性并使用AWS托管的解决方案。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS Elastic Beanstalk来托管静态内容和PHP应用程序。配置Elastic Beanstalk将其EC2实例部署到公共子网。分配一个公共IP地址。",
+  "B. 使用AWS Lambda来托管静态内容和PHP应用程序。使用Amazon API Gateway REST API代理请求到Lambda函数。设置API Gateway的CORS配置以响应域名。配置Amazon ElastiCache for Redis来处理会话信息。",
+  "C. 保留EC2实例上的后端代码。创建一个启用了Multi-AZ的Amazon ElastiCache for Redis集群。在集群模式下配置ElastiCache for Redis集群。将前端资源复制到Amazon S3。配置后端代码以引用EC2实例。",
+  "D. 配置一个Amazon CloudFront分布式系统，该系统具有指向托管静态内容的S3存储桶的S3端点。配置一个Application Load Balancer，该负载均衡器针对运行AWS Fargate任务的Amazon Elastic Container Service（Amazon ECS）服务。配置PHP应用程序使用在多个可用性区域中运行的Amazon ElastiCache for Redis集群。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D中的方案使用了多种AWS托管服务，以实现高可用性和可扩展性。\nAmazon CloudFront用于提供全球分布的静态内容。\nAmazon S3用于存储静态内容。\nApplication Load Balancer用于分发流量，并且它的目标是Amazon ECS服务，该服务在AWS Fargate上运行PHP应用程序。\nAmazon ElastiCache for Redis用于处理会话信息，并且已配置在多个可用性区域中。\n其他选项：\n选项A中使用了Elastic Beanstalk，但它没有涉及静态内容的全球分发，也没有使用Amazon ElastiCache for Redis。\n选项B中使用了AWS Lambda和Amazon API Gateway，但没有考虑静态内容的全球分发，而且使用了Amazon ElastiCache for Redis来处理会话信息。\n选项C保留了EC2实例，没有使用AWS托管服务，而且在集群模式下配置了ElastiCache for Redis，但没有全球分发静态内容。",
+  "AI解析": "题目核心在于通过AWS全托管服务实现高可用架构。静态内容分离至S3并通过CloudFront分发符合最佳实践，ECS Fargate搭配ALB实现无服务器容器化应用自动扩缩容，消除EC2单点故障；ElastiCache跨多可用区集群模式替代本地Redis，保障会话数据高可用。选项D整合了分层解耦、托管服务及多AZ冗余，全面满足要求。其他选项或保留单点风险（C）、未完全脱离服务器管理（A），或架构适配性不足（B）。"
+ }
+}

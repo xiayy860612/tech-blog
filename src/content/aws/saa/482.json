@@ -1,0 +1,18 @@
+{
+ "qid": "1529124406",
+ "index": 482,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司将在Windows容器下运行的.NET 6框架的作业进行容器化。该公司希望在AWS云中运行此作业。该作业每10分钟运行一次，运行时间在1分钟到3分钟之间变化。\n哪种解决方案在成本上最具效益地满足这些要求？",
+ "options": [
+  "A. 基于作业的容器镜像创建AWS Lambda函数。配置Amazon EventBridge每10分钟调用该函数。",
+  "B. 使用AWS Batch创建一个使用AWS Fargate资源的作业。配置作业调度以每10分钟运行一次。",
+  "C. 使用Amazon Elastic Container Service（Amazon ECS）在AWS Fargate上运行该作业。基于作业的容器镜像创建一个每10分钟运行的计划任务。",
+  "D. 使用Amazon Elastic Container Service（Amazon ECS）在AWS Fargate上运行该作业。基于作业的容器镜像创建一个独立任务。使用Windows任务计划程序每10分钟运行该作业。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "在成本效益方面，选项C是最佳选择。使用Amazon ECS on AWS Fargate可按需运行容器，并且无需管理基础设施。创建一个基于作业的容器镜像，然后设置一个在Amazon ECS上运行的计划任务，使作业每10分钟运行一次。这种方法能够有效利用资源，并在需要时启动容器，避免了持续运行成本，并且可以灵活地适应作业运行时间的变化。",
+  "AI解析": "AWS的服务选型需结合场景需求和成本考量。题目中的作业频繁低且运行时间短，容器化部署需适配调度机制。AWS Fargate属于无服务器计算，按任务执行时间和资源消耗计费，适用于无需管理基础设施的场景。Amazon ECS支持定时任务，直接集成无需额外调度工具。选项C通过ECS Fargate的计划任务，精确匹配每10分钟执行需求，仅在任务运行时计费，避免了常驻资源的开销。其他选项涉及Lambda的容器限制、AWS Batch的复杂性或EC2实例的持续成本，均不如选项C高效经济。AWS官方文档强调ECS Scheduled Tasks与Fargate组合适用于定时、短时任务，确保成本优化。"
+ }
+}

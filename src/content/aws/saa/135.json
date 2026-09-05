@@ -1,0 +1,17 @@
+{
+ "index": 135,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用三层Web应用程序为新员工提供培训。该应用程序每天仅访问12小时。公司正在使用Amazon RDS for MySQL DB实例存储信息，希望最小化成本。\n解决方案架构师应该采取什么措施以满足这些要求？",
+ "options": [
+  "A. 配置AWS Systems Manager Session Manager的IAM策略。创建一个IAM角色以供策略使用。更新角色的信任关系。为DB实例设置自动启动和停止。",
+  "B. 创建一个Amazon ElastiCache for Redis缓存集群，使用户能够在DB实例停止时从缓存中访问数据。在DB实例启动后使缓存无效。",
+  "C. 启动一个Amazon EC2实例。创建一个允许访问Amazon RDS的IAM角色。将角色附加到EC2实例。配置一个cron作业以在所需的时间表上启动和停止EC2实例。",
+  "D. 创建AWS Lambda函数来启动和停止DB实例。创建Amazon EventBridge（Amazon CloudWatch Events）计划规则以调用Lambda函数。将Lambda函数配置为规则的事件目标。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "考核知识点：AWS成本优化策略，Amazon RDS自动化管理。来源：《AWS Well-Architected Framework》及Amazon RDS文档。选项D通过无服务器架构（Lambda+EventBridge）定时启停RDS实例，无需持续运行，节省费用。选项A涉及Session Manager，不直接关联RDS启停；选项B使用ElastiCache会增加复杂度且需求不匹配；选项C依赖EC2实例运行cron任务，产生额外费用。选项D符合最小化成本目标，利用AWS托管服务实现自动化。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 159,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一名解决方案架构师需要安全地存储一个应用程序用来访问Amazon RDS数据库实例的数据库用户名和密码。访问数据库的应用程序运行在Amazon EC2实例上。解决方案架构师希望在AWS Systems Manager Parameter Store中创建一个安全参数。\n为了满足这个要求，解决方案架构师应该采取什么措施？",
+ "options": [
+  "A. 创建一个IAM角色，该角色具有对Parameter Store参数的读取权限。允许解密一个用于加密参数的AWS密钥管理服务 (AWS KMS) 密钥的访问。将此IAM角色分配给EC2实例。",
+  "B. 创建一个IAM策略，允许对Parameter Store参数进行读取访问。允许解密一个用于加密参数的AWS密钥管理服务 (AWS KMS) 密钥的访问。将此IAM策略分配给EC2实例。",
+  "C. 在Parameter Store参数和EC2实例之间创建一个IAM信任关系。在信任策略中指定Amazon RDS作为主体。",
+  "D. 在DB实例和EC2实例之间创建一个IAM信任关系。在信任策略中指定Systems Manager作为主体。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了在EC2实例上安全存储数据库用户名和密码，最佳做法是创建一个IAM角色，该角色具有对Parameter Store参数的读取权限，并且允许解密用于加密参数的AWS KMS密钥的访问。这种方法确保了安全的参数存储和访问，而无需将敏感数据硬编码到EC2实例中。选项A描述了这个过程，而其他选项涉及不必要的信任关系或复杂性。",
+  "AI解析": "题目涉及安全存储数据库凭证的核心机制，需同时满足Parameter Store参数访问权限和KMS密钥解密权限。根据AWS权限模型，EC2实例通过IAM角色而非直接策略获取临时凭证，角色需包含ssm:GetParameter权限及kms:Decrypt权限以访问加密参数。选项A通过角色授权实现最小权限原则，而选项B错误地将策略直接附加实例，C/D混淆信任关系主体。正确答案为A。"
+ }
+}

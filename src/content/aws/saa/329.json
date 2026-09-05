@@ -1,0 +1,17 @@
+{
+ "index": 329,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司计划将数据存储在Amazon RDS数据库实例上。该公司必须对数据进行静态加密。\n为满足此要求，解决方案架构师应该执行以下哪项操作？",
+ "options": [
+  "A. 在AWS Key Management Service（AWS KMS）中创建一个密钥。为数据库实例启用加密。",
+  "B. 创建一个加密密钥。将密钥存储在AWS Secrets Manager中。使用密钥加密数据库实例。",
+  "C. 在AWS Certificate Manager（ACM）中生成证书。使用该证书启用数据库实例上的SSL/TLS。",
+  "D. 在AWS Identity and Access Management（IAM）中生成证书。使用该证书启用数据库实例上的SSL/TLS。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "要在Amazon RDS数据库实例上进行数据静态加密，最佳做法是创建一个在AWS Key Management Service（AWS KMS）中托管的密钥，并为数据库实例启用加密。AWS KMS是AWS的密钥管理服务，可用于加密数据、保护密钥并确保数据的安全性。选项B提到存储密钥在AWS Secrets Manager中，但不提到加密数据库实例。选项C和D提到SSL/TLS证书，用于加密数据传输，但不是对数据进行静态加密的解决方案。因此，最佳答案是选项A。",
+  "AI解析": "Amazon RDS的静态加密功能要求使用AWS KMS管理的密钥。在创建数据库实例时，启用加密并关联KMS密钥是必要步骤。AWS官方文档指出，RDS加密通过KMS集成实现，且无法在实例创建后追加静态加密。选项B错误，因Secrets Manager用于凭证管理而非数据加密密钥；选项C和D涉及传输层加密（SSL/TLS），与静态加密无关。选项A符合AWS推荐的静态加密实践。"
+ }
+}

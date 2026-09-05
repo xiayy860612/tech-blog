@@ -1,0 +1,18 @@
+{
+ "qid": "2949540244",
+ "index": 903,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司有一个应用程序，用户用它来上传图像到Amazon S3存储桶。每晚，公司启动一个Amazon EC2 Spot Fleet来处理当天收到的所有图像。处理每张图像需要2分钟和512 MB的内存。解决方案架构师需要更改应用程序，使其在图像上传时处理这些图像。\n哪种更改能最具成本效益地满足这些要求？",
+ "options": [
+  "A. 使用S3事件通知将带有图像详细信息的消息写入Amazon Simple Queue Service (Amazon SQS)队列。配置一个AWS Lambda函数从队列中读取消息并处理图像。",
+  "B. 使用S3事件通知将带有图像详细信息的消息写入Amazon Simple Queue Service (Amazon SQS)队列。配置一个EC2预留实例从队列中读取消息并处理图像。",
+  "C. 使用S3事件通知将带有图像详细信息的消息发布到Amazon Simple Notification Service (Amazon SNS)主题。配置一个Amazon Elastic Container Service (Amazon ECS)中的容器实例订阅该主题并处理图像。",
+  "D. 使用S3事件通知将带有图像详细信息的消息发布到Amazon Simple Notification Service (Amazon SNS)主题。配置一个AWS Elastic Beanstalk应用程序订阅该主题并处理图像。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "使用S3事件通知和Amazon SQS队列，可以在图像上传时触发处理。AWS Lambda是处理这些事件的最佳选择，因为它支持按需扩展并且只在实际处理时计费。每张图像只需2分钟和512 MB的内存，这在Lambda的限制范围内，因此可以有效利用Lambda的短暂计算能力。而且，与需要持续运行和管理的EC2实例相比，Lambda函数的成本更低，管理开销也更少。因此，选择A是最具成本效益的解决方案。",
+  "AI解析": "本题聚焦实时图像处理场景下AWS无服务器架构的成本优化。核心机制在于通过S3事件通知触发消息队列，结合Lambda无服务器计算实现按需处理。SQS队列保障消息可靠传递并解耦上传与处理流程，Lambda根据队列深度自动扩展实例，按执行时长计费且无闲置成本，完美匹配突发、间歇性任务。相比预留实例（固定成本）、ECS/Beanstalk（需维护基础设施），该方案通过事件驱动架构实现毫秒级响应与精确到每请求的计费模式，成本效益最优。"
+ }
+}

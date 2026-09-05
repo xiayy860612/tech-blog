@@ -1,0 +1,18 @@
+{
+ "qid": "2264604774",
+ "index": 803,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个Amazon\nS3数据湖。公司需要一个解决方案，每天将数据从数据湖转换并加载到数据仓库中。数据仓库必须具有大规模并行处理（MPP）能力。然后数据分析师需要使用SQL命令在数据上创建和训练机器学习（ML）模型。解决方案必须尽可能使用无服务器的AWS服务。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 运行每日Amazon EMR作业来转换数据并将数据加载到Amazon Redshift中。使用Amazon Redshift ML来创建和训练ML模型。",
+  "B. 运行每日Amazon EMR作业来转换数据并将数据加载到Amazon Aurora Serverless中。使用Amazon Aurora ML来创建和训练ML模型。",
+  "C. 运行每日AWS Glue作业来转换数据并将数据加载到Amazon Redshift Serverless中。使用Amazon Redshift ML来创建和训练ML模型。",
+  "D. 运行每日AWS Glue作业来转换数据并将数据加载到Amazon Athena表中。使用Amazon Athena ML来创建和训练ML模型。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提供了最佳的解决方案。它使用了AWS\nGlue来转换数据并将数据加载到Amazon Redshift Serverless中，利用了无服务器的AWS Glue服务和Amazon Redshift的大规模并行处理（MPP）能力。随后，使用Amazon Redshift ML来创建和训练ML模型，这也是一个无服务器的服务，可以直接在Redshift中进行机器学习建模。其他选项涉及到Amazon EMR和Amazon Aurora，不符合无服务器的要求。",
+  "AI解析": "该题目考查对AWS无服务器ETL、MPP数据仓库及SQL机器学习集成的理解。AWS官方文档指出，AWS Glue为无服务器数据集成服务，适合定期转换和加载任务。题目要求数据仓库具备MPP能力，Amazon Redshift Serverless采用MPP架构且无需管理基础设施。Redshift ML支持通过SQL直接创建和训练模型，与SageMaker集成。选项C使用Glue和Redshift Serverless符合无服务器要求，同时Redshift ML满足机器学习需求。选项D的Athena主要用于查询S3数据，不支持数据仓库的存储需求；选项A、B涉及非无服务器组件。"
+ }
+}

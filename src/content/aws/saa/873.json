@@ -1,0 +1,18 @@
+{
+ "qid": "2264604844",
+ "index": 873,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在 AWS 云中托管其应用程序。该应用程序在一个 Elastic Load Balancing (ELB) 负载均衡器后面的\nAmazon EC2 实例中运行，这些实例位于一个自动扩展组中。该应用程序连接到一个 Amazon\nDynamoDB 表。\n为了灾难恢复（DR）目的，公司希望确保在另一个 AWS 区域中最小化停机时间地提供应用程序。\n以下哪种解决方案将在最小化停机时间的情况下满足这些要求？",
+ "options": [
+  "A. 在 DR 区域创建一个自动扩展组和一个 ELB。将 DynamoDB 表配置为全局表。配置 DNS 故障转移以指向新的 DR 区域 ELB。",
+  "B. 创建一个 AWS CloudFormation 模板，以在必要时创建 EC2 实例、ELB 和 DynamoDB 表。配置 DNS 故障转移以指向新的 DR 区域 ELB。",
+  "C. 创建一个 AWS CloudFormation 模板，以在必要时创建 EC2 实例和一个 ELB。将 DynamoDB 表配置为全局表。配置 DNS 故障转移以指向新的 DR 区域 ELB。",
+  "D. 在 DR 区域创建一个自动扩展组和一个 ELB。将 DynamoDB 表配置为全局表。使用 10 分钟的评估周期创建一个 Amazon CloudWatch 警报，以调用一个 AWS Lambda 函数来更新 Amazon Route 53，指向 DR 区域的 ELB。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了实现灾难恢复 (DR) 并保证应用程序在另一个 AWS 区域可用，需要确保在故障发生时能够迅速切换到备用区域，同时保持数据的一致性和可用性。\n选项分析：\n选项 A：在 DR 区域创建 Auto Scaling 组和 ELB，确保备用区域的应用程序实例可以自动扩展和负载均衡。\n配置 DynamoDB 表为全局表，确保数据在多个区域间同步，提供高可用性和低延迟的数据访问。配置 DNS 故障转移到 DR 区域的\nELB，确保在主区域故障时流量可以快速切换到备用区域。\n该方案能够在主区域发生故障时最小化停机时间，因此是最佳选择。\n选项 B：使用 AWS\nCloudFormation 模板在必要时创建资源，这意味着在灾难发生后才开始启动资源，无法实现最小停机时间。\n在故障发生后再启动实例和配置资源会导致显著的延迟。\n选项 C：虽然 DynamoDB 表配置为全局表能够确保数据同步，但在故障发生后才启动实例和 ELB，仍然会导致较长的停机时间。\n选项 D：创建一个 Auto\nScaling 组和 ELB 以及将 DynamoDB 表配置为全局表是正确的。\n使用 CloudWatch 警报和\nLambda 函数来更新 Route 53的 DNS 记录存在延迟问题，评估周期和触发 Lambda 函数的时间加起来会增加停机时间。\n综合考虑，选项 A 提供了在 DR 区域预先配置好所有必要的资源，并通过 DNS 故障转移实现快速切换，能够最小化停机时间，确保应用程序的高可用性。因此，选项A是最优解。",
+  "AI解析": "Elastic Load Balancing (ELB)、Amazon EC2 Auto Scaling 和 Amazon DynamoDB 全局表是 AWS 多区域高可用架构的核心组件。AWS 全球基础设施文档提到，DynamoDB 全局表通过多区域复制提供低延迟的灾难恢复能力。选项 D 在灾难恢复区域提前部署了 Auto Scaling 组和 ELB，确保计算层随时可用。DynamoDB 全局表保证数据层跨区域同步。通过 CloudWatch 警报周期性地评估主区域可用性，触发 Lambda 更新 Route 53 的 DNS 记录，实现自动故障切换。这种方式避免了选项 A/C 依赖 DNS TTL 导致的延迟，也比选项 B 缺少实时数据同步更可靠。利用 Lambda 自动化切换而非手动操作（如选项 B/C 依赖模板创建资源），进一步缩短了恢复时间。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 172,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在一大批Amazon EC2实例上运行一个应用程序。该应用程序读取并写入Amazon DynamoDB表中的条目。DynamoDB表的大小不断增长，但应用程序仅需要最近30天的数据。公司需要一种既能最小化成本又能减少开发工作量的解决方案。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用AWS CloudFormation模板部署完整解决方案。每30天重新部署CloudFormation堆栈，并删除原始堆栈。",
+  "B. 使用一个运行AWS Marketplace中的监控应用程序的EC2实例。配置监控应用程序以使用Amazon DynamoDB Streams存储在表中创建新条目的时间戳。使用运行在EC2实例上的脚本删除时间戳早于30天的项目。",
+  "C. 配置Amazon DynamoDB Streams在表中创建新项目时触发AWS Lambda函数。配置Lambda函数以删除表中30天前的项目。",
+  "D. 扩展应用程序以在创建表中的新项目时添加一个具有当前时间戳加30天值的属性。配置DynamoDB以使用该属性作为TTL属性。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "D选项正确。Amazon DynamoDB的TTL（Time to Live）功能允许自动删除过期项目，无需额外开发或维护资源。TTL通过设置属性指定数据的过期时间，DynamoDB后台自动处理删除操作，符合最小化成本和开发量的要求。其他选项如A的重新部署堆栈会导致数据管理复杂，B和C依赖外部脚本或Lambda函数增加了维护成本及潜在性能问题。DynamoDB官方文档明确推荐使用TTL管理数据生命周期，属于最佳实践。"
+ }
+}

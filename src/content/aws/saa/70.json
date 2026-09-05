@@ -1,0 +1,17 @@
+{
+ "index": 70,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司每天从位于同一工厂的多台机器接收10 TB的仪器数据。这些数据是存储在工厂内的本地数据中心中的存储区域网络（SAN）上的JSON文件。公司希望将这些数据发送到Amazon S3，以便可以被几个提供关键的准实时分析的其他系统访问。由于数据被视为敏感数据，因此安全传输非常重要。\n哪种解决方案提供了最可靠的数据传输？",
+ "options": [
+  "A. 通过公共互联网使用AWS DataSync",
+  "B. 通过AWS Direct Connect使用AWS DataSync",
+  "C. 通过公共互联网使用AWS Database Migration Service (AWS DMS)",
+  "D. 通过AWS Direct Connect使用AWS Database Migration Service (AWS DMS)"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了确保最可靠的数据传输，特别是在处理敏感数据时，通过AWS Direct Connect使用AWS DataSync是最佳选择。AWS Direct Connect提供了一个专用的网络连接，可以提供更高的带宽、更低的延迟和更可靠的连接，与通过公共互联网传输相比，更适合传输大量数据。\nAWS DataSync是一种数据传输服务，专门用于将数据从本地位置传输到AWS。通过AWS Direct Connect，您可以建立一个专用的、可靠的网络连接，用于数据传输，这对于处理大量数据是至关重要的。\n其他选项（AC和D）涉及使用公共互联网，这在可靠性和数据传输速度方面可能不如AWS Direct Connect + DataSync组合。",
+  "AI解析": "AWS DataSync专为大规模数据传输优化，支持自动加密、增量传输，适合迁移本地存储（如SAN）至Amazon S3的场景。AWS Direct Connect提供专用网络连接，避免公共互联网风险，确保传输安全可靠。使用DataSync结合Direct Connect满足敏感数据的安全性和准实时需求。AWS DMS主要用于数据库迁移，非文件传输场景。参考AWS官方数据传输服务文档及最佳实践架构。选项A、C涉及公共互联网，不符合安全要求；选项D的DMS不适用于JSON文件迁移；选项B正确。"
+ }
+}

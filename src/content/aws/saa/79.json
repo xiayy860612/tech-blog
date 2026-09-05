@@ -1,0 +1,17 @@
+{
+ "index": 79,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有多个Web服务器，需要频繁访问一个共享的Amazon RDS MySQL Multi-AZ DB实例。公司希望为Web服务器提供一个安全的方法来连接到数据库，同时满足定期轮换用户凭据的安全要求。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 将数据库用户凭据存储在AWS Secrets Manager中。授予Web服务器访问AWS Secrets Manager所需的IAM权限。",
+  "B. 将数据库用户凭据存储在AWS Systems Manager OpsCenter中。授予Web服务器访问OpsCenter所需的IAM权限。",
+  "C. 将数据库用户凭据存储在安全的Amazon S3存储桶中。授予Web服务器检索凭据和访问数据库所需的IAM权限。",
+  "D. 将数据库用户凭据存储在Web服务器文件系统上使用AWS Key Management Service（AWS KMS）加密的文件中。Web服务器应能够解密文件并访问数据库。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS Secrets Manager是专门用于存储和管理敏感凭据、如数据库密码、API密钥和其他机密的AWS服务。使用AWS Secrets Manager可以轻松地存储数据库用户凭据，并且满足了定期轮换用户凭据的要求。通过将IAM权限授予Web服务器，您可以安全地允许它们访问存储在Secrets Manager中的凭据，而无需将凭据硬编码在应用程序中。\n其他选项不如选项A安全且不满足定期轮换用户凭据的要求：\n选项B中的AWS Systems Manager OpsCenter并不适用于存储数据库凭据，而是用于运维、监控和故障排除的工具。\n选项C中，将凭据存储在Amazon S3中可能不是最安全的方式，并且无法提供凭据轮换功能。\n选项D中，将凭据存储在Web服务器文件系统上可能会导致凭据泄漏的风险，不容易轮换凭据。因此，选项A是最佳选择。",
+  "AI解析": "AWS的安全服务体系中，Secrets Manager专为敏感信息如数据库凭证设计，提供自动轮换、加密存储功能。题目要求安全连接且定期轮换凭据，对应AWS文档中关于凭证管理的最佳实践。选项A通过IAM策略控制访问权限，确保Web服务器仅能通过Secrets Manager获取动态更新的凭证。选项B的OpsCenter不处理密钥管理；选项C的S3缺少原生凭据轮换机制；选项D依赖手动管理，不符合自动化要求。正确选项符合AWS架构原则中“使用专门服务管理机密”的指导。"
+ }
+}

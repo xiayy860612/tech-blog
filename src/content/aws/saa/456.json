@@ -1,0 +1,18 @@
+{
+ "qid": "1529124380",
+ "index": 456,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家使用AWS的公司正在构建一个应用程序，用于将数据传输给制造商。该公司拥有自己的身份提供者（IdP）。公司希望IdP在用户使用应用程序传输数据时对应用程序用户进行身份验证。公司必须使用Applicability Statement 2（AS2）协议。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS DataSync来传输数据。创建一个用于IdP身份验证的AWS Lambda函数。",
+  "B. 使用Amazon AppFlow工作流来传输数据。创建一个用于IdP身份验证的Amazon Elastic Container Service（Amazon ECS）任务。",
+  "C. 使用AWS Transfer Family来传输数据。创建一个用于IdP身份验证的AWS Lambda函数。",
+  "D. 使用AWS存储网关来传输数据。创建一个用于IdP身份验证的Amazon Cognito身份池。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C中，AWS Transfer Family（AWS传输家族）是AWS用于安全文件传输的服务，支持多种协议，包括AS2。您可以创建一个用于IdP身份验证的AWS Lambda函数，以便在用户使用应用程序传输数据时进行身份验证。\n选项A中，AWS DataSync是用于数据传输的服务，但没有提到IdP身份验证。\n选项B中，Amazon AppFlow主要用于数据集成，而不是AS2数据传输。Amazon ECS任务也没有提到与IdP身份验证相关的内容。\n选项D中，AWS存储网关用于存储集成，而不是AS2数据传输，而Amazon Cognito身份池通常用于Web应用程序的身份验证，与AS2传输无关。\n因此，选项C是满足要求的最佳解决方案，因为它结合了AS2数据传输和IdP身份验证。",
+  "AI解析": "AWS服务中，AS2协议支持由AWS Transfer Family提供，其可与自定义身份验证集成。AWS文档指出，Transfer Family支持AS2协议，并允许使用Lambda函数进行身份验证，从而对接外部IdP。选项A的DataSync不支持AS2；选项B的AppFlow用于SaaS集成，非AS2；选项D的存储网关不支持AS2。选项C正确，Transfer Family符合AS2要求，Lambda实现IdP集成。"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "qid": "1529124381",
+ "index": 457,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一位解决方案架构师正在为一个现金返还服务设计Amazon API Gateway中的REST API。该应用程序需要1 GB内存和2 GB存储用于其计算资源。该应用程序要求数据以关系格式存储。\n哪种附加的AWS服务组合将以最少的管理工作满足这些要求？（选择两个）",
+ "options": [
+  "A. Amazon EC2",
+  "B. AWS Lambda",
+  "C. Amazon RDS",
+  "D. Amazon DynamoDB",
+  "E. Amazon Elastic Kubernetes Services（Amazon EKS）"
+ ],
+ "answer": {
+  "正确答案": "BC",
+  "解析": null,
+  "AI解析": "该题考察AWS无服务器架构与托管关系数据库服务的应用场景。根据AWS最佳实践，当需要最小化管理工作时，AWS Lambda提供无需管理服务器的计算能力，与API Gateway无缝集成，适合处理REST API请求。Amazon RDS作为托管式关系数据库服务，支持多种数据库引擎，无需处理底层基础设施维护，符合应用对关系型数据存储的需求。选项A和E涉及服务器或集群管理，增加运维负担；选项D为非关系型数据库，不满足数据存储要求。AWS文档中强调了Lambda和RDS在减少运维复杂性方面的优势。"
+ }
+}

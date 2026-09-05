@@ -1,0 +1,17 @@
+{
+ "index": 115,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在AWS云中运行容器化应用程序，这些应用程序是无状态的并且能够容忍底层基础设施的中断。公司需要一种既能降低成本又能降低操作开销的解决方案。\n解决方案架构师应该采取什么措施来满足这些要求？",
+ "options": [
+  "A. 使用Spot实例在Amazon EC2自动扩展组中运行应用程序容器。",
+  "B. 使用Spot实例在Amazon Elastic Kubernetes Service（Amazon EKS）托管的节点组中运行应用程序容器。",
+  "C. 使用按需实例在Amazon EC2自动扩展组中运行应用程序容器。",
+  "D. 使用按需实例在Amazon Elastic Kubernetes Service（Amazon EKS）托管的节点组中运行应用程序容器。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为满足这些要求，最佳做法是使用选项B，即在Amazon Elastic Kubernetes Service（Amazon EKS）托管的节点组中使用Spot实例来运行应用程序容器。\nAmazon EKS是AWS托管的Kubernetes服务，而Spot实例是AWS提供的廉价的实例类型，适合无状态的工作负载，并且通常具有更低的成本。由于应用程序是无状态的，可以容忍底层基础设施的中断，因此使用Spot实例可以显著降低成本。此外，Amazon EKS简化了Kubernetes集群的管理，减少了操作开销。\n其他选项（A C和D）要么没有使用Spot实例以最小化成本，要么没有结合Amazon EKS以降低操作开销。因此，选项B是最适合的选择。",
+  "AI解析": "题目考察在AWS部署容器化应用时如何平衡成本、容错性及运维复杂度。AWS文档指出，Spot实例适合容错型工作负载且显著降低成本。Amazon EKS作为托管服务，自动处理节点配置和扩展，降低了运营开销。选项B结合Spot实例的成本优势与EKS的自动化管理，节点组自动替换中断实例，满足无状态应用需求。而EC2方案（选项A/C）需手动管理集群，运维成本较高；按需实例（选项D）成本高于Spot。"
+ }
+}

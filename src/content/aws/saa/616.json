@@ -1,0 +1,19 @@
+{
+ "qid": "1908084733",
+ "index": 616,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司希望将其本地数据中心迁移到AWS。数据中心托管了一个存储服务器，该服务器将数据存储在基于NFS的文件系统中。存储服务器包含200 GB的数据。公司需要无中断地迁移数据到现有服务。AWS中的多个资源必须能够使用NFS协议访问数据。\n哪种组合的步骤可以最经济地满足这些要求？（选择两个。）",
+ "options": [
+  "A. 创建Amazon FSx for Lustre文件系统。",
+  "B. 创建Amazon Elastic File System (Amazon EFS)文件系统。",
+  "C. 创建一个Amazon S3存储桶来接收数据。",
+  "D. 手动使用操作系统复制命令将数据传输到AWS目标。",
+  "E. 在本地数据中心安装AWS DataSync代理。在本地位置和AWS之间使用DataSync任务。"
+ ],
+ "answer": {
+  "正确答案": "BE",
+  "解析": "最经济的组合步骤是：\nB 创建Amazon Elastic File System (Amazon EFS)文件系统：Amazon EFS是一个托管的文件存储服务，支持NFS协议。您可以创建一个Amazon EFS文件系统，然后将数据从本地存储服务器复制到Amazon EFS文件系统中。Amazon EFS支持多个AWS资源通过NFS访问相同的文件系统。\nE 在本地数据中心安装AWS DataSync代理并使用DataSync任务：AWS DataSync是用于数据迁移的托管服务，支持将数据从本地到AWS的无中断、高性能传输。您可以在本地数据中心安装DataSync代理，创建DataSync任务来将数据传输到AWS。这允许您以高效的方式将数据迁移到AWS，而不会中断现有服务。\n其他选项的一些问题：\nA Amazon FSx for Lustre适用于高性能计算工作负载，但可能不是最经济的选择，因为它主要针对不同类型的工作负载。\nC 创建Amazon S3存储桶可以用于存储数据，但如果需要通过NFS访问数据，那么需要使用Amazon EFS或DataSync来实现。\nD 手动使用操作系统复制命令将数据传输可能会导致中断，且不够经济。 DataSync和Amazon EFS都提供了更可控和高性能的数据迁移选项。",
+  "AI解析": "本题核心在于同时满足NFS协议支持和高效经济的数据迁移。Amazon EFS是AWS原生支持NFSv4协议的文件存储服务，可直接对接多资源访问；AWS DataSync专为大规模数据迁移设计，通过增量传输和压缩技术实现无中断迁移，成本低于手动操作。其他选项中，FSx for Lustre不兼容NFSv4，S3需额外网关才能实现NFS访问，手动复制无法保证迁移连续性。"
+ }
+}

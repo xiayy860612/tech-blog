@@ -1,0 +1,18 @@
+{
+ "qid": "2949540264",
+ "index": 923,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS云中运行所有业务应用程序。该公司使用AWS Organizations来管理多个AWS账户。解决方案架构师需要审查授予IAM用户的所有权限，以确定哪些IAM用户拥有超过所需的权限。\n哪种解决方案可以在管理工作量最少的情况下满足这些要求？",
+ "options": [
+  "A. 使用Network Access Analyzer审查公司AWS账户中的所有访问权限。",
+  "B. 创建AWS CloudWatch警报，当IAM用户在AWS账户中创建或修改资源时激活警报。",
+  "C. 使用AWS Identity And Access Management (IAM) Access Analyzer审查公司的所有资源和账户。",
+  "D. 使用Amazon Inspector查找现有IAM策略中的漏洞。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "IAM Access Analyzer：IAM Access Analyzer是一个AWS工具，可以帮助你审查IAM权限并找出授予IAM用户、角色或服务账户的权限是否超出了所需的范围。它可以帮助你识别潜在的过度权限，从而进行必要的权限调整。IAM Access Analyzer提供了一个集中式视图来评估和改进权限策略，具有最少的管理工作量。",
+  "AI解析": "本题考察AWS权限审计工具的核心应用场景，IAM Access Analyzer专为识别跨账户/资源过度权限设计，通过自动分析策略中实际权限与资源暴露范围的关系，直接定位冗余授权。相较之下，Network Access Analyzer聚焦网络层策略（选项A），CloudWatch警报仅追踪配置变更（选项B），Inspector侧重安全漏洞检测（选项D），均不匹配权限审计的核心需求。正确答案C通过服务原生功能实现最小管理成本下的权限审查。"
+ }
+}

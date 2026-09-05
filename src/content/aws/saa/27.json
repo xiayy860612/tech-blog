@@ -1,0 +1,18 @@
+{
+ "qid": "1529122100",
+ "index": 27,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将应用程序迁移到AWS。这些应用程序部署在不同的AWS账户中。公司通过AWS Organizations进行中央管理。公司的安全团队需要跨公司的所有账户实现单点登录（SSO）解决方案。公司必须继续在其自我管理的本地Microsoft Active Directory中管理用户和组。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 从AWS SSO控制台启用AWS单点登录（AWS SSO）。使用AWS Directory Service for Microsoft Active Directory创建单向森林信任或单向域信任，将公司的自我管理Microsoft Active Directory与AWS SSO连接起来。",
+  "B. 从AWS SSO控制台启用AWS单点登录（AWS SSO）。使用AWS Directory Service for Microsoft Active Directory创建双向森林信任，将公司的自我管理Microsoft Active Directory与AWS SSO连接起来。",
+  "C. 使用AWS Directory Service。创建与公司的自我管理Microsoft Active Directory之间的双向信任关系。",
+  "D. 在本地部署身份提供者（IdP）。从AWS SSO控制台启用AWS单点登录（AWS SSO）。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "AWS Organizations中启用AWS SSO后，需将本地Microsoft AD与AWS Directory Service建立信任关系以实现用户同步。AWS官方文档指出，双向森林信任允许两个AD环境的完全互操作性，支持用户使用本地凭证访问AWS资源。选项B正确，因其通过双向信任确保用户和组双向同步，满足继续管理本地AD并启用SSO的需求。选项A的单向信任无法保证双向同步；选项C未启用AWS SSO；选项D引入额外IdP不符合集中管理AD的要求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124340",
+ "index": 416,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用Amazon EC2实例和AWS Lambda函数来运行其应用程序。公司在其AWS账户中拥有具有公共子网和私有子网的VPC。EC2实例运行在一个VPC中的私有子网中。Lambda函数需要直接访问EC2实例的网络，以使应用程序正常工作。\n该应用程序将至少运行1年。公司预计在此期间Lambda函数的数量会增加。公司希望最大程度地节省所有应用程序资源的费用，并保持服务之间的网络延迟低。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 购买EC2实例的Savings Plan，优化Lambda函数的持续时间和内存使用，以及调用次数。将Lambda函数连接到包含EC2实例的私有子网。",
+  "B. 购买EC2实例的Savings Plan，优化Lambda函数的持续时间和内存使用，调用次数以及传输的数据量。将Lambda函数连接到运行EC2实例的同一VPC中的公共子网。",
+  "C. 购买Compute Savings Plan。优化Lambda函数的持续时间和内存使用，以及调用次数和传输的数据量。将Lambda函数连接到包含EC2实例的私有子网。",
+  "D. 购买Compute Savings Plan。优化Lambda函数的持续时间和内存使用，以及调用次数和传输的数据量。将Lambda函数保持在Lambda服务VPC中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C建议购买Compute Savings Plan，这是一种适用于Lambda函数的Savings Plan类型。同时，它还要求优化Lambda函数的各种性能指标，包括持续时间、内存使用、调用次数和传输的数据量。将Lambda函数连接到包含EC2实例的私有子网，这可以确保Lambda函数能够访问EC2实例，以使应用程序正常工作。\n选项A和B提到购买EC2实例的Savings Plan，但它们没有考虑Lambda函数的性能优化，而且连接到公共子网可能不是最安全的选择。选项D提到将Lambda函数保持在Lambda服务VPC中，但这可能会引入不必要的复杂性和延迟。选项C是最合适的选择，因为它同时考虑了成本和性能优化，并保持了必要的网络连接。",
+  "AI解析": "AWS架构设计与成本优化相关知识点，参考AWS官方文档关于Savings Plans和Lambda VPC配置的内容。选项分析：要求Lambda访问私有子网EC2，必须将Lambda部署到同一VPC的私有子网。选项D中Lambda保持在服务VPC无法访问私有资源；选项B和D的网络配置错误。Savings Plans中，Compute Savings Plan适用于EC2和Lambda，比EC2 Savings Plan更灵活，适应Lambda增长。选项C选择Compute Savings Plan并优化Lambda的执行时间、内存、调用次数及数据传输，确保低成本与低延迟。选项A和B的Savings Plan范围不足。选项C正确满足全部需求。"
+ }
+}

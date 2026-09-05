@@ -1,0 +1,18 @@
+{
+ "qid": "1529124350",
+ "index": 426,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一位解决方案架构师正在实施一个具有 MySQL 数据库的复杂 Java 应用程序。Java 应用程序必须部署在 Apache Tomcat 上，并且必须具备高可用性。\n解决方案架构师应该采取什么步骤来满足这些要求？",
+ "options": [
+  "A. 在 AWS Lambda 中部署应用程序。配置一个Amazon API Gateway API以连接 Lambda 函数。",
+  "B. 使用 AWS Elastic Beanstalk 部署应用程序。配置一个负载平衡的环境和滚动部署策略。",
+  "C. 将数据库迁移到 Amazon ElastiCache。配置 ElastiCache 安全组以允许应用程序访问。",
+  "D. 启动一个 Amazon EC2 实例。在 EC2 实例上安装一个 MySQL 服务器。在服务器上配置应用程序。创建一个 AMI。使用该 AMI 创建一个具有自动扩展组的启动模板。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B 提供了一个托管服务，AWS Elastic Beanstalk 可以简化部署和管理 Java 应用程序，并提供负载平衡的环境和滚动部署策略，确保高可用性。这样可以将关注点放在应用程序本身而不是基础架构的管理上。",
+  "AI解析": "AWS Elastic Beanstalk 支持自动创建负载均衡器、配置多个实例以实现高可用性，并提供滚动部署以减少停机时间。这与题目中要求的 Apache Tomcat 部署、高可用性场景直接匹配。选项 B 的负载均衡环境可分配流量至多个 Tomcat 实例，滚动部署策略确保应用更新时仍保持可用状态。其他选项存在明显偏差：Lambda 不适合 Tomcat（A），ElastiCache 替换 MySQL 不符合题干要求（C），手动 EC2 配置缺乏自动化高可用保障（D）。"
+ }
+}

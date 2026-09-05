@@ -1,0 +1,18 @@
+{
+ "qid": "1529122079",
+ "index": 7,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个应用程序，用于摄取传入的消息。然后有数十个其他应用程序和微服务快速消费这些消息。消息的数量变化很大，有时会突然增加到每秒100,000条。公司希望解耦解决方案并提高可伸缩性。哪种解决方案满足这些要求？",
+ "options": [
+  "A. 将消息保存到Amazon Kinesis Data Analytics。配置消费者应用程序以读取和处理消息。",
+  "B. 在Amazon EC2实例上部署摄取应用程序，放置在一个Auto Scaling组中，根据CPU指标来扩展EC2实例的数量。",
+  "C. 将消息写入具有单个分片的Amazon Kinesis Data Streams。使用AWS Lambda函数对消息进行预处理并将其存储在Amazon DynamoDB中。配置消费者应用程序从DynamoDB中读取消息以进行处理。",
+  "D. 将消息发布到具有多个Amazon Simple Queue Service (Amazon SQS) 订阅的Amazon Simple Notification Service (Amazon SNS)主题。配置消费者应用程序从队列中处理消息。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D，即将消息发布到Amazon SNS主题，并使用多个Amazon SQS订阅来分发消息，是满足要求的最佳解决方案。这种解决方案提供了高度的解耦性，允许多个消费者独立地处理消息。当消息数量剧烈波动时，Amazon SNS和Amazon SQS可以有效地处理这种负载。选项A中的Amazon Kinesis Data Analytics用于实时数据分析，不适合用于消息分发和解耦。选项B中的EC2 Auto Scaling组根据CPU指标来扩展实例的数量，但不提供解耦性，而且不够灵活，无法应对突然增加的消息数量。选项C中的Amazon Kinesis Data Streams和DynamoDB可能会增加复杂性，而且不如Amazon SNS和Amazon SQS那么适合解决问题。选项D是一种更适合解耦和可伸缩性的消息传递解决方案。",
+  "AI解析": "Amazon SNS与SQS的集成是用于解耦分布式系统、实现消息广播的常见模式。SNS作为发布-订阅服务，可将消息同时推送至多个订阅终端（如SQS队列），每个消费者应用可独立处理各自订阅的队列，避免相互阻塞。SQS队列具备自动扩展能力，可应对突增的消息吞吐量（如每秒10万条）。选项D通过SNS分发消息到多个SQS队列，解耦了生产者和消费者，消费者应用横向扩展不受限，满足高可伸缩性需求。选项A和C引入的数据流处理组件（如Kinesis分片或Lambda预处理）增加了处理链复杂性，单个分片或数据库可能成为瓶颈。选项B仅扩展生产者端，未解决消费者端的耦合问题。"
+ }
+}

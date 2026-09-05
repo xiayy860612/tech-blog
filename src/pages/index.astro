@@ -1,0 +1,38 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>👋 欢迎来到我的博客</h1>
+			<p>
+				这是一个基于 <a href="https://astro.build/">Astro</a> 搭建的个人网站，主要用来发布文章。
+				文章以 Markdown（<code>.md</code>）文件编写，放在 <code>src/content/blog/</code> 目录下，
+				新增一篇文章只需要在那里新建一个 <code>.md</code> 文件即可。
+			</p>
+			<p>下面是这个项目里最常用到的几个地方，方便你之后自定义：</p>
+			<ul>
+				<li>修改首页内容：<code>src/pages/index.astro</code>（也就是这个页面）</li>
+				<li>新增自定义页面：在 <code>src/pages/</code> 下新建一个 <code>.astro</code> 文件，比如 <code>src/pages/projects.astro</code> 会自动对应 <code>/projects</code> 路由</li>
+				<li>修改顶部导航：<code>src/components/Header.astro</code></li>
+				<li>修改页脚信息：<code>src/components/Footer.astro</code></li>
+				<li>撰写/编辑文章：<code>src/content/blog/*.md</code></li>
+				<li>调整文章详情页样式：<code>src/layouts/BlogPost.astro</code></li>
+				<li>站点标题、简介等全局信息：<code>src/consts.ts</code></li>
+			</ul>
+			<p>
+				更多用法可以参考 <a href="https://docs.astro.build/zh-cn/">Astro 中文文档</a>。
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>

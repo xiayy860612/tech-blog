@@ -1,0 +1,19 @@
+{
+ "qid": "1529124363",
+ "index": 439,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在应用测试期间使用了Amazon RDS for MySQL DB实例。在测试周期结束时，解决方案架构师创建了两个备份。解决方案架构师使用mysqldump工具创建了第一个备份，以创建数据库转储。解决方案架构师在RDS终止时启用了最终DB快照选项来创建第二个备份。\n\n公司现在计划进行新的测试周期，并希望从最近的备份中创建一个新的DB实例。公司选择了Amazon Aurora的MySQL兼容版本来托管DB实例。\n\n哪些解决方案将创建新的DB实例？（选择两个）",
+ "options": [
+  "A. 将RDS快照直接导入Aurora。",
+  "B. 将RDS快照上传到Amazon S3。然后将RDS快照导入Aurora。",
+  "C. 将数据库转储上传到Amazon S3。然后将数据库转储导入Aurora。",
+  "D. 使用AWS Database Migration Service（AWS DMS）将RDS快照导入Aurora。",
+  "E. 将数据库转储上传到Amazon S3。然后使用AWS Database Migration Service（AWS DMS）将数据库转储导入Aurora。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "选项A中，您可以直接将RDS快照导入Aurora，因为Amazon Aurora是与MySQL兼容的数据库引擎，支持直接导入RDS快照。\n\n选项B和C中，将RDS快照或数据库转储上传到Amazon S3是一个有效的方法，但需要进一步的步骤来导入Aurora，通常需要使用AWS DMS或其他导入工具。\n\n选项D中，您可以使用AWS DMS将RDS快照导入Aurora，这是一种有效的迁移方法。\n\n选项E中，您可以将数据库转储上传到Amazon S3，然后使用AWS DMS将其导入Aurora，这也是一种有效的方法，尤其适用于数据库转储。\n\n因此，选项A和D是创建新Aurora DB实例的有效方法。",
+  "AI解析": "题目选项A中，您可以直接将RDS快照导入Aurora，因为Amazon Aurora是与MySQL兼容的数据库引擎，支持直接导入RDS快照。选项B和C中，将RDS快照或数据库转储上传到Amazon S3是一个有效的方法，但需要进一步的步骤来导入Aurora，通常需要使用AWS DMS或其他导入工具。选项D中，您可以使用AWS DMS将RDS快照导入Aurora，这是一种有效的迁移方法。选项E中，您可以将数据库转储上传到Amazon S3，然后使用AWS DMS将其导入Aurora，这也是一种有效的方法，尤其适用于数据库转储。因此，选项A和D是创建新Aurora DB实例的有效方法。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 54,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在容器中运行其关键应用程序，以满足可扩展性和可用性的要求。公司更愿意专注于维护关键应用程序，不希望负责提供和管理运行容器化工作负载的底层基础架构。",
+ "options": [
+  "A. 使用Amazon EC2实例，并在实例上安装Docker。",
+  "B. 在Amazon EC2工作节点上使用Amazon Elastic Container Service (Amazon ECS)。",
+  "C. 在AWS Fargate上使用Amazon Elastic Container Service (Amazon ECS)。",
+  "D. 使用Amazon Elastic Container Service (Amazon ECS)优化的Amazon Machine Image (AMI)的Amazon EC2实例。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是最符合要求的答案。AWS Fargate是一项容器服务，它允许你在不需要管理底层EC2实例的情况下运行容器。这满足了公司的需求，因为他们不希望负责底层基础架构的管理。AWS Fargate提供了一种服务器less的方式来运行容器，你只需要定义容器和资源规格，而不需要担心实例的配置和管理。\n其他选项中，A需要自己管理EC2实例，B需要自己管理EC2实例并配置Amazon ECS，D虽然使用Amazon ECS，但仍然需要管理EC2实例。因此，选项C是最简便的解决方案，可以让公司专注于关键应用程序的维护而无需关心基础架构。",
+  "AI解析": "这道题考查的是对AWS容器服务不同模式的理解。根据AWS文档，Amazon ECS提供两种启动类型：EC2和AWS Fargate。Fargate属于无服务器计算引擎，无需预置或管理服务器，由AWS自动管理底层基础设施。选项A、B、D均涉及由用户自行维护的EC2实例，而题干强调公司不愿管理基础设施。Fargate模式下的ECS（选项C）将基础设施管理工作转移给AWS，用户只需关注容器化应用的部署和运行。"
+ }
+}

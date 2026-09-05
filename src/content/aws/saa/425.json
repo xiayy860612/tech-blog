@@ -1,0 +1,18 @@
+{
+ "qid": "1529124349",
+ "index": 425,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要存储其医疗应用程序的数据。该应用程序的数据经常发生变化。新的法规要求在存储数据的所有级别都可以进行审计访问。\n该公司在本地基础设施上托管应用程序，但存储容量即将耗尽。解决方案架构师必须安全地将现有数据迁移到AWS，同时满足新的法规要求。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用AWS DataSync将现有数据迁移到Amazon S3。使用AWS CloudTrail记录数据事件。",
+  "B. 使用AWS Snowcone将现有数据迁移到Amazon S3。使用AWS CloudTrail记录管理事件。",
+  "C. 使用Amazon S3传输加速将现有数据迁移到Amazon S3。使用AWS CloudTrail记录数据事件。",
+  "D. 使用AWS Storage Gateway将现有数据迁移到Amazon S3。使用AWS CloudTrail记录管理事件。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "AWS Storage Gateway 可以安全地迁移现有数据到 Amazon S3，并满足医疗应用程序数据频繁变化的需求。同时，使用 AWS CloudTrail 记录管理事件可以满足新的法规要求，即在存储数据的所有级别进行审计访问。",
+  "AI解析": "该题考察AWS数据迁移服务和审计合规性的结合应用。AWS文档指出，Storage Gateway适合混合云场景，可在本地存储不足时无缝扩展至S3，实时同步变化数据。CloudTrail默认记录管理事件（如API调用），Storage Gateway的操作及S3桶配置变更均被涵盖。选项D通过Storage Gateway迁移数据，确保容量问题解决，同时CloudTrail管理事件满足审计要求。选项A、C虽提及数据事件，但未针对混合存储优化；B中的Snowcone适合离线迁移，不适用频繁变化的数据场景。正确答案D。"
+ }
+}

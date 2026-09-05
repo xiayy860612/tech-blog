@@ -1,0 +1,17 @@
+{
+ "index": 77,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望降低其现有的三层Web架构的成本。Web、应用和数据库服务器在Amazon EC2实例上运行，分别用于开发、测试和生产环境。在高峰时段，EC2实例的平均CPU利用率为30%，在非高峰时段为10%。生产EC2实例每天全天候运行。开发和测试EC2实例每天至少运行8小时。公司计划实施自动化来在开发和测试EC2实例不使用时停止它们。\n哪种EC2实例购买方案将最具成本效益地满足公司的需求？",
+ "options": [
+  "A. 为生产EC2实例使用Spot Instances。为开发和测试EC2实例使用Reserved Instances。",
+  "B. 为生产EC2实例使用Reserved Instances。为开发和测试EC2实例使用On-Demand Instances。",
+  "C. 为生产EC2实例使用Spot Blocks。为开发和测试EC2实例使用Reserved Instances。",
+  "D. 为生产EC2实例使用On-Demand Instances。为开发和测试EC2实例使用Spot Blocks。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "AWS EC2实例定价模型和适用场景。题目中生产环境需要全天候运行且资源利用率较低，Reserved Instances提供长期承诺的低成本，适合稳定负载。开发测试环境仅在固定时段运行，通过自动化启停配合On-Demand Instances按需付费更经济。选项B中生产使用Reserved降低成本，开发测试使用On-Demand避免预留资源浪费。其他选项误用Spot Instances或Spot Blocks在生产环境，可能导致中断或不必要成本。《AWS Well-Architected Framework》强调根据负载特性选择实例类型，Reserved适用于长期稳定使用，On-Demand适合临时、可变需求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124390",
+ "index": 466,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司使用AWS Organizations。一个成员账户购买了Compute Savings Plan。由于成员账户内的工作负载发生变化，该账户不再能充分获得Compute Savings Plan承诺的全部好处。公司使用的计算能力不到购买量的50%。\n应该采取以下哪种措施？",
+ "options": [
+  "A. 在购买Compute Savings Plan的成员账户的账户控制台的Billing Preferences部分中打开折扣共享。",
+  "B. 在公司的组织管理账户的账户控制台的Billing Preferences部分中打开折扣共享。",
+  "C. 将另一个AWS账户中的额外计算工作负载迁移到拥有Compute Savings Plan的账户中。",
+  "D. 在预留实例市场上出售多余的Savings Plan承诺。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "AWS Organizations允许管理账户集中管理成员账户的折扣共享。根据AWS官方文档，Savings Plan的折扣共享需在组织的管理账户中启用，以便整个组织的账户自动应用未使用的承诺。选项B正确，因为折扣共享功能必须由管理账户统一配置。选项A错误，成员账户不具备此权限。选项C和D涉及迁移工作负载或转售，并非解决共享机制的最佳方法。AWS Organizations用户指南指出，折扣共享设置位于管理账户的计费首选项中。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2949540294",
+ "index": 953,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在 AWS 上开发机器学习 (ML) 模型。公司将 ML 模型作为独立的微服务进行开发。这些微服务在启动时从 Amazon S3 中获取大约 1 GB 的模型数据，并将数据加载到内存中。用户通过异步 API 访问 ML 模型。用户可以发送单个请求或批量请求。\n公司向数百名用户提供 ML 模型。模型的使用模式不规律。一些模型可能数天或数周没有使用，其他模型则可能在同一时间接收到成千上万的请求。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 将 API 请求定向到网络负载均衡器 (NLB)。将 ML 模型部署为 AWS Lambda 函数，由 NLB 调用。使用自动扩展根据 NLB 接收到的流量来扩展 Lambda 函数。",
+  "B. 将 API 请求定向到应用负载均衡器 (ALB)。将 ML 模型部署为 Amazon Elastic Container Service (Amazon ECS) 服务，由 ALB 调用。使用自动扩展根据 ALB 接收到的流量来扩展 ECS 集群实例。",
+  "C. 将 API 请求定向到 Amazon Simple Queue Service (Amazon SQS) 队列。将 ML 模型部署为 AWS Lambda 函数，由 SQS 事件调用。使用自动扩展根据 SQS 队列的大小来增加 Lambda 函数的 vCPU 数量。",
+  "D. 将 API 请求定向到 Amazon Simple Queue Service (Amazon SQS) 队列。将 ML 模型部署为 Amazon Elastic Container Service (Amazon ECS) 服务，从队列中读取数据。使用自动扩展为 Amazon ECS 扩展集群容量和服务数量，根据 SQS 队列的大小进行扩展。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "将请求定向到 Amazon SQS 队列，并将 ML 模型部署为 Amazon ECS 服务，从队列中读取数据，是一种合适的解决方案。使用 SQS 可以有效地处理不规律的请求流量，并在需要时进行批量处理。ECS 服务可以根据 SQS 队列中的消息数量自动扩展，以满足高负载的需求，同时也支持根据负载调整集群容量和服务数量。",
+  "AI解析": "AWS服务选型需结合异步处理、自动扩展及大内存需求。题干强调异步API、突发请求及模型启动加载1GB数据至内存。选项D采用SQS队列解耦请求与处理，ECS服务通过自动扩展集群容量和服务数量，依据队列堆积自动伸缩，适配突发流量与闲置场景。Lambda（选项A/C）受限于执行时长、冷启动及内存限制，不适合大模型加载；ALB/NLB（选项B/A）适用于同步请求，不符合异步场景。ECS结合SQS实现队列驱动扩展，符合题干不规律负载需求。参考答案对应AWS架构最佳实践中的队列驱动扩展模式。"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "qid": "1908084799",
+ "index": 682,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司正在将其多层次的本地应用程序迁移到AWS。该应用程序由一个单节点的MySQL数据库和一个多节点的Web层组成。公司必须在迁移过程中尽量减少对应用程序的更改。公司希望在迁移后提高应用程序的弹性。\n哪种组合的步骤将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 将Web层迁移到位于Application Load Balancer后面的Amazon EC2实例的自动缩放组中。",
+  "B. 将数据库迁移到位于Network Load Balancer后面的Amazon EC2实例的自动缩放组中。",
+  "C. 将数据库迁移到Amazon RDS的Multi-AZ部署中。",
+  "D. 将Web层迁移到AWS Lambda函数。",
+  "E. 将数据库迁移到Amazon DynamoDB表。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "A 将Web层迁移到位于Application Load Balancer后面的Amazon EC2实例的自动缩放组中，可以提高Web层的弹性，并确保负载均衡。Auto Scaling允许根据需求动态调整实例数量。\nB 将数据库迁移到Network Load Balancer后面的Amazon EC2实例可能会引入额外的复杂性，因为通常情况下，数据库的弹性通过其他机制实现，而不是通过Auto Scaling组。\nC 将数据库迁移到Amazon RDS的Multi-AZ部署中，可以提供数据库的高可用性和冗余。Multi-AZ部署会在不同的可用区自动创建主/备份数据库，确保数据库在主数据库故障时仍然可用。\nD将Web层迁移到AWS Lambda函数可能会涉及到较大的应用程序更改，因为Lambda通常用于无服务器架构，而与传统的EC2实例有很大的不同。\nE将数据库迁移到Amazon DynamoDB表可能会涉及到应用程序重写，因为DynamoDB是一种完全托管的、不同于MySQL的数据库服务。\n因此，选项A和C提供了在迁移过程中最小化对应用程序更改并提高应用程序弹性的解决方案。",
+  "AI解析": "本题聚焦AWS架构弹性优化的最小改造方案。核心知识点在于：前端横向扩展通过Application Load Balancer+EC2自动伸缩组（A选项）实现无状态层弹性，无需修改应用逻辑；数据库高可用通过RDS Multi-AZ（C选项）自动同步主备节点，消除单点故障。这两者均保持原有技术栈（MySQL/EC2），符合最小改动原则。Network Load Balancer（B）适用于TCP层负载且数据库节点自动伸缩需复杂分片改造，Lambda（D）需无服务器化重构，DynamoDB（E）涉及数据库类型迁移，均会增加改造成本。"
+ }
+}

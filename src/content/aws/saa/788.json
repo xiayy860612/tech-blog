@@ -1,0 +1,18 @@
+{
+ "qid": "1908085522",
+ "index": 788,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司需要一个解决方案来防止AWS CloudFormation堆栈部署包含内联策略或语句中的“*”的AWS Identity and Access Management (IAM)资源。该解决方案还必须禁止部署具有公共IP地址的Amazon EC2实例。该公司在其AWS组织中启用了AWS Control Tower。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS Control Tower主动控制来阻止部署具有公共IP地址和具有提升访问或“”的内联策略的EC2实例。",
+  "B. 使用AWS Control Tower侦测控制来阻止部署具有公共IP地址和具有提升访问或“”的内联策略的EC2实例。",
+  "C. 使用AWS Cong为EC2和IAM合规性创建规则。配置规则以运行AWS Systems Manager Session Manager自动化，在不符合规范时删除资源。",
+  "D. 使用服务控制策略（SCP）来阻止EC2实例和IAM资源的操作，如果操作导致不符合规定，则进行阻止。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "使用 AWS Control Tower 主动控制功能可以定义规则以阻止部署具有公共 IP 地址和具有提升访问或包含“*”的内联策略的 EC2 实例。这种方式可以通过规则进行实时检查和阻止不合规的部署，确保符合公司的安全要求。",
+  "AI解析": "该题核心考查AWS Control Tower主动控制的应用场景。AWS主动控制通过预定义合规规则在资源部署阶段直接拦截违规操作，其内置策略包含\"禁止IAM内联策略使用通配符*\"和\"阻止EC2分配公网IP\"两项关键限制，这两项功能已集成在Control Tower管理框架中，无需额外配置即可实现实时阻断，而服务控制策略(SCP)属于权限管控层级无法精准匹配资源属性规则，侦测控制及Config规则均为事后响应机制，不符合\"防止部署\"的硬性要求。"
+ }
+}

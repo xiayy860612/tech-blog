@@ -1,0 +1,18 @@
+{
+ "qid": "1908085515",
+ "index": 781,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司希望在AWS上部署一个内部Web应用程序。Web应用程序必须只能从公司的办公室访问。公司需要从互联网上下载Web应用程序的安全补丁。公司已经创建了一个VPC，并且已经配置了一个AWS站点到站点VPN连接到公司的办公室。解决方案架构师必须为Web应用程序设计一个安全的架构。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在公共子网中的Amazon EC2实例上部署Web应用程序，位于公共Application Load Balancer (ALB)后面。将Internet网关附加到VPC。将ALB安全组的入站源设置为0.0.0.0/0。",
+  "B. 在私有子网中的Amazon EC2实例上部署Web应用程序，位于内部Application Load Balancer (ALB)后面。在公共子网中部署NAT网关。将Internet网关附加到VPC。将ALB的安全组的入站源设置为公司办公室网络CIDR块。",
+  "C. 在公共子网中的Amazon EC2实例上部署Web应用程序，位于内部Application Load Balancer (ALB)后面。在私有子网中部署NAT网关。将Internet网关附加到VPC。将ALB的安全组的出站目标设置为公司办公室网络CIDR块。",
+  "D. 在私有子网中的Amazon EC2实例上部署Web应用程序，位于公共Application Load Balancer (ALB)后面。将Internet网关附加到VPC。将ALB的安全组的出站目标设置为0.0.0.0/0。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "解决方案B最符合要求。在私有子网中部署Web应用程序可以确保Web应用程序只能从公司的办公室访问。使用内部ALB可以确保Web应用程序只在VPC内部可用。部署NAT网关来允许Web应用程序下载安全补丁。设置ALB的安全组入站源为公司办公室网络CIDR块可以确保只有公司办公室的流量被允许访问Web应用程序。",
+  "AI解析": "该题主要考察在AWS VPC中设计安全架构的能力，涉及私有子网、NAT网关、安全组规则等核心组件。参考AWS架构最佳实践，Web应用若需限定访问来源且需连接外网，应将实例置于私有子网，通过NAT网关提供外网访问，同时结合安全组限制流量来源。选项B使用私有子网部署EC2实例，配合内部ALB，确保流量仅来自VPN连接的办公室网络CIDR。NAT网关部署在公共子网，使私有子网实例可访问互联网下载补丁。选项A/C/D分别存在暴露实例到公网、NAT网关位置错误或ALB类型不匹配等问题，不符合最小暴露原则。"
+ }
+}

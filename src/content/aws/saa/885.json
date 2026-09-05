@@ -1,0 +1,19 @@
+{
+ "qid": "2264604856",
+ "index": 885,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司使用Microsoft\nSQL Server数据库。该公司的应用程序连接到数据库。公司希望以最小的应用程序代码更改迁移到Amazon\nAurora PostgreSQL数据库。\n哪种步骤组合将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 使用AWS Schema Conversion Tool（AWS SCT）重写应用程序中的SQL查询。",
+  "B. 在Aurora PostgreSQL上启用Babelsh以运行应用程序中的SQL查询。",
+  "C. 使用AWS Schema Conversion Tool（AWS SCT）和AWS Database Migration Service（AWS DMS）迁移数据库架构和数据。",
+  "D. 使用Amazon RDS Proxy连接应用程序到Aurora PostgreSQL。",
+  "E. 使用AWS Database Migration Service（AWS DMS）重写应用程序中的SQL查询。"
+ ],
+ "answer": {
+  "正确答案": "CD",
+  "解析": "选项C：使用AWS SCT和AWS DMS迁移数据库架构和数据是将数据库从Microsoft SQL Server迁移到Aurora PostgreSQL的推荐方法，它可以保证数据库结构和数据的一致性，并且不需要对应用程序进行太多的更改。\n选项D：使用Amazon RDS\nProxy可以帮助连接应用程序到Aurora PostgreSQL，但是它并不会减少对应用程序代码的修改，因此它不是最佳的选项。\n选项A和E提到使用AWS SCT和AWS DMS来重写SQL查询，这不是实现最小应用程序代码更改的目的。选项B提到了Babelsh，这是一个不相关的概念，没有提供实际的解决方案来减少应用程序代码的修改。",
+  "AI解析": "该题考察从Microsoft SQL Server迁移到Amazon Aurora PostgreSQL的解决方案，需最小化应用程序代码更改。AWS文档指出，AWS Schema Conversion Tool（SCT）用于自动转换源数据库的架构到目标数据库，处理对象如表、视图、存储过程等；AWS Database Migration Service（DMS）专用于数据迁移。选项C结合两者，符合迁移架构和数据的需求。Amazon RDS Proxy作为数据库代理，允许应用程序通过固定连接端点访问数据库，后端数据库变更时无需修改应用配置，对应选项D。选项A、E错误，因SCT和DMS不负责应用程序代码修改；选项B中的名称拼写不正确，实际为Babelfish，但未出现在正确答案中。"
+ }
+}

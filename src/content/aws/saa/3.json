@@ -1,0 +1,18 @@
+{
+ "qid": "1529122075",
+ "index": 3,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用AWS Organizations来管理不同部门的多个AWS帐户。管理帐户拥有一个包含项目报告的Amazon S3存储桶。公司希望将对这个S3存储桶的访问限制为AWS Organizations中各个帐户的用户。哪种解决方案在最小程度的操作开销下满足这些要求？",
+ "options": [
+  "A. 在S3存储桶策略中添加aws PrincipalOrgID全局条件键，引用组织ID。",
+  "B. 为每个部门创建一个组织单位（OU）。将aws:PrincipalOrgPaths全局条件键添加到S3存储桶策略中。",
+  "C. 使用AWS CloudTrail监控CreateAccount、InviteAccountToOrganization、LeaveOrganization和RemoveAccountFromOrganization事件。根据情况更新S3存储桶策略。",
+  "D. 为需要访问S3存储桶的每个用户打标签。将aws:PrincipalTag全局条件键添加到S3存储桶策略中。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "AWS Organizations允许通过全局条件键控制资源访问。Amazon S3存储桶策略支持使用aws:PrincipalOrgID条件键，验证请求者是否属于指定组织ID下的账户。该条件键直接引用整个组织的ID，无需频繁更新策略或维护组织结构。其他选项涉及路径管理、事件监控或标签管理，操作复杂度较高。参考AWS文档《使用AWS Organizations的全局条件键》。选项A仅需添加组织ID，操作简单，符合最小开销要求。选项B需要维护OU层次结构，C依赖持续监控和更新，D需管理用户标签。"
+ }
+}

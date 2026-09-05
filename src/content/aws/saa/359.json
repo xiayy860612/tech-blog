@@ -1,0 +1,18 @@
+{
+ "qid": "1529124280",
+ "index": 359,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用Amazon API Gateway在同一个VPC中运行一个私有网关，该网关包含两个REST API。BuyStock RESTful web服务调用CheckFunds RESTful web服务来确保在购买股票之前有足够的资金。该公司在VPC流量日志中注意到，BuyStock RESTful web服务通过互联网而不是通过VPC调用CheckFunds RESTful web服务。\n\n解决方案架构师必须实施一个解决方案，使这两个API能够通过VPC进行通信。\n\n哪种解决方案将以最少的代码更改来满足这些要求？",
+ "options": [
+  "A. 在HTTP头部添加X-API-Key头以进行授权。",
+  "B. 使用接口端点。",
+  "C. 使用网关端点。",
+  "D. 在这两个REST API之间添加Amazon Simple Queue Service (Amazon SQS)队列。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon API Gateway的接口端点是Amazon API Gateway与VPC之间的连接。接口端点允许您将API部署到VPC中，以便在通过互联网访问API时，流量将通过与VPC连接的端点传输。接口端点将API Gateway与指定的子网相关联，这样API就可以通过该子网中的资源进行访问。",
+  "AI解析": "该问题核心在于确保VPC内API间通信不经过互联网。Amazon API Gateway私有API默认通过VPC内部网络通信，但跨服务调用需依赖接口端点（Interface Endpoint）启用AWS PrivateLink，通过私有IP直接路由流量。接口端点无需修改代码，仅需配置VPC终端节点服务，而网关端点仅支持S3和DynamoDB且不适用于API Gateway场景。X-API-Key用于鉴权而非网络路径，SQS引入异步机制则会增加架构复杂度。"
+ }
+}

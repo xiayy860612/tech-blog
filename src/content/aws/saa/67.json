@@ -1,0 +1,17 @@
+{
+ "index": 67,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司运行一个购物应用程序，使用Amazon DynamoDB存储客户信息。在数据损坏的情况下，解决方案架构师需要设计一个满足15分钟的恢复点目标（RPO）和1小时的恢复时间目标（RTO）的解决方案。",
+ "options": [
+  "A. 配置DynamoDB全局表。对于RPO恢复，将应用程序指向不同的AWS区域。",
+  "B. 配置DynamoDB的时间点恢复。对于RPO恢复，还原到所需的时间点。",
+  "C. 每天将DynamoDB数据导出到Amazon S3 Glacier。对于RPO恢复，从S3 Glacier导入数据到DynamoDB。",
+  "D. 安排每15分钟为DynamoDB表创建Amazon Elastic Block Store（Amazon EBS）快照。对于RPO恢复，使用EBS快照还原DynamoDB表。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "DynamoDB的时间点恢复选项允许您还原表到所需的时间点，以满足RPO和RTO的要求。根据问题中的要求，RPO为15分钟，这意味着您可以选择还原表到15分钟之前的时间点。RTO为1小时，这提供了足够的时间来还原数据并恢复应用程序。\n其他选项（AC和D）都不如选项B来得适合。选项A提到了全局表，但没有提到时间点恢复。选项C涉及将数据导出到S3 Glacier，然后再导入，但这种方法的RPO可能不满足要求。选项D提到了EBS快照，但不是DynamoDB的最佳备份和恢复解决方案。",
+  "AI解析": "DynamoDB时间点恢复（PITR）功能支持持续备份，允许将表还原到过去35天内的任意时间点，精确到秒级。AWS官方文档指出，使用PITR时恢复操作通常可在几分钟内完成。选项B利用此功能，满足15分钟RPO和1小时RTO。选项A的全局表主要用于跨区域复制，无法直接解决数据损坏后的时间点恢复。选项C的S3 Glacier导入导出过程耗时较长，无法满足RTO。选项D错误，DynamoDB作为无服务器数据库，不使用EBS存储数据，快照机制不适用。"
+ }
+}

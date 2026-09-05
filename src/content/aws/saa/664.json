@@ -1,0 +1,18 @@
+{
+ "qid": "1908084781",
+ "index": 664,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的客户遍布全球。公司希望利用自动化来保护其系统和网络基础设施。公司的安全团队必须能够追踪和审计对基础设施的所有增量更改。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS Organizations设置基础设施。使用AWS Config跟踪更改。",
+  "B. 使用AWS CloudFormation设置基础设施。使用AWS Config跟踪更改。",
+  "C. 使用AWS Organizations设置基础设施。使用AWS Service Catalog跟踪更改。",
+  "D. 使用AWS CloudFormation设置基础设施。使用AWS Service Catalog跟踪更改。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS CloudFormation是一种基础设施即代码服务，可以自动设置和更新AWS资源。使用CloudFormation可以轻松地创建和管理基础设施，而且所有的更改都可以在CloudFormation堆栈中进行追踪。因此，选项B中使用AWS CloudFormation设置基础设施，并使用AWS Config跟踪更改，是一种满足要求的解决方案。其他选项中，AWS Organizations和AWS Service Catalog也是AWS服务，但它们主要用于不同的用途，不太适合用于追踪和审计基础设施的增量更改。",
+  "AI解析": "AWS CloudFormation通过模板自动化部署和管理基础设施，实现基础设施即代码（IaC），确保基础设施的一致性和可审计性。AWS Config持续监控并记录资源变更，提供详细的配置历史记录和审计功能。AWS Organizations主要用于多账户管理，不涉及基础设施部署或变更跟踪；AWS Service Catalog管理已批准的服务模板，但无法全面追踪所有增量更改。题目中要求的自动设置基础设施需CloudFormation，而审计增量更改需Config。AWS文档指出CloudFormation用于资源建模和管理，Config用于跟踪配置变更。"
+ }
+}

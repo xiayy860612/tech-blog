@@ -1,0 +1,18 @@
+{
+ "qid": "1908085450",
+ "index": 716,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将一个本地的遗留应用迁移到 AWS。该应用从本地企业资源计划 (ERP) 系统摄取客户订单文件。然后，该应用将文件上传到一个 SFTP 服务器。该应用使用一个定期作业，每小时检查订单文件。该公司已经拥有一个与本地网络连接的 AWS 帐户。AWS 上的新应用必须支持与现有 ERP 系统的集成。新应用必须安全、具有弹性，并且必须立即使用 SFTP 协议处理来自 ERP 系统的订单。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 在两个可用区创建一个 AWS Transfer Family SFTP 面向互联网的服务器。使用 Amazon S3 存储。创建一个 AWS Lambda 函数来处理订单文件。使用 S3 事件通知将 s3:ObjectCreated:* 事件发送到 Lambda 函数。",
+  "B. 在一个可用区创建一个 AWS Transfer Family SFTP 面向互联网的服务器。使用 Amazon Elastic File System (Amazon EFS) 存储。创建一个 AWS Lambda 函数来处理订单文件。使用 Transfer Family 管理的工作流来调用 Lambda 函数。",
+  "C. 在两个可用区创建一个 AWS Transfer Family SFTP 内部服务器。使用 Amazon Elastic File System (Amazon EFS) 存储。创建一个 AWS Step Functions 状态机来处理订单文件。使用 Amazon EventBridge 调度器定期调用状态机，以检查 Amazon EFS 中的订单文件。",
+  "D. 在两个可用区创建一个 AWS Transfer Family SFTP 内部服务器。使用 Amazon S3 存储。创建一个 AWS Lambda 函数来处理订单文件。使用 Transfer Family 管理的工作流来调用 Lambda 函数。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在这种情况下，最适合的解决方案是使用 AWS Transfer Family 来部署 SFTP 服务器，并结合 Amazon S3 存储。由于应用需要安全、弹性，并且需要立即处理来自 ERP 系统的订单，使用 AWS Transfer Family 提供的 SFTP 服务器可以快速实现这一要求。将订单文件存储在 Amazon S3 中可以确保安全性和持久性。使用 AWS Lambda 函数来处理订单文件可以根据需要进行灵活的处理。AWS Transfer Family 管理的工作流可以使 Lambda 函数与 SFTP 服务器之间的集成更加简单和可靠。",
+  "AI解析": "题目涉及将本地应用迁移至AWS，需整合SFTP、存储服务及事件触发机制。AWS文档指出，Transfer Family支持SFTP协议并与VPC集成，内部服务器避免互联网暴露。S3提供持久、可扩展的存储，与Lambda天然集成，通过工作流或事件通知实现实时处理。多可用区部署确保高可用性。选项D使用内部SFTP服务器+S3+工作流触发Lambda，兼顾安全、弹性和实时性。选项A面向互联网存在风险，B、C采用EFS或定期轮询，延迟较高且EFS适用于文件系统而非对象存储。选项D架构符合题干要求。"
+ }
+}

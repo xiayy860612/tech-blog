@@ -1,0 +1,18 @@
+{
+ "qid": "1529124313",
+ "index": 392,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家支付处理公司记录与其客户的所有语音通信，并将音频文件存储在Amazon S3存储桶中。该公司需要从音频文件中提取文本。该公司必须从文本中删除属于客户的任何个人识别信息（PII）。\n解决方案架构师应采取什么措施来满足这些要求？",
+ "options": [
+  "A. 使用Amazon Kinesis Video Streams处理音频文件。使用AWS Lambda函数来扫描已知的PII模式。",
+  "B. 当将音频文件上传到S3存储桶时，调用AWS Lambda函数以启动Amazon Textract任务来分析通话录音。",
+  "C. 配置一个Amazon Transcribe转录任务，并打开PII消除功能。当将音频文件上传到S3存储桶时，调用AWS Lambda函数来启动转录任务。将输出存储在单独的S3存储桶中。",
+  "D. 创建一个Amazon Connect联系流，打开转录功能以摄取音频文件。嵌入一个AWS Lambda函数来扫描已知的PII模式。使用Amazon EventBridge在将音频文件上传到S3存储桶时启动联系流程。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "要满足这些要求，最佳做法是使用Amazon Transcribe服务，打开PII消除功能，以便从音频文件中提取文本并删除任何PII。选项C描述了这个方法，它配置了Amazon Transcribe转录任务，使用AWS Lambda函数来触发转录任务，然后将输出存储在单独的S3存储桶中。这种方法能够提取文本并消除PII，确保数据的隐私性。\n其他选项涉及到不同的服务或方法，但没有提到PII的消除，或者不如选项C那样有效地满足要求。",
+  "AI解析": "Amazon Transcribe提供自动语音识别服务，支持PII消除功能。题干要求提取音频文件文本并删除PII，需使用Transcribe的内置PII选项。选项B中的Amazon Textract用于文档文本提取，与音频处理无关。选项A的Kinesis Video Streams适用于实时视频流处理，Lambda扫描PII不如Transcribe内置功能高效。选项D的Amazon Connect用于呼叫中心管理，流程复杂。选项C正确配置Transcribe任务，触发Lambda处理上传到S3的音频，启用PII消除后存储至另一S3桶。"
+ }
+}

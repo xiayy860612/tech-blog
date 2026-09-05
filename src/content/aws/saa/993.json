@@ -1,0 +1,18 @@
+{
+ "qid": "2949540334",
+ "index": 993,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司托管了一个多层次的\nWeb 应用程序，该应用程序使用 Amazon Aurora MySQL 数据库集群进行存储。应用程序层托管在 Amazon EC2 实例上。公司的 IT 安全指南规定，数据库凭据必须加密，并且每 14 天轮换一次。\n为满足此要求，解决方案架构师应该怎么做以最小化操作工作量？",
+ "options": [
+  "A. 创建一个新的 AWS Key Management Service (AWS KMS) 加密密钥。使用 AWS Secrets Manager 创建一个新的秘密，使用 KMS 密钥存储适当的凭据。将秘密与 Aurora 数据库集群关联。配置自定义轮换周期为 14 天。",
+  "B. 在 AWS Systems Manager Parameter Store 中创建两个参数：一个是用户名称的字符串参数，另一个是使用 SecureString 类型的密码。为密码参数选择 AWS Key Management Service (AWS KMS) 加密，并在应用程序层加载这些参数。实施一个 AWS Lambda 函数，每 14 天轮换一次密码。",
+  "C. 在一个 AWS Key Management Service (AWS KMS) 加密的 Amazon Elastic File System (Amazon EFS) 文件系统中存储包含凭据的文件。在应用程序层的所有 EC2 实例中挂载 EFS 文件系统。限制对文件的访问，以便应用程序可以读取该文件，并且只有超级用户可以修改该文件。实施一个 AWS Lambda 函数，每 14 天轮换 Aurora 中的密钥，并将新凭据写入文件。",
+  "D. 在一个 AWS Key Management Service (AWS KMS) 加密的 Amazon S3 存储桶中存储包含凭据的文件，应用程序使用该文件加载凭据。定期下载文件以确保使用正确的凭据。实施一个 AWS Lambda 函数，每 14 天轮换 Aurora 凭据并将这些凭据上传到 S3 存储桶中的文件。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "使用 AWS Secrets Manager 可以轻松管理和轮换数据库凭据，且可以直接与 Aurora DB 集群集成。AWS Secrets Manager 提供内置的凭据轮换功能，支持自定义的轮换周期，从而符合公司的要求。这种方法最小化了操作工作量。",
+  "AI解析": "Amazon Secrets Manager 专为安全存储和管理敏感信息（如数据库凭证）设计，支持自动轮换。搭配 AWS KMS 加密密钥，可确保凭据加密存储。Secrets Manager 提供原生轮换功能，无需额外开发 Lambda 函数，直接设置自定义轮换周期即可实现每 14 天自动更新凭据。其他选项均依赖手动或自定义脚本轮换（如选项 B、C、D 需自行编写 Lambda 函数并管理更新逻辑），操作复杂性更高。《AWS Security Best Practices》指出，Secrets Manager 是托管凭证轮换的最佳实践方案，能最大限度降低维护成本。选项 A 通过整合 Secrets Manager 与 KMS，满足加密、自动轮换且减少运维工作。"
+ }
+}

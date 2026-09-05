@@ -1,0 +1,20 @@
+{
+ "qid": "1529125588",
+ "index": 531,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司在某个AWS区域中有一项工作负载。客户通过Amazon API Gateway REST API连接并访问该工作负载。该公司使用Amazon Route 53作为其DNS提供商。公司希望为所有客户提供单独且安全的URL。\n哪种组合步骤可以以最高效的方式满足这些要求？（选择三个）",
+ "options": [
+  "A. 在注册商中注册所需域名。在Route 53托管区域中创建一个通配符自定义域名，并记录指向API Gateway端点的区域记录。",
+  "B. 在AWS Certicate Manager（ACM）中请求与域匹配的通配符证书，位于不同的区域。",
+  "C. 根据需要在Route 53中为每个客户创建托管区域。创建指向API Gateway端点的区域记录。",
+  "D. 在AWS Certicate Manager（ACM）中请求与自定义域名匹配的通配符证书，位于相同的区域。",
+  "E. 在API Gateway中为每个客户创建多个API端点。",
+  "F. 在API Gateway中为REST API创建一个自定义域名。从AWS Certicate Manager（ACM）导入证书。"
+ ],
+ "answer": {
+  "正确答案": "ADF",
+  "解析": null,
+  "AI解析": "注册域名是前提，Route 53托管区域中通配符记录可批量处理子域名。ACM证书需与API Gateway同区域才能生效。通配符证书覆盖所有子域名，避免为每个客户单独申请。API Gateway自定义域名绑定ACM证书实现HTTPS。Route 53通配符记录指向API Gateway端点，无需逐条创建记录。选项B证书区域不匹配，C每个客户单独托管区域效率低，E创建多个端点资源冗余。正确步骤通过通配符配置和统一证书管理实现高效安全。AWS官方文档强调自定义域名需证书与API Gateway同区域，Route 53通配符简化DNS管理。"
+ }
+}

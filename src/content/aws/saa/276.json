@@ -1,0 +1,17 @@
+{
+ "index": 276,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司提供在线视频内容发布和转码服务，以供任何移动平台使用。该应用架构使用 Amazon Elastic File System (Amazon EFS) Standard 来收集和存储视频，以便多个 Amazon EC2 Linux 实例可以访问视频内容进行处理。随着服务的流行度随时间增长，存储成本变得太昂贵。\n哪种存储解决方案是最具成本效益的？",
+ "options": [
+  "A. 使用 AWS Storage Gateway 用于文件存储和处理视频内容。",
+  "B. 使用 AWS Storage Gateway 用于卷来存储和处理视频内容。",
+  "C. 使用 Amazon EFS 存储视频内容。一旦处理完成，将文件传输到 Amazon Elastic Block Store (Amazon EBS)。",
+  "D. 使用 Amazon S3 存储视频内容。将文件临时转移到附加到服务器的 Amazon Elastic Block Store (Amazon EBS) 卷进行处理。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在这种情况下，使用 Amazon S3 存储视频内容是最具成本效益的解决方案。Amazon S3 提供了高度可扩展的、低成本的对象存储服务。将视频存储在 S3 中相对于 Amazon EFS 或其他选择来说更经济。在处理视频时，将文件临时转移到附加到服务器的 Amazon EBS 卷进行处理，这也是为了节省成本，因为 Amazon EBS 是按照您使用的存储容量计费的。",
+  "AI解析": "Amazon EFS 适合需要共享文件存储的场景，但其成本较高。Amazon S3 在存储大量数据时更具成本效益，尤其适合不频繁访问的场景。处理视频时，临时将文件移至附加到 EC2 实例的 Amazon EBS 卷，处理完成后再归档回 S3，可有效降低存储成本。选项 D 通过结合 S3 的低成本存储和 EBS 的临时处理能力，优化了成本结构。其他选项或未改变主存储成本（如 C），或涉及不适配的服务（如 A、B 的 Storage Gateway）。AWS 文档强调了 S3 作为低成本存储解决方案的优势（AWS Storage Services Overview）。"
+ }
+}

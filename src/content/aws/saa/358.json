@@ -1,0 +1,18 @@
+{
+ "qid": "1529124279",
+ "index": 358,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家医院需要将患者记录存储在Amazon S3存储桶中。医院的合规性团队必须确保所有受保护的健康信息（PHI）在传输和静态存储时都被加密。合规性团队必须管理数据静态存储的加密密钥。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在AWS证书管理器（ACM）中创建一个公共SSL/TLS证书。将证书与Amazon S3相关联。为每个S3存储桶配置默认加密，使用AWS KMS密钥（SSE-KMS）进行服务器端加密。将合规性团队分配为KMS密钥的管理员。",
+  "B. 在S3存储桶策略中使用aws:SecureTransport条件，仅允许通过HTTPS（TLS）进行加密连接。为每个S3存储桶配置默认加密，使用S3管理的加密密钥（SSE-S3）进行服务器端加密。将合规性团队分配为SSE-S3密钥的管理员。",
+  "C. 在S3存储桶策略中使用aws:SecureTransport条件，仅允许通过HTTPS（TLS）进行加密连接。为每个S3存储桶配置默认加密，使用AWS KMS密钥（SSE-KMS）进行服务器端加密。将合规性团队分配为KMS密钥的管理员。",
+  "D. 在S3存储桶策略中使用aws:SecureTransport条件，仅允许通过HTTPS（TLS）进行加密连接。使用Amazon Macie来保护存储在Amazon S3中的敏感数据。将合规性团队分配为Macie的管理员。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "AWS服务中，Amazon S3的加密机制及密钥管理是关键。AWS文档指出，传输加密可通过S3存储桶策略强制使用HTTPS（aws:SecureTransport条件），静态加密需结合AWS KMS（SSE-KMS）以实现客户对密钥的控制。选项C配置了存储桶策略确保传输加密，使用SSE-KMS允许合规团队管理KMS密钥，符合PHI合规要求。选项A依赖ACM证书而非强制HTTPS策略，选项B使用SSE-S3无法管理密钥，选项D的Macie不涉及密钥管理。"
+ }
+}

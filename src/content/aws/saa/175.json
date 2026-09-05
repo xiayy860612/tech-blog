@@ -1,0 +1,17 @@
+{
+ "index": 175,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上托管其应用程序。该公司使用Amazon Cognito来管理用户。当用户登录应用程序时，应用程序通过Amazon API Gateway托管的REST API从Amazon DynamoDB中提取所需数据。公司需要一个AWS托管的解决方案，用于控制对REST API的访问，以减少开发工作。\n哪种解决方案能够以最小的运维开销满足这些要求？",
+ "options": [
+  "A. 在API Gateway中配置一个AWS Lambda函数作为授权者，用于验证请求的用户。",
+  "B. 为每个用户创建并分配一个必须与每个请求一起发送的API密钥。使用AWS Lambda函数验证密钥。",
+  "C. 在每个请求的标头中发送用户的电子邮件地址。调用一个AWS Lambda函数来验证具有该电子邮件地址的用户是否具有适当的访问权限。",
+  "D. 在API Gateway中配置一个Amazon Cognito用户池授权者，允许Amazon Cognito验证每个请求。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon Cognito是专门用于用户认证和授权的服务，它与Amazon API Gateway无缝集成，可以轻松地控制对REST API的访问。使用Amazon Cognito用户池授权者可以实现高度可靠的用户认证，而不需要自行编写或维护大量的自定义代码。其他选项可能会引入更多的开发工作和管理任务，因此不如D选项具有最小的运维开销。",
+  "AI解析": "Amazon API Gateway支持与Amazon Cognito用户池的原生集成，可直接验证用户请求的JWT令牌，无需编写自定义授权逻辑。AWS文档指出，通过配置Cognito用户池作为API Gateway的授权者，API Gateway将自动处理授权流程，验证请求中的令牌有效性和权限。选项A、B、C均需引入自定义Lambda函数或手动密钥管理，增加开发工作量。选项D利用托管服务的内置集成，符合最小运维开销要求。"
+ }
+}

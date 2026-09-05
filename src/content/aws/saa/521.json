@@ -1,0 +1,19 @@
+{
+ "qid": "1529125578",
+ "index": 521,
+ "total": 1018,
+ "type": "多选题",
+ "question": "该公司使用 Amazon Elastic Kubernetes Service（Amazon EKS）来运行容器化应用程序。公司的工作负载在一天中并不是持续稳定的。公司希望Amazon EKS根据工作负载进行自动伸缩。\n哪种步骤组合能够以最小的运维开销满足这些要求？（选择两个。）",
+ "options": [
+  "A. 使用AWS Lambda函数调整EKS集群的大小。",
+  "B. 使用Kubernetes Metrics Server激活水平Pod自动缩放。",
+  "C. 使用Kubernetes Cluster Autoscaler管理集群中节点的数量。",
+  "D. 使用Amazon API Gateway并将其连接到Amazon EKS。",
+  "E. 使用AWS App Mesh观察网络活动。"
+ ],
+ "answer": {
+  "正确答案": "BC",
+  "解析": "选项 B中，通过Kubernetes Metrics Server激活水平Pod自动缩放可以根据CPU利用率等指标自动调整Pod数量。选项 C中，Kubernetes Cluster Autoscaler可以管理集群中的节点数量，根据工作负载动态扩展或收缩节点。这两个选项结合起来能够实现根据工作负载自动调整集群大小，减少了运维负担。",
+  "AI解析": "该题聚焦Amazon EKS集群的自动伸缩机制，核心在于同时实现Pod层级和节点层级的弹性调度。Kubernetes Metrics Server（B）通过采集资源指标为水平Pod自动扩缩（HPA）提供数据支撑，直接控制应用副本数量；Kubernetes Cluster Autoscaler（C）则根据Pod调度需求动态调整节点数量，二者结合形成完整的弹性架构。Lambda需自定义触发逻辑（A），API Gateway用于API管理（D），App Mesh侧重服务间网络（E），均不涉及底层资源扩缩逻辑，无法以最小运维成本满足需求。"
+ }
+}

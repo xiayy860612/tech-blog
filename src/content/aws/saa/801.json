@@ -1,0 +1,18 @@
+{
+ "qid": "2264604772",
+ "index": 801,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在AWS上运行其支付应用程序。该应用程序从移动设备接收支付通知。支付通知在进一步处理之前需要进行基本验证。后端处理应用程序是长时间运行的，并且需要调整计算和内存。公司不想管理基础设施。哪种解决方案将以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 创建一个Amazon Simple Queue Service (Amazon SQS)队列。将队列与Amazon EventBridge规则集成，以从移动设备接收支付通知。配置规则以验证支付通知并将其发送到后端应用程序。将后端应用程序部署在Amazon Elastic Kubernetes Service (Amazon EKS) Anywhere上。创建一个独立的集群。",
+  "B. 创建一个Amazon API Gateway API。将API与AWS Step Functions状态机集成，以从移动设备接收支付通知。调用状态机以验证支付通知并将其发送到后端应用程序。将后端应用程序部署在Amazon Elastic Kubernetes Service (Amazon EKS)上。配置一个具有自管理节点的EKS集群。",
+  "C. 创建一个Amazon Simple Queue Service (Amazon SQS)队列。将队列与Amazon EventBridge规则集成，以从移动设备接收支付通知。配置规则以验证支付通知并将其发送到后端应用程序。将后端应用程序部署在Amazon EC2 Spot Instances上。使用默认的分配策略配置Spot Fleet。",
+  "D. 创建一个Amazon API Gateway API。将API与AWS Lambda集成，以从移动设备接收支付通知。调用一个Lambda函数以验证支付通知并将其发送到后端应用程序。将后端应用程序部署在Amazon Elastic Container Service (Amazon ECS)上。使用AWS Fargate启动类型配置Amazon ECS。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D提供了最简单且最具成本效益的解决方案。它使用了Amazon API Gateway与AWS Lambda结合，AWS Lambda无服务器计算服务能够以事件驱动的方式运行函数，而无需管理服务器。后端应用程序部署在Amazon Elastic Container Service (Amazon ECS)上，并且使用了AWS Fargate启动类型，这意味着无需管理底层基础设施。其他选项都涉及更多的基础设施管理和配置。",
+  "AI解析": "AWS无服务器架构和托管服务。AWS官方文档指出，API Gateway适合接收HTTP请求，Lambda用于无服务器计算处理验证，ECS Fargate无需管理服务器，自动扩展。选项D利用API Gateway接收支付通知，Lambda进行验证，ECS Fargate托管后端应用，无需基础设施管理。其他选项涉及自管理节点（B、EKS）、Spot实例（C）或EKS Anywhere（A），需要更多运维操作。正确选项为D。"
+ }
+}

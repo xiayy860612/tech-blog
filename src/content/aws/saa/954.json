@@ -1,0 +1,18 @@
+{
+ "qid": "2949540295",
+ "index": 954,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在 Amazon\nEC2 实例上运行一个 Web 应用程序，这些实例位于一个\nAuto Scaling 组中，并通过一个应用负载均衡器 (ALB) 进行管理。应用程序将数据存储在 Amazon Aurora MySQL DB 集群中。\n公司需要创建一个灾难恢复 (DR) 解决方案。DR 解决方案的可接受恢复时间为 30 分钟。DR 解决方案在主基础设施正常时不需要支持客户使用。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在第二个 AWS 区域部署 DR 基础设施，包括 ALB 和 Auto Scaling 组。将 Auto Scaling 组的期望容量和最大容量设置为最小值。将 Aurora MySQL DB 集群转换为 Aurora 全球数据库。配置 Amazon Route 53 实现 ALB 端点的主动-被动故障转移。",
+  "B. 在第二个 AWS 区域部署 DR 基础设施，包括 ALB 和 Auto Scaling 组。更新 Auto Scaling 组以包含来自第二个区域的 EC2 实例。使用 Amazon Route 53 配置主动-主动故障转移。将 Aurora MySQL DB 集群转换为 Aurora 全球数据库。",
+  "C. 使用 AWS Backup 备份 Aurora MySQL DB 集群数据。在第二个 AWS 区域部署 DR 基础设施，包括 ALB。更新 Auto Scaling 组以包含来自第二个区域的 EC2 实例。使用 Amazon Route 53 配置主动-主动故障转移。在第二个区域创建 Aurora MySQL DB 集群，恢复备份的数据。",
+  "D. 使用 AWS Backup 备份基础设施配置。使用备份在第二个 AWS 区域创建所需的基础设施。将 Auto Scaling 组的期望容量设置为零。使用 Amazon Route 53 配置主动-被动故障转移。将 Aurora MySQL DB 集群转换为 Aurora 全球数据库。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "在第二个 AWS 区域部署 DR 基础设施，并设置 Auto Scaling 组的期望容量和最大容量为最小值（即最少的资源），确保在主基础设施正常时不会有额外的资源消耗。Aurora MySQL DB 集群转换为 Aurora 全球数据库，可以在不同区域之间提供快速的灾难恢复能力。配置 Amazon Route 53 实现 ALB 端点的主动-被动故障转移，以确保在主区域发生故障时能够快速切换到 DR 区域。",
+  "AI解析": "该题聚焦AWS多区域灾难恢复设计，核心在于满足30分钟RTO且非热备场景。Aurora全球数据库实现跨区域数据同步，确保数据库层快速恢复；最小化DR区域Auto Scaling组容量可降低闲置成本，故障时快速扩容；Route 53主动-被动路由策略仅在主区域故障时切换流量，符合“主正常时不服务”要求。其余选项或采用主动-主动架构（B、C）、或依赖备份恢复增加延迟（C、D），均不满足题干约束。"
+ }
+}

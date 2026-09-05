@@ -1,0 +1,18 @@
+{
+ "qid": "1529125625",
+ "index": 568,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个Amazon EventBridge规则将目标设置为第三方API。第三方API尚未收到任何传入的流量。解决架构师需要确定规则条件是否得到满足，以及规则的目标是否被调用。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在AWS/Events的CloudWatch命名空间中检查指标。",
+  "B. 查看Amazon Simple Queue Service (Amazon SQS) 死信队列中的事件。",
+  "C. 在CloudWatch Logs中检查事件。",
+  "D. 检查AWS CloudTrail中的EventBridge事件记录。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "在这种情决定中，解决架构师需要确定Amazon EventBridge规则是否正常工作以及其目标是否被调用。为了做到这一点，您可以检查Amazon CloudWatch中的事件指标，特别是在AWS/Events命名空间中。这些指标将提供有关规则触发和目标调用的信息。\n其他选项不适合这种情况。选项B提到Amazon SQS的死信队列，但这与EventBridge规则的监视无关。选项C提到CloudWatch Logs，但它通常用于记录应用程序日志，而不是EventBridge规则监视。选项D提到AWS CloudTrail，它用于审计AWS API调用，而不是EventBridge规则的监视。因此，选项A是最佳选择。",
+  "AI解析": "该题核心在于验证EventBridge规则触发及目标调用状态。根据AWS服务设计，EventBridge内置集成CloudWatch指标，所有规则匹配事件数（TriggeredRules）、调用目标次数（Invocations）等关键数据实时记录在AWS/Events命名空间下，无需额外配置即可直接检测规则条件是否满足及目标是否被触发。其他选项或依赖额外配置（如C需启用日志），或侧重错误处理（B需配置DLQ）及API审计（D记录管理事件），均不直接反映规则触发状态。"
+ }
+}

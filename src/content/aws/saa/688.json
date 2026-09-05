@@ -1,0 +1,18 @@
+{
+ "qid": "1908084805",
+ "index": 688,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司希望标准化其Amazon Elastic Block Store（Amazon EBS）卷加密策略。公司还希望最小化操作卷加密检查所需的成本和配置工作量。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 编写API调用来描述EBS卷并确认EBS卷是否已加密。使用Amazon EventBridge调度AWS Lambda函数来运行API调用。",
+  "B. 编写API调用来描述EBS卷并确认EBS卷是否已加密。在AWS Fargate任务上运行API调用。",
+  "C. 创建一个AWS Identity and Access Management（IAM）策略，要求在EBS卷上使用标签。使用AWS Cost Explorer显示未正确标记的资源。手动加密未标记的资源。",
+  "D. 为Amazon EBS创建一个AWS Config规则，评估卷是否已加密，并在卷未加密时进行标记。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D中的解决方案通过创建AWS Config规则来评估EBS卷是否已加密，并在卷未加密时进行标记，从而实现了最小的成本和配置努力。AWS Config可以自动执行规则评估，而不需要编写额外的API调用或手动操作。",
+  "AI解析": "Amazon EBS卷加密标准化可通过AWS Config规则实现，该服务持续评估资源合规性。参考AWS安全最佳实践，使用AWS Config可自动检测未加密EBS卷并触发标记，无需维护额外脚本或基础设施。选项D直接利用托管服务减少人工干预，对比其他选项（A/B需定期轮询、C依赖手动操作）更符合低成本、低维护要求。"
+ }
+}

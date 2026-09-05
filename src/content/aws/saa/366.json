@@ -1,0 +1,18 @@
+{
+ "qid": "1529124287",
+ "index": 366,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在使用Amazon Route 53的基于延迟的路由，将请求路由到其在全球各地用户的UDP应用程序。该应用程序托管在公司位于美国、亚洲和欧洲的本地数据中心的冗余服务器上。公司的合规性要求规定，应用程序必须托管在本地数据中心。公司希望提高应用程序的性能和可用性。\n解决方案架构师应该采取哪些措施以满足这些要求？",
+ "options": [
+  "A. 在三个AWS区域中配置三个Network Load Balancers (NLBs) 以处理本地端点。使用AWS Global Accelerator创建一个加速器，并将NLBs注册为其端点。通过使用指向加速器DNS的CNAME来提供对应用程序的访问。",
+  "B. 在三个AWS区域中配置三个Application Load Balancers (ALBs) 以处理本地端点。使用AWS Global Accelerator创建一个加速器，并将ALBs注册为其端点。通过使用指向加速器DNS的CNAME来提供对应用程序的访问。",
+  "C. 在三个AWS区域中配置三个Network Load Balancers (NLBs) 以处理本地端点。在Route 53中，创建一个指向这三个NLBs的基于延迟的记录，并将其用作Amazon CloudFront分发的源。通过使用指向CloudFront DNS的CNAME来提供对应用程序的访问。",
+  "D. 在三个AWS区域中配置三个Application Load Balancers (ALBs) 以处理本地端点。在Route 53中，创建一个指向这三个ALBs的基于延迟的记录，并将其用作Amazon CloudFront分发的源。通过使用指向CloudFront DNS的CNAME来提供对应用程序的访问。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "本题核心在于通过AWS服务优化UDP应用的全球访问性能，同时遵守本地托管要求。基于延迟路由虽能定向最近端点，但Global Accelerator利用AWS全球网络优化TCP/UDP流量路径，降低延迟并提升容错。合规性要求排除云托管，故需通过NLB（支持UDP协议）桥接本地服务器，ALB仅适用于HTTP不适用。CloudFront不处理UDP流量，排除C/D选项。Global Accelerator直接集成NLB端点并分配静态入口IP，比单纯Route 53基于延迟路由更高效稳定，故A正确。"
+ }
+}

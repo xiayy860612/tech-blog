@@ -1,0 +1,17 @@
+{
+ "index": 47,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个在1,000个Amazon EC2 Linux实例上运行的生产工作负载，该工作负载由第三方软件提供支持。公司需要尽快为所有EC2实例打补丁，以纠正一个关键的安全漏洞。\n为了满足这些要求，解决方案架构师应该采取哪些措施？",
+ "options": [
+  "A. 创建一个AWS Lambda函数来为所有EC2实例应用补丁。",
+  "B. 配置AWS Systems Manager Patch Manager来为所有EC2实例应用补丁。",
+  "C. 安排一个AWS Systems Manager维护窗口来为所有EC2实例应用补丁。",
+  "D. 使用AWS Systems Manager Run Command运行一个自定义命令，为所有EC2实例应用补丁。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "本题核心考察AWS批量运维场景的解决方案选择。AWS Systems Manager Run Command可直接向大规模实例群发送定制化命令，实时执行紧急补丁操作，无需预先配置补丁策略或等待维护窗口，符合\"尽快修复\"的关键需求。相较之下，Patch Manager（B）需依赖预设补丁基线，维护窗口（C）受限于调度时间，Lambda（A）需额外开发编排逻辑，均无法直接满足即时性要求。"
+ }
+}

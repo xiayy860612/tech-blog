@@ -1,0 +1,18 @@
+{
+ "qid": "1529125619",
+ "index": 562,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon Elastic Kubernetes Service（Amazon EKS）集群和本地Kubernetes集群上运行其应用程序。该公司希望从一个中央位置查看所有集群和工作负载。哪种解决方案可以在运维开销最低的情况下满足这些要求？",
+ "options": [
+  "A. 使用Amazon CloudWatch Container Insights来收集和分组集群信息。",
+  "B. 使用Amazon EKS Connector注册和连接所有Kubernetes集群。",
+  "C. 使用AWS Systems Manager来收集和查看集群信息。",
+  "D. 使用Amazon EKS Anywhere作为主要集群，使用原生Kubernetes命令查看其他集群。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "使用Amazon EKS Connector是最不具有运维开销的解决方案，因为它可以将多个Kubernetes集群注册到Amazon EKS中，从一个中央位置集中管理它们，而不需要过多的操作。\n其他选项：\nA使用Amazon CloudWatch Container Insights来收集和分组集群信息需要一些配置和管理，不如Amazon EKS Connector简单。\nC 使用AWS Systems Manager来收集和查看集群信息可能需要更多的定制工作，而不如Amazon EKS Connector方便。\nD 使用Amazon EKS Anywhere作为主要集群来查看其他集群需要配置Amazon EKS Anywhere，这可能引入额外的复杂性，因此不如Amazon EKS Connector简单。",
+  "AI解析": "该题目涉及在混合环境中集中监控多个Kubernetes集群的解决方案。来源基于AWS对EKS Connector的功能描述。EKS Connector允许将本地或其他云中的Kubernetes集群注册到AWS管理控制台，通过统一界面查看所有集群状态和资源，无需额外运维配置。CloudWatch Container Insights侧重于指标收集而非集群聚合管理。Systems Manager主要用于基础设施管理，不直接支持跨集群的Kubernetes资源视图。EKS Anywhere需要自行维护集群基础设施，增加了运维复杂度。EKS Connector通过简化注册流程实现低开销的集中管理。"
+ }
+}

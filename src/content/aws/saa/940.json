@@ -1,0 +1,19 @@
+{
+ "qid": "2949540281",
+ "index": 940,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司正在使用\nAmazon Elastic Kubernetes Service (Amazon EKS) 集群。公司必须确保 Kubernetes 服务账户在 EKS 集群中通过使用 IAM 服务账户角色 (IRSA) 对特定 AWS 资源具有安全和细粒度的访问权限。\n哪两种解决方案可以满足这些要求？（选择两个）",
+ "options": [
+  "A. 创建一个 IAM 策略，定义所需的权限，将策略直接附加到 EKS 节点的 IAM 角色上。",
+  "B. 在 EKS 集群内实施网络策略，以防止 Kubernetes 服务账户访问特定的 AWS 服务。",
+  "C. 修改 EKS 集群的 IAM 角色，以包括每个 Kubernetes 服务账户的权限。确保 IAM 角色和 Kubernetes 角色之间的映射是一对一的。",
+  "D. 定义一个包含必要权限的 IAM 角色。使用 IAM 角色的 Amazon 资源名称 (ARN) 注释 Kubernetes 服务账户。",
+  "E. 在 IAM 角色和 OpenID Connect (OIDC) 身份提供者之间设置信任关系。"
+ ],
+ "answer": {
+  "正确答案": "DE",
+  "解析": "D选项在 IRSA 模式下，您需要定义一个 IAM 角色，该角色具有所需的权限，并将其 ARN 注释到 Kubernetes 服务账户。这种方法允许 Kubernetes 服务账户通过 IAM 角色获得对 AWS 资源的访问权限。\nE选项为了使 IAM 角色能够与 Kubernetes 服务账户关联，必须设置信任关系，使 IAM 角色信任 OIDC 身份提供者（EKS 集群的\nOIDC 提供者）。这使得 Kubernetes 服务账户能够假设 IAM 角色，从而获得访问 AWS 资源的权限。",
+  "AI解析": "IRSA（IAM Roles for Service Accounts）允许Kubernetes服务账户关联IAM角色，从而提供对AWS资源的细粒度访问。需要两个步骤：首先，创建IAM角色并定义权限，随后将该角色的ARN通过注解关联到Kubernetes服务账户（选项D）。其次，该IAM角色必须信任EKS集群的OIDC身份提供者，使Kubernetes服务账户能够通过OIDC令牌承担角色（选项E）。选项A将权限附加到节点角色，导致所有Pod共享权限，不符合细粒度要求。选项B的网络策略不影响IAM权限。选项C错误地将服务账户与集群角色映射，而非使用IRSA机制。参考AWS文档中IRSA配置步骤及OIDC信任关系设置部分。"
+ }
+}

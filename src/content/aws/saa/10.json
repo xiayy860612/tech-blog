@@ -1,0 +1,18 @@
+{
+ "qid": "1529122082",
+ "index": 10,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS上构建一款电子商务Web应用程序。该应用程序发送有关新订单的信息到一个Amazon API Gateway REST API来进行处理。公司希望确保订单按照接收的顺序进行处理。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用API Gateway集成来在应用程序接收订单时发布消息到Amazon Simple Notification Service (Amazon SNS)主题。订阅一个AWS Lambda函数以执行处理。",
+  "B. 使用API Gateway集成来在应用程序接收订单时将消息发送到Amazon Simple Queue Service (Amazon SQS) FIFO队列。配置SQS FIFO队列以调用AWS Lambda函数进行处理。",
+  "C. 使用API Gateway授权器来阻止任何请求，同时应用程序处理订单。",
+  "D. 使用API Gateway集成来在应用程序接收订单时将消息发送到Amazon Simple Queue Service (Amazon SQS)标准队列。配置SQS标准队列以调用AWS Lambda函数进行处理。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B，即使用API Gateway集成将消息发送到Amazon SQS FIFO队列，然后配置SQS FIFO队列以调用AWS Lambda函数进行处理，是满足要求的最佳解决方案。SQS FIFO队列是一种适合处理有序消息的队列，可以确保订单按照接收的顺序进行处理。这样可以保证订单不会混乱，按照它们的到达顺序进行处理。选项A中使用SNS主题，但SNS不提供有序消息处理保证，因此无法满足\"按照接收的顺序进行处理\"的要求。选项C中的API Gateway授权器不提供订单处理和有序处理的功能。选项D中使用SQS标准队列，但它不提供有序消息处理，因此也无法满足要求。选项B提供了确保订单有序处理的最佳方式。",
+  "AI解析": "Amazon API Gateway与消息服务的集成方式以及不同服务的排序特性决定了正确选项。AWS官方文档指出，Amazon SQS FIFO队列严格遵循先进先出顺序，并确保消息仅被处理一次，适用于需要严格顺序的场景。API Gateway将消息发送至SQS FIFO队列后，通过配置触发Lambda函数处理队列中的消息，可满足订单按接收顺序处理的需求。选项B直接利用SQS FIFO队列的排序能力，而其他选项或无法保证顺序（如标准队列、SNS主题），或采用了与服务可用性相冲突的方法（如授权器阻止请求）。"
+ }
+}

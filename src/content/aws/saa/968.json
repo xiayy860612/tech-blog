@@ -1,0 +1,18 @@
+{
+ "qid": "2949540309",
+ "index": 968,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司目前在本地运行一个使用ASP.NET的应用程序，运行在Linux机器上。该应用程序资源密集，直接服务于客户。\n公司希望将应用程序现代化为.NET，并希望在容器上运行该应用程序，并基于Amazon CloudWatch指标进行扩展。公司还希望减少在运维活动上花费的时间。\n哪个解决方案将以最低的运维开销满足这些要求？",
+ "options": [
+  "A. 使用AWS App2Container将应用程序容器化。使用AWS CloudFormation模板将应用程序部署到Amazon Elastic Container Service (Amazon ECS)上的AWS Fargate。",
+  "B. 使用AWS App2Container将应用程序容器化。使用AWS CloudFormation模板将应用程序部署到Amazon Elastic Container Service (Amazon ECS)上的Amazon EC2实例。",
+  "C. 使用AWS App Runner将应用程序容器化。使用App Runner将应用程序部署到Amazon Elastic Container Service (Amazon ECS)上的AWS Fargate。",
+  "D. 使用AWS App Runner将应用程序容器化。使用App Runner将应用程序部署到Amazon Elastic Kubernetes Service (Amazon EKS)上的Amazon EC2实例。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS App2Container的优势： AWS App2Container是一个工具，用于将现有应用程序（包括ASP.NET应用程序）容器化。这个工具可以帮助将应用程序从本地环境迁移到AWS，并将其转化为容器化形式。\nAWS Fargate的优势： AWS\nFargate是一个完全托管的容器运行环境，可以在不管理服务器或集群的情况下运行容器。这减少了运维的复杂性，因为AWS Fargate会处理底层基础设施的管理和扩展。\nCloudFormation模板的优势： 使用AWS CloudFormation模板可以自动化基础设施的部署，减少手动配置的复杂性，从而进一步降低运维开销。",
+  "AI解析": "本题聚焦容器化迁移与无服务器架构选择，核心在于最小化运维负担。AWS App2Container专为遗留应用容器化设计，直接适配.NET现代化需求；AWS Fargate采用无服务器模式，免除底层EC2实例管理，结合CloudWatch指标自动扩缩，实现零基础设施运维。CloudFormation确保部署可重复性，形成完整自动化链路。App Runner虽简化部署但不适用现有应用容器化步骤，EC2/EKS方案仍需节点维护，均增加运维成本。"
+ }
+}

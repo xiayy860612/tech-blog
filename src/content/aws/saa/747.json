@@ -1,0 +1,18 @@
+{
+ "qid": "1908085481",
+ "index": 747,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用 AWS Organizations 中的组织来管理包含应用程序的 AWS 账户。公司在组织中设置了一个专用的监控成员账户。公司希望通过使用 Amazon CloudWatch 查询和可视化跨账户的可观察性数据。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 在监控账户中启用 CloudWatch 跨账户可观察性。在每个 AWS 账户中部署监控账户提供的 AWS CloudFormation 模板，以与监控账户共享数据。",
+  "B. 在组织的根组织单元（OU）下设置服务控制策略（SCPs），以在监控账户中提供对 CloudWatch 的访问权限。",
+  "C. 在监控账户中配置一个新的 IAM 用户。在每个 AWS 账户中，配置一个 IAM 策略以访问查询和可视化账户中的 CloudWatch 数据。将新的 IAM 策略附加到新的 IAM 用户。",
+  "D. 在监控账户中创建一个新的 IAM 用户。在每个 AWS 账户中创建跨账户的 IAM 策略。将 IAM 策略附加到新的 IAM 用户。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "要跨账户查询和可视化 CloudWatch 数据，应该在监控账户中启用 CloudWatch 跨账户可观察性，并在每个 AWS 账户中部署监控账户提供的 AWS CloudFormation 模板，以便与监控账户共享数据。这种方法允许监控账户统一收集和分析来自各个应用程序账户的观察性数据，而无需在每个应用程序账户中创建和维护 IAM 用户或 IAM 策略。",
+  "AI解析": "Amazon CloudWatch 跨账户可观察性功能允许集中监控多个账户的数据。监控账户需启用此功能后，其他账户通过部署指定的 CloudFormation 模板共享指标和日志。AWS 官方文档指出，此方法无需复杂策略配置，直接通过服务集成实现数据聚合。选项 B 的 SCP 仅控制权限但不处理数据共享机制；选项 C 和 D 使用 IAM 用户和跨账户策略，但未利用 CloudWatch 原生跨账户功能，操作繁琐且不符合最佳实践。选项 A 符合 AWS 推荐方案，直接使用内置跨账户共享机制。来源：AWS Documentation on CloudWatch Cross-Account Observability。"
+ }
+}

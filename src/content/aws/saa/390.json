@@ -1,0 +1,18 @@
+{
+ "qid": "1529124311",
+ "index": 390,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要为其三层无状态Web应用程序制定备份策略。Web应用程序在Amazon EC2实例中运行，使用具有动态扩展策略的Auto Scaling组，该策略配置为响应扩展事件。数据库层在Amazon RDS for PostgreSQL上运行。Web应用程序不需要在EC2实例上进行临时本地存储。公司的恢复点目标（RPO）是2小时。\n备份策略必须最大化可扩展性，并优化此环境的资源利用率。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 每2小时拍摄EC2实例和数据库的Amazon Elastic Block Store（Amazon EBS）卷快照以满足RPO。",
+  "B. 配置快照生命周期策略以拍摄Amazon Elastic Block Store（Amazon EBS）快照。在Amazon RDS中启用自动备份以满足RPO。",
+  "C. 保留Web和应用层的最新Amazon Machine Images（AMI）。在Amazon RDS中启用自动备份，并使用时间点恢复以满足RPO。",
+  "D. 每2小时拍摄EC2实例的Amazon Elastic Block Store（Amazon EBS）卷快照。在Amazon RDS中启用自动备份，并使用时间点恢复以满足RPO。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "该题考察AWS环境下无状态应用的备份策略设计。来源基于AWS架构最佳实践，针对Auto Scaling组管理的EC2实例，采用AMI确保实例一致性，避免冗余备份。RDS自动备份结合时间点恢复满足数据库RPO。选项C通过保留最新AMI减少存储开销，动态扩展时直接部署新实例；选项A、D对无状态实例进行频繁卷快照效率低；选项B未明确AMI管理，可能导致启动配置过时。RDS自动备份默认保留期（1天）及PITR功能确保2小时内恢复，符合RPO。"
+ }
+}

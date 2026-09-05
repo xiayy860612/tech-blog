@@ -1,0 +1,18 @@
+{
+ "qid": "1908084746",
+ "index": 629,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个解决方案架构师正在创建一个每天运行一次的数据处理作业，可能需要长达2小时才能完成。如果作业被中断，必须重新从头开始。\n最节省成本的方式是解决这个问题？",
+ "options": [
+  "A. 创建一个脚本，运行在由 cron 作业触发的本地 Amazon EC2 预留实例上。",
+  "B. 创建一个由 Amazon EventBridge 定时事件触发的 AWS Lambda 函数。",
+  "C. 使用由 Amazon EventBridge 定时事件触发的 Amazon Elastic Container Service (Amazon ECS) Fargate 任务。",
+  "D. 使用由 Amazon EventBridge 定时事件触发的在 Amazon EC2 上运行的 Amazon Elastic Container Service (Amazon ECS) 任务。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "使用 Amazon EventBridge 定时事件触发 Amazon ECS Fargate 任务，可以按需启动容器，而不必为底层的 EC2 实例支付固定的费用。这种方式能够确保在每天运行数据处理作业时只付费所使用的计算资源，从而最大程度地降低成本。",
+  "AI解析": "AWS服务的成本优化与适用场景，参考AWS架构最佳实践。选项A涉及预留实例，长期成本较高，不适合每日短时间任务。B选项Lambda有15分钟超时限制，无法满足2小时需求。D选项使用EC2运行ECS任务需持续维护实例，产生闲置费用。C选项Fargate按任务执行时间和资源收费，无预留或闲置成本，适合间歇性长时间任务。"
+ }
+}

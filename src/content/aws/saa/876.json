@@ -1,0 +1,18 @@
+{
+ "qid": "2264604847",
+ "index": 876,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用 Amazon\nS3 托管其静态网站。公司希望向网页添加一个联系表单。联系表单将具有动态的服务器端组件，供用户输入其姓名、电子邮件地址、电话号码和用户消息。\n公司预计每个月的网站访问量不超过 100 次。当客户填写表单时，联系表单必须通过电子邮件通知公司。\n哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 在 Amazon Elastic Container Service (Amazon ECS) 中托管动态联系表单。设置 Amazon Simple Email Service (Amazon SES) 连接到第三方电子邮件提供商。",
+  "B. 创建一个 Amazon API Gateway 端点，从 AWS Lambda 函数返回联系表单。在 API Gateway 上配置另一个 Lambda 函数，向 Amazon Simple Notification Service (Amazon SNS) 主题发布消息。",
+  "C. 使用 AWS Amplify Hosting 托管静态内容和动态内容的网站。使用服务器端脚本构建联系表单。配置 Amazon Simple Queue Service (Amazon SQS) 将消息发送给公司。",
+  "D. 将网站从 Amazon S3 迁移到运行 Windows Server 的 Amazon EC2 实例。使用 Internet Information Services (IIS) for Windows Server 托管网页。使用客户端脚本构建联系表单。将表单与 Amazon WorkMail 集成。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B 建议创建一个 Amazon\nAPI Gateway 端点，通过 AWS Lambda 函数返回联系表单，并使用另一个 Lambda 函数在 API Gateway 上发布消息到 Amazon SNS 主题。这种方法既能满足动态需求，又能以较低成本实现电子邮件通知功能。其他选项可能会引入不必要的复杂性或成本。",
+  "AI解析": "AWS无服务器架构服务适用于低流量场景，成本优化。题目涉及静态网站添加动态表单功能，每月访问量低。选项B结合API Gateway和Lambda处理请求，利用SNS发送通知，无需预置资源，按实际使用付费，费用最低。其他选项涉及长期运行资源（ECS、EC2）或复杂集成（SQS、Amplify），成本较高。AWS文档强调无服务器服务在低使用量下的经济性，Lambda免费层可覆盖每月少量请求。选项B通过按需付费模型满足需求，符合成本效益目标。"
+ }
+}

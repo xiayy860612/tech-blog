@@ -1,0 +1,18 @@
+{
+ "qid": "1529122098",
+ "index": 25,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要审查其AWS云部署，以确保其Amazon S3存储桶没有未经授权的配置更改。解决方案架构师应该怎么做来实现这个目标？",
+ "options": [
+  "A. 打开AWS Config并配置适当的规则。",
+  "B. 打开AWS Trusted Advisor并配置适当的检查。",
+  "C. 打开Amazon Inspector并配置适当的评估模板。",
+  "D. 打开Amazon S3服务器访问日志。配置Amazon EventBridge（Amazon CloudWatch Events）。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了确保Amazon S3存储桶没有未经授权的配置更改，最佳做法是使用AWS Config。AWS Config可以记录和监视资源配置更改，并允许您执行规则检查以确保符合最佳实践和安全性要求。其他选项（B、C、D）不直接提供与配置更改的监视和审查相关的功能。",
+  "AI解析": "该题考查AWS配置监控的核心服务应用。AWS Config专用于持续监控和记录资源配置变更，通过预定义规则评估S3存储桶配置是否符合安全合规要求，直接满足检测未授权变更的需求；Trusted Advisor侧重成本优化与安全检查，Inspector针对漏洞评估，而S3访问日志仅记录对象级操作，均不涉及配置变更追踪。"
+ }
+}

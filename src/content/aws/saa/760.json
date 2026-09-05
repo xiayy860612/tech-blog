@@ -1,0 +1,18 @@
+{
+ "qid": "1908085494",
+ "index": 760,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要使用其本地 LDAP 目录服务来对其用户进行 AWS Management Console 身份验证。该目录服务不兼容 Security Assertion Markup Language（SAML）。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 在 AWS 和本地 LDAP 之间启用 AWS IAM Identity Center（AWS Single Sign-On）。",
+  "B. 创建一个使用 AWS 凭据的 IAM 策略，并将该策略集成到 LDAP 中。",
+  "C. 设置一个流程，当 LDAP 凭据更新时自动旋转 IAM 凭据。",
+  "D. 开发一个本地自定义身份代理应用程序或流程，该应用程序使用 AWS Security Token Service（AWS STS）获取短期凭证。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了使用本地 LDAP 目录服务对用户进行 AWS Management Console 身份验证，且目录服务不兼容 SAML，最佳解决方案是开发一个本地自定义身份代理应用程序或流程，该应用程序使用 AWS Security Token Service（AWS STS）获取短期凭证。这样可以通过在本地环境中处理身份验证过程，然后使用 AWS STS 获取临时凭证，从而实现对 AWS Management Console 的身份验证。",
+  "AI解析": "AWS服务集成中，当本地LDAP目录不支持SAML时，需通过自定义代理实现身份验证。AWS官方文档提到，STS允许通过临时安全令牌访问AWS资源，适用于非SAML环境。选项A依赖SAML，不适用。选项B混淆IAM策略与身份验证机制。选项C未解决初始认证问题，仅处理凭证更新。选项D通过自定义代理调用STS获取临时凭证，直接解决LDAP与AWS控制台的身份验证需求，符合无SAML场景下的推荐方案。答案D。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 248,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS云中为托管的媒体应用程序实施共享存储解决方案。公司需要能够使用SMB客户端来访问数据。解决方案必须是完全托管的。哪种AWS解决方案符合这些要求？",
+ "options": [
+  "A. 创建AWS Storage Gateway卷网关。创建一个使用所需客户端协议的文件共享。将应用程序服务器连接到文件共享。",
+  "B. 创建AWS Storage Gateway磁带网关。配置磁带以使用Amazon S3。将应用程序服务器连接到磁带网关。",
+  "C. 创建Amazon EC2 Windows实例。在实例上安装和配置Windows文件共享角色。将应用程序服务器连接到文件共享。",
+  "D. 创建Amazon FSx for Windows File Server文件系统。将文件系统附加到原始服务器。将应用程序服务器连接到文件系统。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "要实现完全托管的SMB文件共享，最佳选择是使用Amazon FSx for Windows File Server。这是AWS提供的托管文件存储服务，专门用于支持SMB协议，因此可以满足要求。\nA AWS Storage Gateway卷网关通常用于卷式存储（iSCSI卷），而不是SMB文件共享。\nB AWS Storage Gateway磁带网关用于将磁带存档与云存储集成，不提供SMB文件共享功能。\nC 创建Amazon EC2 Windows实例并配置文件共享角色可以提供SMB文件共享，但它不是完全托管的解决方案，需要自己管理EC2实例和相关资源。\n因此，答案是D，使用Amazon FSx for Windows File Server。这将提供完全托管的SMB文件共享解决方案。",
+  "AI解析": "AWS的托管存储服务中，Amazon FSx for Windows File Server是专为Windows环境设计的全托管文件存储服务，原生支持SMB协议，无需自行维护底层基础设施。Storage Gateway卷网关（A）需要本地部署资源或网关虚拟机，并非完全托管；磁带网关（B）适用于备份场景而非实时文件访问；EC2自建Windows文件共享（C）需用户自行管理实例和软件更新，不符合全托管要求。《AWS Storage Services Overview》文档明确指出，FSx提供了与Windows兼容的共享文件存储，并自动处理硬件配置、补丁管理等运维任务。"
+ }
+}

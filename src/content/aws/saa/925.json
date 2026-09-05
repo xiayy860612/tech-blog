@@ -1,0 +1,18 @@
+{
+ "qid": "2949540266",
+ "index": 925,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在容器上运行其面向客户的Web应用程序。该工作负载使用Amazon Elastic Container\nService（Amazon ECS）在AWS Fargate上。Web应用程序资源消耗大。\nWeb应用程序需要全天候（24小时，7天）对客户可用。公司预计应用程序会经历短时间的高流量突发。工作负载必须具有高可用性。\n哪种解决方案最具成本效益地满足这些要求？",
+ "options": [
+  "A. 配置一个使用Fargate的ECS容量提供程序。使用第三方工具进行负载测试。使用Amazon CloudWatch调整Fargate任务的大小。",
+  "B. 配置一个使用Fargate的ECS容量提供程序，以处理稳定状态的工作负载，并使用Fargate Spot处理突发流量。",
+  "C. 配置一个使用Fargate Spot的ECS容量提供程序，以处理稳定状态的工作负载，并使用Fargate处理突发流量。",
+  "D. 配置一个使用Fargate的ECS容量提供程序。使用AWS Compute Optimizer调整Fargate任务的大小。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Fargate 提供了按需计算资源，可以在流量高峰时处理请求。Fargate适用于稳定的、持续的流量。\nFargate Spot 是Fargate的按需计算资源的成本更低的替代品。它适合用于处理较大而且可以容忍中断的突发流量。\n通过将Fargate Spot用于稳定的工作负载，您可以利用其较低的成本，而将Fargate用于处理突发流量，以确保高可用性和性能。这种组合最大限度地降低了成本，同时保持了应用程序的可用性和性能。",
+  "AI解析": "AWS Fargate Spot适用于可中断任务，成本较低，但可能被回收。稳定状态下使用Spot处理日常流量，突发时通过常规Fargate确保高可用性。选项C以低成本处理常规负载，突发时采用高可用资源，符合题干要求。选项B将高可用资源用于稳定状态，成本更高。选项A和D依赖外部工具优化，不如原生集成有效。"
+ }
+}

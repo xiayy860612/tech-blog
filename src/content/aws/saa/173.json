@@ -1,0 +1,17 @@
+{
+ "index": 173,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地数据中心的Kubernetes集群上运行一个容器化应用程序。该公司使用MongoDB数据库进行数据存储。公司希望将其中一些环境迁移到AWS，但目前无法进行任何代码更改或部署方式更改。公司需要一个最小化运维开销的解决方案。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用Amazon Elastic Container Service（Amazon ECS），采用Amazon EC2工作节点进行计算，并在EC2上使用MongoDB进行数据存储。",
+  "B. 使用Amazon Elastic Container Service（Amazon ECS），采用AWS Fargate进行计算，并在Amazon DynamoDB上进行数据存储。",
+  "C. 使用Amazon Elastic Kubernetes Service（Amazon EKS），采用Amazon EC2工作节点进行计算，并在Amazon DynamoDB上进行数据存储。",
+  "D. 使用Amazon Elastic Kubernetes Service（Amazon EKS），采用AWS Fargate进行计算，并在Amazon DocumentDB（支持MongoDB兼容性）上进行数据存储。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在这种情况下，公司希望最小化运维开销，并且不允许代码更改或部署方式更改。选择使用Amazon EKS与AWS Fargate可以提供托管的Kubernetes计算环境，无需担心EC2实例的管理。使用Amazon DocumentDB作为数据存储是因为它提供了与MongoDB的兼容性，从而无需对应用程序进行任何更改。这个解决方案可以满足要求并降低运维负担。\n其他选项中：\nA 使用Amazon ECS和EC2节点需要管理EC2实例，而且MongoDB需要自己管理，这会增加运维负担。\nB 使用Amazon ECS和DynamoDB是无服务器计算，但需要应用程序进行一些更改以适应DynamoDB的数据模型。\nC 使用Amazon EKS和EC2节点需要管理EC2实例，而且使用Amazon DynamoDB需要更改数据存储方法。",
+  "AI解析": "题目核心在于实现Kubernetes架构无缝迁移且兼容原有MongoDB数据库，同时最大化托管服务降低运维。Amazon EKS完全兼容原生Kubernetes环境，无需修改部署方式；Fargate提供无服务器计算免除节点运维，而Amazon DocumentDB作为MongoDB的AWS托管替代服务，直接兼容现有数据库操作。其余选项或涉及部署方式调整（ECS与Kubernetes架构差异）、或采用非兼容数据库（DynamoDB）、或需自主运维节点（EC2），均无法同时满足零改造与最小运维需求。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 331,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要为其员工提供对机密和敏感文件的安全访问。公司希望确保只有授权用户可以访问这些文件。文件必须安全地下载到员工的设备上。\n这些文件存储在内部的Windows文件服务器上。但是，由于远程使用的增加，文件服务器的容量不足。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 将文件服务器迁移到位于公共子网中的Amazon EC2实例。配置安全组以限制入站流量仅允许员工的IP地址。",
+  "B. 将文件迁移到Amazon FSx for Windows File Server文件系统。将Amazon FSx文件系统与内部Active Directory集成。配置AWS Client VPN。",
+  "C. 将文件迁移到Amazon S3，并创建一个私有VPC终端点。创建签名URL以允许下载。",
+  "D. 将文件迁移到Amazon S3，并创建一个公共VPC终端点。允许员工使用AWS IAM身份中心（AWS Single Sign-On）进行登录。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "最适合这一场景的解决方案是选项B。Amazon FSx for Windows File Server是托管的文件存储服务，可轻松集成到公司的Active Directory中，从而使员工可以安全地访问文件。此解决方案满足了要求，可以提供对敏感文件的安全访问，并支持远程用户。选项A中的Amazon EC2实例可能需要更多的维护和管理，并不提供文件系统的完全集成。选项C中的Amazon S3虽然提供了存储，但需要额外的步骤来提供安全的访问。选项D中的公共VPC终端点通常不适合访问敏感数据。因此，最佳答案是选项B。",
+  "AI解析": "AWS解决方案设计需满足安全访问、容量扩展及与现有系统集成。Amazon FSx for Windows File Server专为Windows环境设计，兼容性高，支持与本地Active Directory无缝集成，确保权限管理延续现有体系。AWS Client VPN提供加密通道，保障远程访问安全。选项A公共子网部署增加暴露风险，IP限制难以适应动态IP环境。选项C和D使用S3对象存储，不适合需文件系统语义的场景，签名URL或公共端点可能引入复杂性和安全隐患。FSx兼具扩展性、兼容性与安全性，符合需求。（参考AWS架构最佳实践及FSx官方文档）"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 142,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在AWS上使用高性能计算（HPC）基础设施进行金融风险建模。该公司的HPC工作负载在Linux上运行。每个HPC工作流在数百个Amazon EC2 Spot实例上运行，生命周期短暂，生成成千上万的输出文件，最终存储在持久性存储中以进行分析和长期未来使用。\n公司寻求一种云存储解决方案，允许将本地数据复制到长期持久性存储，以供所有EC2实例进行处理。该解决方案还应该是一个高性能的文件系统，可以与持久性存储集成，用于读取和写入数据集和输出文件。\n哪种AWS服务的组合满足这些要求？",
+ "options": [
+  "A. Amazon FSx for Lustre集成Amazon S3",
+  "B. Amazon FSx for Windows文件服务器集成Amazon S3",
+  "C. Amazon S3 Glacier集成Amazon Elastic Block Store（Amazon EBS）",
+  "D. Amazon S3存储桶与VPC终端集成Amazon Elastic Block Store（Amazon EBS）通用型SSD（gp2）卷"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提供了一个高性能的文件系统解决方案，Amazon FSx for Lustre，它可以与Amazon S3集成，以便将数据从本地复制到长期持久性存储（Amazon S3）中。这个解决方案还满足要求，因为Amazon FSx for Lustre是一个高性能文件系统，适用于HPC工作负载，可以读取和写入数据集和输出文件。其他选项，如B和D，不提供与Amazon S3的紧密集成，并且不是高性能文件系统。选项C提到了Amazon S3 Glacier，但它不适合高性能文件系统和HPC工作负载的要求。因此，A是最适合的选择。",
+  "AI解析": "AWS的HPC场景通常需要高性能并行文件系统，Amazon FSx for Lustre专为计算密集型工作负载设计，提供亚毫秒级延迟和数百GB/s的吞吐量。其原生支持POSIX文件系统接口，可挂载到Linux EC2实例。该服务支持与S3存储桶双向同步：可将S3数据加载到Lustre文件系统加速处理，处理结果自动写回S3实现持久化。FSx for Lustre的吞吐量特性适用于数百个实例并发访问，Spot实例的短暂生命周期也需要共享存储保持数据一致性。其他选项存在接口不兼容（Windows）、存储层级不匹配（Glacier）或性能瓶颈（纯EBS架构）等问题。AWS官方架构最佳实践推荐在HPC场景中将FSx for Lustre作为S3的前置加速层（参考《HPC on AWS》白皮书）。"
+ }
+}

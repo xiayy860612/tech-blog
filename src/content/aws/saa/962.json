@@ -1,0 +1,18 @@
+{
+ "qid": "2949540303",
+ "index": 962,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一位解决方案架构师正在为一个新的无状态应用程序设计云架构，该应用程序将在AWS上部署。架构师创建了一个Amazon Machine Image (AMI) 和启动模板用于应用程序。\n根据需要处理的作业数量，处理必须并行运行，同时根据需要添加和删除应用程序的Amazon\nEC2实例。应用程序必须是松耦合的。作业项必须被持久化存储。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 创建一个Amazon Simple Notification Service (Amazon SNS) 主题来发送需要处理的作业。创建一个Auto Scaling组，使用启动模板，设置缩放策略以根据CPU使用率添加和删除EC2实例。",
+  "B. 创建一个Amazon Simple Queue Service (Amazon SQS) 队列来保存需要处理的作业。创建一个Auto Scaling组，使用启动模板，设置缩放策略以根据网络使用情况添加和删除EC2实例。",
+  "C. 创建一个Amazon Simple Queue Service (Amazon SQS) 队列来保存需要处理的作业。创建一个Auto Scaling组，使用启动模板，设置缩放策略以根据SQS队列中的项数添加和删除EC2实例。",
+  "D. 创建一个Amazon Simple Notification Service (Amazon SNS) 主题来发送需要处理的作业。创建一个Auto Scaling组，使用启动模板，设置缩放策略以根据发布到SNS主题的消息数量添加和删除EC2实例。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Amazon SQS的作用：\nAmazon Simple Queue Service (Amazon SQS) 是一种可靠的消息队列服务，用于持久化存储作业项，并确保作业可以按顺序处理。SQS队列可以有效地保存和管理需要处理的作业项，使应用程序松耦合，处理任务的EC2实例可以从队列中提取任务并进行处理。\nAuto Scaling的配置： 根据SQS队列中的项数设置Auto Scaling策略，可以确保当队列中的作业项增多时，自动添加更多的EC2实例以进行并行处理；当队列中的项数减少时，自动减少EC2实例。这种配置能够根据实际的工作负载动态调整计算资源。",
+  "AI解析": "该题目考察在AWS中设计松耦合、可扩展的无状态应用的能力。Amazon SQS队列提供持久化存储并解耦组件，Auto Scaling组根据队列深度动态调整EC2实例数量。正确答案C使用SQS队列存储作业项，实现松耦合，Auto Scaling策略直接关联队列积压量，确保实例数量与作业负载匹配。其他选项中，SNS不持久，基于CPU或网络指标的策略无法准确反映处理需求。AWS最佳实践推荐将队列深度作为扩展指标以高效处理可变负载。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908085521",
+ "index": 787,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon S3存储桶中以Apache Parquet格式存储了10 TB的日志文件。该公司偶尔需要使用SQL来分析这些日志文件。\n哪种解决方案将以最经济的方式满足这些要求？",
+ "options": [
+  "A. 创建一个Amazon Aurora MySQL数据库。使用AWS数据库迁移服务（AWS DMS）将数据从S3存储桶迁移到Aurora。向Aurora数据库发出SQL语句。",
+  "B. 创建一个Amazon Redshift集群。使用Redshift Spectrum直接在S3存储桶中的数据上运行SQL语句。",
+  "C. 创建一个AWS Glue爬虫来从S3存储桶中存储和检索表元数据。使用Amazon Athena直接在S3存储桶中的数据上运行SQL语句。",
+  "D. 创建一个Amazon EMR集群。使用Apache Spark SQL直接在S3存储桶中的数据上运行SQL语句。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "C选项结合了AWS Glue和Amazon Athena，这是一种高度经济和有效的方式来处理S3存储桶中的大量数据并执行SQL查询。AWS Glue用于发现和存储表元数据，并为Athena提供数据目录。Amazon Athena可以直接在S3中的数据上运行SQL查询，而无需管理任何基础设施。\nA选项中使用Amazon Aurora MySQL需要额外的管理和成本，并且需要将数据迁移到数据库中。\nB选项中使用Amazon Redshift，虽然可以执行SQL查询，但是要创建和维护Redshift集群可能会增加额外的成本。\nD选项中使用Amazon EMR，虽然可以使用Apache Spark SQL运行SQL查询，但是要管理EMR集群可能会增加复杂性和成本。",
+  "AI解析": "本题核心在于无服务器架构下实现经济高效的S3数据查询。Amazon Athena作为无服务查询引擎，直接对S3中的Parquet文件执行标准SQL，无需数据迁移且按扫描量付费，契合\"偶尔分析\"的低频场景；AWS Glue爬虫自动提取元数据构建表结构，省去手动定义Schema成本。Parquet列式存储本身优化扫描效率，进一步降低费用。相较其他方案，Aurora需持续维护数据库实例，Redshift/EMR涉及集群运维成本，均不符合\"最经济\"要求。"
+ }
+}

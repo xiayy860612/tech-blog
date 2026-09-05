@@ -1,0 +1,18 @@
+{
+ "qid": "1908085437",
+ "index": 703,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家在线视频游戏公司必须为其游戏服务器保持超低延迟。游戏服务器运行在 Amazon EC2 实例上。公司需要一个能够处理每秒数百万个 UDP 互联网流量请求的解决方案。哪种解决方案能够在成本上最有效地满足这些要求？",
+ "options": [
+  "A. 配置一个具有所需协议和端口的 Application Load Balancer 用于互联网流量。将 EC2 实例指定为目标。",
+  "B. 配置一个 Gateway Load Balancer 用于互联网流量。将 EC2 实例指定为目标。",
+  "C. 配置一个具有所需协议和端口的 Network Load Balancer 用于互联网流量。将 EC2 实例指定为目标。",
+  "D. 在不同的 AWS 区域中启动一组相同的游戏服务器，将互联网流量路由到两组 EC2 实例。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Network Load Balancer 是一种高性能的负载均衡器，专为处理互联网流量而设计。它能够提供低延迟和高吞吐量，适合处理 UDP 互联网流量请求。相比其他选项，使用 Network Load Balancer 最为成本效益。",
+  "AI解析": "本题核心考察AWS负载均衡器类型的选择。UDP协议常用于低延迟、高性能场景，Network Load Balancer（NLB）作为四层负载均衡器，专为处理TCP/UDP流量设计，支持每秒数百万请求且保持超低延迟，计费模式基于流量/小时，成本效益显著。Application Load Balancer（ALB）仅支持HTTP/HTTPS，Gateway Load Balancer（GWLB）侧重流量透明转发与安全设备集成，跨区域部署虽提升可用性但显著增加成本。NLB直接绑定EC2实例，完美匹配高吞吐UDP需求。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 187,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司需要每天将其数据库导出到Amazon S3，以便其他团队访问。导出对象的大小在2 GB到5 GB之间不等。数据的S3访问模式是可变的并且变化迅速。数据必须立即可用，并且必须在长达3个月的时间内保持可访问。公司需要最经济的解决方案，不会增加检索时间。\n应该使用哪个S3存储类来满足这些要求？",
+ "options": [
+  "A. S3 智能分层（S3 Intelligent-Tiering）",
+  "B. S3 Glacier 即时检索（S3 Glacier Instant Retrieval）",
+  "C. S3 标准（S3 Standard）",
+  "D. S3 标准-不经常访问（S3 Standard-Infrequent Access，S3 Standard-IA）"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "根据要求，最佳的S3存储类是S3 Intelligent-Tiering（S3 智能分层）。S3 Intelligent-Tiering根据数据的访问模式自动将数据移动到不同的存储层，以实现最佳的成本效益。对于这个特定的用例，S3 Intelligent-Tiering能够在数据需要时保持数据立即可用，并且可以根据变化的访问模式自动调整存储成本，以降低费用。\n选项B中的S3 Glacier即时检索适用于低频访问的数据，但它不符合\"数据必须立即可用\"的要求。\n选项C中的S3标准适用于经常访问的数据，但它可能会产生更高的存储成本。\n选项D中的S3标准-不经常访问适用于不经常访问的数据，但不满足\"数据必须立即可用\"的要求。\n因此，最佳选择是S3 Intelligent-Tiering，它提供了最经济且满足要求的解决方案。",
+  "AI解析": "Amazon S3 Intelligent-Tiering 设计用于自动将数据迁移到最具成本效益的访问层，无需性能影响或操作开销。该存储类通过监控对象的访问模式，动态在频繁访问层（适用于热数据）和不频繁访问层（适用于冷数据）之间移动数据。题干中访问模式“可变且变化迅速”的特性恰好符合 Intelligent-Tiering 的动态优化能力，避免了因人工调整存储类带来的潜在成本或延迟。数据需立即可用且存储三个月，Intelligent-Tiering 自动处理分层逻辑，无需最低存储时长限制（对比其他选项如 Glacier Instant Retrieval 的90天最低存储要求）。选项C（标准）和D（标准-IA）无法根据访问频率自动优化成本，选项B（Glacier Instant Retrieval）虽支持快速检索但设计定位为归档场景，访问延迟和吞吐量并非最优。"
+ }
+}

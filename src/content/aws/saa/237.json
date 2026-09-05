@@ -1,0 +1,17 @@
+{
+ "index": 237,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望为其工程师团队的每个AWS账户进行实验。公司希望在给定月份的Amazon EC2实例使用量超过特定阈值时尽快收到通知。\n为了在成本效益最高的情况下满足这一要求，解决方案架构师应该采取什么措施？",
+ "options": [
+  "A. 使用Cost Explorer创建按服务的每日成本报告。通过EC2实例筛选报告。配置Cost Explorer在超出阈值时发送Amazon Simple Email Service（Amazon SES）通知。",
+  "B. 使用Cost Explorer创建按服务的每月成本报告。通过EC2实例筛选报告。配置Cost Explorer在超出阈值时发送Amazon Simple Email Service（Amazon SES）通知。",
+  "C. 使用AWS Budgets为每个账户创建成本预算。将周期设置为每月。将范围设置为EC2实例。为预算设置警报阈值。配置Amazon Simple Notification Service（Amazon SNS）主题以在超出阈值时接收通知。",
+  "D. 使用AWS Cost and Usage Reports创建具有每小时粒度的报告。将报告数据与Amazon Athena集成。使用Amazon EventBridge调度Athena查询。配置Amazon Simple Notification Service（Amazon SNS）主题以在超出阈值时接收通知。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项A建议使用Cost Explorer创建每日成本报告，但通常这不是最有效的方法，因为实例使用量通常以月为单位计费。\n选项B建议使用Cost Explorer创建每月成本报告，但同样不是最有效的方法，因为它不提供在超出阈值时即时通知的能力。\n选项D建议使用Cost and Usage Reports与Athena和EventBridge结合使用，但这是一种较为复杂的方法，不如选项C简单。\n选项C建议使用AWS Budgets创建成本预算，将周期设置为每月，并将范围设置为EC2实例。这允许您为每个账户设置阈值，并在超出阈值时通过Amazon SNS主题接收通知，这是最简单和最有效的方法。",
+  "AI解析": "AWS Budgets支持创建针对特定服务（如EC2）的预算，并设置警报阈值，通过SNS发送通知。官方文档指出AWS Budgets具备监控特定服务使用量和成本的功能，支持每月周期及自定义警报。选项C利用AWS Budgets内置的警报机制，直接关联EC2实例，无需额外数据处理，符合低成本高效的要求。其余选项或缺乏实时警报（A、B），或流程复杂（D），成本效益不足。"
+ }
+}

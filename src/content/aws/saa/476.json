@@ -1,0 +1,18 @@
+{
+ "qid": "1529124400",
+ "index": 476,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一组需要权限来列出一个Amazon S3存储桶并删除该存储桶中的对象。管理员已经创建了以下IAM策略以提供对该存储桶的访问权限，并将该策略应用于该组。该组无法删除存储桶中的对象。该公司遵循最小特权访问规则。\n\n{\n\n  \"version\": \"2012-10-17\",\n\n  \"statement\": [{\n\n    \"Action\": [\n\n       \"s3:ListBucket\",\n\n     \"s3:DeleteObject\"],\n\n\"Resource\": [\"arn:aws:s3:::bucket-name\"],\n\n\"Effect\": \"Allow\"\n\n}]}\n\n哪个陈述应该由解决方案架构师添加到策略中，以纠正对存储桶的访问？",
+ "options": [
+  "A. \"Action\":[\"s3:*Object\"],\n\n\"Resource\":[\"arn:aws:s3:::bucket-name/*\"],\n\n\"Effect\": \"Allow\"",
+  "B. \"Action\": [\"s3:*\"],\n\n\"Resource\":[\"arn:aws:s3:::bucket-name/*\"],\n\n\"Effect\":\"Allow\"",
+  "C. \"Action\":[\"s3:DeleteObject\"],\n\n\"Resource\": [\"arn:aws:s3:::bucket-name*\"],\n\n\"Effect\":\"Allow\"",
+  "D. \"Action\":[\"s3:DeleteObject\"],\n\n\"Resource\":[\"arn:aws;s3:::bucket-name/*\"],\n\n\"Effect\": \"Allow\""
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "AWS IAM策略中操作与资源ARN的对应关系需符合服务要求。AWS S3 API文档指出，`s3:DeleteObject`操作要求资源ARN指定为存储桶内对象（`arn:aws:s3:::bucket-name/*`）。现有策略中`DeleteObject`的资源ARN仅指向存储桶（`bucket-name`），未涵盖对象层级。选项D将资源调整为`bucket-name/*`，匹配对象级操作要求，允许删除对象。选项D的Resource字段存在ARN分隔符书写错误（正确应使用冒号而非分号），但根据题目选项设定，应视为正确。其他选项或未限定资源路径，或使用错误操作模式。"
+ }
+}

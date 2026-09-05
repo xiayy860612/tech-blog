@@ -1,0 +1,18 @@
+{
+ "qid": "1529124331",
+ "index": 407,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司运行一个应用程序，接收来自数千个地理分布的远程设备使用UDP传输的数据。该应用程序立即处理数据，如果需要，向设备发送消息。不存储数据。\n该公司需要一个解决方案，以最小化来自设备的数据传输的延迟。解决方案还必须提供快速故障转移到另一个AWS区域。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 配置Amazon Route 53故障转移路由策略。在两个区域中创建一个Network Load Balancer (NLB)。配置NLB以调用AWS Lambda函数来处理数据。",
+  "B. 使用AWS Global Accelerator。在两个区域中创建一个Network Load Balancer (NLB)作为终点。创建一个Amazon Elastic Container Service (Amazon ECS)集群，使用Fargate启动类型。在集群上创建一个ECS服务。将ECS服务设置为NLB的目标来处理数据。",
+  "C. 使用AWS Global Accelerator。在两个区域中创建一个Application Load Balancer (ALB)作为终点。创建一个Amazon Elastic Container Service (Amazon ECS)集群，使用Fargate启动类型。在集群上创建一个ECS服务。将ECS服务设置为ALB的目标来处理数据。",
+  "D. 配置Amazon Route 53故障转移路由策略。在两个区域中创建一个Application Load Balancer (ALB)。创建一个Amazon Elastic Container Service (Amazon ECS)集群，使用Fargate启动类型。在集群上创建一个ECS服务。将ECS服务设置为ALB的目标来处理数据。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "这道题涉及AWS的多区域高可用架构设计，结合了网络加速、负载均衡与容器化服务。AWS文档指出，Global Accelerator通过Anycast IP和AWS全球网络优化路径，降低延迟并内置跨区域故障转移能力。NLB支持UDP协议及静态IP，适用于实时传输场景。ECS Fargate提供无服务器容器部署，与NLB集成可快速扩展数据处理服务。Route 53的DNS故障转移依赖TTL，延迟较高；ALB仅支持HTTP(S)，与UDP要求冲突。Lambda不适合直接处理UDP持续流。选项B通过Global Accelerator+NLB组合保障低延迟与秒级容灾，ECS实现数据处理，满足所有题干条件。"
+ }
+}

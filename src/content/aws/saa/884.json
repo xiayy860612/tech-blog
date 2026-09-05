@@ -1,0 +1,19 @@
+{
+ "qid": "2264604855",
+ "index": 884,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司发布了其生产应用程序的新版本。该公司的工作负载使用Amazon EC2、AWS Lambda、AWS Fargate和Amazon SageMaker。\n公司希望现在工作负载使用处于稳定状态时进行成本优化。公司希望使用尽可能少的储蓄计划覆盖尽可能多的服务。\n哪种储蓄计划组合将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 为Amazon EC2和SageMaker购买EC2实例储蓄计划。",
+  "B. 为Amazon EC2、Lambda和SageMaker购买计算储蓄计划。",
+  "C. 购买SageMaker储蓄计划。",
+  "D. 为Lambda、Fargate和Amazon EC2购买计算储蓄计划。",
+  "E. 为Amazon EC2和Fargate购买EC2实例储蓄计划。"
+ ],
+ "answer": {
+  "正确答案": "BD",
+  "解析": "选项B：购买计算储蓄计划，覆盖了Amazon\nEC2、Lambda和SageMaker，这是一个跨越了多个服务的成本优化方案。\n选项D：同样是购买计算储蓄计划，但是覆盖了Lambda、Fargate和Amazon\nEC2，也是一个跨越了多个服务的成本优化方案。\n选项A和E只覆盖了Amazon EC2和SageMaker，而选项C只覆盖了SageMaker，这些都没有涵盖到工作负载中的所有服务。",
+  "AI解析": "AWS储蓄计划的核心区分在于适用范围：计算储蓄计划覆盖EC2、Lambda和Fargate（含弹性容器服务），而EC2实例计划仅限EC2及其衍生的SageMaker。题目要求最少计划覆盖最多服务，B选项通过计算计划覆盖EC2/Lambda/SageMaker（SageMaker训练场景依赖EC2实例），D选项的计算计划则覆盖EC2/Fargate/Lambda，两者均以单一计划整合三项服务。其余选项如A/C/E因仅适用部分服务或重复覆盖，无法同时满足\"最少计划数\"和\"最大覆盖范围\"的要求。"
+ }
+}

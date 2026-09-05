@@ -1,0 +1,18 @@
+{
+ "qid": "1529122084",
+ "index": 12,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家全球性公司在Amazon EC2实例后面使用应用程序负载均衡器（ALB）托管其Web应用程序。Web应用程序具有静态数据和动态数据。公司将静态数据存储在Amazon S3存储桶中。公司希望提高静态数据和动态数据的性能，并减少延迟。公司正在使用自己在Amazon Route 53注册的域名。解决方案架构师应该采取什么措施来满足这些要求？",
+ "options": [
+  "A. 创建一个Amazon CloudFront分发，其中包括S3存储桶和ALB作为源。配置Route 53将流量路由到CloudFront分发。",
+  "B. 创建一个Amazon CloudFront分发，其中包括ALB作为源。创建一个具有S3存储桶作为端点的AWS Global Accelerator标准加速器。配置Route 53将流量路由到CloudFront分发。",
+  "C. 创建一个Amazon CloudFront分发，其中包括S3存储桶作为源。创建一个具有ALB和CloudFront分发作为端点的AWS Global Accelerator标准加速器。创建一个自定义域名，指向加速器的DNS名称。将自定义域名用作Web应用程序的端点。",
+  "D. 创建一个Amazon CloudFront分发，其中包括ALB作为源。创建一个具有S3存储桶作为端点的AWS Global Accelerator标准加速器。创建两个域名。将一个域名指向动态内容的CloudFront DNS名称。将另一个域名指向静态内容的加速器DNS名称。将域名用作Web应用程序的端点。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": null
+ }
+}

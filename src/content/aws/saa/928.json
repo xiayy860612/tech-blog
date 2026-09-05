@@ -1,0 +1,20 @@
+{
+ "qid": "2949540269",
+ "index": 928,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家医疗保健公司正在开发一个AWS\nLambda函数，该函数向一个加密的Amazon Simple Notification Service（Amazon SNS）主题发布通知。通知中包含受保护的健康信息（PHI）。该SNS主题使用AWS Key Management Service（AWS KMS）客户管理密钥进行加密。公司必须确保应用程序具备必要的权限，以安全地向SNS主题发布消息。\n哪三种步骤将满足这些要求？（选择三项）",
+ "options": [
+  "A. 为SNS主题创建一个资源策略，允许Lambda函数向该主题发布消息。",
+  "B. 对SNS主题使用AWS KMS密钥的服务器端加密（SSE-KMS），而不是客户管理密钥。",
+  "C. 为SNS主题使用的加密密钥创建一个资源策略，该策略具有必要的AWS KMS权限。",
+  "D. 在SNS主题的资源策略中指定Lambda函数的Amazon资源名称（ARN）。",
+  "E. 将Amazon API Gateway HTTP API与SNS主题关联，以通过API Gateway资源策略控制对该主题的访问。",
+  "F. 配置一个Lambda执行角色，该角色具有使用AWS KMS中客户管理密钥的必要IAM权限。"
+ ],
+ "answer": {
+  "正确答案": "ADF",
+  "解析": "SNS主题的资源策略允许您控制谁可以向该主题发布消息。通过为SNS主题创建资源策略，您可以指定Lambda函数或其他AWS服务可以发布消息到该主题。这样可以确保应用程序有权向SNS主题发布消息。\n选项D：在SNS主题的资源策略中指定Lambda函数的Amazon资源名称（ARN）。\n在SNS主题的资源策略中明确指定Lambda函数的ARN可以控制哪些Lambda函数有权限发布消息到该SNS主题。这确保了只有具有正确权限的Lambda函数才能访问SNS主题。\n选项F：配置一个Lambda执行角色，该角色具有使用AWS KMS中客户管理密钥的必要IAM权限。\nLambda函数需要具有足够的IAM权限来使用AWS KMS密钥对SNS消息进行加密。这包括允许Lambda执行角色使用KMS密钥的权限。配置Lambda执行角色并赋予其这些权限是确保Lambda函数能够安全地与加密的SNS主题交互的关键步骤。",
+  "AI解析": "Amazon SNS资源策略用于控制对主题的访问，需允许Lambda函数的发布权限，包含Lambda ARN的显式授权确保最小权限原则。AWS Lambda执行角色需具备kms:GenerateDataKey和kms:Decrypt权限以处理加密操作。AWS文档指出，向KMS加密的SNS发布消息时，发布者必须拥有SNS发布权限及对应KMS密钥的权限。选项A通过资源策略实现访问控制，选项D明确资源策略中的主体，选项F确保密钥权限。选项B错误因题目已要求客户管理密钥；选项C混淆KMS密钥策略概念；选项E引入无关服务。正确步骤为A、D、F。"
+ }
+}

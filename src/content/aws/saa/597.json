@@ -1,0 +1,20 @@
+{
+ "qid": "1529125654",
+ "index": 597,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家研究公司使用本地设备生成用于分析的数据。该公司希望使用AWS云来分析这些数据。这些设备生成.csv文件，并支持将数据写入SMB文件共享。公司分析师必须能够使用SQL命令查询数据。分析师将在一天中的不同时间段运行查询。\n哪种组合步骤将以最具成本效益的方式满足这些要求？（选择三个）",
+ "options": [
+  "A. 在本地部署AWS Storage Gateway，使用Amazon S3文件网关模式。",
+  "B. 在本地部署AWS Storage Gateway，使用Amazon FSx文件网关模式。",
+  "C. 设置AWS Glue爬虫，根据Amazon S3中的数据创建表。",
+  "D. 设置Amazon EMR集群，使用EMR文件系统（EMRFS）查询Amazon S3中的数据。为分析师提供访问权限。",
+  "E. 设置Amazon Redshift集群，用于查询Amazon S3中的数据。为分析师提供访问权限。",
+  "F. 设置Amazon Athena，用于查询Amazon S3中的数据。为分析师提供访问权限。"
+ ],
+ "answer": {
+  "正确答案": "ACF",
+  "解析": "为了以最具成本效益的方式满足这些要求，可以采取以下步骤的组合：\nA 在本地部署AWS Storage Gateway，使用Amazon S3文件网关模式，这将帮助将本地生成的数据上传到Amazon S3，以便后续的分析。\nC 设置AWS Glue爬虫来创建基于Amazon S3中的数据的表，以便在后续的分析中使用。\nF设置Amazon Athena来查询Amazon S3中的数据，并为分析师提供访问权限，以便他们能够使用SQL命令进行数据查询。\n这些步骤将允许在AWS云中进行数据分析，同时最大程度地减少了成本。其他选项中的Amazon EMR和Amazon Redshift是用于数据分析的有力工具，但在这种情况下可能不是最经济的解决方案。",
+  "AI解析": "AWS Storage Gateway文件网关模式允许本地设备通过SMB协议将数据写入Amazon S3。文件网关分为S3文件网关和FSx文件网关模式：前者将数据存储为S3对象，后者与Amazon FSx集成。根据题干要求将数据存储至S3，S3文件网关模式（A）更适用。AWS Glue爬虫（C）通过自动发现S3中的数据结构生成元数据表，为后续SQL查询提供表定义。Amazon Athena（F）是基于S3的无服务器查询服务，采用按扫描数据量付费模型，适合间歇性查询场景，无需预置资源。EMR（D）和Redshift（E）涉及集群资源维护，成本高于完全按需的Athena。"
+ }
+}

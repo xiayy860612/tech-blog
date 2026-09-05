@@ -1,0 +1,18 @@
+{
+ "qid": "2264604782",
+ "index": 811,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon S3上托管了一个数据湖。数据湖从各种数据源中以Apache Parquet格式摄入数据。公司使用多个转换步骤来准备摄入的数据。这些步骤包括过滤异常值、将数据标准化为标准日期和时间值，并生成用于分析的聚合数据。\n公司必须将转换后的数据存储在数据分析师可以访问的S3存储桶中。公司需要一个预构建的数据转换解决方案，不需要编写代码。解决方案必须提供数据血统和数据概要信息。公司需要与公司内的员工共享数据转换步骤。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 配置AWS Glue Studio可视化画布来进行数据转换。通过AWS Glue作业与员工共享转换步骤。",
+  "B. 配置Amazon EMR Serverless来进行数据转换。通过EMR Serverless作业与员工共享转换步骤。",
+  "C. 配置AWS Glue DataBrew来进行数据转换。通过DataBrew配方与员工共享转换步骤。",
+  "D. 为数据创建Amazon Athena表。编写Athena SQL查询来进行数据转换。与员工分享Athena SQL查询。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提供了最佳的解决方案。AWS\nGlue DataBrew是一个完全托管的数据准备服务，提供了可视化的界面和预构建的转换功能，不需要编写代码。通过配置DataBrew配方，可以轻松地进行数据转换，并且可以与公司内的员工共享这些配方。其他选项涉及AWS Glue Studio、Amazon EMR Serverless和Amazon Athena，但它们需要更多的配置和开发工作来实现数据转换，并且不提供预构建的解决方案。",
+  "AI解析": "AWS服务中，AWS Glue DataBrew专为无代码数据准备设计，提供可视化界面处理数据转换。支持数据概要分析和血统跟踪，转换步骤保存为配方便于共享。Amazon EMR Serverless需编写代码处理数据。AWS Glue Studio虽可视化但仍需编写脚本。Amazon Athena依赖SQL查询需编码。选项C满足题干的无代码、数据血统、概要及共享需求。[AWS Glue DataBrew文档]"
+ }
+}

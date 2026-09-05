@@ -1,0 +1,18 @@
+{
+ "index": 291,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司正在准备一个新的数据平台，用于接收来自多个来源的实时流数据。在将数据写入Amazon S3之前，公司需要对数据进行转换。公司需要能够使用SQL查询转换后的数据。哪些解决方案将满足这些要求？（选择两个）",
+ "options": [
+  "A. 使用Amazon Kinesis Data Streams流式传输数据。使用Amazon Kinesis Data Analytics对数据进行转换。使用Amazon Kinesis Data Firehose将数据写入Amazon S3。使用Amazon Athena从Amazon S3查询转换后的数据。",
+  "B. 使用Amazon Managed Streaming for Apache Kafka（Amazon MSK）流式传输数据。使用AWS Glue对数据进行转换并将数据写入Amazon S3。使用Amazon Athena从Amazon S3查询转换后的数据。",
+  "C. 使用AWS数据库迁移服务（AWS DMS）接收数据。使用Amazon EMR对数据进行转换并将数据写入Amazon S3。使用Amazon Athena从Amazon S3查询转换后的数据。",
+  "D. 使用Amazon Managed Streaming for Apache Kafka（Amazon MSK）流式传输数据。使用Amazon Kinesis Data Analytics对数据进行转换并将数据写入Amazon S3。使用Amazon RDS查询编辑器从Amazon S3查询转换后的数据。",
+  "E. 使用Amazon Kinesis Data Streams流式传输数据。使用AWS Glue对数据进行转换。使用Amazon Kinesis Data Firehose将数据写入Amazon S3。使用Amazon RDS查询编辑器从Amazon S3查询转换后的数据。"
+ ],
+ "answer": {
+  "正确答案": "AB",
+  "解析": "选项A 提供了完整的解决方案。Amazon Kinesis Data Streams用于流式传输数据，Amazon Kinesis Data Analytics用于转换数据，Amazon Kinesis Data Firehose用于将数据写入Amazon S3，并可以使用Amazon Athena查询转换后的数据。\n选项B 也提供了一个有效的解决方案。Amazon MSK用于流式传输数据，AWS Glue用于转换和将数据写入Amazon S3，Amazon Athena用于查询数据。\n其他选项中：\n选项C 使用AWS DMS来接收数据，不适用于实时流数据。\n选项D 中的Amazon RDS查询编辑器不适用于Amazon S3上的数据。\n选项E 中使用Amazon RDS查询编辑器，不适用于Amazon S3上的数据。\n因此，选项A和选项B是最佳选择。",
+  "AI解析": "题目考查对AWS实时数据处理和查询服务的组合应用能力。参考AWS架构设计文档，有效方案需整合流式传输、转换及SQL查询功能。选项A采用Kinesis系列服务，Kinesis Data Analytics支持SQL实时处理，Firehose直接写入S3后配合Athena查询，满足需求；选项B通过MSK处理流数据，AWS Glue进行ETL转换后存储至S3，同样适配Athena查询。选项C的DMS不适合实时流；选项D的RDS查询工具无法直接查询S3；选项E的Glue与Firehose组合未体现实时转换，RDS查询不适用。正确组合为A和B。"
+ }
+}

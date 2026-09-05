@@ -1,0 +1,17 @@
+{
+ "index": 256,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个公司正在构建一个解决方案，用于报告跨 AWS 帐户中所有应用程序的 Amazon EC2 自动缩放事件。公司需要使用无服务器解决方案将 EC2 自动缩放状态数据存储在 Amazon S3 中。公司随后将使用 Amazon S3 中的数据在仪表板中提供接近实时的更新。解决方案不能影响 EC2 实例启动的速度。\n公司应该如何将数据移动到 Amazon S3 以满足这些要求？",
+ "options": [
+  "A. 使用 Amazon CloudWatch 指标流将 EC2 自动缩放状态数据发送到 Amazon Kinesis Data Firehose。将数据存储在 Amazon S3 中。",
+  "B. 启动一个 Amazon EMR 集群来收集 EC2 自动缩放状态数据并发送数据到 Amazon Kinesis Data Firehose。将数据存储在 Amazon S3 中。",
+  "C. 创建一个 Amazon EventBridge 规则来调度触发 AWS Lambda 函数。配置 Lambda 函数直接将 EC2 自动缩放状态数据发送到 Amazon S3。",
+  "D. 在启动 EC2 实例时使用引导脚本安装 Amazon Kinesis Agent。配置 Kinesis Agent 收集 EC2 自动缩放状态数据并将数据发送到 Amazon Kinesis Data Firehose。将数据存储在 Amazon S3 中。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选择 A 是最符合要求的方案。使用 Amazon CloudWatch 指标流可以将 EC2 自动缩放事件数据传送到 Amazon Kinesis Data Firehose。然后，通过 Kinesis Data Firehose 将数据发送到 Amazon S3 进行存储。这种方法是一个高效的、无服务器的解决方案，可以确保数据被快速传输到 S3，同时不影响 EC2 实例启动速度。",
+  "AI解析": "该题关联AWS无服务器架构设计及数据处理服务。CloudWatch指标流能够直接将监控数据（如EC2自动缩放状态）实时导出至Kinesis Data Firehose，后者负责缓冲、转换并批量写入S3。此方案完全无服务器，无需代码开发或基础设施管理，且不影响EC2实例启动性能。选项B引入EMR集群违背无服务器原则；选项C的Lambda直接写入可能因高频事件导致性能瓶颈；选项D的引导脚本会增加实例启动耗时。AWS官方文档推荐使用CloudWatch与Kinesis服务组合实现实时数据流处理至S3的场景。"
+ }
+}

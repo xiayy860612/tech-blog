@@ -1,0 +1,18 @@
+{
+ "qid": "2264604865",
+ "index": 894,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS上实施一个共享存储解决方案，用于公司托管的一个媒体应用程序。公司需要能够使用SMB客户端访问存储的数据。\n哪种解决方案将以最少的管理开销满足这些要求？",
+ "options": [
+  "A. 创建一个AWS Storage Gateway Volume Gateway。创建一个使用所需客户端协议的文件共享。将应用程序服务器连接到文件共享。",
+  "B. 创建一个AWS Storage Gateway Tape Gateway。配置磁带使用Amazon S3。将应用程序服务器连接到磁带网关。",
+  "C. 创建一个Amazon EC2 Windows实例。在实例上安装并配置Windows文件共享角色。将应用程序服务器连接到文件共享。",
+  "D. 创建一个Amazon FSx For Windows File Server文件系统。将应用程序服务器连接到文件系统。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D提出了一个最简单的解决方案，即使用Amazon FSx for Windows File Server创建一个文件系统。Amazon\nFSx提供了一个托管的Windows文件系统，可以直接支持SMB客户端访问。这种方法不需要额外的安装或配置，并且不需要管理额外的资源，因此具有最小的管理开销。其他选项提出了使用存储网关或EC2实例来实现文件共享，但它们需要更多的管理和配置工作。",
+  "AI解析": "本题考查AWS托管文件存储服务选型，核心在于SMB协议支持与管理成本最小化。Amazon FSx for Windows File Server是原生支持SMB协议的完全托管服务，自动处理存储扩展、备份、高可用等运维工作，无需用户管理底层基础设施。Storage Gateway需自行维护本地缓存设备，EC2方案涉及操作系统维护，均增加管理负担，而FSx通过全托管模式实现零运维成本，直接满足SMB客户端访问需求。"
+ }
+}

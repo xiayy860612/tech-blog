@@ -1,0 +1,17 @@
+{
+ "index": 231,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon EC2实例上为客户运行演示环境。每个环境都在自己的VPC中隔离。公司的运维团队需要在检测到已建立到环境的RDP或SSH访问时收到通知。\n哪种解决方案将实现这一要求？",
+ "options": [
+  "A. 配置Amazon CloudWatch Application Insights以在检测到RDP或SSH访问时创建AWS Systems Manager OpsItems。",
+  "B. 配置EC2实例的IAM实例配置文件，附加具有AmazonSSMManagedInstanceCore策略的IAM角色。",
+  "C. 将VPC流日志发布到Amazon CloudWatch Logs。创建所需的度量过滤器。创建一个Amazon CloudWatch度量警报，当警报处于ALARM状态时，执行通知操作。",
+  "D. 配置Amazon EventBridge规则以侦听EC2实例状态更改通知类型的事件。配置一个Amazon Simple Notification Service（Amazon SNS）主题作为目标。订阅运维团队到主题。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项A建议使用Amazon CloudWatch Application Insights和AWS Systems Manager OpsItems，这不是最适合检测RDP或SSH访问的解决方案。\n选项B建议配置EC2实例的IAM角色，但它没有提供有关RDP或SSH访问的信息。\n选项D建议使用Amazon EventBridge和Amazon SNS来监听EC2实例状态更改，但这不提供对RDP或SSH访问的具体通知。\n选项C建议将VPC流日志发布到Amazon CloudWatch Logs，这将记录RDP或SSH访问的信息。然后，您可以创建适当的度量过滤器来检测访问，并创建CloudWatch度量警报以在检测到访问时触发通知操作。这是检测RDP或SSH访问的最合适和可行的解决方案。",
+  "AI解析": "该题核心在于实时监控VPC网络连接状态并触发告警。VPC流日志能够记录所有网络接口的流量元数据，包括SSH（TCP22端口）和RDP（TCP3389端口）的ACCEPT状态连接；通过CloudWatch Logs的度量过滤器可提取特定连接事件并生成自定义指标，结合CloudWatch警报机制实现阈值触发，直接关联SNS通知动作。选项C通过完整的日志采集-过滤-告警链路满足实时检测需求，而其他选项均未涉及网络层连接事件的捕获逻辑。"
+ }
+}

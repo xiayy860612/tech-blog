@@ -1,0 +1,17 @@
+{
+ "index": 98,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个汽车销售网站，将其列表存储在Amazon RDS数据库中。当汽车被售出时，需要将其从网站上移除，并且必须将数据发送到多个目标系统。\n\n解决方案架构师应该推荐哪种设计？",
+ "options": [
+  "A. 创建一个AWS Lambda函数，当Amazon RDS上的数据库更新时触发，将信息发送到Amazon Simple Queue Service（Amazon SQS）队列，供目标系统消费。",
+  "B. 创建一个AWS Lambda函数，当Amazon RDS上的数据库更新时触发，将信息发送到Amazon Simple Queue Service（Amazon SQS）FIFO队列，供目标系统消费。",
+  "C. 订阅RDS事件通知，并将其发送到多个Amazon Simple Notification Service（Amazon SNS）主题的Amazon Simple Queue Service（Amazon SQS）队列。使用AWS Lambda函数更新目标系统。",
+  "D. 订阅RDS事件通知，并将其发送到Amazon Simple Notification Service（Amazon SNS）主题，然后发送到多个Amazon Simple Queue Service（Amazon SQS）队列。使用AWS Lambda函数更新目标系统。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "该题考察在AWS环境中处理数据库变更事件并分发到多个系统的架构设计。Amazon RDS事件通知可与Amazon SNS集成，通过主题实现一对多消息广播。每个目标系统订阅独立SQS队列，保障消息可靠性和独立性。Lambda轮询队列处理数据，解耦生产消费环节。选项D通过SNS主题分发到多个SQS队列，满足多系统需求且结构清晰，符合事件驱动架构的最佳实践。其他选项未充分解决多目标分发或冗余问题。"
+ }
+}

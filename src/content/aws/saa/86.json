@@ -1,0 +1,17 @@
+{
+ "index": 86,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在设计一个应用程序，用户可以将小文件上传到Amazon S3。用户上传文件后，文件需要进行一次简单的处理以转换数据并将数据保存为JSON格式以供以后分析。每个文件必须在上传后尽快进行处理。需求会有所变化。在某些天，用户会上传大量文件。在其他天，用户可能会上传少量文件或没有文件。哪种解决方案在操作开销最小的情况下满足这些要求？",
+ "options": [
+  "A. 配置Amazon EMR来读取Amazon S3中的文本文件。运行处理脚本以转换数据。将生成的JSON文件存储在Amazon Aurora DB集群中。",
+  "B. 配置Amazon S3以向Amazon Simple Queue Service (Amazon SQS)队列发送事件通知。使用Amazon EC2实例从队列中读取并处理数据。将生成的JSON文件存储在Amazon DynamoDB中。",
+  "C. 配置Amazon S3以向Amazon Simple Queue Service (Amazon SQS)队列发送事件通知。使用AWS Lambda函数从队列中读取并处理数据。将生成的JSON文件存储在Amazon DynamoDB中。",
+  "D. 配置Amazon EventBridge (Amazon CloudWatch Events)以在上传新文件时向Amazon Kinesis Data Streams发送事件。使用AWS Lambda函数从流中消耗事件并处理数据。将生成的JSON文件存储在Amazon Aurora DB集群中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是最适合此需求的解决方案，具有最小的操作开销。以下是为什么选项C是正确答案的原因：\nA配置Amazon EMR可能会增加操作开销，因为它涉及启动和管理EMR集群，这对于简单的文件转换任务可能过于复杂。\nB 配置Amazon S3发送事件通知到Amazon SQS然后使用EC2实例处理数据，需要自己管理EC2实例，这增加了操作开销。\nC选项C中，AWS Lambda函数可以无缝自动扩展，只在有文件上传时运行，因此没有额外的操作开销。使用Amazon DynamoDB存储JSON文件也是一种低操作开销的方法，而且适用于这种类型的数据。\nD配置Amazon EventBridge和Kinesis Data Streams增加了复杂性，并不适合此简单任务，会增加操作开销。同样，将JSON文件存储在Aurora DB集群中也可能增加不必要的成本和操作开销。",
+  "AI解析": "本题核心考查事件驱动架构与无服务器服务的适配性。S3事件通知触发SQS队列可实现异步解耦，AWS Lambda自动扩容特性完美应对流量波动，实现零运维成本的计算资源调度。DynamoDB作为无服务器数据库支持灵活JSON存储，无需预置容量。选项C通过全托管服务链实现上传-处理-存储的自动化流水线，完全规避基础设施管理；相较其他选项，EMR、EC2涉及集群维护，Kinesis需管理分片，Aurora关系型数据库反范式存储JSON均会引入额外开销。"
+ }
+}

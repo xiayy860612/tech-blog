@@ -1,0 +1,18 @@
+{
+ "qid": "2264604815",
+ "index": 844,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有15名员工。该公司将员工的入职日期存储在一个Amazon DynamoDB表中。该公司希望在员工工作周年纪念日当天向每位员工发送一封电子邮件。哪种解决方案将以最高的运行效率满足这些要求？",
+ "options": [
+  "A. 创建一个脚本来扫描DynamoDB表，并使用Amazon Simple Notification Service（Amazon SNS）在必要时向员工发送电子邮件消息。使用cron作业每天在Amazon EC2实例上运行此脚本。",
+  "B. 创建一个脚本来扫描DynamoDB表，并使用Amazon Simple Queue Service（Amazon SQS）在必要时向员工发送电子邮件消息。使用cron作业每天在Amazon EC2实例上运行此脚本。",
+  "C. 创建一个AWS Lambda函数，该函数扫描DynamoDB表，并在必要时使用Amazon Simple Notification Service（Amazon SNS）向员工发送电子邮件消息。安排此Lambda函数每天运行一次。",
+  "D. 创建一个AWS Lambda函数，该函数扫描DynamoDB表，并在必要时使用Amazon Simple Queue Service（Amazon SQS）向员工发送电子邮件消息。安排此Lambda函数每天运行一次。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "使用AWS Lambda函数来扫描DynamoDB表并在需要时发送电子邮件消息是最有效的解决方案之一。Lambda函数是一种事件驱动的计算服务，它可以根据所设置的计划在每天特定时间运行。这意味着Lambda函数只会在有员工工作周年纪念日时才会运行，而不是每天都扫描表。这样可以最大程度地减少资源浪费。使用Amazon SNS发送电子邮件消息是合适的选择，因为它可以轻松地集成到Lambda函数中。",
+  "AI解析": "该题考察在AWS架构中定时任务和通知服务的优化选择。Amazon DynamoDB与Lambda集成支持按需处理数据，Lambda的无服务器特性避免了维护EC2实例的持续成本。Amazon SNS专为直接发送通知设计，相比SQS的队列处理减少了中间步骤。AWS官方推荐使用Lambda和EventBridge（原CloudWatch Events）进行定时触发，替代传统EC2的cron作业。选项C通过Lambda每日扫描表并调用SNS发邮件，无需资源常驻，执行效率最高。选项A/B依赖EC2实例，存在资源浪费；选项D使用SQS引入不必要的队列处理环节。"
+ }
+}

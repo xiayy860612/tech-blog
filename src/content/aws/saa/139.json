@@ -1,0 +1,17 @@
+{
+ "index": 139,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一名解决方案架构师正在为即将举行的音乐活动优化网站。演出的视频将实时流式传输，然后将以点播方式提供。预计该活动将吸引全球在线观众。\n\n哪项服务将提高实时和点播流式传输的性能？",
+ "options": [
+  "A. Amazon CloudFront",
+  "B. AWS Global Accelerator",
+  "C. Amazon Route 53",
+  "D. Amazon S3 Transfer Acceleration"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS Global Accelerator是专门设计用于提高全球范围内的应用性能和可用性的服务。对于实时和点播流式传输，AWS Global Accelerator可以帮助优化网络流量，减少延迟，提供更快的速度，并提高可用性。它可以分发流量到最接近用户的地理位置，提供全球负载均衡，从而提高性能，特别是对于全球在线观众来说是非常有用的。其他选项，如Amazon CloudFront、Amazon Route 53和Amazon S3 Transfer Acceleration，虽然也可以用于不同的用途，但不如AWS Global Accelerator适合同时提高实时和点播流式传输的性能。",
+  "AI解析": "AWS Global Accelerator利用AWS全球网络基础设施优化流量路由，通过将用户请求经由边缘站点定向到最优的应用终端节点，降低延迟并提高性能。实时流传输对网络抖动和延迟极为敏感，Global Accelerator的TCP/UDP协议优化能力确保稳定连接。点播流场景中，尽管未涉及缓存，但Global Accelerator仍能加速用户到源站的数据传输路径。相比之下，CloudFront主要针对HTTP/HTTPS内容缓存分发，Route 53负责DNS解析，S3 Transfer Acceleration优化上传速度而非内容分发。参考资料：AWS官方文档——Global Accelerator通过固定入口IP和AWS内部网络路径提升全球应用性能。"
+ }
+}

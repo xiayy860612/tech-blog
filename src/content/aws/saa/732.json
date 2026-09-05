@@ -1,0 +1,18 @@
+{
+ "qid": "1908085466",
+ "index": 732,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司在AWS组织中的AWS账户中运行应用程序。这些应用程序在所有账户中都使用Amazon Aurora PostgreSQL数据库。该公司需要防止恶意活动，并且必须识别数据库中异常的登录尝试，包括失败和未完成的尝试。\n哪种解决方案在操作效率上能够以最高效的方式满足这些要求？",
+ "options": [
+  "A. 将服务控制策略（SCPs）附加到组织的根上以识别失败的登录尝试。",
+  "B. 在组织的成员账户中启用Amazon GuardDuty中的Amazon RDS Protection功能。",
+  "C. 将Aurora通用日志发布到Amazon CloudWatch Logs中的日志组。将日志数据导出到中央Amazon S3存储桶。",
+  "D. 将所有Aurora PostgreSQL数据库事件发布到AWS CloudTrail中的中央Amazon S3存储桶。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "启用Amazon RDS Protection功能可以通过Amazon GuardDuty来监视和识别数据库的异常活动，包括失败的登录尝试，而不需要过多的操作开销。",
+  "AI解析": "AWS服务中，针对数据库异常登录的检测，Amazon GuardDuty的RDS Protection功能专门设计用于监控Amazon RDS数据库活动，包括可疑的登录尝试、失败的连接等潜在威胁。该功能通过持续分析数据库日志数据，自动识别恶意行为，无需手动配置日志收集与处理流程。选项B直接利用GuardDuty的内置能力，减少操作复杂度，而其他选项涉及手动日志管理或依赖不相关的服务（如SCP、CloudTrail）。AWS官方文档指出，GuardDuty RDS Protection可集成到多账户环境中，提供跨账户的统一威胁检测。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908085447",
+ "index": 713,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在一个 Application Load Balancer 后面的 Amazon EC2 实例上运行一个高可用的 Web 应用程序。该公司使用 Amazon CloudWatch 指标。\n随着对 Web 应用程序的流量增加，一些 EC2 实例负载过重，存在大量未处理的请求。CloudWatch 指标显示，与其他 EC2 实例相比，一些 EC2 实例处理的请求数量和接收响应的时间都较高。公司不希望将新的请求转发到已经负载过重的 EC2 实例。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用循环算法，基于 RequestCountPerTarget 和 ActiveConnectionCount CloudWatch 指标。",
+  "B. 使用基于 RequestCountPerTarget 和 ActiveConnectionCount CloudWatch 指标的最少未处理请求算法。",
+  "C. 使用循环算法，基于 RequestCount 和 TargetResponseTime CloudWatch 指标。",
+  "D. 使用基于 RequestCount 和 TargetResponseTime CloudWatch 指标的最少未处理请求算法。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "基于 RequestCount 和 TargetResponseTime CloudWatch 指标的最少未处理请求算法是一种智能的负载均衡算法，它可以有效地将新的请求转发到负载较轻的 EC2 实例上。这种算法考虑了每个实例处理的请求数量和接收响应的时间，以确保请求能够平衡地分配到所有实例上，从而避免负载过重的情况。",
+  "AI解析": "该题核心考察Application Load Balancer流量分配策略与CloudWatch指标联动机制。根据AWS负载均衡器设计，**最少未处理请求算法**通过动态评估目标节点的实时负载状态（由RequestCount指标反映当前活跃请求数，TargetResponseTime指标衡量处理延迟）实现智能路由，直接规避将新请求分配给高负载实例。其余选项或使用静态轮询算法，或选取不直接反映实例瞬时压力的指标组合（如ActiveConnectionCount），均无法精准适配流量激增场景下的动态负载均衡需求。"
+ }
+}

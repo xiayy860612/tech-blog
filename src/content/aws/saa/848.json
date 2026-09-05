@@ -1,0 +1,18 @@
+{
+ "qid": "2264604819",
+ "index": 848,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一所大型国际大学已将其所有计算服务部署在AWS云中。这些服务包括Amazon EC2、Amazon RDS和Amazon DynamoDB。该大学目前依赖许多自定义脚本来备份其基础架构。然而，该大学希望通过使用AWS原生选项集中管理和尽可能自动化数据备份。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用第三方备份软件和AWS Storage Gateway磁带网关虚拟磁带库。",
+  "B. 使用AWS Backup配置和监视所有正在使用的服务的所有备份。",
+  "C. 使用AWS Cong设置生命周期管理以按计划对所有数据源进行快照。",
+  "D. 使用AWS Systems Manager State Manager来管理备份任务的配置和监视。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B是最符合要求的解决方案。AWS\nBackup是一项托管式备份服务，可用于集中管理和自动化AWS资源的备份。使用AWS Backup，大学可以轻松地配置和监视其使用的所有服务的备份，而无需依赖于自定义脚本。其他选项涉及使用第三方备份软件、AWS Cong或AWS Systems Manager State Manager来实现备份，但不如AWS Backup简单和集中化。",
+  "AI解析": "AWS Backup是一项完全托管的备份服务，可集中配置和管理跨多种AWS服务（如Amazon EC2、Amazon RDS、Amazon DynamoDB等）的备份策略。该服务支持自动化备份计划、保留策略以及跨账户和跨区域的备份复制。题干中提到的\"集中管理和尽可能自动化数据备份\"需求直接对应AWS Backup的核心功能。选项A涉及第三方工具和磁带网关，不符合题干中\"原生选项\"的要求。选项C中的AWS Config用于资源配置审计，并非备份管理服务。选项D的Systems Manager State Manager主要用于系统配置管理，不具备统一的备份策略管理能力。根据AWS官方文档，AWS Backup是为此类场景设计的标准解决方案。"
+ }
+}

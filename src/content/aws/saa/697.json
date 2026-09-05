@@ -1,0 +1,18 @@
+{
+ "qid": "1908084814",
+ "index": 697,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在使用 AWS Fargate 集群将新应用程序部署到 Amazon Elastic Kubernetes Service (Amazon EKS) 上。该应用程序需要一个用于数据持久性的存储解决方案。该解决方案必须具有高可用性和容错性，并且必须在多个应用程序容器之间共享。\n哪种解决方案能够以最少的运维开销满足这些要求？",
+ "options": [
+  "A. 在 EKS 工作节点所在的相同可用性区域创建 Amazon Elastic Block Store (Amazon EBS) 卷。在 EKS 集群中的 StorageClass 对象中注册卷。使用 EBS Multi-Attach 在容器之间共享数据。",
+  "B. 创建一个 Amazon Elastic File System (Amazon EFS) 文件系统。在 EKS 集群中的 StorageClass 对象中注册该文件系统。为所有容器使用同一个文件系统。",
+  "C. 创建一个 Amazon Elastic Block Store (Amazon EBS) 卷。在 EKS 集群中的 StorageClass 对象中注册卷。为所有容器使用同一个卷。",
+  "D. 在 EKS 工作节点所在的相同可用性区域创建 Amazon Elastic File System (Amazon EFS) 文件系统。在 EKS 集群中的 StorageClass 对象中注册这些文件系统。创建一个 AWS Lambda 函数来在文件系统之间同步数据。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个解决方案使用 Amazon EFS 文件系统，它可以为多个容器提供共享的、高可用的数据存储解决方案，并且不需要考虑挂载到特定的工作节点或可用性区域。只需创建一个 EFS 文件系统，并在 EKS 集群中的 StorageClass 对象中注册它，即可为所有容器提供持久性存储，且不需要其他复杂的同步机制或多个卷。",
+  "AI解析": "Amazon EFS 是专为需要共享文件存储且具备高可用性、容错性的场景设计的服务。EFS 文件系统在多个可用区中自动复制数据，确保数据的持久性和可用性。在 EKS 中创建 StorageClass 并使用 EFS 作为持久卷，能够支持多个 Pod 同时访问同一存储，满足多容器共享需求。相比 EBS 的单可用区限制和需要手动同步数据的方案，EFS 通过托管服务自动处理数据冗余和跨可用区复制，运维成本最低。"
+ }
+}

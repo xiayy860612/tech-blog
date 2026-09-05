@@ -1,0 +1,18 @@
+{
+ "qid": "1908084734",
+ "index": 617,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在其Amazon EC2实例上使用Amazon FSx for Windows File Server，这些实例已将SMB文件共享挂载为卷，位于us-east-1 Region。该公司对计划系统维护或意外服务中断的恢复点目标（RPO）为5分钟。公司需要将文件系统复制到us-west-2 Region。复制的数据在5年内不得被任何用户删除。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 在us-east-1创建一个具有Single-AZ 2部署类型的FSx for Windows File Server文件系统。使用AWS Backup创建每日备份计划，其中包括将备份复制到us-west-2的备份规则。配置AWS Backup Vault Lock在us-west-2的目标保险库中以合规模式，配置最短持续时间为5年。",
+  "B. 在us-east-1创建一个具有Multi-AZ部署类型的FSx for Windows File Server文件系统。使用AWS Backup创建每日备份计划，其中包括将备份复制到us-west-2的备份规则。配置AWS Backup Vault Lock在us-west-2的目标保险库中以治理模式，配置最短持续时间为5年。",
+  "C. 在us-east-1创建一个具有Multi-AZ部署类型的FSx for Windows File Server文件系统。使用AWS Backup创建每日备份计划，其中包括将备份复制到us-west-2的备份规则。配置AWS Backup Vault Lock在us-west-2的目标保险库中以合规模式，配置最短持续时间为5年。",
+  "D. 在us-east-1创建一个具有Single-AZ 2部署类型的FSx for Windows File Server文件系统。使用AWS Backup创建每日备份计划，其中包括将备份复制到us-west-2的备份规则。配置AWS Backup Vault Lock在us-west-2的目标保险库中以治理模式，配置最短持续时间为5年。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Multi-AZ部署类型： 使用Multi-AZ部署提供文件系统的高可用性和耐用性，使其能够抵御区域故障。\nAWS Backup： 创建每日备份计划，其中包括备份规则，将备份复制到us-west-2，确保文件系统被复制到us-west-2区域。\nAWS Backup Vault Lock合规模式： 配置AWS Backup Vault Lock，以合规模式在us-west-2的目标保险库中，以确保在5年内任何用户都无法删除复制的数据。\n选项C是最佳选择，它结合了高可用性、数据复制和长期数据保留的必要功能，同时符合指定的恢复点目标（RPO）和数据保留要求。",
+  "AI解析": "题目核心在于实现5分钟RPO和5年数据不可删除要求。Multi-AZ部署类型通过跨可用区同步复制确保RPO达标，而Single-AZ无法满足高可用性需求。使用AWS Backup跨区域复制至us-west-2实现异地容灾，合规模式的Vault Lock确保备份在5年最短持续期内无法被任何权限删除（包括root账户），治理模式仍允许特定权限删除，故排除其他选项。"
+ }
+}

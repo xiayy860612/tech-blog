@@ -1,0 +1,18 @@
+{
+ "qid": "2949540287",
+ "index": 946,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在其本地数据中心的服务器上运行一个 Node.js 函数。数据中心将数据存储在 PostgreSQL 数据库中。公司将凭证存储在服务器的环境变量中的连接字符串中。公司希望将应用程序迁移到 AWS，并用 AWS Lambda 替换 Node.js 应用程序服务器。公司还希望迁移到 Amazon RDS for\nPostgreSQL，并确保数据库凭证得到安全管理。\n哪种解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 将数据库凭证存储为 AWS Systems Manager Parameter Store 中的参数。配置 Parameter Store 每 30 天自动轮换秘密。更新 Lambda 函数以从参数中检索凭证。",
+  "B. 将数据库凭证存储为 AWS Secrets Manager 中的秘密。配置 Secrets Manager 每 30 天自动轮换凭证。更新 Lambda 函数以从秘密中检索凭证。",
+  "C. 将数据库凭证存储为加密的 Lambda 环境变量。编写自定义 Lambda 函数来轮换凭证。将 Lambda 函数设置为每 30 天运行一次。",
+  "D. 将数据库凭证存储为 AWS Key Management Service (AWS KMS) 中的密钥。配置密钥的自动轮换。更新 Lambda 函数以从 KMS 密钥中检索凭证。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS Secrets Manager 是一种专为管理和轮换秘密（如数据库凭证）设计的服务。它不仅能够安全存储凭证，还能够自动轮换凭证，并且与 AWS Lambda 集成简便。您可以配置 Secrets Manager 以每 30 天自动轮换凭证，并且在 Lambda 函数中通过 Secrets Manager API 获取这些凭证。这种方案操作简便，符合最低操作开销的要求。",
+  "AI解析": "本题核心在于AWS密钥管理服务和自动化凭证轮换机制。AWS Secrets Manager专为安全存储数据库凭证设计，支持与RDS深度集成实现自动密钥轮换（30天周期），无需额外开发即可完成凭证更新。相较Parameter Store需手动处理轮换逻辑、KMS仅提供加密功能、Lambda环境变量需自定义轮换方案，Secrets Manager通过原生集成自动轮换能力和最小化运维负担的特性，完美契合安全托管数据库凭证的需求。"
+ }
+}

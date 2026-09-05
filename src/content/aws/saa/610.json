@@ -1,0 +1,18 @@
+{
+ "qid": "1908084727",
+ "index": 610,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个基于REST的应用程序，允许从第三方供应商接收接近实时的数据。一旦接收到数据，应用程序会对其进行处理并存储以供进一步分析。该应用程序运行在Amazon EC2实例上。\n第三方供应商在向应用程序发送数据时收到了许多503 Service Unavailable错误。当数据量激增时，计算容量达到其最大限制，应用程序无法处理所有请求。\n解决方案架构师应该推荐哪种设计来提供更具伸缩性的解决方案？",
+ "options": [
+  "A. 使用Amazon Kinesis Data Streams摄取数据。使用AWS Lambda函数处理数据。",
+  "B. 在现有应用程序之上使用Amazon API Gateway。为第三方供应商创建一个带有配额限制的使用计划。",
+  "C. 使用Amazon Simple Notification Service（Amazon SNS）摄取数据。将EC2实例放入Application Load Balancer后面的Auto Scaling组中。",
+  "D. 重新打包应用程序作为容器。使用Amazon Elastic Container Service（Amazon ECS）使用EC2启动类型部署应用程序，并配置Auto Scaling组。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了提供更具伸缩性的解决方案，最佳选择是选择选项A，即使用Amazon Kinesis Data Streams摄取数据，然后使用AWS Lambda函数处理数据。这种方式允许应用程序实时处理数据，而无需担心计算容量是否达到最大限制。\n其他选项可能不太适合这种情况：\nB 使用Amazon API Gateway创建使用计划和配额限制对于第三方供应商可以帮助控制访问，但不会解决应用程序无法处理数据量激增的问题。\nC 使用Amazon SNS摄取数据并将EC2实例放入Auto Scaling组中可以提供弹性，但不会实现实时数据处理，需要额外的处理逻辑来处理数据。\nD 将应用程序打包为容器并使用Amazon ECS进行部署可以提供一定的弹性，但需要监控和管理EC2实例的数量，而不是自动处理数据处理。Lambda函数具有自动扩展能力，可以更好地应对数据量激增。",
+  "AI解析": "该问题涉及处理高并发数据时的可扩展架构设计。AWS文档指出，Amazon Kinesis Data Streams能够持续捕获和存储数据流，适合实时场景。Lambda作为无服务器计算服务，可根据负载自动扩展，无需预置资源。选项A通过分离数据摄入（Kinesis）与处理（Lambda），利用两者的自动扩展能力，避免了EC2实例的容量限制。选项B的API Gateway配额限制会限制数据输入，选项C的SNS未能直接解决处理能力瓶颈，选项D的ECS仍依赖EC2实例扩展，存在延迟。结合AWS架构最佳实践，选项A的方案更适合应对突增流量，确保数据处理的可扩展性和高可用性。"
+ }
+}

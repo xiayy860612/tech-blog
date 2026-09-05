@@ -1,0 +1,17 @@
+{
+ "index": 119,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地运行Oracle数据库。作为公司迁移到AWS的一部分，公司希望将数据库升级到最新可用版本。公司还希望为数据库设置灾难恢复（DR）。公司需要最小化正常操作和DR设置的操作开销。公司还需要继续访问数据库的底层操作系统。\n\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 将Oracle数据库迁移到Amazon EC2实例。设置数据库复制到另一个AWS区域。",
+  "B. 将Oracle数据库迁移到Amazon RDS for Oracle。启用跨区域自动备份以复制快照到另一个AWS区域。",
+  "C. 将Oracle数据库迁移到Amazon RDS Custom for Oracle。在另一个AWS区域为数据库创建只读副本。",
+  "D. 将Oracle数据库迁移到Amazon RDS for Oracle。在另一个可用区创建一个备用数据库。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Amazon RDS Custom 自动执行数据库管理任务和操作。Amazon RDS Custom 使您能够作为数据库管理员访问和自定义数据库环境和操作系统。使用 RDS Custom，您可以进行自定义以满足传统、自定义和打包应用程序的要求。 由于第三方应用程序需要进行自定义，Amazon RDS Custom 将 Amazon RDS 的优势带到一个无法轻易转向完全托管式服务的市场。Amazon RDS Custom 可以节省管理时间、具有耐久性，并且可以随着您的业务扩缩。",
+  "AI解析": "AWS提供多种数据库迁移和灾难恢复解决方案。Amazon RDS Custom for Oracle允许用户保留对数据库和底层操作系统的访问权限，同时由AWS管理数据库实例，减少运维负担。跨区域的只读副本可用于灾难恢复，确保数据在另一个区域的可用性。选项A需手动管理复制，增加开销；选项B的RDS for Oracle不支持操作系统访问；选项D的备用数据库位于同一区域，不满足跨区域DR需求。选项C通过RDS Custom满足OS访问需求，利用只读副本实现跨区域DR，同时降低操作复杂性。参考AWS官方文档对RDS Custom和只读副本功能的说明。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529125652",
+ "index": 595,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务应用程序使用在Amazon EC2实例上运行的PostgreSQL数据库。在每月的销售活动期间，数据库使用量增加，导致应用程序出现数据库连接问题。随后的每月销售活动的流量是不可预测的，这会影响销售预测。公司需要在流量不可预测增加时保持性能。\n哪种解决方案以最具成本效益的方式解决这个问题？",
+ "options": [
+  "A. 将PostgreSQL数据库迁移到Amazon Aurora Serverless v2。",
+  "B. 为PostgreSQL数据库启用EC2实例上的自动扩展以适应增加的使用。",
+  "C. 将PostgreSQL数据库迁移到Amazon RDS for PostgreSQL，使用较大的实例类型。",
+  "D. 将PostgreSQL数据库迁移到Amazon Redshift以适应增加的使用。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了在不可预测的流量增加时保持性能，最好的解决方案是将PostgreSQL数据库迁移到Amazon Aurora Serverless v2（选项A）。Amazon Aurora Serverless v2具有自动扩展和收缩的能力，可以根据实际负载自动调整数据库容量，从而确保性能并降低成本。其他选项中，选项B虽然提到了自动扩展，但并没有明确提及Amazon Aurora Serverless，选项C提到了Amazon RDS，但没有提及自动扩展，选项D提到了Amazon Redshift，但不适用于交互式数据库工作负载。",
+  "AI解析": "Amazon Aurora Serverless v2专为不可预测的工作负载设计，能够自动扩展数据库资源，无需手动干预或预置容量。这种按需扩展的方式在处理突发流量时既能保持性能，又避免了过度配置导致的成本浪费。其他选项要么需要手动调整资源（B、C），要么不适合OLTP场景（D）。"
+ }
+}

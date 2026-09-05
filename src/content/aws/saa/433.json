@@ -1,0 +1,18 @@
+{
+ "qid": "1529124357",
+ "index": 433,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS云中托管其应用程序。该应用程序在Amazon EC2实例上运行，位于一个Auto Scaling组中，并使用Amazon DynamoDB表。公司希望确保应用程序可以在另一个AWS区域中提供，并且具有最小的停机时间。\n为满足这些要求，解决方案架构师应该采取以下哪个方法以最小化停机时间？",
+ "options": [
+  "A. 在灾难恢复区域中创建一个Auto Scaling组和一个负载均衡器。将DynamoDB表配置为全局表。配置DNS故障转移以指向新的灾难恢复区域的负载均衡器。",
+  "B. 创建一个AWS CloudFormation模板，以在需要时创建EC2实例、负载均衡器和DynamoDB表。配置DNS故障转移以指向新的灾难恢复区域的负载均衡器。",
+  "C. 创建一个AWS CloudFormation模板，以在需要时创建EC2实例和负载均衡器。将DynamoDB表配置为全局表。配置DNS故障转移以指向新的灾难恢复区域的负载均衡器。",
+  "D. 在灾难恢复区域中创建一个Auto Scaling组和负载均衡器。将DynamoDB表配置为全局表。创建一个Amazon CloudWatch警报来触发一个AWS Lambda函数，该函数会更新Amazon Route 53以指向灾难恢复负载均衡器。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "这道题考察AWS多区域灾难恢复设计，涉及DynamoDB全局表特性、Auto Scaling组跨区域部署及DNS故障转移机制。AWS文档指出DynamoDB全局表支持多区域多活架构，自动同步数据到副本区域，配合预先部署的Auto Scaling组和负载均衡器可实现业务快速切换。DNS故障转移通过Route 53实现流量重定向。选项A同时满足数据库层同步、计算层预置、入口层切换三个核心要素。其他选项或缺少数据库同步（B）、依赖延迟较高的按需资源创建（B/C）、或使用响应速度较慢的Lambda触发机制（D）。"
+ }
+}

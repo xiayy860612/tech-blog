@@ -1,0 +1,18 @@
+{
+ "qid": "1908084724",
+ "index": 607,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个为部署在全球超过20,000个零售店面位置的客户提供服务的应用程序。该应用程序由后端Web服务组成，通过HTTPS在端口443上公开。该应用程序托管在Amazon EC2实例上，位于一个Application Load Balancer (ALB)后面。零售位置通过公共互联网与Web应用程序进行通信。公司允许每个零售位置注册其本地ISP分配的IP地址。\n公司的安全团队建议通过仅允许注册的IP地址访问来增强应用程序端点的安全性。\n解决方案架构师应该采取什么措施来满足这些要求？",
+ "options": [
+  "A. 将AWS WAF web ACL与ALB关联。在ALB上使用IP规则集来过滤流量。更新规则中的IP地址以包括已注册的IP地址。",
+  "B. 部署AWS Firewall Manager来管理ALB。配置防火墙规则以限制ALB上的流量。修改防火墙规则以包括已注册的IP地址。",
+  "C. 将IP地址存储在Amazon DynamoDB表中。在ALB上配置AWS Lambda授权函数，以验证传入请求是否来自已注册的IP地址。",
+  "D. 配置包含ALB的公共接口子网上的网络ACL。更新网络ACL上的入口规则，为每个已注册的IP地址添加条目。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了满足安全团队的要求，最佳解决方案是选择选项A，即使用AWS WAF web ACL关联ALB，并在ALB上使用IP规则集来过滤流量。然后，可以通过更新规则来包括已注册的IP地址，从而限制对应用程序的访问。\n其他选项不太适合这种情况：\nB AWS Firewall Manager通常用于集中管理多个Web应用程序防火墙，不太适合用于限制单个ALB的IP地址访问。\nC 使用DynamoDB和Lambda来验证IP地址需要额外的开发和配置工作，不如直接在ALB上使用AWS WAF来简单和有效。\nD 在子网的网络ACL上配置入口规则需要手动维护大量IP地址的规则，容易出错和不够灵活，不是最佳的解决方案。",
+  "AI解析": "Amazon WAF是一种Web应用程序防火墙服务，允许监控、过滤HTTP/HTTPS流量。根据AWS架构最佳实践，当需要在ALB层面基于IP地址控制访问时，AWS WAF的IP匹配规则是标准解决方案。Application Load Balancer原生支持与AWS WAF集成，通过创建IP条件规则集并关联到Web ACL，可精确控制允许或阻止的源IP地址。选项D的网络ACL受规则条目数量限制（每个网络ACL最多20条入口规则）且无法动态扩展，不适合20,000个IP的场景。选项B的Firewall Manager主要用于跨多账户统一策略管理，不直接解决单ALB的IP过滤需求。选项C的Lambda授权函数引入额外延迟和运维复杂度，AWS文档明确推荐对IP过滤场景优先使用WAF而非自定义授权逻辑。"
+ }
+}

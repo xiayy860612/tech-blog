@@ -1,0 +1,18 @@
+{
+ "qid": "1529124396",
+ "index": 472,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon EC2实例后面使用Application Load Balancer (ALB)托管网站。该网站提供静态内容。网站的流量正在增加，公司担心成本可能会增加。\n应该采取以下哪种措施？",
+ "options": [
+  "A. 创建一个Amazon CloudFront分发，以在边缘位置缓存静态文件。",
+  "B. 创建一个Amazon ElastiCache集群。将ALB连接到ElastiCache集群以提供缓存文件。",
+  "C. 创建一个AWS WAF web ACL，并将其与ALB关联。在web ACL中添加规则以缓存静态文件。",
+  "D. 在另一个AWS区域创建第二个ALB。将用户流量路由到最近的区域以最小化数据传输成本。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "创建Amazon CloudFront分发可以有效地缓存静态文件，以减轻EC2实例和ALB的负载，降低成本，并提高网站性能。其他选项中的ElastiCache、AWS WAF和第二个ALB虽然可以用于不同的用途，但它们不是最佳解决方案来缓存静态文件。",
+  "AI解析": "Amazon CloudFront作为内容分发网络（CDN）服务，可将静态内容缓存至全球边缘节点，减少对源服务器（如EC2实例）的请求次数，降低数据传输成本。ALB本身不具备缓存能力，直接处理大量静态内容会增加EC2负载和带宽费用。ElastiCache适用于动态数据缓存（如数据库查询结果），无法直接替代CDN功能。AWS WAF用于安全防护，其规则不涉及内容缓存。跨区域部署ALB虽能优化延迟，但无法减少静态内容传输量且可能增加跨区域流量费用。AWS官方推荐使用CloudFront加速静态内容分发以提高性能并降低成本。选项A正确。"
+ }
+}

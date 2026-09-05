@@ -1,0 +1,18 @@
+{
+ "qid": "1908084758",
+ "index": 641,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在AWS云中的Amazon EC2实例上运行一个游戏应用程序，这些实例是Auto Scaling组的一部分。该应用程序将使用UDP数据包传输数据。公司希望确保应用程序在流量增加和减少时能够自动扩展和收缩。\n解决方案架构师应该采取什么措施来满足这些要求？",
+ "options": [
+  "A. 将Network Load Balancer附加到Auto Scaling组。",
+  "B. 将Application Load Balancer附加到Auto Scaling组。",
+  "C. 部署一个Amazon Route 53记录集，使用加权策略适当地路由流量。",
+  "D. 部署一个NAT实例，配置端口转发到Auto Scaling组中的EC2实例。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "由于应用程序使用UDP数据包传输数据，选项A，即将Network Load Balancer（网络负载均衡器）附加到Auto Scaling组，是最合适的选择。Network Load Balancer支持UDP协议，可以在EC2实例之间分配流量，同时具有自动扩展和收缩的能力。UDP通常用于实时性要求高的应用程序，如游戏应用程序。\n其他选项：\n选项B中的Application Load Balancer主要用于HTTP/HTTPS协议，不适合UDP传输。\n选项C中的Amazon Route 53记录集通常用于DNS解析，不涉及流量的实际路由。\n选项D中的NAT实例通常用于出站流量的网络地址转换，不适用于UDP传输的负载均衡。",
+  "AI解析": "AWS负载均衡器类型的选择需根据协议和性能需求决定。Network Load Balancer（NLB）支持第四层协议（TCP/UDP）并提供高吞吐、低延迟，适用于实时应用如游戏。Application Load Balancer（ALB）仅支持HTTP/HTTPS，不兼容UDP。Route 53的加权策略属于DNS级别流量管理，无法直接触发Auto Scaling。NAT实例用于网络地址转换而非负载均衡。AWS架构最佳实践指出，UDP流量场景应使用NLB实现自动扩展。（《AWS Well-Architected Framework》）"
+ }
+}

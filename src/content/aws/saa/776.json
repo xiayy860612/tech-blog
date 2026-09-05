@@ -1,0 +1,19 @@
+{
+ "qid": "1908085510",
+ "index": 776,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司使用AWS组织来进行其多账户AWS设置。该公司的安全组织单元（OU）需要与开发OU共享已批准的Amazon Machine Images（AMIs）。这些AMIs是使用AWS Key Management Service（AWS KMS）加密的快照创建的。\n哪种解决方案将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 将开发团队的OU Amazon资源名称（ARN）添加到AMI的启动权限列表中。",
+  "B. 将组织根Amazon资源名称（ARN）添加到AMI的启动权限列表中。",
+  "C. 更新密钥策略以允许开发团队的OU使用用于解密快照的AWS KMS密钥。",
+  "D. 将开发团队的账户Amazon资源名称（ARN）添加到AMI的启动权限列表中。",
+  "E. 重新创建AWS KMS密钥。添加一个密钥策略，允许组织根Amazon资源名称（ARN）使用AWS KMS密钥。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "A 此选项将开发团队的OU添加到AMI的启动权限列表中，允许他们启动这些AMI。\nC 更新密钥策略以允许开发团队的OU使用AWS KMS密钥解密快照中的数据。",
+  "AI解析": "AWS服务中共享加密AMI需同时处理AMI启动权限和KMS密钥访问。AMI启动权限控制谁能启动实例，需将目标OU的ARN加入启动权限（选项A正确，D针对账户而非OU）。KMS密钥策略必须允许目标OU的解密权限（选项C正确）。选项B、E涉及组织根ARN，不符合最小权限原则。选项D需单独添加每个账户，效率低。答案参考AWS文档中共享加密AMI的要求及KMS密钥跨账户访问的最佳实践。"
+ }
+}

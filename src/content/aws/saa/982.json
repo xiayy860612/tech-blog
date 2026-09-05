@@ -1,0 +1,18 @@
+{
+ "qid": "2949540323",
+ "index": 982,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司将其核心网络服务（包括目录服务和 DNS）托管在本地数据中心，并通过 AWS Direct Connect (DX) 连接到 AWS 云。计划增加额外的 AWS 账户，这些账户需要快速、成本有效且一致地访问这些网络服务。\n解决方案架构师应实施哪种解决方案以最少的运营开销满足这些需求？",
+ "options": [
+  "A. 在每个新账户中创建一个 DX 连接，并将网络流量路由到本地服务器。",
+  "B. 在 DX 所在的 VPC 中为所有所需服务配置 VPC 端点，并将网络流量路由到本地服务器。",
+  "C. 在每个新账户与 DX 所在的 VPC 之间创建 VPN 连接，并将网络流量路由到本地服务器。",
+  "D. 在这些账户之间配置 AWS Transit Gateway，将 DX 分配给 Transit Gateway，并将网络流量路由到本地服务器。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "AWS Transit Gateway 是一种专门设计用于跨多个 VPC 和账户路由流量的解决方案。通过将 DX 连接与 Transit Gateway 结合，所有新账户可以通过 Transit\nGateway 快速、一致地访问本地数据中心的服务。这减少了为每个账户单独配置 VPN 或 DX 连接的复杂性，降低了运营开销，因此是最佳解决方案。",
+  "AI解析": "AWS Transit Gateway 用于集中连接多个 VPC 和本地网络，通过将 Direct Connect 关联到 Transit Gateway，所有附加到此 Transit Gateway 的 VPC 均可共享该连接，无需每个账户单独配置。这避免了重复的 VPN 或 Direct Connect 连接，简化了网络架构，降低了成本和运维复杂度。选项 A 和 C 会导致每个账户独立配置连接，增加成本和管理负担；选项 B 的 VPC 端点不适用于跨账户或本地流量路由场景。AWS 官方文档推荐 Transit Gateway 作为多账户网络中心化的解决方案。"
+ }
+}

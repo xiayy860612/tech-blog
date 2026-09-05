@@ -1,0 +1,18 @@
+{
+ "qid": "2949543551",
+ "index": 1011,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个三层\nWeb 应用程序，处理来自客户的订单。Web 层由位于\nApplication Load Balancer 后面的 Amazon EC2 实例组成。处理层由 EC2 实例组成。公司通过使用 Amazon Simple Queue Service\n(Amazon SQS) 将 Web 层和处理层解耦。存储层使用 Amazon DynamoDB。\n在高峰时段，一些用户报告订单处理延迟和失败。公司注意到，在这些延迟期间，EC2 实例的 CPU 使用率达到 100%，并且\nSQS 队列填满。高峰时段是可变且不可预测的。\n公司需要改善应用程序的性能。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 使用 Amazon EC2 Auto Scaling 的计划扩展，在高峰使用时段扩展处理层实例。使用 CPU 利用率指标来决定何时扩展。",
+  "B. 在 DynamoDB 后端层前面使用 Amazon ElastiCache for Redis。使用目标利用率作为决定何时扩展的指标。",
+  "C. 添加 Amazon CloudFront 分发，以缓存 Web 层的响应。使用 HTTP 延迟作为决定何时扩展的指标。",
+  "D. 使用 Amazon EC2 Auto Scaling 的目标跟踪策略扩展处理层实例。使用 ApproximateNumberOfMessages 属性来决定何时扩展。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "使用目标跟踪策略可以根据 SQS 队列中的消息数量自动扩展处理层实例。通过监控 SQS 队列的 ApproximateNumberOfMessages 属性，可以确保在处理延迟增加时自动增加 EC2 实例数量，从而减轻处理层的压力。这种方法适应了可变和不可预测的高峰时段，提高了系统的响应能力和处理能力。",
+  "AI解析": "本题核心考查AWS弹性扩展策略与消息队列解耦架构的优化。处理层CPU满载和SQS队列积压表明当前扩展策略无法及时消化消息负载。目标跟踪策略通过动态调整实例数量直接响应业务压力指标（SQS队列深度），而ApproximateNumberOfMessages属性精确反映待处理任务量，相比CPU利用率更能触发及时扩容。D选项采用队列消息数作为扩展依据，完全匹配不可预测流量下按需扩展的核心需求，其他选项或依赖预设计划（A）、优化存储层（B）或解决Web层延迟（C）均未针对消息积压的根本问题。"
+ }
+}

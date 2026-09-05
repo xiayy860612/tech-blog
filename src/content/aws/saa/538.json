@@ -1,0 +1,18 @@
+{
+ "qid": "1529125595",
+ "index": 538,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望利用AWS云改善其本地的灾难恢复（DR）配置。该公司的核心生产业务应用程序使用运行在虚拟机（VM）上的Microsoft SQL Server Standard。该应用程序具有恢复点目标（RPO）为30秒或更短，恢复时间目标（RTO）为60分钟。灾难恢复解决方案需要在可能的情况下最小化成本。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用Microsoft SQL Server Enterprise并配置Always On可用性组，在本地服务器和AWS之间设置多地点的主/备配置。",
+  "B. 在AWS上配置一个温暖备用的Amazon RDS for SQL Server数据库。使用AWS Database Migration Service（AWS DMS）来进行变更数据捕获（CDC）。",
+  "C. 使用AWS弹性灾难恢复配置为将磁盘更改复制到AWS作为灾难恢复预案。",
+  "D. 使用第三方备份软件每晚进行备份。在Amazon S3存储第二套备份。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B中，通过在AWS上设置一个温暖备用的Amazon RDS for SQL Server数据库，并使用AWS Database Migration Service（AWS DMS）来进行变更数据捕获（CDC），可以满足恢复点目标（RPO）为30秒或更短、恢复时间目标（RTO）为60分钟的要求，并且能够尽可能降低成本。",
+  "AI解析": "这道题目考察的是在AWS环境下如何选择合适的灾难恢复方案以满足特定RPO和RTO要求，同时控制成本。根据AWS最佳实践文档，RPO为30秒要求近乎实时的数据复制，而RTO为60分钟需要快速拉起备用环境。选项B中描述的Amazon RDS温暖备用结合AWS DMS变更数据捕获（CDC）能够持续同步数据变化，确保RPO达标。温暖备用实例处于运行状态但非活跃，灾难发生时能快速激活，满足RTO要求。此外，RDS作为托管服务减少了运维成本，符合成本优化目标。其他选项或涉及许可升级（A）、磁盘复制导致潜在延迟（C），或无法满足RPO（D）。AWS DMS的CDC功能直接支持低延迟数据传输，与RDS集成提供经济高效的DR方案。"
+ }
+}

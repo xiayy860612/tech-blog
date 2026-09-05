@@ -1,0 +1,17 @@
+{
+ "index": 60,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地拥有超过5 TB的文件数据，这些数据存储在运行在本地的Windows文件服务器上。每天用户和应用程序都会与这些数据进行交互。公司正在将其Windows工作负载迁移到AWS。随着公司继续进行这个过程，公司需要访问AWS和本地文件存储，要求延迟最小化。公司需要一种解决方案，可以最大程度地减少操作开销，而且不需要对现有的文件访问模式进行重大更改。公司使用AWS Site-to-Site VPN连接到AWS。",
+ "options": [
+  "A. 在AWS上部署和配置Amazon FSx for Windows文件服务器。将本地文件数据迁移到FSx for Windows文件服务器。重新配置工作负载以在AWS上使用FSx for Windows文件服务器。",
+  "B. 在本地部署和配置Amazon S3文件网关。将本地文件数据迁移到S3文件网关。重新配置本地工作负载和云工作负载以使用S3文件网关。",
+  "C. 在本地部署和配置Amazon S3文件网关。将本地文件数据迁移到Amazon S3。重新配置工作负载以根据工作负载的位置使用Amazon S3直接或S3文件网关。",
+  "D. 在AWS上部署和配置Amazon FSx for Windows文件服务器。在本地部署和配置Amazon FSx文件网关。将本地文件数据迁移到FSx文件网关。配置云工作负载以在AWS上使用FSx for Windows文件服务器。配置本地工作负载以使用FSx文件网关。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D是最符合要求的答案。通过在AWS上部署Amazon FSx for Windows文件服务器和在本地部署Amazon FSx文件网关，可以提供低延迟的文件访问，并使本地工作负载和云工作负载都能够访问文件数据。Amazon FSx for Windows文件服务器提供了高性能和可用性，而Amazon FSx文件网关可将本地文件存储连接到AWS。\n其他选项中，选项A和B提到了使用Amazon S3文件网关，但这可能不提供与Amazon FSx for Windows文件服务器相同的性能和低延迟。选项C提到了将本地文件数据迁移到Amazon S3，但这将需要更改工作负载以直接访问Amazon S3，这与不需要重大更改现有文件访问模式的要求不符。所以，选项D是最适合提供低延迟访问的解决方案。",
+  "AI解析": "该题考察在混合云环境中如何无缝迁移Windows文件存储至AWS同时保持本地和云端访问。Amazon FSx for Windows提供完全托管的原生Windows文件系统服务，支持SMB协议，与本地Windows环境兼容。FSx File Gateway作为Storage Gateway的一种类型，允许本地应用程序通过标准文件协议访问FSx中的数据，并自动缓存频繁访问的数据以减少延迟。结合Site-to-Site VPN连接，本地工作负载通过File Gateway低延迟访问存储在FSx的数据，云端工作负载直接使用FSx，无需修改现有文件访问方式。选项D通过集成FSx和File Gateway，确保迁移过程中无需重构应用程序，满足最小延迟和操作复杂度要求。其他选项涉及S3存储网关或直接使用S3，改变了原有的文件访问模式，可能导致应用程序兼容性问题。"
+ }
+}

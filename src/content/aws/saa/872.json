@@ -1,0 +1,18 @@
+{
+ "qid": "2264604843",
+ "index": 872,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司已经将数百台本地虚拟机（VM）迁移到了 Amazon EC2 实例上。这些实例运行着各种不同版本的 Windows Server，以及几种 Linux 发行版。公司希望有一个解决方案来自动化操作系统的清单和更新。公司还需要每个实例的常见漏洞摘要，以供定期月度审查使用。解决方案架构师应该推荐什么来满足这些要求？",
+ "options": [
+  "A. 设置 AWS Systems Manager Patch Manager 来管理所有的 EC2 实例。配置 AWS Security Hub 生成月度报告。",
+  "B. 设置 AWS Systems Manager Patch Manager 来管理所有的 EC2 实例。部署 Amazon Inspector，并配置月度报告。",
+  "C. 设置 AWS Shield Advanced，并配置月度报告。部署 AWS Config 来自动化 EC2 实例上的补丁安装。",
+  "D. 在账户中设置 Amazon GuardDuty 来监控所有的 EC2 实例。部署 AWS Config 来自动化 EC2 实例上的补丁安装。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B 建议使用 AWS\nSystems Manager Patch Manager 来管理所有的 EC2 实例的更新，以及部署 Amazon Inspector 来定期进行安全漏洞扫描，并配置月度报告。这样可以满足自动化清单和更新操作系统以及获取常见漏洞摘要的要求。其他选项没有提供完整的解决方案，或者与题目要求不符。",
+  "AI解析": "该题考察对AWS运维和安全服务功能的理解。AWS文档指出，Patch Manager负责自动化补丁部署，管理多类型实例的更新合规性。Amazon Inspector通过持续扫描EC2实例，识别安全漏洞，生成评估报告。选项B结合两者，既能自动化更新操作，又能提供漏洞摘要。选项A的Security Hub侧重聚合安全警报，而非专项漏洞评估；选项C的Shield专注DDoS防护；选项D的GuardDuty用于威胁检测，均不符漏洞报告需求。"
+ }
+}

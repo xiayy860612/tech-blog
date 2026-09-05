@@ -1,0 +1,17 @@
+{
+ "index": 310,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在使用AWS设计一个Web应用程序，该应用程序将处理保险报价。用户将从应用程序中请求报价。报价必须按报价类型分离，必须在24小时内回应，并不得丢失。解决方案必须最大化操作效率，并最小化维护。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 基于报价类型创建多个Amazon Kinesis数据流。配置Web应用程序以向适当的数据流发送消息。配置每个后端应用服务器组使用Kinesis Client Library (KCL) 从自己的数据流中轮询消息。",
+  "B. 为每种报价类型创建一个AWS Lambda函数和一个Amazon Simple Notification Service (Amazon SNS)主题。订阅Lambda函数到其关联的SNS主题。配置应用程序以将报价请求发布到适当的SNS主题。",
+  "C. 创建一个单一的Amazon Simple Notification Service (Amazon SNS)主题。将Amazon Simple Queue Service (Amazon SQS)队列订阅到SNS主题。配置SNS消息过滤以根据报价类型将消息发布到适当的SQS队列。配置每个后端应用服务器以使用自己的SQS队列。",
+  "D. 基于报价类型创建多个Amazon Kinesis Data Firehose交付流，将数据流传送到Amazon OpenSearch Service集群。配置应用程序以向适当的交付流发送消息。配置每个后端应用服务器以搜索OpenSearch Service中的消息并进行相应处理。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了满足这些要求，最佳解决方案是选项C。在这种解决方案中，您创建了一个Amazon SNS主题，然后将Amazon SQS队列订阅到该主题。通过配置SNS消息过滤，可以根据报价类型将消息发布到适当的SQS队列，从而实现了报价按类型分离的要求。每个后端应用服务器都可以使用自己的SQS队列，以确保报价不会丢失，并且可以在24小时内进行响应。此外，这种解决方案操作效率高，因为它使用了AWS托管服务，并且不需要复杂的自定义逻辑。其他选项涉及Kinesis流、Lambda函数和OpenSearch Service，不如选项C简单和高效。",
+  "AI解析": "这道题考察AWS消息服务组合应用。AWS文档指出，使用SNS主题与SQS队列结合可实现消息过滤和可靠传输。选项C通过单一SNS主题集中接收请求，利用消息过滤策略将不同报价类型分发到独立SQS队列，后端服务器各自处理专属队列。此架构实现消息分类存储，确保不丢失，SQS自动扩展提升操作效率且无需维护基础设施。其余选项或引入过多组件（如A的多个Kinesis流）、或冗余资源（如B为每个类型创建Lambda）、或采用不匹配的技术栈（如D的OpenSearch处理队列任务），维护成本与操作效率均不如C方案。"
+ }
+}

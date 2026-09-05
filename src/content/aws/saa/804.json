@@ -1,0 +1,18 @@
+{
+ "qid": "2264604775",
+ "index": 804,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在公司的本地数据中心中运行容器在Kubernetes环境中。公司希望使用Amazon Elastic\nKubernetes Service（Amazon EKS）和其他AWS托管服务。为了保持合规性，数据必须保留在公司的数据中心本地，不能存储在任何远程站点或云中。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在公司的数据中心部署AWS本地区域（AWS Local Zones）。",
+  "B. 在公司的数据中心使用AWS Snowmobile。",
+  "C. 在公司的数据中心安装AWS Outposts机架。",
+  "D. 在数据中心安装AWS Snowball Edge Storage Optimized节点。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提供了最佳的解决方案，通过在公司的数据中心安装AWS Outposts机架，可以在本地运行AWS托管服务，包括Amazon EKS，而不会将数据存储在任何远程站点或云中。其他选项涉及AWS本地区域、Snowmobile和Snowball Edge Storage Optimized节点，这些都不满足数据必须保留在本地的要求。",
+  "AI解析": "该题目涉及AWS混合云解决方案中的服务适用场景。AWS Outposts是一种完全托管的服务，提供AWS基础设施和服务到客户本地数据中心，允许在本地运行资源密集或低延迟要求的应用，同时与AWS云无缝集成。AWS Outposts支持Amazon EKS，满足数据必须保留在本地的合规需求。选项A的Local Zones属于AWS区域扩展，但数据可能存储在AWS设施而非客户本地；选项B的Snowmobile用于数据迁移，非持续运行环境；选项D的Snowball Edge适用于边缘计算或数据传输，不支持完整的托管Kubernetes服务。选项中只有Outposts能够满足在本地运行EKS并保持数据合规。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 279,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在使用 Amazon CloudFront 与其网站。公司已在 CloudFront 分发上启用了日志记录，并将日志保存在公司的一个 Amazon S3 存储桶中。公司需要对日志执行高级分析并创建可视化图表。\n解决方案架构师应该怎么做来满足这些需求？",
+ "options": [
+  "A. 使用 Amazon Athena 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 AWS Glue 可视化结果。",
+  "B. 使用 Amazon Athena 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 Amazon QuickSight 可视化结果。",
+  "C. 使用 Amazon DynamoDB 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 AWS Glue 可视化结果。",
+  "D. 使用 Amazon DynamoDB 中的标准 SQL 查询来分析 S3 存储桶中的 CloudFront 日志。使用 Amazon QuickSight 可视化结果。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon Athena 是一种适用于分析 S3 存储桶中数据的服务，能够进行标准 SQL 查询。在这种情况下，使用 Amazon Athena 进行标准 SQL 查询来分析 CloudFront 日志是合适的。随后，利用 Amazon QuickSight 来可视化分析结果，QuickSight 是 Amazon 提供的一款业务智能工具，能够直观地呈现数据并创建各种类型的图表和仪表板，从而满足公司对分析结果的可视化需求。",
+  "AI解析": "Amazon Athena 支持使用标准 SQL 直接查询 Amazon S3 中的 CloudFront 日志，无需预加载数据。Amazon QuickSight 是 AWS 原生的商业智能服务，专为数据可视化设计，能够与 Athena 集成生成交互式图表。AWS Glue 主要用于数据提取、转换和加载（ETL），而非可视化。DynamoDB 是键值数据库，不适用于直接分析 S3 中的日志文件。选项 B 正确对应了查询与可视化工具的正确组合。参考 AWS 白皮书《Analyzing Logs with Amazon Athena and Amazon QuickSight》。"
+ }
+}

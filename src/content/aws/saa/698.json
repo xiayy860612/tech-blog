@@ -1,0 +1,18 @@
+{
+ "qid": "1908084815",
+ "index": 698,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在其本地数据中心使用 Docker 容器的应用程序。该应用程序运行在一个容器主机上，将持久性数据存储在主机上的卷中。容器实例使用存储的持久性数据。\n公司希望将应用程序迁移到完全托管的服务，因为公司不想管理任何服务器或存储基础设施。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用 Amazon Elastic Kubernetes Service (Amazon EKS)，使用自管理节点。创建一个附加到 Amazon EC2 实例的 Amazon Elastic Block Store (Amazon EBS) 卷。将该 EBS 卷用作容器中挂载的持久卷。",
+  "B. 使用 Amazon Elastic Container Service (Amazon ECS)，使用 AWS Fargate 启动类型。创建一个 Amazon Elastic File System (Amazon EFS) 卷。将该 EFS 卷添加为容器中挂载的持久存储卷。",
+  "C. 使用 Amazon Elastic Container Service (Amazon ECS)，使用 AWS Fargate 启动类型。创建一个 Amazon S3 存储桶。将该 S3 存储桶映射为容器中挂载的持久存储卷。",
+  "D. 使用 Amazon Elastic Container Service (Amazon ECS)，使用 Amazon EC2 启动类型。创建一个 Amazon Elastic File System (Amazon EFS) 卷。将该 EFS 卷添加为容器中挂载的持久存储卷。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个解决方案使用 Amazon ECS 与 AWS Fargate 启动类型，允许在不管理服务器的情况下运行容器。使用 Amazon EFS 提供的持久性存储解决方案，可以让容器实例在迁移到完全托管的服务时保留持久性数据。",
+  "AI解析": "题目考察将本地Docker应用迁移至AWS全托管服务。关键要求是无须管理服务器或存储基础设施。AWS Fargate属于无服务器计算引擎，无需预置或管理服务器；Amazon EFS是完全托管的共享文件存储服务，支持多容器实例并发访问数据，适用于持久化存储场景。选项A和D涉及自管理节点（EC2），不符合托管要求。选项C的S3无法直接作为文件系统挂载至容器。ECS+Fargate+EFS的组合满足全托管和无服务器架构需求（参考AWS架构最佳实践及ECS与EFS集成文档）。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2264604790",
+ "index": 819,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将一个传统应用程序从本地数据中心迁移到AWS。该应用程序依赖于数百个cron作业，这些作业在一天中的不同重复时间表上以1到20分钟的不同时间运行。\n公司希望能够在AWS上安排和运行这些cron作业的解决方案，并尽量减少重构。解决方案必须支持根据未来事件来运行cron作业。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 为cron作业创建一个容器镜像。使用Amazon EventBridge Scheduler创建一个重复的计划。将cron作业任务作为AWS Lambda函数运行。",
+  "B. 为cron作业创建一个容器镜像。在Amazon Elastic Container Service（Amazon ECS）上使用AWS Batch，并使用调度策略来运行cron作业。",
+  "C. 为cron作业创建一个容器镜像。使用Amazon EventBridge Scheduler创建一个重复的计划。在AWS Fargate上运行cron作业任务。",
+  "D. 为cron作业创建一个容器镜像。在AWS Step Functions中创建一个工作流，该工作流使用等待状态在指定时间运行cron作业。使用RunTask操作在AWS Fargate上运行cron作业任务。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提供了最佳的解决方案。使用Amazon\nEventBridge Scheduler创建一个重复的计划可以很方便地安排cron作业，并且可以在未来事件上运行。通过将cron作业任务运行在AWS Fargate上，可以实现按需分配资源，无需管理服务器。选项A中提到使用AWS Lambda函数来运行cron作业，但这种方式可能需要对cron作业进行较大的重构，并且Lambda函数的执行时间有限制。选项B中提到使用AWS Batch在Amazon ECS上运行cron作业，但这种方式需要管理和配置批处理环境，并且可能需要较多的重构。选项D中提到使用AWS Step Functions来调度cron作业，但这可能会增加复杂性，并且不如EventBridge Scheduler简单和直接。",
+  "AI解析": "该题重点考察AWS调度服务与计算服务整合的应用场景。依据AWS官方文档，Amazon EventBridge Scheduler支持精确到秒的调度，包括一次性及重复计划，适用于未来事件触发。AWS Fargate作为无服务器计算引擎，适合运行容器化任务无需底层管理。选项C将两者结合，通过EventBridge触发Fargate任务执行容器镜像，避免Lambda的时间限制（选项A）和AWS Batch/Step Functions的复杂性（选项B、D），最小化重构同时满足所有cron调度需求。"
+ }
+}

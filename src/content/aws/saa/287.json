@@ -1,0 +1,17 @@
+{
+ "index": 287,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将基于 Linux 的 Web 服务器组迁移到 AWS。Web 服务器必须访问共享文件存储中的一些内容。公司不得对应用程序进行任何更改。\n解决方案架构师应该怎么做以满足这些要求？",
+ "options": [
+  "A. 创建一个 Amazon S3 Standard 存储桶并允许 Web 服务器访问。",
+  "B. 配置一个 Amazon CloudFront 分发，以 Amazon S3 存储桶为源。",
+  "C. 创建一个 Amazon Elastic File System（Amazon EFS）文件系统。将该 EFS 文件系统挂载到所有 Web 服务器上。",
+  "D. 配置一个通用型 SSD（gp3）Amazon Elastic Block Store（Amazon EBS）卷。将该 EBS 卷挂载到所有 Web 服务器上。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "最适合的解决方案是创建 Amazon EFS 文件系统并将其挂载到所有 Web 服务器上。Amazon EFS 提供了适合多个 EC2 实例共享的可扩展的文件存储解决方案。这样，您可以不对应用程序进行任何更改，并且确保 Web 服务器可以访问共享的文件内容。其他选项如 Amazon S3 存储桶、CloudFront 分发和 Amazon EBS 卷，虽然在某些情况下可能有用，但对于在多个服务器之间共享文件而言，Amazon EFS 是更为适合的解决方案。",
+  "AI解析": "Amazon EFS 是一种托管网络文件系统（NFS），专为多个 EC2 实例提供共享存储而设计。AWS 文档指出，EFS 支持同时挂载到多个可用区的实例，并提供标准的文件系统语义。选项 C 直接满足无需应用程序修改、多服务器共享文件存储的需求。选项 A 和 B 涉及对象存储，与文件系统访问方式不兼容。选项 D 中的 EBS 卷无法同时挂载到多个实例，无法实现共享访问。"
+ }
+}

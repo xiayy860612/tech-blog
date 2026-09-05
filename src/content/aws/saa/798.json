@@ -1,0 +1,18 @@
+{
+ "qid": "1908085532",
+ "index": 798,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要从存储在Amazon S3存储桶中的文本文件中提取食谱记录的配料名称。一个Web应用程序将使用这些配料名称查询Amazon DynamoDB表，并确定营养评分。该应用程序可以处理非食物记录和错误。公司没有任何员工具有机器学习知识来开发这个解决方案。哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 使用S3事件通知在发生PutObject请求时调用AWS Lambda函数。编写Lambda函数来使用Amazon Comprehend分析对象并提取配料名称。将Amazon Comprehend的输出存储在DynamoDB表中。",
+  "B. 使用Amazon EventBridge规则在发生PutObject请求时调用AWS Lambda函数。编写Lambda函数来使用Amazon Forecast分析对象以提取配料名称。将Forecast输出存储在DynamoDB表中。",
+  "C. 使用S3事件通知在发生PutObject请求时调用AWS Lambda函数。使用Amazon Polly创建食谱记录的音频录音。将音频文件保存在S3存储桶中。使用Amazon Simple Notification Service（Amazon SNS）将URL作为消息发送给员工。指示员工听取音频文件并计算营养评分。将配料名称存储在DynamoDB表中。",
+  "D. 使用Amazon EventBridge规则在发生PutObject请求时调用AWS Lambda函数。编写Lambda函数来使用Amazon SageMaker分析对象并提取配料名称。将SageMaker端点的推断输出存储在DynamoDB表中。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提供了一个最简单、最直接的解决方案，利用了AWS Lambda和Amazon Comprehend来提取配料名称，并将其存储在DynamoDB表中，同时满足了公司的需求。其他选项包括不必要的步骤或服务，并且会增加额外的成本和复杂性。",
+  "AI解析": "该题考察如何利用AWS无服务器架构和托管服务自动化处理文本数据。AWS文档指出，Amazon Comprehend作为自然语言处理（NLP）服务支持实体识别功能，可自动识别文本中的特定实体类型（如食物名称）。S3事件通知与Lambda集成能直接响应存储桶的对象上传事件，实现无服务器数据处理流程。选项B中Amazon Forecast适用于时间序列预测而非文本分析。选项C引入人工处理步骤，违背自动化要求且成本高。选项D依赖需要机器学习技能的SageMaker自定义模型，不符合题干中“无机器学习知识”的限制。选项A通过托管服务组合满足需求，无需机器学习专业知识且完全自动化。"
+ }
+}

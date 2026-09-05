@@ -1,0 +1,17 @@
+{
+ "index": 179,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家在线零售公司有超过5000万活跃客户，每天接收超过25,000个订单。公司收集客户的购买数据并将其存储在Amazon S3中。附加的客户数据存储在Amazon RDS中。公司希望向各个团队提供所有数据以便进行分析。解决方案必须提供细粒度权限管理的能力，并尽量减少运营开销。\n哪种解决方案能够满足这些需求？",
+ "options": [
+  "A. 迁移购买数据直接写入Amazon RDS。使用RDS访问控制限制访问。",
+  "B. 定期安排AWS Lambda函数将数据从Amazon RDS复制到Amazon S3。创建AWS Glue爬虫。使用Amazon Athena查询数据。使用S3策略限制访问。",
+  "C. 利用AWS Lake Formation创建一个数据湖。创建一个AWS Glue JDBC连接到Amazon RDS。在Lake Formation中注册S3存储桶。使用Lake Formation访问控制限制访问。",
+  "D. 创建一个Amazon Redshift集群。定期安排AWS Lambda函数将数据从Amazon S3和Amazon RDS复制到Amazon Redshift。使用Amazon Redshift访问控制限制访问。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了满足这个需求，最佳的解决方案是选项C。AWS Lake Formation是专为创建数据湖和实现细粒度权限管理而设计的服务。它可以帮助您集成Amazon S3和Amazon RDS数据，同时提供精细的访问控制。您可以使用Lake Formation的访问控制来限制哪些团队可以访问数据，以及他们可以访问哪些数据。\n选项A中，将购买数据直接写入Amazon RDS会将购买数据与客户数据混合在一起，并且无法提供细粒度权限管理。选项B中，使用Lambda和Athena可以复制数据和查询数据，但未提到细粒度权限管理，需要手动实现。选项D中，虽然提到了Amazon Redshift用于数据仓库，但并未提到如何提供细粒度权限管理，需要手动设置。因此，选项C是最适合的，因为它专门解决了细粒度权限管理的需求。",
+  "AI解析": "Amazon Lake Formation专为构建和管理数据湖设计，支持跨Amazon S3、RDS等多种数据源统一注册和管理。通过Glue JDBC连接器直接访问RDS，无需数据迁移，减少复制和维护成本。Lake Formation提供表级、列级访问控制，管理员可集中定义细粒度权限。相比单独使用S3策略或Redshift权限，Lake Formation简化了多数据源权限管理，符合最小化运营开销的需求。选项B和D涉及数据复制，增加操作复杂性；选项A无法整合异构数据源。"
+ }
+}

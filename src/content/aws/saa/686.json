@@ -1,0 +1,19 @@
+{
+ "qid": "1908084803",
+ "index": 686,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家使用AWS的公司需要一种解决方案来预测每个月制造过程所需的资源。该解决方案必须使用当前存储在Amazon S3存储桶中的历史数据。该公司没有机器学习（ML）经验，并希望使用托管服务进行训练和预测。\n哪种组合的步骤将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 部署Amazon SageMaker模型。为推断创建一个SageMaker端点。",
+  "B. 使用Amazon SageMaker使用S3存储桶中的历史数据训练模型。",
+  "C. 使用功能URL配置AWS Lambda函数，该功能URL使用Amazon SageMaker端点根据输入创建预测。",
+  "D. 使用功能URL配置AWS Lambda函数，该功能URL使用Amazon Forecast预测器根据输入创建预测。",
+  "E. 使用S3存储桶中的历史数据训练Amazon Forecast预测器。"
+ ],
+ "answer": {
+  "正确答案": "DE",
+  "解析": "该公司希望使用当前存储在Amazon S3存储桶中的历史数据进行预测，而且没有机器学习（ML）经验。因此，最适合的解决方案是使用Amazon Forecast，这是一种完全托管的机器学习服务，专门用于时间序列预测。以下是两个步骤的组合：\nD 使用功能URL配置AWS Lambda函数，该功能URL使用Amazon Forecast预测器根据输入创建预测。这一步骤将使用Amazon Forecast预测器来生成预测结果。\nE 使用S3存储桶中的历史数据训练Amazon Forecast预测器。在这一步骤中，将使用Amazon Forecast服务，通过提供的历史数据训练预测器模型，以便进行后续的预测。",
+  "AI解析": "此题聚焦时间序列预测场景，核心要求是零机器学习经验的企业使用全托管服务。Amazon Forecast是专用于时序预测的托管服务，直接支持S3数据训练预测器（选项E），无需手动构建模型；搭配Lambda函数通过功能URL调用Forecast预测器（选项D），形成完整无代码预测流程。SageMaker虽为托管服务但需模型开发经验（选项B/A/C），不符合题目技术门槛要求。"
+ }
+}

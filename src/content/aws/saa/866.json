@@ -1,0 +1,18 @@
+{
+ "qid": "2264604837",
+ "index": 866,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在 Amazon\nEC2 实例上运行其生产工作负载，使用 Amazon Elastic Block Store (Amazon\nEBS) 卷。解决方案架构师需要分析当前的 EBS 卷成本，并提出优化建议。建议需要包括预估的每月节省机会。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用 Amazon Inspector 报告生成 EBS 卷优化建议。",
+  "B. 使用 AWS Systems Manager 报告确定 EBS 卷优化建议。",
+  "C. 使用 Amazon CloudWatch 指标报告确定 EBS 卷优化建议。",
+  "D. 使用 AWS Compute Optimizer 生成 EBS 卷优化建议。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项 D 建议使用 AWS\nCompute Optimizer 生成 EBS 卷优化建议。AWS\nCompute Optimizer 是一个提供计算资源优化建议的服务，可以分析当前的资源使用情况，并提出优化建议，包括 EBS 卷。其他选项并不提供针对 EBS 卷优化的专门服务。",
+  "AI解析": "Amazon Compute Optimizer 通过分析 AWS 资源的使用情况，提供成本优化建议，包括 EC2 实例、EBS 卷和 Lambda 函数等。其官方文档指出，Compute Optimizer 会识别未充分利用或配置过度的资源，并推荐调整方案（例如更改卷类型或调整容量），同时预估潜在的节省金额。选项 A 的 Amazon Inspector 专注安全评估，选项 B 的 Systems Manager 用于运维自动化，选项 C 的 CloudWatch 提供监控指标但不直接生成优化建议。只有选项 D 的 Compute Optimizer 符合题意中的成本分析与优化建议需求。"
+ }
+}

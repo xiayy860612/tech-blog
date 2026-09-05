@@ -1,0 +1,18 @@
+{
+ "qid": "1529124398",
+ "index": 474,
+ "total": 1018,
+ "type": "单选题",
+ "question": "该公司正在设计一个容器化应用程序，将使用Amazon Elastic Container Service (Amazon ECS)。该应用程序需要访问一个高度耐用的共享文件系统，该文件系统可以将数据恢复到另一个AWS区域，其恢复点目标（RPO）为8小时。文件系统需要在区域内的每个可用区提供一个挂载目标。\n解决方案架构师希望使用AWS Backup来管理到另一区域的复制。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. Amazon FSx for Windows File Server，具有多可用区（Multi-AZ）部署",
+  "B. Amazon FSx for NetApp ONTAP，具有多可用区（Multi-AZ）部署",
+  "C. Amazon Elastic File System (Amazon EFS)，使用标准存储类",
+  "D. Amazon FSx for OpenZFS"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon FSx for NetApp ONTAP是一种高度耐用的文件系统，支持多可用区（Multi-AZ）部署，可满足高可用性和恢复需求。它还允许使用AWS Backup来管理数据的复制到另一区域，以满足RPO要求。其他选项中的Amazon FSx for Windows File Server、Amazon Elastic File System（Amazon EFS）和Amazon FSx for OpenZFS不一定能够提供相同级别的RPO和多可用区支持。",
+  "AI解析": "该题目考察对AWS共享文件系统服务及其与AWS Backup集成能力的理解。AWS文档指出，Amazon FSx for NetApp ONTAP支持多可用区部署，提供高可用性，每个可用区均可设置挂载目标。其内置的数据保护功能允许通过AWS Backup创建跨区域副本，满足8小时RPO要求。选项C的EFS标准存储类虽跨可用区，但原生不支持通过AWS Backup直接跨区域复制。选项A、D的FSx版本不具备与ONTAP相同的跨区域备份集成能力。"
+ }
+}

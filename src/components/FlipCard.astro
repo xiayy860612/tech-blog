@@ -1,0 +1,226 @@
+---
+// 通用"卡片切换"组件：正面 / 背面各是一个具名 slot，点击卡片或右下角链接切换。
+//
+// 状态完全交给一个视觉隐藏的原生 <input type="checkbox">：选中与否只由浏览器
+// 自己维护，两面的显示/隐藏（含淡入淡出）全部用 CSS 的 :checked 选择器驱动。
+// JS 只做一件事——点击卡片正文任意位置时，把这次点击转发成对 checkbox 的一次
+// 原生 .click()，保留"点哪里都能切换"的体验，不参与任何状态管理。之前手写 JS
+// 管 class + inert + transitionend 的版本，以及后来的 3D 翻转版本，都踩过一些
+// 坑（悬浮态和背面角度的 CSS 优先级冲突、动画中途卡顿、开发环境热更新导致监听
+// 器叠加触发多次翻转、翻转观感偏突兀）；最终去掉了立体翻转效果，只保留一个简单
+// 的淡入淡出切换，交互更朴素、也不再有时序相关的问题。
+interface Props {
+	/** 固定卡片高度；不传则由内容撑开 */
+	height?: string;
+	/** 最小高度，避免内容极短时卡片过于扁平 */
+	minHeight?: string;
+	/** 正面翻到背面的按钮文案 */
+	frontLabel?: string;
+	/** 背面翻回正面的按钮文案 */
+	backLabel?: string;
+	class?: string;
+}
+
+const { height, minHeight, frontLabel = '查看答案', backLabel = '返回题目', class: className } = Astro.props;
+
+const style = [
+	height && `--flip-card-height: ${height}`,
+	minHeight && `--flip-card-min-height: ${minHeight}`,
+]
+	.filter(Boolean)
+	.join(';');
+
+// 每个实例一个唯一 id，把 <label for> 和 checkbox 对上；构建期每个问题页只渲染
+// 一次这个组件，用 crypto.randomUUID() 就够，不需要额外的计数器状态。
+const inputId = `flip-${crypto.randomUUID()}`;
+---
+
+<div class:list={['flip-card', className]} style={style || undefined} data-flip-card>
+	<input type="checkbox" id={inputId} class="flip-card-input" />
+	<div class="flip-card-stack">
+		<div class="flip-card-face flip-card-front">
+			<div class="flip-card-body"><slot name="front" /></div>
+			<div class="flip-card-actions">
+				<label class="flip-card-toggle" for={inputId}>
+					{frontLabel}
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="13" height="13"
+						><path
+							fill="currentColor"
+							d="M4.5 2a.75.75 0 0 0 0 1.5h3.44L1.72 9.72a.75.75 0 1 0 1.06 1.06L9 4.56v3.44a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-.75-.75h-5.25z"
+						></path></svg
+					>
+				</label>
+			</div>
+		</div>
+		<div class="flip-card-face flip-card-back">
+			<div class="flip-card-body"><slot name="back" /></div>
+			<div class="flip-card-actions">
+				<label class="flip-card-toggle flip-card-toggle-back" for={inputId}>
+					<svg viewBox="0 0 16 16" aria-hidden="true" width="13" height="13"
+						><path
+							fill="currentColor"
+							d="M11.5 14a.75.75 0 0 0 0-1.5H8.06l5.78-5.78a.75.75 0 1 0-1.06-1.06L7 11.44V8a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h5.25z"
+						></path></svg
+					>
+					{backLabel}
+				</label>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	.flip-card {
+		position: relative;
+	}
+	/* 视觉上完全隐藏，但仍然是一个真正的、可以被 Tab 聚焦的 checkbox——
+	   两面之间的切换全部由它的 :checked 状态驱动。 */
+	.flip-card-input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border: 0;
+	}
+	.flip-card-stack {
+		display: grid;
+		height: var(--flip-card-height, auto);
+		min-height: var(--flip-card-min-height, 0);
+	}
+	.flip-card-face {
+		grid-area: 1 / 1;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 16px;
+		background: #fff;
+		box-shadow:
+			0 1px 2px rgba(var(--gray), 12%),
+			0 8px 20px -8px rgba(var(--gray), 28%);
+		cursor: pointer;
+		opacity: 1;
+		transition:
+			opacity 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+	.flip-card-face:hover {
+		box-shadow: var(--box-shadow);
+	}
+	/* 默认背面不可见、退出 Tab 顺序和无障碍树，不然读屏会读到看不见的一面。
+	   用 visibility:hidden 而不是 display:none，是因为前者不影响 Grid 的
+	   高度计算（元素依然占位），卡片高度始终是两面里较高的那个，切换前后
+	   不会跳动。 */
+	.flip-card-back {
+		visibility: hidden;
+		opacity: 0;
+		border-color: rgba(var(--gray), 20%);
+	}
+	.flip-card-input:checked ~ .flip-card-stack .flip-card-back {
+		visibility: visible;
+		opacity: 1;
+	}
+	.flip-card-input:checked ~ .flip-card-stack .flip-card-front {
+		visibility: hidden;
+		opacity: 0;
+	}
+	.flip-card-body {
+		flex: 1;
+		min-height: 0;
+		overflow-y: auto;
+		padding: 1.4em 1.5em;
+		font-size: 0.85em;
+		line-height: 1.65;
+	}
+	/* 不做成一整条独立的底部工具栏（没有背景/分隔线），只留一个靠右的文字
+	   链接，视觉上不跟"点哪都能切换"的主交互抢注意力。 */
+	.flip-card-actions {
+		display: flex;
+		justify-content: flex-end;
+		padding: 0 1.2em 0.9em;
+	}
+	.flip-card-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.3em;
+		font-size: 0.8em;
+		font-weight: 600;
+		/* 视觉上是一行文字，但内边距保证点击/触摸热区不会太小。 */
+		min-height: 2.2em;
+		padding: 0.5em 0.3em;
+		margin: -0.5em -0.3em;
+		color: var(--accent);
+		border-radius: 6px;
+		cursor: pointer;
+		transition: color 0.15s ease;
+	}
+	.flip-card-toggle-back {
+		color: rgb(var(--gray-dark));
+	}
+	.flip-card-toggle:hover {
+		color: var(--accent-dark);
+		text-decoration: underline;
+	}
+	.flip-card-toggle-back:hover {
+		color: rgb(var(--black));
+	}
+	/* 视觉上的 label 不是 focus 的目标（真正被 Tab 到、被键盘操作的是那个
+	   隐藏 checkbox），所以焦点环画在当前可见的那个 label 上。 */
+	.flip-card-input:focus-visible ~ .flip-card-stack .flip-card-toggle {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.flip-card-face {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	// 组件级 script 会被 Astro 提升并只打包一次，这里一次性接管页面上所有卡片。
+	// 状态本身完全交给 checkbox + CSS，这里唯一要做的事：点击卡片正文的
+	// 任意位置（不是 label 本身）时，转发成对 checkbox 的一次原生点击，让
+	// "点哪里都能切换"的体验保留下来；不涉及任何动画时序或状态管理。
+	document.querySelectorAll<HTMLElement>('[data-flip-card]').forEach((card) => {
+		// dev 模式下这段脚本可能因为文件热更新被重新执行；没有这层判断的话，
+		// 同一张卡片会挂上第二套点击转发监听器，点一次相当于对 checkbox 连点
+		// 两次（等于没点）。生产构建里脚本只执行一次，这行判断没有副作用。
+		if (card.dataset.flipCardReady === 'true') return;
+		card.dataset.flipCardReady = 'true';
+
+		const input = card.querySelector<HTMLInputElement>('.flip-card-input')!;
+
+		card.addEventListener('click', (event) => {
+			const target = event.target as HTMLElement;
+			// label（含里面的图标）自己就会原生触发 checkbox，这里再转发一次
+			// 点击的话就等于连点两下、正好互相抵消。
+			if (target.closest('label, a, input')) return;
+			// 用户正在选中文字（比如想复制题干）时不要切换。
+			if (!window.getSelection()?.isCollapsed) return;
+			input.click();
+		});
+
+		// 原生 checkbox 默认只有 Space 能切换选中状态，Enter 不会有任何反应。
+		// 这里的 checkbox 承担的其实是"查看答案 / 返回题目"这个操作性按钮的角色，
+		// 键盘用户按 Enter 期望和点别的按钮一样能直接生效，所以额外补上 Enter
+		// 的支持；焦点全程留在同一个 checkbox 上（两面切换不会重新渲染或替换
+		// 这个元素），不需要额外处理焦点转移。
+		input.addEventListener('keydown', (event) => {
+			if (event.key !== 'Enter') return;
+			event.preventDefault();
+			input.click();
+		});
+	});
+
+	// 每道题只有这一张卡片，也是整页最主要的可交互元素：默认把焦点放在
+	// "查看答案/返回题目"这个 checkbox 上，键盘用户不需要先 Tab 一轮，
+	// 进入页面就能直接按 Enter 切换。这段 script 每次导航到新的题目页都会
+	// 重新执行（跨文档 View Transitions 本质上仍是整页导航），所以每一页
+	// 都会重新拿到焦点，不需要额外监听导航事件。
+	document.querySelector<HTMLInputElement>('.flip-card-input')?.focus({ preventScroll: true });
+</script>

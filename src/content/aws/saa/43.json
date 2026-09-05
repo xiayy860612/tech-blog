@@ -1,0 +1,17 @@
+{
+ "index": 43,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个为商店提供营销服务的应用程序。这些服务基于商店客户的先前购买情况。商店通过SFTP上传交易数据到公司，然后处理和分析数据以生成新的营销优惠。一些文件的大小可能超过200 GB。\n最近，公司发现一些商店上传的文件包含了不应包含的个人可识别信息（PII）。公司希望管理员在再次共享PII时能够收到警报。公司还希望自动化补救措施。\n为了以最小的开发工作满足这些要求，解决方案架构师应该采取哪些措施？",
+ "options": [
+  "A. 使用Amazon S3存储桶作为安全传输点。使用Amazon Inspector扫描存储桶中的对象。如果对象包含PII，触发S3生命周期策略以删除包含PII的对象。",
+  "B. 使用Amazon S3存储桶作为安全传输点。使用Amazon Macie扫描存储桶中的对象。如果对象包含PII，使用Amazon Simple Notification Service (Amazon SNS)触发通知给管理员以删除包含PII的对象。",
+  "C. 在AWS Lambda函数中实施自定义扫描算法。当对象加载到存储桶中时触发该函数。如果对象包含PII，使用Amazon Simple Notification Service (Amazon SNS)触发通知给管理员以删除包含PII的对象。",
+  "D. 在AWS Lambda函数中实施自定义扫描算法。当对象加载到存储桶中时触发该函数。如果对象包含PII，使用Amazon Simple Email Service (Amazon SES)触发通知给管理员，并触发S3生命周期策略以删除包含PII的对象。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "A Amazon Inspector通常用于安全性漏洞扫描，而不是PII扫描。此选项不适合检测PII。\nB Amazon Macie是一种专门用于PII和敏感数据发现的服务。使用Macie扫描对象，并在发现PII时使用SNS通知管理员是合适的，因为它是一种专门设计用于此目的的服务。\nC 使用AWS Lambda函数可以实施自定义扫描算法，但是在此情况下，Amazon Macie是更方便和高效的解决方案，而不需要自己编写和维护扫描算法。\nD Amazon SES通常用于发送电子邮件通知，而不是PII检测。此选项不适合检测PII。",
+  "AI解析": "AWS服务中，Amazon Macie专用于敏感数据识别，如PII，而Amazon Inspector用于漏洞评估。题目要求检测PII并触发警报，Macie符合需求。使用S3作为传输点，Macie扫描后通过SNS通知管理员，无需自定义开发，符合最小开发原则。选项B结合S3、Macie和SNS，正确实现检测与通知。其他选项或使用不当服务（Inspector），或需自定义代码（Lambda），增加工作量。答案B正确。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 286,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将基于 Windows 的应用程序从本地环境迁移到 AWS 云。该应用程序有三个层次：一个应用程序层、一个业务层和一个具有 Microsoft SQL Server 的数据库层。公司希望使用 SQL Server 的特定功能，比如本地备份和数据质量服务。该公司还需要在这些层次之间共享文件以进行处理。\n解决方案架构师应该如何设计架构以满足这些要求？",
+ "options": [
+  "A. 在 Amazon EC2 实例上托管三个层。使用 Amazon FSx 文件网关在层之间共享文件。",
+  "B. 在 Amazon EC2 实例上托管三个层。使用 Amazon FSx for Windows 文件服务器在层之间共享文件。",
+  "C. 在 Amazon EC2 实例上托管应用程序层和业务层。在 Amazon RDS 上托管数据库层。使用 Amazon Elastic File System (Amazon EFS) 在层之间共享文件。",
+  "D. 在 Amazon EC2 实例上托管应用程序层和业务层。在 Amazon RDS 上托管数据库层。使用 Provisioned IOPS SSD（io2）Amazon Elastic Block Store (Amazon EBS) 卷在层之间共享文件。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "最适合的解决方案是在 Amazon EC2 实例上托管应用程序层和业务层，并将数据库层托管在 Amazon RDS 上。使用 Amazon EFS 可以方便地在这些层次之间共享文件，这符合需求。Amazon RDS 提供了 SQL Server 的特定功能，并且能够满足应用程序中所需的功能。其他选项中，Amazon EFS 提供了更便捷的文件共享方式，并且 Amazon RDS 是托管 SQL Server 数据库的良好选择，因此这是最合适的解决方案。",
+  "AI解析": "本题核心在于满足SQL Server特定功能需求及跨层文件共享。由于RDS for SQL Server支持本地备份（通过本地冗余存储）及数据质量服务（通过SSMS集成），能够替代传统EC2部署；同时EFS虽主要面向Linux，但通过NFS客户端可实现跨平台共享，适应多层级Windows应用场景。选项C通过RDS简化数据库管理，EFS提供弹性共享存储，符合成本效益与架构简化需求。其他选项或误用文件网关（需本地混合架构）、或依赖EC2部署数据库（增加运维负担）、或采用EBS卷（无法实现多实例并发访问）。"
+ }
+}

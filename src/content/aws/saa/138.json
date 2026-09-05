@@ -1,0 +1,17 @@
+{
+ "index": 138,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家大型媒体公司在AWS上托管一个Web应用程序。该公司希望开始缓存机密媒体文件，以便全球用户可以可靠地访问这些文件。内容存储在Amazon S3存储桶中。公司必须能够快速交付内容，而不管请求的地理来源在何处。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS DataSync将S3存储桶连接到Web应用程序。",
+  "B. 部署AWS Global Accelerator将S3存储桶连接到Web应用程序。",
+  "C. 部署Amazon CloudFront将S3存储桶连接到CloudFront边缘服务器。",
+  "D. 使用Amazon Simple Queue Service（Amazon SQS）将S3存储桶连接到Web应用程序。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "C Amazon CloudFront是AWS的内容分发网络（CDN）服务，它非常适合用于全球分发内容以提高访问速度。通过部署Amazon CloudFront，公司可以缓存并分发存储在S3中的内容到位于世界各地的CloudFront边缘服务器，从而提供用户快速可靠的访问。这满足了快速交付内容的要求，并确保不论请求的地理位置在何处，用户都能够获得最佳的性能。\nA选项中的AWS DataSync主要用于数据传输和同步，不提供全球分发功能。B选项的AWS Global Accelerator用于加速全球应用，但不会提供内容缓存和分发功能。D选项的Amazon SQS用于消息队列，不适合直接缓存和分发媒体文件。",
+  "AI解析": "该题考查AWS全球内容分发服务的核心应用场景。Amazon CloudFront作为内容分发网络（CDN）服务，通过将S3存储的媒体文件缓存至全球边缘节点，实现低延迟、高吞吐量的内容交付，其架构特性直接满足\"地理位置无关的快速访问\"需求。AWS Global Accelerator侧重网络层加速而非缓存，DataSync用于跨存储迁移，SQS属于消息队列服务，三者均不涉及内容分发优化功能。"
+ }
+}

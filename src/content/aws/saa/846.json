@@ -1,0 +1,18 @@
+{
+ "qid": "2264604817",
+ "index": 846,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用Amazon\nRDS for PostgreSQL数据库作为其数据层。公司必须为数据库实现密码轮换。哪种解决方案能够以最少的运维开销满足这一要求？",
+ "options": [
+  "A. 将密码存储在AWS Secrets Manager中。在该密钥上启用自动轮换。",
+  "B. 将密码存储在AWS Systems Manager Parameter Store中。在参数上启用自动轮换。",
+  "C. 将密码存储在AWS Systems Manager Parameter Store中。编写一个AWS Lambda函数来轮换密码。",
+  "D. 将密码存储在AWS Key Management Service（AWS KMS）中。在AWS KMS密钥上启用自动轮换。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提供了最少的运维开销。AWS\nSecrets Manager提供了一种安全且简单的方式来存储和轮换敏感信息，如数据库密码。启用自动轮换后，Secrets\nManager将自动更新密码，而无需用户手动干预。其他选项需要更多的手动设置或编写自定义代码来实现密码轮换，因此具有更高的运维开销。 Secrets Manager专门用于管理敏感信息，并提供了许多安全功能，如访问控制和审计日志记录，因此是存储密码的理想选择。",
+  "AI解析": "本题核心在于AWS服务对数据库凭证的自动化管理能力。Amazon RDS密码轮换需通过集中式密钥管理实现最小运维成本，AWS Secrets Manager专为敏感数据存储设计，其自动轮换功能可直接关联数据库实例，触发密码更新后自动同步至RDS和应用程序，无需人工编码干预；而Parameter Store自动轮换需依赖自定义Lambda（如选项C），KMS密钥轮换仅限于加密密钥而非数据库密码本身，故排除其他选项。"
+ }
+}

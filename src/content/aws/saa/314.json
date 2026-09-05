@@ -1,0 +1,17 @@
+{
+ "index": 314,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司经历了一次影响其本地数据中心中多个应用程序的入侵事件。攻击者利用运行在服务器上的自定义应用程序的漏洞。现在，该公司正在将应用程序迁移到Amazon EC2实例上。公司希望实施一种解决方案，可以主动扫描EC2实例的漏洞，并发送详细的发现报告。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 部署AWS Shield来扫描EC2实例的漏洞。创建一个AWS Lambda函数来记录任何发现到AWS CloudTrail。",
+  "B. 部署Amazon Macie和AWS Lambda函数来扫描EC2实例的漏洞。记录任何发现到AWS CloudTrail。",
+  "C. 打开Amazon GuardDuty。部署GuardDuty代理到EC2实例上。配置一个AWS Lambda函数来自动生成和分发详细的发现报告。",
+  "D. 打开Amazon Inspector。部署Amazon Inspector代理到EC2实例上。配置一个AWS Lambda函数来自动生成和分发详细的发现报告。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为了主动扫描EC2实例的漏洞并发送详细的发现报告，最佳选择是使用Amazon Inspector（选项D）。Amazon Inspector是一项用于自动发现应用程序漏洞的服务，可以部署到EC2实例上，扫描应用程序并生成详细的报告。通过配置AWS Lambda函数，可以自动化生成和分发这些报告，以满足要求。选项C中的Amazon GuardDuty主要用于检测安全事件，不是漏洞扫描工具。选项A和B中的AWS Shield和Amazon Macie也不是漏洞扫描工具。",
+  "AI解析": "题目涉及AWS安全服务应用场景。AWS文档中明确，Amazon Inspector专为EC2实例提供自动化安全评估，支持漏洞扫描和生成报告。选项A的Shield用于DDoS防护，无关漏洞扫描。选项B的Macie聚焦敏感数据识别，不涉及漏洞检测。选项C的GuardDuty基于日志分析威胁，无需代理部署且不主动扫描漏洞。选项D的Inspector通过代理主动评估EC2实例，并支持报告生成，完全匹配题目需求。答案D正确。"
+ }
+}

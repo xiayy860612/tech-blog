@@ -1,0 +1,18 @@
+{
+ "qid": "1529124395",
+ "index": 471,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个基于Amazon DynamoDB的移动聊天应用程序。用户希望尽可能低的延迟来读取消息。解决方案架构师需要设计一个最佳解决方案，需要最小程度的应用程序更改。\n解决方案架构师应该选择哪种方法？",
+ "options": [
+  "A. 为新消息表配置Amazon DynamoDB Accelerator (DAX)。更新代码以使用DAX端点。",
+  "B. 添加DynamoDB读取副本以处理增加的读取负载。更新应用程序以指向读取副本的读取端点。",
+  "C. 将新消息表的读取容量单位数量翻倍。继续使用现有的DynamoDB端点。",
+  "D. 在应用程序堆栈中添加Amazon ElastiCache for Redis缓存。更新应用程序以指向Redis缓存端点，而不是DynamoDB。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon DynamoDB Accelerator (DAX)是一种用于提高DynamoDB读取性能的缓存服务。通过将DAX添加到新消息表，您可以显着降低读取延迟，而且几乎不需要对应用程序进行大规模更改。其他选项也可能提高读取性能，但它们需要更多的配置和应用程序更改。",
+  "AI解析": "Amazon DynamoDB Accelerator (DAX) 是一种完全托管的、内存中的缓存服务，专门为 DynamoDB 设计，可提供微秒级延迟。DynamoDB 原生支持 DAX，应用程序只需将请求端点切换至 DAX 即可，无需修改业务逻辑或数据模型。选项 B 提到的“DynamoDB 读取副本”并非 DynamoDB 原生功能，DynamoDB Global Tables 属于多区域写入副本，与题目无关。选项 C 单纯增加预置容量无法直接降低延迟，过量配置可能导致浪费。选项 D 引入 ElastiCache 需要额外设计缓存策略，应用程序需处理缓存穿透、数据一致性等问题，改动成本更高。DAX 的集成方式更简单，符合“最小更改”要求。"
+ }
+}

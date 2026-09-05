@@ -1,0 +1,18 @@
+{
+ "qid": "1908085434",
+ "index": 700,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一座城市部署了一个运行在 Amazon EC2 实例后面的 Web 应用程序，使用了一个应用程序负载均衡器 (ALB)。应用程序的用户报告说出现了零星的性能问题，这似乎与来自随机 IP 地址的 DDoS 攻击有关。城市需要一个解决方案，需要最小的配置更改，并提供有关 DDoS 来源的审计日志。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 在 ALB 上启用 AWS WAF web ACL，并配置规则以阻止来自未知来源的流量。",
+  "B. 订阅 Amazon Inspector。 启动 AWS DDoS 响应团队 (DRT) 将缓解控制集成到服务中。",
+  "C. 订阅 AWS Shield Advanced。 启动 AWS DDoS 响应团队 (DRT) 将缓解控制集成到服务中。",
+  "D. 为应用程序创建一个 Amazon CloudFront 分发，并将 ALB 设置为源。 在分发上启用 AWS WAF web ACL，并配置规则以阻止来自未知来源的流量。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "AWS Shield Advanced 提供了高级的 DDoS 保护功能，并与 AWS DDoS 响应团队 (DRT) 集成，可以帮助在 DDoS 攻击发生时快速做出反应和应对。同时，AWS Shield Advanced 还提供了审计日志功能，可以记录有关 DDoS 攻击的详细信息，满足题目中提到的审计需求。",
+  "AI解析": "AWS Shield Advanced 提供针对 DDoS 攻击的托管防护服务，自动检测和缓解网络层、传输层及应用层攻击，并对攻击事件生成详细日志，满足审计需求。AWS 官方文档指出，Shield Advanced 集成于 ALB、EC2 等 AWS 资源，无需架构变更。启用后，可联动 DDoS 响应团队 (DRT) 提供实时支持。选项 A 的 WAF 仅处理应用层威胁，无法应对网络层 DDoS。选项 B 的 Inspector 不涉及 DDoS 防护。选项 D 的 CloudFront 虽可辅助缓解，但与 Shield Advanced 相比需要额外配置且防护范围有限。"
+ }
+}

@@ -1,0 +1,23 @@
+---
+import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<Layout
+	title="关于我"
+	description="这里介绍一下你自己"
+	pubDate={new Date('August 08 2021')}
+	heroImage={AboutHeroImage}
+>
+	<p>
+		这是一段占位文字，用来演示「关于」这个自定义页面（<code>src/pages/about.astro</code>）。
+		你可以把这里换成自己的介绍：比如你是谁、写这个博客的目的、关注的话题等等。
+	</p>
+
+	<p>
+		这个页面复用了和文章详情页一样的 <code>BlogPost</code> 布局（<code>src/layouts/BlogPost.astro</code>），
+		所以带有标题、日期和配图。如果你想要一个更简单、没有日期和配图的自定义页面，
+		可以直接新建一个 <code>.astro</code> 文件、引入 <code>Header</code> 和 <code>Footer</code> 组件，
+		像 <code>src/pages/index.astro</code> 那样自己拼装页面结构即可。
+	</p>
+</Layout>

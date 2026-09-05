@@ -1,0 +1,18 @@
+{
+ "qid": "2264604787",
+ "index": 816,
+ "total": 1018,
+ "type": "单选题",
+ "question": "市场团队希望为即将到来的多项体育赛事建立一项活动。团队拥有过去五年的新闻报道，格式为PDF。团队需要一种解决方案来提取有关新闻报道内容和情感的见解。解决方案必须使用Amazon\nTextract来处理新闻报道。\n哪种解决方案将以最小的运维开销满足这些要求？",
+ "options": [
+  "A. 将提取的见解提供给Amazon Athena进行分析。将提取的见解和分析存储在一个Amazon S3存储桶中。",
+  "B. 将提取的见解存储在一个Amazon DynamoDB表中。使用Amazon SageMaker构建情感模型。",
+  "C. 将提取的见解提供给Amazon Comprehend进行分析。将分析结果保存到一个Amazon S3存储桶中。",
+  "D. 将提取的见解存储在一个Amazon S3存储桶中。使用Amazon QuickSight来可视化和分析数据。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提供了最佳的解决方案。Amazon\nComprehend是一项用于自然语言处理的托管服务，可用于分析文本内容和情感。通过将提取的见解提供给Amazon\nComprehend进行分析，可以轻松地获得关于新闻报道内容和情感的见解，而且操作开销较小。选项A中提到了使用Amazon Athena进行分析，但Athena主要用于结构化数据的查询，而不适用于文本内容的分析。选项B提到了使用Amazon SageMaker构建情感模型，这需要更多的模型训练和部署工作，并且可能增加了操作开销。选项D提到了使用Amazon QuickSight来可视化和分析数据，但是QuickSight适用于已经分析过的数据，而不是进行文本分析。",
+  "AI解析": "该题核心在于利用AWS托管服务实现文本分析的最小运维开销。Amazon Textract负责PDF文本提取后，需直接对接自然语言处理服务：Amazon Comprehend内置情感分析及内容洞察功能，无需额外建模，仅需API调用即可完成分析，结果存储至S3符合无缝集成逻辑。其他选项或涉及数据迁移（Athena）、需定制模型（SageMaker）或仅聚焦可视化（QuickSight），均增加运维复杂度。"
+ }
+}

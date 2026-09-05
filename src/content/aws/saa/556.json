@@ -1,0 +1,18 @@
+{
+ "qid": "1529125613",
+ "index": 556,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个解决方案架构师管理一个分析应用程序。该应用程序将大量半结构化数据存储在一个 Amazon S3 存储桶中。解决方案架构师希望使用并行数据处理来更快地处理数据。解决方案架构师还希望使用存储在 Amazon Redshift 数据库中的信息来丰富数据。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 使用 Amazon Athena 处理 S3 数据。使用 AWS Glue 结合 Amazon Redshift 数据来丰富 S3 数据。",
+  "B. 使用 Amazon EMR 处理 S3 数据。使用 Amazon EMR 结合 Amazon Redshift 数据来丰富 S3 数据。",
+  "C. 使用 Amazon EMR 处理 S3 数据。使用 Amazon Kinesis 数据流将 S3 数据移入 Amazon Redshift 以便对数据进行丰富处理。",
+  "D. 使用 AWS Glue 处理 S3 数据。使用 AWS Lake Formation 结合 Amazon Redshift 数据来丰富 S3 数据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 提供了最佳的解决方案。Amazon Athena 可以用于处理 S3 数据，而不需要事先加载数据或管理基础设施。AWS Glue 可以用于与 Amazon Redshift 数据结合，从而丰富 S3 数据。这个组合提供了高效处理 S3 数据并利用 Amazon Redshift 数据来丰富数据的解决方案。其他选项中，B 也提到了使用 Amazon EMR 处理 S3 数据，但它没有提及如何丰富数据；而 C 和 D 中提到了 Amazon Kinesis 或 AWS Lake Formation，但它们并不提供直接使用 Amazon Redshift 数据来丰富 S3 数据的方法。",
+  "AI解析": "Amazon Athena 是无服务器查询服务，支持对 S3 中的半结构化数据进行并行分析，适用于大规模数据处理场景。AWS Glue 作为托管 ETL 服务，能够从 Amazon Redshift 抽取数据，并与 S3 数据结合进行转换和丰富。Athena 直接处理 S3 数据，Glue 负责跨源数据整合，两者协同满足高效处理和数据集成的需求。选项 B 的 EMR 需要额外管理集群，选项 C 的 Kinesis 适用流式场景而非批量，选项 D 的 Lake Formation 侧重权限管理而非数据处理。"
+ }
+}

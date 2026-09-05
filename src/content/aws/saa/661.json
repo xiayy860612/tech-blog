@@ -1,0 +1,18 @@
+{
+ "qid": "1908084778",
+ "index": 661,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用AWS Cost Explorer监控其AWS成本。公司注意到每个月Amazon Elastic Block Store（Amazon EBS）存储和快照成本都在增加。然而，公司每个月并未购买额外的EBS存储。公司希望优化当前存储使用的每月成本。\n哪种解决方案将以最小的运维工作满足这些要求？",
+ "options": [
+  "A. 使用Amazon CloudWatch Logs中的日志监控Amazon EBS的存储利用率。使用Amazon EBS弹性卷来减少EBS卷的大小。",
+  "B. 使用自定义脚本监控空间使用情况。使用Amazon EBS弹性卷来减少EBS卷的大小。",
+  "C. 删除所有过期和未使用的快照以减少快照成本。",
+  "D. 删除所有非必要的快照。使用Amazon Data Lifecycle Manager根据公司的快照策略要求创建和管理快照。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D提到了删除所有非必要的快照，并使用Amazon Data Lifecycle Manager来根据公司的快照策略要求创建和管理快照。这样可以优化快照的成本，并且Amazon Data Lifecycle Manager可以帮助自动化这个过程，减少运维工作的复杂性。其他选项中，选项A和B提到使用Amazon EBS弹性卷来减少EBS卷的大小，但没有提及快照的管理。选项C提到删除过期和未使用的快照，但没有提及如何管理和创建快照。因此，选项D是最合适的解决方案。",
+  "AI解析": "本题聚焦EBS快照成本优化，核心在于自动化生命周期管理。Amazon Data Lifecycle Manager通过预设策略自动创建/删除快照，避免手动维护成本，同时删除冗余快照直接降低存储费用。A、B方案涉及卷容量调整与题目\"未购买额外存储\"矛盾，C未建立自动化机制无法持续优化运维。"
+ }
+}

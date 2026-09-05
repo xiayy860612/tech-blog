@@ -1,0 +1,19 @@
+{
+ "qid": "2949540314",
+ "index": 973,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司在 AWS 上托管一个应用程序。该应用程序允许用户上传照片并将照片存储在 Amazon S3 存储桶中。公司希望使用 Amazon CloudFront 和自定义域名将照片文件上传到位于 eu-west-1 区域的 S3存储桶。\n哪几种解决方案将满足这些要求？（选择两项）",
+ "options": [
+  "A. 使用 AWS Certificate Manager (ACM) 在 us-east-1 区域创建一个公共证书。将该证书用于 CloudFront。",
+  "B. 使用 AWS Certificate Manager (ACM) 在 eu-west-1 区域创建一个公共证书。将该证书用于 CloudFront。",
+  "C. 配置 Amazon S3 允许来自 CloudFront 的上传。配置 S3 Transfer Acceleration。",
+  "D. 配置 Amazon S3 允许来自 CloudFront 的上传。配置 Amazon S3 原点访问控制 (OAC)。",
+  "E. 配置 Amazon S3 允许来自 CloudFront 的上传。配置 Amazon S3 网站端点。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": "为 CloudFront 配置\nSSL/TLS 证书时，证书需要在 AWS Certificate Manager (ACM) 中创建。虽然 ACM 证书在多个区域都可以使用，但 CloudFront 要求证书必须在 us-east-1 区域创建。这是因为 CloudFront 在 us-east-1 区域使用 ACM 证书进行 HTTPS 加密。\n要确保 CloudFront 能够将上传请求转发到 Amazon S3 并允许访问，必须配置 S3 的原点访问控制 (OAC)。OAC 用于确保只有\nCloudFront 可以访问 S3 存储桶，而不会暴露存储桶给其他直接访问。",
+  "AI解析": "题干要求在AWS环境中通过CloudFront和自定义域名将文件上传至指定区域的S3存储桶。正确选项涉及ACM证书的区域限制及CloudFront与S3的授权配置。ACM颁发的证书用于CloudFront时必须部署在us-east-1区域，与CloudFront的全局架构相关。选项A符合此要求，选项B错误。上传至S3需通过Origin Access Control（OAC）确保仅允许CloudFront访问，选项D正确。选项C的Transfer Acceleration用于加速直传S3，与CloudFront无关；选项E的网站端点不适用于非静态托管场景。官方文档指出，CloudFront集成S3时推荐使用OAC而非传统方法，且ACM证书区域限制明确。"
+ }
+}

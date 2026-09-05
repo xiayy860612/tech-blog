@@ -1,0 +1,18 @@
+{
+ "qid": "1529125620",
+ "index": 563,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个电子商务应用程序，需要存储敏感的客户信息。该公司需要让客户能够在网站上完成购买交易。该公司还需要确保即使对于数据库管理员，敏感的客户数据也受到保护。哪种解决方案满足这些要求？",
+ "options": [
+  "A. 将敏感数据存储在Amazon Elastic Block Store (Amazon EBS) 卷中。使用EBS加密来加密数据。使用IAM实例角色限制访问。",
+  "B. 将敏感数据存储在Amazon RDS for MySQL中。使用AWS Key Management Service (AWS KMS) 客户端端加密来加密数据。",
+  "C. 将敏感数据存储在Amazon S3中。使用AWS Key Management Service (AWS KMS) 服务器端加密来加密数据。使用S3桶策略限制访问。",
+  "D. 将敏感数据存储在Amazon FSx for Windows Server中。将文件共享挂载到应用程序服务器上。使用Windows文件权限来限制访问。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "在这种情况下，需要对存储的敏感数据进行加密，并限制访问权限，以确保即使对于数据库管理员也不能轻易访问敏感数据。选项B是正确的答案，因为它建议将数据存储在Amazon RDS for MySQL中，并使用AWS Key Management Service (AWS KMS)客户端端加密来加密数据，这样只有经过授权的应用程序可以解密和访问数据，确保了数据的保护。其他选项都存在一些问题，例如使用Amazon EBS存储的数据可能会对数据库管理员可见，而使用Amazon S3时，需要小心配置以确保适当的访问控制。 Amazon FSx for Windows Server不是用于存储敏感数据的最佳选择。",
+  "AI解析": "该题涉及如何在AWS环境中安全存储敏感客户数据并限制访问权限。AWS安全文档指出，使用客户端加密可确保数据在传输前加密，仅授权客户端能解密。选项B中，Amazon RDS结合AWS KMS客户端加密实现数据在应用层加密后再存储，密钥由客户管理，即使数据库管理员访问数据库也无法获取明文。其他选项如EBS卷加密、S3服务器端加密或FSx文件权限均无法完全限制数据库管理员访问未加密的原始数据。"
+ }
+}

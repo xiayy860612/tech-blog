@@ -1,0 +1,18 @@
+{
+ "qid": "2949540284",
+ "index": 943,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司正在准备在\nAWS 上部署一个 web 应用程序，以确保为客户提供连续服务。架构包括公司托管在 Amazon EC2 实例上的 web 应用程序、存储在 Amazon RDS 中的关系数据库，以及公司存储在 Amazon S3 中的静态资产。\n公司希望为应用程序设计一个强健且有弹性的架构。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 在单个可用区中部署 Amazon EC2 实例。在相同可用区中部署 RDS DB 实例。使用启用版本控制的 Amazon S3 存储静态资产。",
+  "B. 在多个可用区中部署一个 Auto Scaling 组中的 Amazon EC2 实例。部署一个 Multi-AZ RDS DB 实例。使用 Amazon CloudFront 分发静态资产。",
+  "C. 在单个可用区中部署 Amazon EC2 实例。在第二个可用区中部署 RDS DB 实例以实现跨可用区冗余。直接从 EC2 实例提供静态资产。",
+  "D. 使用 AWS Lambda 函数来提供 web 应用程序。使用 Amazon Aurora Serverless v2 作为数据库。将静态资产存储在 Amazon Elastic File System (Amazon EFS) One Zone-Infrequent Access (One Zone-IA) 中。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这种方案确保了高可用性和弹性。通过在多个可用区中部署 EC2 实例的 Auto Scaling 组，可以实现负载均衡和故障转移。Multi-AZ 部署的 RDS 实例提供了数据库的高可用性和自动故障恢复。使用 Amazon\nCloudFront 分发静态资产可以减少延迟并提升用户体验，同时提高静态内容的可靠性和性能。",
+  "AI解析": "AWS高可用性架构设计的最佳实践强调跨多个可用区（AZ）部署资源以避免单点故障。Auto Scaling组在多可用区运行EC2实例，确保实例故障时自动替换并平衡负载。Multi-AZ RDS在主AZ故障时自动故障转移至备用AZ，保障数据库连续性。结合CloudFront通过全球边缘节点加速静态内容分发，进一步提升可用性和性能。Amazon S3与CloudFront的整合是AWS推荐模式，而选项B的方案覆盖了计算、数据库和内容分发的冗余机制，符合AWS架构完善框架中的可靠性支柱原则。选项A、C在计算或存储层缺乏跨AZ冗余；选项D的EFS One Zone-IA不符合跨区冗余要求。"
+ }
+}

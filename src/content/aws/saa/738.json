@@ -1,0 +1,18 @@
+{
+ "qid": "1908085472",
+ "index": 738,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司正在构建一个使用无服务器架构的新应用程序。该架构将包括一个Amazon API Gateway REST API和AWS Lambda函数来管理传入的请求。\n公司希望添加一个服务，该服务可以将从API Gateway REST API接收到的消息发送到多个目标Lambda函数进行处理。该服务必须提供消息过滤功能，使目标Lambda函数能够仅接收它们需要的消息。\n哪种解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 将来自API Gateway REST API的请求发送到Amazon Simple Notification Service（Amazon SNS）主题。订阅Amazon Simple Queue Service（Amazon SQS）队列到SNS主题。配置目标Lambda函数来轮询不同的SQS队列。",
+  "B. 将来自API Gateway REST API的请求发送到Amazon EventBridge。配置EventBridge来调用目标Lambda函数。",
+  "C. 将来自API Gateway REST API的请求发送到Amazon Managed Streaming for Apache Kafka（Amazon MSK）。配置Amazon MSK将消息发布到目标Lambda函数。",
+  "D. 将来自API Gateway REST API的请求发送到多个Amazon Simple Queue Service（Amazon SQS）队列。配置目标Lambda函数来轮询不同的SQS队列。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon EventBridge是一个高度可扩展的事件总线服务，可以将事件传递给多个目标，包括Lambda函数。使用EventBridge可以将消息直接发送到目标Lambda函数，而无需中间层服务，因此可以减少操作开销。 EventBridge还可以轻松地实现消息过滤和路由，以确保目标Lambda函数只接收所需的消息。",
+  "AI解析": "Amazon EventBridge 专为事件驱动架构设计，支持基于内容的路由和过滤。通过定义事件模式和规则，EventBridge 自动将符合条件的事件路由到指定目标，如 Lambda 函数，无需手动管理多个队列或订阅。API Gateway 可直接将事件发送至 EventBridge，由后者处理复杂的事件分发逻辑，减少配置和维护工作。选项 A 涉及多队列管理，选项 C 引入 Kafka 增加复杂性，选项 D 直接使用多队列需 API Gateway 集成多个目标。EventBridge 提供的原生过滤和路由机制更符合最小操作开销需求。AWS 官方文档指出 EventBridge 适用于解耦和灵活的事件路由场景。[AWS EventBridge 文档]"
+ }
+}

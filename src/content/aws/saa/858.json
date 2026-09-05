@@ -1,0 +1,19 @@
+{
+ "qid": "2264604829",
+ "index": 858,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司运行了多个高利用率的\nAmazon RDS for Oracle On-Demand DB 实例，这些实例在 AWS 组织中的成员账户中运行。公司的财务团队可以访问组织的管理账户和成员账户。财务团队希望通过使用 AWS Trusted Advisor 来找到优化成本的方法。满足这些要求的组合步骤是：",
+ "options": [
+  "A. 在管理账户中使用 Trusted Advisor 的建议。",
+  "B. 在运行 RDS DB 实例的成员账户中使用 Trusted Advisor 的建议。",
+  "C. 查看 Amazon RDS 预留实例优化的 Trusted Advisor 检查。",
+  "D. 查看 Amazon RDS 空闲 DB 实例的 Trusted Advisor 检查。",
+  "E. 查看计算优化的 Trusted Advisor 检查，并通过使用 AWS 计算优化器进行交叉验证。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "为了优化 Amazon RDS for Oracle On-Demand 数据库实例的成本，以下步骤是合理的：\n利用 Trusted Advisor 的建议：\n选项 A：在管理账户中使用\nTrusted Advisor 建议。这允许集中化的成本优化建议，并且管理账户可以查看整个组织的资源使用情况和优化建议。\n选项 B：虽然在成员账户中也可以使用\nTrusted Advisor 建议，但管理账户可以集中查看和管理所有建议，更为方便。\n具体的 Trusted Advisor 检查：\n选项 C：审查 Amazon RDS 保留实例优化的 Trusted Advisor 检查。保留实例通常能提供显著的成本节省，特别是对于高利用率的实例，这是一个重要的优化途径。\n选项 D：审查 Amazon RDS 空闲数据库实例的 Trusted Advisor 检查。虽然识别空闲实例有助于成本优化，但题干中提到实例具有高利用率，因此空闲实例检查可能不适用。\n选项 E：审查计算优化的\nTrusted Advisor 检查并使用 AWS Compute Optimizer 交叉检查结果。Compute Optimizer 主要针对 EC2 实例的优化，而非 RDS，因此这项检查对于 RDS 实例的优化效果有限。\n综合考虑，选项 A 和 C 提供了集中化管理和具体的 RDS 成本优化建议，因此是最佳选择。",
+  "AI解析": "Trusted Advisor的某些检查仅在AWS Organizations的管理账户可用，例如跨账户的RDS预留实例优化建议。财务团队需在管理账户访问Trusted Advisor以获取整个组织的成本优化建议。高利用率的RDS实例适合采用预留实例节省成本，查看预留实例优化检查（C）直接针对此场景。空闲实例检查（D）不适用高利用率实例。计算优化器（E）主要针对EC2，与RDS无关。成员账户（B）无法获取跨账户预留实例建议。答案依据AWS文档中Trusted Advisor功能范围及RDS成本优化最佳实践。"
+ }
+}

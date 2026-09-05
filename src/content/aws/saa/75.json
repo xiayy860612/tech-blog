@@ -1,0 +1,17 @@
+{
+ "index": 75,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司将其Web应用程序托管在AWS云中。公司配置弹性负载均衡器以使用导入到AWS证书管理器（ACM）的证书。公司的安全团队必须在每个证书到期前的30天收到通知。\n\n解决方案架构师应该推荐什么来满足这个要求？",
+ "options": [
+  "A. 在ACM中添加一个规则，每天发布自定义消息到Amazon Simple Notification Service（Amazon SNS）主题，从任何证书到期前30天开始。",
+  "B. 创建一个AWS Config规则，检查将在30天内到期的证书。配置Amazon EventBridge（Amazon CloudWatch Events）以通过Amazon SNS报告非符合资源时调用自定义警报。",
+  "C. 使用AWS Trusted Advisor检查将在30天内到期的证书。基于Trusted Advisor检查状态更改的指标创建一个Amazon CloudWatch警报。配置警报以通过Amazon Simple Notification Service（Amazon SNS）发送自定义警报。",
+  "D. 创建一个Amazon EventBridge（Amazon CloudWatch Events）规则来检测将在30天内到期的任何证书。配置规则以调用AWS Lambda函数。配置Lambda函数以通过Amazon Simple Notification Service（Amazon SNS）发送自定义警报。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "为满足通知30天内到期的证书的要求，可以创建一个Amazon EventBridge规则来监视证书到期的情况。规则可以配置为在证书即将到期前30天触发Lambda函数，然后Lambda函数可以使用Amazon SNS发送通知。\n\n其他选项中，选项B和C都涉及AWS Config和Trusted Advisor，它们通常用于更广泛的AWS资源合规性检查，不是专门为证书到期提供的通知设计的。选项A中的规则每天发布一次消息，可能会导致频繁的通知，不符合30天通知的要求。因此，选项D是最合适的解决方案。",
+  "AI解析": "ACM提供自动续订功能，但仅适用于通过ACM申请的证书。导入的证书不会自动续订，需手动监控。EventBridge（CloudWatch Events）支持定时触发事件，配合Lambda自定义逻辑判断证书到期时间，并集成SNS发送通知。AWS官方推荐使用事件驱动架构处理此类场景，通过定期检查证书元数据（如NotAfter属性）实现到期预警。选项D通过EventBridge定时触发Lambda，能精确控制30天阈值并扩展通知机制，而其他选项依赖的服务存在功能限制（如ACM仅覆盖自签发证书）或依赖额外付费功能（如Trusted Advisor的企业支持计划）。"
+ }
+}

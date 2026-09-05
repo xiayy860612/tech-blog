@@ -1,0 +1,17 @@
+{
+ "index": 271,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司从一个 Amazon EC2 实例组后面的应用负载均衡器（ALB）提供一个动态网站。该网站需要支持多种语言以服务全球的客户。网站的架构运行在 us-west-1 区域，并且对位于世界其他地区的用户显示高请求延迟。\n无论用户位于何处，网站都需要快速高效地响应请求。但是公司不希望在多个区域重新创建现有架构。\n解决这些要求，解决方案架构师应该怎么做？",
+ "options": [
+  "A. 用一个 Amazon S3 存储桶提供的网站替换现有架构。配置一个以 S3 存储桶为源的 Amazon CloudFront 分发。根据 Accept-Language 请求标头设置缓存行为设置以基于 Accept-Language 请求标头缓存。",
+  "B. 配置一个以 ALB 为源的 Amazon CloudFront 分发。根据 Accept-Language 请求标头设置缓存行为设置以基于 Accept-Language 请求标头缓存。",
+  "C. 创建一个与 ALB 集成的 Amazon API Gateway API。配置 API 使用 HTTP 集成类型。设置一个 API Gateway 阶段以基于 Accept-Language 请求标头启用 API 缓存。",
+  "D. 在每个额外区域启动一个 EC2 实例，并配置 NGINX 作为该区域的缓存服务器。将所有 EC2 实例和 ALB 放在一个带有地理位置路由策略的 Amazon Route 53 记录集后面。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "在这种情况下，最佳选择是使用 Amazon CloudFront 分发，以 Application Load Balancer (ALB) 作为源。通过配置 CloudFront 缓存设置以基于 Accep###t-Language 请求标头缓存，可以确保以多种语言提供网站内容的快速和高效响应，无论用户位于何处。这种方法减少了延迟并提高了用户体验，同时无需在多个区域重新构建现有架构。其他选项中，虽然也有一些可行性，但 CloudFront 配合 ALB 提供的缓存机制是最符合要求的解决方案。",
+  "AI解析": "Amazon CloudFront作为内容分发网络（CDN）可以通过其全球边缘站点缓存动态内容，减少用户请求的延迟。以ALB为源的CloudFront分发允许将请求路由到最近的边缘节点，而非直接访问原始区域。通过配置基于Accept-Language请求头的缓存行为，CloudFront能针对不同语言版本缓存响应，减少回源次数。此方法无需跨区域复制架构，符合题干中不重建多个区域的要求。选项B直接利用现有ALB架构，结合CloudFront的缓存和分发能力，有效降低全球用户的延迟。其他选项或涉及架构改动，或未优化缓存策略，无法满足题干限制条件。"
+ }
+}

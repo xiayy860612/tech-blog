@@ -1,0 +1,17 @@
+{
+ "index": 141,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个小型的Python应用程序，用于处理JSON文档并将结果输出到本地SQL数据库。该应用程序每天运行数千次。公司希望将该应用程序迁移到AWS云。公司需要一个高可用的解决方案，最大程度地提高可伸缩性，并降低运维开销。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 将JSON文档放入Amazon S3存储桶中。在多个Amazon EC2实例上运行Python代码以处理文档。将结果存储在Amazon Aurora DB集群中。",
+  "B. 将JSON文档放入Amazon S3存储桶中。创建一个AWS Lambda函数，以处理到达S3存储桶的文档的Python代码。将结果存储在Amazon Aurora DB集群中。",
+  "C. 将JSON文档放入Amazon Elastic Block Store（Amazon EBS）卷中。使用EBS Multi-Attach功能将卷附加到多个Amazon EC2实例上。在EC2实例上运行Python代码以处理文档。将结果存储在Amazon RDS DB实例中。",
+  "D. 将JSON文档作为消息放入Amazon Simple Queue Service（Amazon SQS）队列中。将Python代码部署为Amazon Elastic Container Service（Amazon ECS）集群上的容器，配置为Amazon EC2启动类型。使用容器处理SQS消息。将结果存储在Amazon RDS DB实例中。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B提供了高可用性和可伸缩性，同时最小化了运维开销。通过将JSON文档存储在Amazon S3中，并使用AWS Lambda函数自动处理这些文档，可以实现无服务器架构，无需管理EC2实例。这允许根据工作负载需求自动扩展，从而实现高可用性。此外，将结果存储在Amazon Aurora DB集群中可以提供可靠的数据存储和高可用性数据库解决方案。其他选项可能需要更多的管理工作，或者不如选项B具备高可用性和可伸缩性。",
+  "AI解析": "AWS无服务器架构设计强调利用托管服务减少运维负担，提高可扩展性。Amazon S3与Lambda集成支持事件驱动处理，文档上传至S3可自动触发Lambda函数执行代码，无需预置或管理服务器。Aurora Serverless作为关系型数据库可自动扩展容量，配合按需付费模型。选项B采用全托管服务组合，无需管理基础设施，天然具备高可用性和弹性伸缩能力。选项A、C依赖EC2实例，涉及资源调配和扩展的手动干预。选项D使用ECS EC2模式仍需管理集群，运维复杂度高于无服务器方案。"
+ }
+}

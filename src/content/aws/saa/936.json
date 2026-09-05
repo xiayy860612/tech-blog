@@ -1,0 +1,18 @@
+{
+ "qid": "2949540277",
+ "index": 936,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个内部应用程序，运行在 Amazon EC2 实例的 Auto Scaling 组中。这些 EC2 实例是计算优化型的，并使用 Amazon Elastic Block\nStore（Amazon EBS）卷。\n公司希望识别 EC2 实例、Auto\nScaling 组和 EBS 卷的成本优化。\n哪种解决方案可以以最高的操作效率满足这些要求？",
+ "options": [
+  "A. 创建一个新的 AWS 成本和使用报告。搜索报告中有关 EC2 实例、Auto Scaling 组和 EBS 卷的成本建议。",
+  "B. 创建新的 Amazon CloudWatch 计费警报。检查警报状态以获取有关 EC2 实例、Auto Scaling 组和 EBS 卷的成本建议。",
+  "C. 配置 AWS Compute Optimizer 以获取 EC2 实例、Auto Scaling 组和 EBS 卷的成本建议。",
+  "D. 配置 AWS Compute Optimizer 以获取 EC2 实例的成本建议。创建一个新的 AWS 成本和使用报告。搜索报告中有关 Auto Scaling 组和 EBS 卷的成本建议。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "AWS Compute Optimizer 是一个工具，专门用于分析 EC2 实例和 EBS 卷的使用情况，并提供有关如何优化计算和存储成本的建议。它能够自动提供针对 EC2 实例、Auto Scaling 组和 EBS 卷的成本优化建议，从而减少操作开销。",
+  "AI解析": "AWS Compute Optimizer 支持为 EC2 实例类型、Auto Scaling 组规模及 EBS 卷配置提供优化建议。根据 AWS 文档，Compute Optimizer 能够分析历史使用数据并针对这三个资源生成成本优化建议，无需额外集成其他服务。选项 C 直接通过单一服务满足所有目标资源的建议需求，操作步骤最少。选项 D 虽包含 Compute Optimizer，但拆分使用成本报告导致效率降低。选项 A 和 B 依赖的报告与警报功能主要用于成本监控，而非主动优化建议。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908085475",
+ "index": 741,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS上构建一个连接到Amazon RDS数据库的应用程序。公司希望管理应用程序的配置，并安全地存储和检索数据库和其他服务的凭据。\n哪种解决方案将以最少的管理开销满足这些要求？",
+ "options": [
+  "A. 使用AWS AppConfig存储和管理应用程序配置。使用AWS Secrets Manager存储和检索凭据。",
+  "B. 使用AWS Lambda存储和管理应用程序配置。使用AWS Systems Manager Parameter Store存储和检索凭据。",
+  "C. 使用加密的应用程序配置文件。将文件存储在Amazon S3中以进行应用程序配置。创建另一个S3文件以存储和检索凭据。",
+  "D. 使用AWS AppConfig存储和管理应用程序配置。使用Amazon RDS存储和检索凭据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS AppConfig提供了一个方便的方式来管理应用程序的配置，而AWS Secrets Manager则提供了安全地存储和检索凭据的功能。这两种服务都可以通过AWS进行集中管理，因此对管理员的管理开销最小。",
+  "AI解析": "AWS AppConfig专为应用程序配置管理设计，允许动态更新配置而无需重新部署代码。AWS Secrets Manager则专注于安全存储和管理敏感信息如数据库凭据，支持自动轮换和精细访问控制。AWS文档指出，AppConfig适用于配置数据，Secrets Manager适用于凭据。选项B中Lambda不适合存储配置，Systems Manager Parameter Store的凭据管理功能有限；选项C的S3方案需额外管理加密和访问策略，增加开销；选项D的RDS不具备凭据安全管理能力。选项A的组合满足需求且管理成本最低。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 45,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的网站使用Amazon EC2实例存储来存储商品目录。公司希望确保商品目录具有高可用性并且存储在耐用的位置。\n为了满足这些要求，解决方案架构师应该采取哪些措施？",
+ "options": [
+  "A. 将商品目录迁移到Amazon ElastiCache for Redis。",
+  "B. 部署一个具有更大实例存储的更大EC2实例。",
+  "C. 将商品目录从实例存储迁移到Amazon S3 Glacier Deep Archive。",
+  "D. 将商品目录迁移到Amazon Elastic File System (Amazon EFS)文件系统。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "AWS服务中，EC2实例存储是临时性的，不具备持久性和高可用性。Amazon EFS是一种托管网络文件系统，设计为跨多个可用区（AZ）冗余存储，提供高可用性和持久性。选项A的ElastiCache适用于缓存场景，不用于持久存储；选项B仅增加存储容量，未解决实例存储的临时性问题；选项C的Glacier Deep Archive适用于长期归档，访问延迟高。EFS作为共享文件系统，支持多EC2实例同时访问，数据自动跨AZ复制，满足高可用和持久需求。AWS文档指出EFS适用于需要共享访问、持久存储的场景。"
+ }
+}

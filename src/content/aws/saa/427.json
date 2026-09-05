@@ -1,0 +1,18 @@
+{
+ "qid": "1529124351",
+ "index": 427,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个无服务器应用程序使用 Amazon API Gateway、AWS Lambda 和 Amazon DynamoDB。Lambda 函数需要权限读取和写入 DynamoDB 表。\n哪种解决方案能够最安全地让 Lambda 函数访问 DynamoDB 表？",
+ "options": [
+  "A. 创建一个具有 Lambda 函数程序访问权限的 IAM 用户。向用户附加一个允许对 DynamoDB 表进行读写访问的策略。将 access_key_id 和 secret_access_key 参数存储为 Lambda 环境变量的一部分。确保其他 AWS 用户无法读取和写入 Lambda 函数的配置。",
+  "B. 创建一个包括 Lambda 作为受信任服务的 IAM 角色。向角色附加一个允许对 DynamoDB 表进行读写访问的策略。更新 Lambda 函数的配置，使用新角色作为执行角色。",
+  "C. 创建一个具有 Lambda 函数程序访问权限的 IAM 用户。向用户附加一个允许对 DynamoDB 表进行读写访问的策略。将 access_key_id 和 secret_access_key 参数存储在 AWS Systems Manager Parameter Store 中作为安全字符串参数。更新 Lambda 函数代码，在连接到 DynamoDB 表之前检索安全字符串参数。",
+  "D. 创建一个包括 DynamoDB 作为受信任服务的 IAM 角色。向角色附加一个允许 Lambda 函数读写访问的策略。更新 Lambda 函数代码，连接到新角色作为执行角色。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B 提供了最安全的解决方案，使用 IAM 角色作为执行角色，使 Lambda 函数可以间接获取所需的 DynamoDB 表访问权限，而不需要在 Lambda 函数代码中直接硬编码或存储敏感的凭证信息。",
+  "AI解析": "AWS官方文档指出，为Lambda函数分配权限的最佳方式是创建IAM角色并将其配置为执行角色。IAM角色允许Lambda在运行时动态获取临时安全凭证，避免长期凭证存储的风险。选项B正确配置了信任Lambda的服务角色，并附加最小权限策略。选项A和C使用IAM用户的永久密钥，存在泄露风险且不符合无服务器最佳实践。选项D中的信任服务错误指定为DynamoDB而非Lambda，导致角色无法被正确使用。通过执行角色自动管理凭证比手动处理密钥更安全。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529122074",
+ "index": 2,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要能够分析其专有应用程序的日志文件。这些日志以JSON格式存储在Amazon S3存储桶中。查询将是简单的，并将根据需要运行。解决方案架构师需要在最小程度更改现有架构的情况下执行分析。解决方案架构师应该采取什么措施以最小化操作开销来满足这些要求？",
+ "options": [
+  "A. 使用Amazon Redshift将所有内容加载到一个地方，并根据需要运行SQL查询。",
+  "B. 使用Amazon CloudWatch Logs存储日志。根据需要从Amazon CloudWatch控制台运行SQL查询。",
+  "C. 直接使用Amazon Athena与Amazon S3运行需要的查询。",
+  "D. 使用AWS Glue对日志进行编目。在Amazon EMR上使用瞬态Apache Spark集群根据需要运行SQL查询。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C，即直接使用Amazon Athena与Amazon S3运行需要的查询，是最能够满足要求并且最小化操作开销的选项。Amazon Athena是一种无服务器查询服务，允许您在Amazon S3上运行SQL查询，而无需将数据迁移到其他存储或进行复杂的ETL过程。这使得它成为处理存储在S3中的日志文件的理想选择，因为它可以在需要时执行简单查询，而不需要对现有架构进行大规模更改。选项A中的Amazon Redshift适用于数据仓库工作负载，但不符合\"最小程度更改现有架构\"的要求，因为它需要将数据加载到Redshift中。选项B中的Amazon CloudWatch Logs适用于日志存储和监控，但不支持SQL查询，因此不符合要求。选项D中的AWS Glue和Apache Spark集群需要更多的操作开销和复杂性，不如直接使用Athena来得简单。",
+  "AI解析": "Amazon Athena是一种无服务器交互式查询服务，可直接在Amazon S3中的数据上运行标准SQL。由于日志文件已存储在S3中且格式为JSON，Athena无需数据加载或转换，直接通过元数据定义即可执行即时查询。其按查询付费模式与无需基础设施管理的特性，完美贴合“最小化操作开销”的需求。选项A涉及数据迁移至Redshift，操作成本高；选项B的CloudWatch Logs不适用于S3存储的批量历史日志分析；选项D引入Glue和EMR集群，架构复杂度和维护开销显著增加。题干出自AWS数据分析服务的典型场景对比，重点考察无服务器架构与现有存储集成的适用性。"
+ }
+}

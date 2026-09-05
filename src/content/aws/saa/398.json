@@ -1,0 +1,18 @@
+{
+ "qid": "1529124319",
+ "index": 398,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个金融公司在AWS上托管一个Web应用程序。该应用程序使用Amazon API Gateway Regional API端点，使用户能够检索当前的股票价格。该公司的安全团队已经注意到API请求的数量增加。安全团队担心可能会发生HTTP洪泛攻击，将应用程序离线。\n解决方案架构师必须设计一个解决方案，以最小化运营开销地保护应用程序免受这种类型的攻击。\n哪种解决方案能够以最少的运营开销满足这些要求？",
+ "options": [
+  "A. 在API Gateway Regional API端点前创建一个Amazon CloudFront分发，最大TTL为24小时。",
+  "B. 创建一个区域性的AWS WAF web ACL，其中包含速率规则。将web ACL与API Gateway阶段关联。",
+  "C. 使用Amazon CloudWatch指标来监视“Count”指标，并在达到预定义速率时向安全团队发出警报。",
+  "D. 在API Gateway Regional API端点前创建一个带有Lambda@Edge的Amazon CloudFront分发。创建一个AWS Lambda函数来阻止超过预定义速率的IP地址的请求。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B提供了一个有针对性的解决方案，可以帮助防止HTTP洪泛攻击。通过创建一个Regional AWS WAF web ACL，并在其中包含速率规则，可以限制来自同一IP地址的请求的速率。这将有助于减轻洪泛攻击的影响。与其他选项相比，这个解决方案的运营开销较小，因为它专门设计用于应对此类攻击。其他选项可能需要更多的配置和管理来实现相同的目标。",
+  "AI解析": "Amazon API Gateway与AWS WAF集成支持基于IP的速率限制规则，用于防御HTTP洪泛攻击。《AWS安全最佳实践》指出，AWS WAF速率规则可自动拦截超过设定阈值的请求。选项B通过预定义速率规则直接限制请求频率，无需额外管理基础设施。选项A的缓存策略不适用于动态API场景；选项C仅提供监控无防护功能；选项D引入Lambda@Edge增加了开发维护成本。参考AWS文档API Gateway与WAF集成章节。"
+ }
+}

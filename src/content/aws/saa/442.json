@@ -1,0 +1,18 @@
+{
+ "qid": "1529124366",
+ "index": 442,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在AWS上托管一个可扩展的Web应用程序。该应用程序将由来自世界不同地理区域的用户访问。应用程序用户将能够下载和上传高达几GB大小的唯一数据。开发团队希望采用成本效益的解决方案，以最小化上传和下载延迟，并最大化性能。\n解决方案架构师应该采取哪些措施来实现这一目标？",
+ "options": [
+  "A. 使用Amazon S3和Transfer Acceleration来托管应用程序。",
+  "B. 使用Amazon S3和CacheControl头来托管应用程序。",
+  "C. 使用Amazon EC2和Auto Scaling以及Amazon CloudFront来托管应用程序。",
+  "D. 使用Amazon EC2和Auto Scaling以及Amazon ElastiCache来托管应用程序。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C中，使用Amazon EC2实例来托管应用程序，结合Auto Scaling来处理可扩展性需求。同时，使用Amazon CloudFront作为内容分发网络（CDN），可以提供低延迟、高性能的内容传递，从世界各地的边缘位置提供内容，从而减小上传和下载延迟。这是一个常用的用于提高全球应用性能的架构。\n选项A中的Amazon S3和Transfer Acceleration用于大规模文件传输，但不提供Web应用程序托管的功能。\n选项B中的Amazon S3和CacheControl头通常用于缓存控制，而不是用于Web应用程序托管。\n选项D中的Amazon ElastiCache通常用于缓存数据库查询，而不是用于Web应用程序托管。\n因此，选项C是实现最佳性能和成本效益的解决方案，特别适用于分布在全球的用户。",
+  "AI解析": "这道题涉及AWS服务组合在可扩展Web应用中的应用，重点在于优化全球用户访问大文件时的延迟和性能。AWS文档中，Amazon CloudFront作为内容分发网络（CDN）通过边缘节点减少用户访问延迟，尤其适合地理分布广泛的用户。Amazon EC2配合Auto Scaling可动态调整计算资源，确保应用扩展性。选项中，[C]结合EC2的计算弹性与CloudFront的加速能力，直接应对大文件传输的高延迟问题。[A]侧重S3传输加速，未涵盖应用托管；[B]的缓存策略对唯一数据无效；[D]的ElastiCache适用于数据库缓存，与文件传输场景关联较弱。正确选项需兼顾计算资源扩展和内容分发优化，故选[C]。"
+ }
+}

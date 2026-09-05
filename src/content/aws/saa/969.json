@@ -1,0 +1,18 @@
+{
+ "qid": "2949540310",
+ "index": 969,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司正在AWS云中设计一个新的内部Web应用程序。新应用程序必须安全地从AWS托管服务中检索和存储多个员工的用户名和密码。\n哪个解决方案将以最低的运维开销满足这些要求？",
+ "options": [
+  "A. 将员工凭证存储在AWS Systems Manager Parameter Store中。使用AWS CloudFormation和BatchGetSecretValue API从Parameter Store中检索用户名和密码。",
+  "B. 将员工凭证存储在AWS Secrets Manager中。使用AWS CloudFormation和AWS Batch与BatchGetSecretValue API从Secrets Manager中检索用户名和密码。",
+  "C. 将员工凭证存储在AWS Systems Manager Parameter Store中。使用AWS CloudFormation和AWS Batch与BatchGetSecretValue API从Parameter Store中检索用户名和密码。",
+  "D. 将员工凭证存储在AWS Secrets Manager中。使用AWS CloudFormation和BatchGetSecretValue API从Secrets Manager中检索用户名和密码。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "AWS Secrets Manager的优势： AWS Secrets Manager是AWS提供的托管服务，专门用于安全地存储和管理秘密（如API密钥、数据库凭证、用户名和密码）。它提供了内置的加密、访问控制和轮换功能，减少了管理和维护的复杂性。\nBatchGetSecretValue API： 这个API用于从Secrets Manager中批量检索秘密数据，它能够确保数据的安全传输和访问。\nCloudFormation的作用：\nAWS CloudFormation可以用于自动化资源的创建和配置，确保一致的部署。",
+  "AI解析": "AWS服务设计需权衡安全性与运维效率。Secrets Manager专为敏感数据设计，支持自动轮转，减少手动干预。AWS文档指出，CloudFormation通过动态引用直接集成Secrets Manager密钥，无需额外编排。选项D未涉及AWS Batch，避免引入无关计算服务，流程更简洁。而BatchGetSecretValue（可能指批量操作API）搭配Secrets Manager优化了密钥获取步骤。其他选项错误引入AWS Batch或使用Parameter Store，后者缺少自动化轮换，长期运维成本较高。"
+ }
+}

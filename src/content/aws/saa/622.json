@@ -1,0 +1,18 @@
+{
+ "qid": "1908084739",
+ "index": 622,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司使用Amazon API Gateway来管理第三方服务提供商访问的REST API。公司必须保护这些REST API免受SQL注入和跨站脚本攻击。\n满足这些要求的最具操作效率的解决方案是什么？",
+ "options": [
+  "A. 配置 AWS Shield.",
+  "B. 配置 AWS WAF.",
+  "C. 在Amazon CloudFront分发中设置API Gateway。在CloudFront中配置AWS Shield。",
+  "D. 在Amazon CloudFront分发中设置API Gateway。在CloudFront中配置AWS WAF。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS WAF（Web Application Firewall）是专为保护 Web 应用程序免受常见 Web 攻击（如 SQL 注入和跨站脚本攻击）而设计的服务。它可以与 API Gateway 集成，通过配置规则来检测和阻止此类攻击。这是最有效的解决方案，可以直接在 API Gateway 上应用 WAF 规则，从而提供有效的安全保护。AWS Shield是用于 DDoS（分布式拒绝服务）攻击保护的服务，虽然能提供安全保护，但并不直接解决 SQL 注入和跨站脚本攻击的问题。 CloudFront是一种内容分发网络（CDN），尽管可以与 WAF 和 Shield 一起使用，但直接在 API Gateway 上配置 WAF 是更直接的方法。",
+  "AI解析": "AWS WAF专用于防御Web应用层攻击如SQL注入和XSS，AWS官方文档指出，API Gateway可直接集成AWS WAF，无需额外服务。选项B通过直接配置AWS WAF实现防护，步骤少；选项D引入CloudFront增加了复杂度。选项A和C的Shield主要针对DDoS，不适用于题目中的攻击类型。AWS最佳实践推荐根据攻击类型选择对应服务。（来源：AWS Security文档）"
+ }
+}

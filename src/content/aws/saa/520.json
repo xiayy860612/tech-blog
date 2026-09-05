@@ -1,0 +1,18 @@
+{
+ "qid": "1529125577",
+ "index": 520,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家零售公司拥有多个业务。每个业务的IT团队都管理其自己的AWS帐户。每个团队帐户都是AWS组织中的一部分。每个团队都在其自己的AWS帐户中的Amazon DynamoDB表中监视其产品库存水平。\n该公司正在将一个中央库存报告应用部署到共享的AWS帐户中。该应用必须能够从所有团队的DynamoDB表中读取项目。\n哪种认证选项能够最安全地满足这些要求？",
+ "options": [
+  "A. 在库存应用帐户中，将DynamoDB与AWS Secrets Manager集成。配置应用程序使用Secrets Manager中的正确密钥来验证并读取DynamoDB表。安排每30天进行一次密钥轮换。",
+  "B. 在每个业务帐户中，创建一个具有编程访问权限的IAM用户。配置应用程序使用正确的IAM用户访问密钥ID和密钥来验证并读取DynamoDB表。每30天手动轮换IAM访问密钥。",
+  "C. 在每个业务帐户中，创建一个名为BU_ROLE的IAM角色，角色附有允许访问DynamoDB表的策略以及一个信任特定库存应用帐户中特定角色的信任策略。在库存帐户中，创建一个名为APP_ROLE的角色，允许访问STS AssumeRole API操作。配置应用程序使用APP_ROLE并假定跨帐户角色BU_ROLE来读取DynamoDB表。",
+  "D. 将DynamoDB与AWS证书管理器（ACM）集成。生成身份证书用于验证DynamoDB。配置应用程序使用正确的证书来验证并读取DynamoDB表。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项 C 使用跨帐户角色（Cross-account roles）和AWS的STS（Security Token Service）进行角色的假定（Role assumption）。这使得中央库存应用能够以安全的方式访问其他团队的DynamoDB表，同时也实现了最小化权限原则。",
+  "AI解析": "IAM角色与跨账户访问权限配置。AWS安全最佳实践中，推荐使用IAM角色搭配STS的AssumeRole操作实现跨账户资源访问，避免长期凭证风险。选项C通过创建业务账户中的BU_ROLE并设置信任策略允许库存应用账户的APP_ROLE调用AssumeRole，从而获取临时安全令牌访问DynamoDB。选项A、B依赖长期密钥管理，增加安全风险；选项D的ACM不适用于DynamoDB身份验证。参考AWS IAM角色和跨账户访问文档。"
+ }
+}

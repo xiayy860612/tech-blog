@@ -1,0 +1,17 @@
+{
+ "index": 174,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电话营销公司正在设计其在AWS上的客户呼叫中心功能。该公司需要一个解决方案，可以提供多说话人识别并生成转录文件。公司希望查询转录文件以分析业务模式。出于审计目的，转录文件必须存储7年。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 使用Amazon Rekognition进行多说话人识别。将转录文件存储在Amazon S3中。使用机器学习模型进行转录文件分析。",
+  "B. 使用Amazon Transcribe进行多说话人识别。使用Amazon Athena进行转录文件分析。",
+  "C. 使用Amazon Translate进行多说话人识别。将转录文件存储在Amazon Redshift中。使用SQL查询进行转录文件分析。",
+  "D. 使用Amazon Rekognition进行多说话人识别。将转录文件存储在Amazon S3中。使用Amazon Textract进行转录文件分析。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon Transcribe可以用于多说话人识别并生成转录文件。\nAmazon Athena是一种用于分析数据的交互式查询服务，可以用于查询和分析存储在Amazon S3中的转录文件。\nAmazon Rekognition主要用于图像和视频分析，不适合用于多说话人识别和文本转录。\nAmazon Translate主要用于语言翻译，不适合用于多说话人识别。\nAmazon Redshift主要用于数据仓库，不适合存储转录文件。\nAmazon Textract主要用于文档文本分析，不适合用于多说话人识别。\n因此，答案B是最适合这些要求的解决方案，因为它使用了Amazon Transcribe进行多说话人识别，然后使用Amazon Athena进行转录文件的分析。",
+  "AI解析": "题目考察AWS服务在多说话人识别、转录存储及分析场景的应用。AWS文档指出，Amazon Transcribe支持说话人分割功能，可识别多说话人音频并生成带时间戳的转录文本。转录文件通常存储在Amazon S3并通过生命周期策略管理长期存储需求。Amazon Athena可直接对S3中的文本文件运行标准SQL查询，无需预处理。选项A和D的Rekognition属于计算机视觉服务，不处理语音数据；选项C的Translate专注于语言翻译而非说话人识别，Redshift主要处理结构化数据。选项B正确组合了Transcribe的说话人识别、S3存储（隐含）与Athena的无服务器查询能力。"
+ }
+}

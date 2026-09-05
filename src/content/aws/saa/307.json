@@ -1,0 +1,18 @@
+{
+ "index": 307,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司有多个使用合并计费的AWS账户。公司在90天内运行了多个活跃的高性能Amazon RDS for Oracle On-Demand DB实例。财务团队可以访问合并计费账户和所有其他AWS账户中的AWS Trusted Advisor。\n财务团队需要使用适当的AWS账户来访问Trusted Advisor的推荐，以减少RDS成本。财务团队必须审查适当的Trusted Advisor检查以降低RDS成本。哪种组合步骤应该由财务团队采取以满足这些要求？（选择两个。）",
+ "options": [
+  "A. 使用RDS实例正在运行的账户的Trusted Advisor建议。",
+  "B. 使用合并计费账户的Trusted Advisor建议，以一次查看所有RDS实例检查。",
+  "C. 审查Amazon RDS保留实例优化的Trusted Advisor检查。",
+  "D. 审查Amazon RDS空闲数据库实例的Trusted Advisor检查。",
+  "E. 审查Amazon Redshift保留节点优化的Trusted Advisor检查。"
+ ],
+ "answer": {
+  "正确答案": "BC",
+  "解析": "财务团队应该采取以下步骤以满足要求：\nB 使用合并计费账户的Trusted Advisor建议，以一次查看所有RDS实例检查。合并计费账户具有对所有关联账户的可见性，因此在此账户中可以查看所有AWS账户中的Trusted Advisor建议。\nC 审查Amazon RDS保留实例优化的Trusted Advisor检查。这是财务团队需要关注的特定RDS成本优化检查之一。其他选项是与Redshift和空闲实例有关的检查，不是与Oracle RDS相关的检查。",
+  "AI解析": "AWS Trusted Advisor的成本优化功能针对合并计费账户提供跨账户资源聚合视图，允许统一检查所有关联账户的RDS实例。合并计费账户的Trusted Advisor可直接查看跨账户资源（选项B），避免逐个账户操作；而RDS保留实例优化检查（选项C）通过推荐预留实例购买或调整来降低长期成本。选项E涉及Redshift，与题干无关；选项D的空闲实例检查未被选为正确答案，可能因实例活跃而未触发。AWS最佳实践中，保留实例优化适用于高频使用场景，合并账单账户能全局识别此类机会。"
+ }
+}

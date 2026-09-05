@@ -1,0 +1,19 @@
+{
+ "qid": "1529124282",
+ "index": 361,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司使用一种要求特定付款ID的消息按发送顺序接收的付款处理系统，否则付款可能会被错误处理。作为解决方案架构师，应该采取哪些行动来满足这一要求？（选择两项。）",
+ "options": [
+  "A. 将消息写入Amazon DynamoDB表，使用付款ID作为分区键。",
+  "B. 将消息写入Amazon Kinesis数据流，使用付款ID作为分区键。",
+  "C. 将消息写入Amazon ElastiCache for Memcached集群，使用付款ID作为键。",
+  "D. 将消息写入Amazon Simple Queue Service (Amazon SQS) 队列，设置消息属性以使用付款ID。",
+  "E. 将消息写入Amazon Simple Queue Service (Amazon SQS) FIFO 队列，设置消息组以使用付款ID。"
+ ],
+ "answer": {
+  "正确答案": "BE",
+  "解析": "选项B和E是正确答案。使用Amazon Kinesis数据流（选项B）允许按付款ID顺序接收消息，因为Kinesis中的分区键确保了具有相同键的消息会被发送到同一分区，保持顺序。而选项E中的Amazon SQS FIFO队列支持顺序消息处理，并允许设置消息组以确保按付款ID的顺序接收，从而有效避免错误处理。这两个解决方案能够确保消息的顺序性和可靠性。",
+  "AI解析": "亚马逊Kinesis数据流通过分片处理数据，同一分区键的消息会被路由到同一分片，确保顺序处理。SQS FIFO队列支持消息组ID，同一组内的消息严格按顺序处理。选项B利用Kinesis的分区键特性，选项E使用FIFO队列的消息组机制，均满足按付款ID顺序处理的要求。其他选项如DynamoDB、Memcached或标准SQS队列无法保证消息顺序性。"
+ }
+}

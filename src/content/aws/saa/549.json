@@ -1,0 +1,19 @@
+{
+ "qid": "1529125606",
+ "index": 549,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司正在使用AWS Key Management Service（AWS KMS）密钥来加密AWS Lambda的环境变量。解决方案架构师需要确保已设置所需的权限来解密和使用环境变量。\n解决方案架构师必须采取哪些步骤来实现正确的权限？（选择两个）",
+ "options": [
+  "A. 在Lambda资源策略中添加AWS KMS权限。",
+  "B. 在Lambda执行角色中添加AWS KMS权限。",
+  "C. 在Lambda函数策略中添加AWS KMS权限。",
+  "D. 在AWS KMS密钥策略中允许Lambda执行角色。",
+  "E. 在AWS KMS密钥策略中允许Lambda资源策略。"
+ ],
+ "answer": {
+  "正确答案": "BD",
+  "解析": "正确的步骤是：\nB 在Lambda执行角色中添加AWS KMS权限，因为Lambda函数执行时使用的是执行角色的权限，所以需要确保执行角色有权解密密钥。\nD 在AWS KMS密钥策略中允许Lambda执行角色，这是为了确保Lambda函数拥有密钥解密权限。AWS KMS密钥的策略应该允许Lambda执行角色解密和使用密钥。\n其他选项（A C E）则不适用于授予Lambda函数解密密钥所需的权限。 Lambda函数通常使用执行角色来获取访问其他AWS服务的权限，因此需要确保该角色具有必要的KMS密钥解密权限。",
+  "AI解析": "AWS服务权限管理中，AWS KMS密钥策略用于控制对密钥的访问，而Lambda执行角色定义函数运行时权限。AWS文档指出，使用KMS加密资源时，执行角色需具备kms:Decrypt权限，并且密钥策略需明确允许该角色使用密钥。选项B确保执行角色有权限调用KMS API操作，选项D在密钥策略中授予执行角色访问权限，两者结合满足解密需求。其他选项涉及资源策略或函数策略，与Lambda解密环境变量的权限模型不符。"
+ }
+}

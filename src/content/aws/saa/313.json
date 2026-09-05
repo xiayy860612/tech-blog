@@ -1,0 +1,17 @@
+{
+ "index": 313,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在全球销售团队中使用了一个本地MySQL数据库，访问模式不频繁。销售团队需要数据库的停机时间最少。数据库管理员希望将这个数据库迁移到AWS，而不需要提前选择特定的实例类型，以便应对未来更多用户的需求。\n解决方案架构师应该推荐哪个服务？",
+ "options": [
+  "A. Amazon Aurora MySQL",
+  "B. Amazon Aurora Serverless for MySQL",
+  "C. Amazon Redshift Spectrum",
+  "D. Amazon RDS for MySQL"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了满足数据库需要最小停机时间和扩展性的要求，最佳选择是Amazon Aurora Serverless for MySQL（选项B）。Amazon Aurora Serverless是Amazon Aurora数据库引擎的一个变种，可以根据工作负载自动扩展和缩减，从而提供最小停机时间。与其他选项相比，Amazon Aurora Serverless不需要提前选择特定的实例类型，而且可以根据需要自动扩展以适应未来的用户需求。选项A中的Amazon Aurora也是一种好选择，但Amazon Aurora Serverless更适合灵活的扩展。选项C中的Amazon Redshift Spectrum用于分析查询，不适用于此用例。选项D中的Amazon RDS for MySQL也是一种选择，但Amazon Aurora Serverless通常更具弹性。",
+  "AI解析": "该场景需要支持MySQL兼容、按需自动扩展且无需预置实例的托管数据库服务。Amazon Aurora Serverless for MySQL采用无服务器架构，根据负载动态调整计算资源，消除容量规划需求，在空闲时自动暂停以减少成本，启动时实现秒级恢复，完美契合最小停机时间和弹性扩展需求。相比固定实例的RDS/Aurora，其资源自动伸缩特性更适应未来用户增长的不确定性。"
+ }
+}

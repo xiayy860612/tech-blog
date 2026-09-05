@@ -1,0 +1,17 @@
+{
+ "index": 55,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司托管超过300个全球网站和应用程序。公司需要一个平台来每天分析超过30 TB的点击流数据。",
+ "options": [
+  "A. 设计一个AWS Data Pipeline来将数据存档到Amazon S3存储桶，并运行一个Amazon EMR集群来处理数据以生成分析结果。",
+  "B. 创建Amazon EC2实例的自动扩展组来处理数据，并将其发送到Amazon S3数据湖供Amazon Redshift用于分析。",
+  "C. 将数据缓存到Amazon CloudFront，并将数据存储在Amazon S3存储桶中。当对象被添加到S3存储桶时，运行AWS Lambda函数来处理数据以供分析。",
+  "D. 从Amazon Kinesis Data Streams收集数据，使用Amazon Kinesis Data Firehose将数据传输到Amazon S3数据湖中，然后将数据加载到Amazon Redshift中供分析。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D是最符合要求的答案。Amazon Kinesis Data Streams适用于实时数据流式传输，可用于收集点击流数据。Amazon Kinesis Data Firehose用于将数据传输到Amazon S3数据湖中，以备将来分析。然后，你可以将数据加载到Amazon Redshift中进行分析，因为Amazon Redshift是一种专为大数据分析而设计的数据仓库。\n其他选项中，选项A提到了使用AWS Data Pipeline和Amazon EMR，这适用于批处理处理，不适合实时数据。选项B提到了EC2实例，需要更多的管理和维护，并不适合高吞吐量的数据传输。选项C中，使用AWS Lambda来处理数据，但可能无法满足高吞吐量的要求，并且不提到使用Amazon Redshift进行分析。因此，选项D是最适合高吞吐量实时数据传输和分析的解决方案。",
+  "AI解析": "Amazon Kinesis Data Streams适用于实时收集和处理大规模数据流，能够支持高吞吐量的点击流数据。Amazon Kinesis Data Firehose无缝集成，实现数据自动传输至Amazon S3，并支持直接加载到Amazon Redshift进行高效分析。此方案无需管理基础设施，适用于持续、高容量的数据场景。其他选项要么依赖手动扩展（如EC2）、非实时处理（如Data Pipeline），要么组件不匹配（如CloudFront用于数据收集）。AWS官方文档推荐Kinesis与Redshift组合处理实时分析场景。"
+ }
+}

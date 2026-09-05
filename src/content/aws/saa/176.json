@@ -1,0 +1,17 @@
+{
+ "index": 176,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在开发一个面向移动应用用户的市场传播服务。该公司需要通过短信服务（SMS）向其用户发送确认消息。用户必须能够回复短信消息。公司必须存储这些回复一年以便进行分析。\n应该如何处理这些需求？",
+ "options": [
+  "A. 创建一个Amazon Connect联系流以发送SMS消息。使用AWS Lambda处理回复。",
+  "B. 构建一个Amazon Pinpoint旅程。配置Amazon Pinpoint以将事件发送到Amazon Kinesis数据流以进行分析和归档。",
+  "C. 使用Amazon Simple Queue Service（Amazon SQS）来分发SMS消息。使用AWS Lambda处理回复。",
+  "D. 创建一个Amazon Simple Notification Service（Amazon SNS）FIFO主题。订阅Amazon Kinesis数据流以进行分析和归档。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "Amazon Pinpoint专为多渠道客户沟通设计，支持发送和接收SMS，内置的事件流功能可直接集成Amazon Kinesis，实现实时数据处理与长期存储。Amazon Kinesis数据流能够持久化数据至S3或其它存储服务，满足一年的保留要求。选项A中的Amazon Connect主要用于呼叫中心场景，缺乏自动化的双向SMS管理能力。选项C的SQS需额外开发消息收发逻辑，存储架构复杂。选项D的SNS FIFO主题侧重消息顺序，与Kinesis的集成不如Pinpoint直接。AWS文档指出Pinpoint的旅程功能可自动化用户交互流程，结合Kinesis的事件流导出，适用于大规模消息处理和后续分析。"
+ }
+}

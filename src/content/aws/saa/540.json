@@ -1,0 +1,20 @@
+{
+ "qid": "1529125597",
+ "index": 540,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司希望在AWS上构建一个Web应用程序。网站的客户访问请求是不可预测的，有可能很长时间处于空闲状态。只有支付订阅费的客户才能登录并使用Web应用程序。\n哪种组合步骤可以以最具成本效益的方式满足这些要求？（选择三个）",
+ "options": [
+  "A. 创建一个AWS Lambda函数从Amazon DynamoDB检索用户信息。创建一个Amazon API Gateway端点接受RESTful API。将API调用发送到Lambda函数。",
+  "B. 在一个Application Load Balancer后面创建一个Amazon Elastic Container Service（Amazon ECS）服务，从Amazon RDS检索用户信息。创建一个Amazon API Gateway端点接受RESTful API。将API调用发送到Lambda函数。",
+  "C. 创建一个Amazon Cognito用户池来认证用户。",
+  "D. 创建一个Amazon Cognito身份池来认证用户。",
+  "E. 使用AWS Amplify提供包含HTML、CSS和JS的前端Web内容。使用集成的Amazon CloudFront配置。",
+  "F. 使用Amazon S3静态Web托管包含PHP、CSS和JS的内容。使用Amazon CloudFront提供前端Web内容。"
+ ],
+ "answer": {
+  "正确答案": "ACE",
+  "解析": "选项 A中，通过使用AWS Lambda函数从Amazon DynamoDB检索用户信息，并将API调用发送到Lambda函数，是一种成本效益较高的方式来管理用户数据。同时，选项 C中的Amazon Cognito用户池用于认证用户，最后，选项 E中使用AWS Amplify提供前端Web内容，以最有效的方式满足了提供Web应用程序的需求。",
+  "AI解析": "Amazon Web Services（AWS）架构设计最佳实践和服务的核心功能决定了选项的合理性。AWS文档强调无服务器架构在应对不可预测流量时的成本优势，以及托管服务在用户认证和前端部署中的应用。Lambda与API Gateway的组合避免了维护常驻服务器的开销，符合按需付费模型。DynamoDB作为托管数据库支持自动扩展，进一步降低闲置成本。Amazon Cognito用户池专门处理用户注册、登录，与订阅模式直接相关。AWS Amplify与S3均支持静态资源托管，但Amplify专为Web应用优化，集成部署流程和CloudFront加速，而S3托管PHP因无法执行服务端脚本不适用。ECS搭配负载均衡器需持续运行的容器实例，引入固定成本，与题目中的成本效益目标冲突。身份池适用于联邦身份场景，与订阅用户直接认证无关。由此，选项A、C、E符合所有条件。"
+ }
+}

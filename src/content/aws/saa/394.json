@@ -1,0 +1,18 @@
+{
+ "qid": "1529124315",
+ "index": 394,
+ "total": 1018,
+ "type": "单选题",
+ "question": "上周，一个IAM用户在其公司的AWS账户中对AWS资源进行了多个配置更改，用于生产部署。解决方案架构师了解到，有几个安全组规则未按预期进行配置。解决方案架构师希望确认是哪个IAM用户负责进行了这些更改。\n解决方案架构师应该使用哪项服务来找到所需的信息？",
+ "options": [
+  "A. Amazon GuardDuty",
+  "B. Amazon Inspector",
+  "C. AWS CloudTrail",
+  "D. AWS Config"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "要查找AWS资源配置更改的信息以确认是哪个IAM用户负责的，最好使用AWS CloudTrail服务。AWS CloudTrail可记录AWS账户的API活动，包括对资源的配置更改。它会记录谁执行了哪些操作，因此可以用于跟踪资源更改的来源。\nAmazon GuardDuty（选项A）用于检测安全威胁，而Amazon Inspector（选项B）用于自动化安全评估，不会提供资源配置更改的详细信息。AWS Config（选项D）用于评估和监视资源配置的符合性，但在确认特定IAM用户的更改时，AWS CloudTrail是更常用的工具。",
+  "AI解析": "该题核心在于追踪AWS账户内资源变更的责任主体，涉及API调用记录的审计服务。AWS CloudTrail专用于记录所有账户级别和IAM用户的API活动，通过事件日志可精确追溯具体用户操作，包括安全组配置修改等行为。其他选项中，GuardDuty聚焦威胁检测，Inspector针对漏洞评估，Config侧重资源配置历史，均不直接提供用户操作溯源功能。"
+ }
+}

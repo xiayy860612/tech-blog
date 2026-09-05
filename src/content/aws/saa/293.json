@@ -1,0 +1,17 @@
+{
+ "index": 293,
+ "total": 1018,
+ "type": "单选题",
+ "question": "托管在Amazon EC2实例上的应用程序需要访问Amazon S3存储桶，但要求流量不经过互联网。解决方案架构师应如何配置访问以满足这些要求？",
+ "options": [
+  "A. 使用Amazon Route 53创建一个私有托管区域（private hosted zone）。",
+  "B. 在VPC中设置Amazon S3的网关终端节点（gateway VPC endpoint）。",
+  "C. 配置EC2实例使用NAT网关来访问S3存储桶。",
+  "D. 在VPC和S3存储桶之间建立AWS站点到站点VPN连接。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "要求应用程序通过Amazon EC2实例访问Amazon S3存储桶，同时要求不经过互联网。正确的解决方案是使用Amazon S3的网关终端节点（Gateway VPC Endpoint），即选项B。\nAmazon S3网关终端节点允许您在VPC内部安全地访问Amazon S3存储桶，无需数据通过Internet传输。这可以确保流量保持在Amazon的网络中，不会经过公共Internet连接，从而满足了题目的要求。\n其他选项的解释：\n选项A中的Amazon Route 53是一种DNS服务，与直接访问S3存储桶不相关。\n选项C中的NAT网关通常用于让EC2实例访问Internet，而不是S3存储桶。\n选项D中的站点到站点VPN连接适用于不同的用例，但不适合此问题中的要求。",
+  "AI解析": "该题考察对AWS网络服务中VPC终端节点的理解。AWS官方文档指出，网关VPC终端节点通过私有网络连接VPC与特定服务（如S3），无需公网。选项B通过创建网关终端节点，使EC2实例直接通过Amazon内部网络访问S3，避免互联网流量。选项C使用NAT网关会导致流量经过公网；选项D的VPN适用于混合云场景；选项A涉及DNS解析而非网络路径控制。正确答案B对应AWS白皮书《Amazon VPC用户指南》中关于VPC端点工作原理的描述。"
+ }
+}

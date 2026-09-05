@@ -1,0 +1,18 @@
+{
+ "qid": "1908084809",
+ "index": 692,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个包含嵌入式 NoSQL 数据库的 Web 应用程序。该应用程序在 Amazon EC2 实例上运行，位于一个可用性区域的 Application Load Balancer (ALB) 后面。实例在一个 Amazon EC2 自动扩展组中运行。\n最近的流量增加需要该应用程序具有高可用性，并且要求数据库最终一致性。\n哪种解决方案将以最少的运维开销满足这些要求？",
+ "options": [
+  "A. 将 ALB 替换为 Network Load Balancer。在 EC2 实例上使用其复制服务维护嵌入式 NoSQL 数据库。",
+  "B. 将 ALB 替换为 Network Load Balancer。通过 AWS 数据库迁移服务 (AWS DMS) 将嵌入式 NoSQL 数据库迁移到 Amazon DynamoDB。",
+  "C. 修改自动扩展组，使其跨三个可用性区域使用 EC2 实例。在 EC2 实例上使用其复制服务维护嵌入式 NoSQL 数据库。",
+  "D. 修改自动扩展组，使其跨三个可用性区域使用 EC2 实例。通过 AWS 数据库迁移服务 (AWS DMS) 将嵌入式 NoSQL 数据库迁移到 Amazon DynamoDB。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "这个解决方案将在三个可用性区域中部署 EC2 实例，提高了应用程序的可用性。同时，使用 AWS DMS 迁移嵌入式 NoSQL 数据库到 Amazon DynamoDB 将减少运维工作量，并且 DynamoDB 提供了高可用性和最终一致性的特性，符合问题中的要求。",
+  "AI解析": "该题核心在于实现跨可用区高可用架构与托管数据库服务降低运维成本。应用层通过修改自动扩展组跨三个可用区部署EC2实例，消除单AZ风险；数据库层迁移至Amazon DynamoDB可自动处理多副本同步，满足最终一致性且无需维护底层复制逻辑。ALB本身支持多AZ无需降级为NLB，AWS DMS实现平滑迁移，最终形成应用无状态扩展+数据库全托管的组合方案，以最小运维代价达成目标。"
+ }
+}

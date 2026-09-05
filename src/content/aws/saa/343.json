@@ -1,0 +1,17 @@
+{
+ "index": 343,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个Java应用程序，使用Amazon Simple Queue Service（Amazon SQS）来解析消息。该应用程序无法解析大于256 KB的消息。公司希望实施一个解决方案，使应用程序能够解析最大50 MB的消息。\n哪种解决方案将以对代码进行最少的更改满足这些要求？",
+ "options": [
+  "A. 使用Amazon SQS Extended Client Library for Java将大于256 KB的消息存储在Amazon S3中。",
+  "B. 使用Amazon EventBridge代替Amazon SQS从应用程序发布大型消息。",
+  "C. 更改Amazon SQS中的限制，以处理大于256 KB的消息。",
+  "D. 将大于256 KB的消息存储在Amazon Elastic File System (Amazon EFS)中。配置Amazon SQS在消息中引用此位置。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中，使用Amazon SQS Extended Client Library for Java可以将大于256 KB的消息存储在Amazon S3中，并在SQS消息中引用这些消息的位置，而无需对现有代码进行大规模更改。其他选项都涉及较大的更改或限制的调整。",
+  "AI解析": "Amazon SQS的标准消息大小限制为256 KB，无法直接处理更大消息。要支持50 MB消息需结合其他服务。选项A通过SQS Extended Client Library将大消息存储到S3，SQS消息仅包含指向S3的引用，应用程序代码改动最小。选项C不可行，SQS无法修改此限制。选项B的EventBridge事件大小限制同样不足。选项D使用EFS需额外配置存储和访问逻辑，复杂度更高。AWS推荐方案为使用Extended Client Library与S3处理大消息。"
+ }
+}

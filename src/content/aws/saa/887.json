@@ -1,0 +1,18 @@
+{
+ "qid": "2264604858",
+ "index": 887,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司希望从公司网站收集用户的点击流数据进行实时分析。该网站在一天中经历着波动的流量模式。公司需要一个可扩展的解决方案，能够适应不同水平的流量。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用Amazon Kinesis Data Streams中的按需模式数据流来捕获点击流数据。使用AWS Lambda来实时处理数据。",
+  "B. 使用Amazon Kinesis Data Firehose来捕获点击流数据。使用AWS Glue来实时处理数据。",
+  "C. 使用Amazon Kinesis Video Streams来捕获点击流数据。使用AWS Glue来实时处理数据。",
+  "D. 使用Amazon Managed Service for Apache Flink（之前称为Amazon Kinesis Data Analytics）来捕获点击流数据。使用AWS Lambda来实时处理数据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A提出了一个适用于实时数据捕获和处理的解决方案。使用Amazon Kinesis Data Streams按需模式可以实时捕获点击流数据，并且能够适应波动的流量模式。然后使用AWS Lambda来处理数据，实现实时分析。",
+  "AI解析": "Amazon Kinesis Data Streams的按需模式无需预置或管理容量，可自动扩展以适应波动的流量。AWS Lambda无服务器架构实时处理数据，按请求量自动扩展。Kinesis Data Firehose不支持实时处理，适用于批量传输。AWS Glue用于ETL批处理而非实时场景。Kinesis Video Streams专为视频数据设计，与点击流无关。Amazon Managed Service for Apache Flink主要用于流处理分析，不直接用于数据捕获。选项A结合了弹性数据摄取与实时处理能力，契合实时分析需求。"
+ }
+}

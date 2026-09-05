@@ -1,0 +1,18 @@
+{
+ "qid": "1529125645",
+ "index": 588,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Amazon EC2实例上运行一个Web应用程序，这些实例位于一个启用了粘性会话的Auto Scaling组后面，该组由一个应用程序负载均衡器托管。Web服务器目前托管用户会话状态。该公司希望确保高可用性，以及在Web服务器宕机时避免用户会话状态的丢失。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用Amazon ElastiCache for Memcached实例来存储会话数据。更新应用程序以使用ElastiCache for Memcached来存储会话状态。",
+  "B. 使用Amazon ElastiCache for Redis来存储会话状态。更新应用程序以使用ElastiCache for Redis来存储会话状态。",
+  "C. 使用AWS Storage Gateway缓存卷来存储会话数据。更新应用程序以使用AWS Storage Gateway缓存卷来存储会话状态。",
+  "D. 使用Amazon RDS来存储会话状态。更新应用程序以使用Amazon RDS来存储会话状态。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "要确保高可用性和避免用户会话状态的丢失，最好的解决方案是使用Amazon ElastiCache for Redis（选项B）。Redis是一个内存数据库，适用于存储会话状态，并且具有高可用性特性，可以保障数据在多个节点之间的复制和容错。其他选项中的Memcached也可以用于缓存，但相对于Redis，它在高可用性和数据复制方面的支持有限。选项A、C和D不提供与Redis相似的高可用性和数据复制特性。",
+  "AI解析": "核心在于分布式会话管理需满足高可用与持久化需求。ElastiCache Redis支持多可用区部署、数据持久化及自动故障转移，确保会话状态在实例故障时仍可访问；Memcached缺乏原生持久化和高可用机制，RDS延迟较高不适合高频会话访问，Storage Gateway专用于混合存储架构而非实时会话场景。正确方案需兼具快速读写与容错能力，故选择Redis存储会话状态。"
+ }
+}

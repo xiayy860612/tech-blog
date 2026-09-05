@@ -1,0 +1,17 @@
+{
+ "index": 133,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个生成事件数据的服务。公司希望使用AWS在接收数据时处理事件数据。数据以特定顺序写入，必须在整个处理过程中保持该顺序。公司希望实施一种最小化运营开销的解决方案。\n解决方案架构师应该如何完成这个任务？",
+ "options": [
+  "A. 创建一个Amazon Simple Queue Service (Amazon SQS) FIFO队列来保存消息。设置一个AWS Lambda函数来处理队列中的消息。",
+  "B. 创建一个Amazon Simple Notification Service (Amazon SNS) 主题，用于传递包含要处理的有效负载的通知。将AWS Lambda函数配置为订阅者。",
+  "C. 创建一个Amazon Simple Queue Service (Amazon SQS)标准队列来保存消息。设置一个独立的AWS Lambda函数来处理队列中的消息。",
+  "D. 创建一个Amazon Simple Notification Service (Amazon SNS) 主题，用于传递包含要处理的有效负载的通知。将Amazon Simple Queue Service (Amazon SQS)队列配置为订阅者。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A是最佳解决方案，因为它使用了Amazon SQS FIFO队列，可以确保消息的顺序。AWS Lambda函数可以按特定顺序从FIFO队列中处理消息，以确保数据的顺序保持一致。这种方式最小化了运营开销，同时满足了维护特定顺序的要求。\n选项B中使用Amazon SNS主题适用于发布/订阅模型，但无法保证消息的特定顺序。\n选项C中使用Amazon SQS标准队列，这种队列不能保证消息的顺序。在这种情况下，可能会出现顺序混乱的情况。\n选项D中使用Amazon SNS主题和Amazon SQS队列，但Amazon SNS主题不会保持消息的顺序，因此不适合要求维护特定顺序的情况。",
+  "AI解析": "AWS服务中处理有序消息的常用方法是使用Amazon SQS FIFO队列。FIFO队列严格遵循先进先出原则，确保消息顺序与发送顺序完全一致（参考资料：AWS白皮书《消息队列与事件驱动的架构》）。选项A通过Lambda处理SQS FIFO队列消息，既保持了顺序，又无需管理底层基础设施。选项B和D涉及的SNS无法保证消息顺序；选项C的标准队列不提供严格顺序保障。"
+ }
+}

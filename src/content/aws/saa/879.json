@@ -1,0 +1,18 @@
+{
+ "qid": "2264604850",
+ "index": 879,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家使用 AWS 组织的公司在30个不同的 AWS 账户中运行了150个应用程序。该公司使用 AWS 成本和使用报告在管理账户中创建了一个新的报告。该报告被传送到一个 Amazon\nS3 存储桶，并被复制到数据收集账户的存储桶中。\n公司的高级管理层希望查看一个自定义仪表板，该仪表板从本月初开始每天提供 NAT 网关的成本。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 共享一个 Amazon QuickSight 仪表板，其中包含所请求的表格可视化。配置 QuickSight 使用 AWS DataSync 来查询新报告。",
+  "B. 共享一个 Amazon QuickSight 仪表板，其中包含所请求的表格可视化。配置 QuickSight 使用 Amazon Athena 来查询新报告。",
+  "C. 共享一个包含所请求表格可视化的 Amazon CloudWatch 仪表板。配置 CloudWatch 使用 AWS DataSync 来查询新报告。",
+  "D. 共享一个包含所请求表格可视化的 Amazon CloudWatch 仪表板。配置 CloudWatch 使用 Amazon Athena 来查询新报告。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B建议使用 Amazon\nQuickSight 共享包含所需表格可视化的仪表板，并配置 QuickSight 使用 Amazon Athena 来查询新报告。Amazon Athena 是一种适用于大数据分析的交互式查询服务，可以直接查询 Amazon S3存储桶中的数据。通过这种方式，高级管理层可以在 QuickSight\n仪表板上轻松地查看 NAT 网关的每日成本情况，而不需要直接访问原始报告数据。其他选项可能会涉及更多的复杂性或不符合高级管理层的要求。",
+  "AI解析": "题目考查AWS成本数据可视化方案的核心技术选型。AWS成本和使用报告（CUR）存储在S3后，需通过SQL查询引擎提取数据，Amazon Athena可直接解析S3存储的CSV/Parquet格式报告文件；而Amazon QuickSight作为BI工具支持连接Athena数据源创建动态仪表板，二者结合能实现按日聚合NAT网关成本的可视化需求。CloudWatch主要用于监控指标，无法直接解析CUR结构化数据；DataSync为数据迁移服务，与查询场景无关。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529125639",
+ "index": 582,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要为合规目的保留5 PB的物理磁带数据，还打算在接下来的6个月内迁移到AWS。存储磁带的数据中心具有1 Gbps的上行互联网连接。哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 在本地读取磁带上的数据。将数据存储在本地NFS存储中。使用AWS DataSync将数据迁移到Amazon S3 Glacier Flexible Retrieval。",
+  "B. 使用本地备份应用程序从磁带读取数据，然后直接写入Amazon S3 Glacier Deep Archive。",
+  "C. 订购多个带有Tape Gateway的AWS Snowball设备。将物理磁带复制到Snowball中的虚拟磁带。将Snowball设备发送到AWS。创建生命周期策略将磁带迁移到Amazon S3 Glacier Deep Archive。",
+  "D. 配置本地的Tape Gateway。在AWS云中创建虚拟磁带。使用备份软件将物理磁带复制到虚拟磁带。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "对于需要将大量归档数据从物理磁带迁移到AWS的情况，使用AWS Snowball设备（带有Tape Gateway）可以是最具成本效益的解决方案。这样可以避免通过1 Gbps的互联网连接将5 PB的数据传输到AWS，这可能需要很长时间。 Snowball设备可以在本地将数据从物理磁带复制到虚拟磁带中，然后将Snowball设备快速发送到AWS数据中心，以更快速地完成数据迁移。\n其他选项都涉及将数据通过互联网连接传输到AWS，这可能需要很长时间，且可能增加网络传输成本。 Snowball设备的物理快递方法通常是处理大规模数据迁移的更经济和高效的方式。",
+  "AI解析": "本题聚焦海量离线数据迁移至AWS的带宽限制与成本优化。AWS Snowball设备通过物理运输解决5PB数据传输的带宽瓶颈，Tape Gateway实现物理磁带向虚拟磁带的介质转换，生命周期策略自动迁移至S3 Glacier Deep Archive则达成最低存储成本，三者结合避免了1Gbps网络直传的时间不可行性，同时满足合规长期留存需求。"
+ }
+}

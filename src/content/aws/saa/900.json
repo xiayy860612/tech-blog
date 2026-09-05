@@ -1,0 +1,18 @@
+{
+ "qid": "2949540241",
+ "index": 900,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司正在将其工作负载迁移到AWS。公司在运行SQL Server实例的本地关系数据库中拥有敏感和关键数据。公司希望利用AWS云来增强安全性并减少数据库的运营开销。\n哪种解决方案能满足这些要求？",
+ "options": [
+  "A. 将数据库迁移到Amazon EC2实例。使用AWS Key Management Service (AWS KMS)管理的密钥进行加密。",
+  "B. 将数据库迁移到启用了多可用区（Multi-AZ）的Amazon RDS for SQL Server数据库实例。使用AWS Key Management Service (AWS KMS)管理的密钥进行加密。",
+  "C. 将数据迁移到Amazon S3存储桶。使用Amazon Macie来确保数据安全。",
+  "D. 将数据库迁移到Amazon DynamoDB表。使用Amazon CloudWatch Logs来确保数据安全。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B提供了一个利用Amazon\nRDS for SQL Server的解决方案，该解决方案不仅减少了操作开销（如数据库的维护、备份和修补），还通过多可用区（Multi-AZ）配置提供了高可用性。此外，使用AWS KMS管理的密钥进行加密可以确保数据的安全性。相比之下，选项A虽然也使用了AWS KMS进行加密，但EC2实例的管理和维护负担较重，无法完全减少运营开销。选项C和D并不适用于关系数据库的直接迁移和管理，因此不合适。",
+  "AI解析": "AWS推荐使用托管数据库服务如Amazon RDS来减少运维负担，同时利用多可用区部署确保高可用性。AWS KMS提供托管密钥服务，符合安全最佳实践。选项B中的Amazon RDS for SQL Server由AWS完全管理，自动处理硬件配置、备份、补丁更新等任务，Multi-AZ功能提升容错能力，结合KMS加密实现静态数据保护。选项A需自行管理EC2实例，增加运维复杂度。选项C的S3不适合关系型数据库场景。选项D的DynamoDB为NoSQL数据库，与SQL Server不兼容。"
+ }
+}

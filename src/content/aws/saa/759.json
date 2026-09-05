@@ -1,0 +1,18 @@
+{
+ "qid": "1908085493",
+ "index": 759,
+ "total": 1018,
+ "type": "单选题",
+ "question": "解决方案架构师需要为供应商提供的一个作为 Docker 容器映像的应用程序设计架构。容器需要 50GB 的存储空间用于临时文件。基础架构必须是无服务器的。\n哪种解决方案将以最小的运维开销满足这些要求？",
+ "options": [
+  "A. 创建一个 AWS Lambda 函数，该函数使用带有超过 50GB 空间的 Amazon S3 挂载卷的 Docker 容器映像。",
+  "B. 创建一个 AWS Lambda 函数，该函数使用带有超过 50GB 空间的 Amazon Elastic Block Store（Amazon EBS）卷的 Docker 容器映像。",
+  "C. 创建一个使用 AWS Fargate 启动类型的 Amazon Elastic Container Service（Amazon ECS）集群。为容器映像创建一个任务定义，该任务定义包含一个 Amazon Elastic File System（Amazon EFS）卷。创建一个带有该任务定义的服务。",
+  "D. 创建一个使用 Amazon EC2 启动类型的 Amazon Elastic Container Service（Amazon ECS）集群，其中包含一个 Amazon Elastic Block Store（Amazon EBS）卷，该卷具有超过 50GB 的空间。为容器映像创建一个任务定义。创建一个带有该任务定义的服务。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "为了满足容器需要 50GB 存储空间用于临时文件的要求，并且基础架构必须是无服务器的，最佳解决方案是创建一个使用 AWS Fargate 启动类型的 Amazon ECS 集群。使用任务定义为容器映像创建任务，并将 Amazon EFS 卷挂载到任务中。这样可以在保持无服务器架构的同时，为容器提供所需的临时存储空间，减少了运维开销。",
+  "AI解析": "本题考察无服务器架构中容器化应用的存储解决方案。AWS官方文档指出，AWS Fargate作为无服务器计算引擎，结合ECS任务定义支持挂载Amazon EFS文件系统。EFS提供可扩展的网络文件存储，容量按需自动扩展，适用于需要大容量临时存储的容器场景。选项C通过Fargate启动ECS任务并挂载EFS卷，既满足无服务器要求，又能弹性扩展存储空间。选项D依赖EC2实例不符合无服务器前提，A/B选项中Lambda函数不支持50GB本地存储且无法挂载EBS，S3不适合低延迟文件操作场景。"
+ }
+}

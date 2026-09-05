@@ -1,0 +1,18 @@
+{
+ "qid": "1529124372",
+ "index": 448,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在Oracle数据库上运行其应用程序。由于数据库、备份管理和数据中心维护资源有限，公司计划迅速迁移到AWS。该应用程序使用第三方数据库功能，需要特权访问。\n哪种解决方案将帮助公司以最具成本效益的方式将数据库迁移到AWS？",
+ "options": [
+  "A. 将数据库迁移到Amazon RDS for Oracle。使用云服务替换第三方功能。",
+  "B. 将数据库迁移到Amazon RDS自定义版的Oracle。自定义数据库设置以支持第三方功能。",
+  "C. 将数据库迁移到Amazon EC2的Oracle Amazon Machine Image (AMI)。自定义数据库设置以支持第三方功能。",
+  "D. 将数据库迁移到Amazon RDS for PostgreSQL，通过重写应用程序代码来消除对Oracle APEX的依赖。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "Amazon RDS Custom for Oracle专为需要特权访问和自定义配置的Oracle数据库设计，允许客户修改数据库环境以支持第三方功能。题目中提到应用程序依赖需要特权访问的第三方功能，Amazon RDS Custom提供了比标准RDS更高的控制权限，同时仍由AWS管理部分运维任务，符合成本效益和快速迁移的目标。选项A的标准RDS无法满足特权需求，选项C的EC2需全自主运维成本更高，选项D涉及应用重写不迅速。RDS Custom在托管服务与自定义需求间取得平衡。"
+ }
+}

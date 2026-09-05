@@ -1,0 +1,18 @@
+{
+ "qid": "1908084747",
+ "index": 630,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家社交媒体公司希望将其用户档案、关系和互动的数据库存储在AWS云中。公司需要一种应用程序来监视数据库中的任何更改。该应用程序需要分析数据实体之间的关系并向用户提供推荐。\n哪种解决方案将以最小的操作开销满足这些要求？",
+ "options": [
+  "A. 使用Amazon Neptune存储信息。使用Amazon Kinesis Data Streams处理数据库中的更改。",
+  "B. 使用Amazon Neptune存储信息。使用Neptune Streams处理数据库中的更改。",
+  "C. 使用Amazon Quantum Ledger Database (Amazon QLDB)存储信息。使用Amazon Kinesis Data Streams处理数据库中的更改。",
+  "D. 使用Amazon Quantum Ledger Database (Amazon QLDB)存储信息。使用Neptune Streams处理数据库中的更改。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "Amazon Neptune 是一种图形数据库服务，适用于存储用户档案、关系和互动数据。Neptune Streams 可以捕获 Neptune 数据库中的更改，并将其传递给应用程序，以便监视数据库中的任何更改。这种解决方案能够满足监视数据库更改和分析数据实体之间关系的需求，并且操作开销较小。",
+  "AI解析": "考虑到该公司需要一种应用程序来监视数据库中的任何更改，并分析数据实体之间的关系，提供用户推荐。Amazon Neptune Streams是一种用于存储和分析大数据的应用程序，它提供了实时数据处理和数据流功能，能够满足这些要求。而Amazon QLDB则是一种专门用于存储和查询大量结构化和非结构化数据的数据库解决方案，并不适合此场景。因此，选项B“使用Amazon Neptune存储信息。使用Neptune Streams处理数据库中的更改”是最佳选择，因为它能够以最小的操作开销满足这些要求。"
+ }
+}

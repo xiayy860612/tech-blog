@@ -1,0 +1,18 @@
+{
+ "qid": "1529124370",
+ "index": 446,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个无状态的Web应用程序，运行在由Amazon API Gateway触发的AWS Lambda函数上。公司希望将该应用程序部署到多个AWS区域，以提供区域级故障切换功能。\n解决方案架构师应该采取哪些措施来路由流量到多个区域？",
+ "options": [
+  "A. 为每个区域创建Amazon Route 53健康检查。使用主动-主动故障切换配置。",
+  "B. 创建一个Amazon CloudFront分发，为每个区域创建一个源。使用CloudFront健康检查来路由流量。",
+  "C. 创建一个Transit Gateway。将Transit Gateway附加到每个区域中的API Gateway端点。配置Transit Gateway以路由请求。",
+  "D. 在主要区域创建一个Application Load Balancer。将目标组设置为指向每个区域中的API Gateway端点主机名。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B中，使用Amazon CloudFront分发，为每个区域创建一个源。然后，可以使用CloudFront的健康检查功能来路由流量到可用的源。这种方法允许您将应用程序的内容分发到全球边缘位置，同时可以通过健康检查来确定源的可用性。这是实现多区域故障切换和全球内容分发的常见方法。\n选项A中，虽然Amazon Route 53可以用于DNS级别的故障切换，但它不直接支持Lambda函数和API Gateway的多区域路由需求。\n选项C中，Transit Gateway用于VPC间的网络流量路由，而不是Lambda函数和API Gateway的应用程序级别路由。\n选项D中，Application Load Balancer适用于路由流量到EC2实例等后端服务器，不适用于Lambda函数和API Gateway。\n因此，选项B是最适合实现多区域故障切换和路由流量到多个区域的解决方案。",
+  "AI解析": "Amazon CloudFront支持配置多个源并启用健康检查，自动将请求路由到可用区域。当主要区域不可用时，CloudFront可将流量切换至备用区域，无需手动干预。Route 53基于DNS切换可能存在缓存延迟，Transit Gateway主要用于网络互联而非HTTP流量路由，Application Load Balancer属于区域服务无法跨区。答案B符合题干的多区域故障切换需求。参考AWS文档中关于CloudFront Origin Groups和健康检查章节。"
+ }
+}

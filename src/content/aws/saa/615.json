@@ -1,0 +1,18 @@
+{
+ "qid": "1908084732",
+ "index": 615,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上部署了其最新产品。该产品在一个Network Load Balancer后面的Auto Scaling组中运行。公司将产品的对象存储在一个Amazon S3存储桶中。\n该公司最近遭受了对其系统的恶意攻击。公司需要一个解决方案，不断监视AWS账户、工作负载和对S3存储桶的访问模式以寻找恶意活动。该解决方案还必须报告可疑活动并在仪表板上显示信息。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 配置Amazon Macie来监视并向AWS Cong报告发现。",
+  "B. 配置Amazon Inspector来监视并向AWS CloudTrail报告发现。",
+  "C. 配置Amazon GuardDuty来监视并向AWS Security Hub报告发现。",
+  "D. 配置AWS Cong来监视并向Amazon EventBridge报告发现。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "最佳解决方案是配置Amazon GuardDuty来监视并报告发现到AWS Security Hub。Amazon GuardDuty是一项专门用于监视AWS环境中的安全事件和威胁的服务，可以检测可疑活动、异常访问和恶意行为。AWS Security Hub则提供了一个集中式的仪表板，用于集成并查看多个安全服务的发现结果。这使您可以在一个位置查看和分析关于恶意活动的信息。\n其他选项不太适合这种情况：\nA Amazon Macie主要用于数据安全和敏感数据的发现，而不是对AWS环境的恶意活动监视。\nB Amazon Inspector用于漏洞扫描和安全评估，但不是用于监视恶意活动的工具。\nD AWS Cong是一个云成本管理工具，不是用于安全监视的工具。 Amazon EventBridge是用于事件集成的服务，也不适合用于监视恶意活动。",
+  "AI解析": "AWS服务中，Amazon GuardDuty用于持续监控恶意活动和异常行为，分析CloudTrail、VPC流日志和DNS日志。AWS Security Hub可聚合多个安全服务结果并提供统一仪表板。选项C正确，因GuardDuty直接监控账户、工作负载和S3访问模式，并将结果发送至Security Hub展示。选项A的Macie专注数据分类而非整体威胁检测；选项B的Inspector主要评估EC2漏洞；选项D的Config跟踪资源配置合规性，均不符合持续监控恶意活动的核心需求。参考AWS文档中GuardDuty与Security Hub的集成功能。"
+ }
+}

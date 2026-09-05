@@ -1,0 +1,18 @@
+{
+ "qid": "1529125557",
+ "index": 500,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司想要将客户付款数据纳入其存储在Amazon S3中的数据湖。该公司平均每分钟收到一次付款数据。公司希望实时分析付款数据，然后将数据纳入数据湖。\n哪种解决方案在操作效率上最高地满足这些要求？",
+ "options": [
+  "A. 使用Amazon Kinesis Data Streams来摄取数据。使用AWS Lambda实时分析数据。",
+  "B. 使用AWS Glue来摄取数据。使用Amazon Kinesis Data Analytics实时分析数据。",
+  "C. 使用Amazon Kinesis Data Firehose来摄取数据。使用Amazon Kinesis Data Analytics实时分析数据。",
+  "D. 使用Amazon API Gateway来摄取数据。使用AWS Lambda实时分析数据。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提到使用Amazon Kinesis Data Firehose来摄取数据，它可以以最高效率地将数据发送至Amazon S3数据湖。同时，结合Amazon Kinesis Data Analytics能够进行实时数据分析。这种组合方案操作效率较高，因为Kinesis Data Firehose能够简化数据传输至S3的过程，同时Kinesis Data Analytics可以实时处理数据并支持数据分析需求。其他选项中，虽然AWS Lambda和Amazon Kinesis Data Streams也能实现数据处理和传输，但选项C结合了两者并提供了操作效率更高的解决方案。",
+  "AI解析": "Amazon相关服务组合的应用场景。题干涉及实时数据摄取与分析。AWS文档指出，Kinesis Data Firehose专为将流数据直接传输至存储（如S3）而设计，无需管理基础设施。Kinesis Data Analytics可实时处理流数据，两者集成后支持无缝的数据处理与存储。选项C中，Firehose负责数据摄取并自动写入S3，Data Analytics实时分析，符合操作效率要求。选项A涉及Lambda，可能引入冷启动延迟；选项B的Glue主要用于批处理ETL；选项D的API Gateway并非数据摄取专用服务。"
+ }
+}

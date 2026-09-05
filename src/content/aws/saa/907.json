@@ -1,0 +1,18 @@
+{
+ "qid": "2949540248",
+ "index": 907,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS\nOrganizations中运行其应用程序，并将应用程序的运营支持外包给外部支持工程师。公司需要在不影响安全的情况下为外部支持工程师提供访问权限。\n外部支持工程师需要访问AWS管理控制台，还需要操作系统访问权限，以便访问运行在私有子网中的Amazon EC2实例上的Amazon Linux。\n哪种解决方案能够以最安全的方式满足这些要求？",
+ "options": [
+  "A. 确认所有实例上安装了AWS Systems Manager代理(SSM Agent)。分配具有必要策略的实例角色以连接到Systems Manager。使用AWS IAM Identity Center为外部支持工程师提供控制台访问权限。使用Systems Manager Session Manager分配所需的权限。",
+  "B. 确认所有实例上安装了AWS Systems Manager代理(SSM Agent)。分配具有必要策略的实例角色以连接到Systems Manager。使用Systems Manager Session Manager为每个AWS账户中的外部支持工程师提供本地IAM用户凭据，以便访问控制台。",
+  "C. 确认所有实例具有仅允许来自外部支持工程师源IP地址范围的SSH访问的安全组。在每个AWS账户中为外部支持工程师提供本地IAM用户凭据，以便访问控制台。为每个外部支持工程师提供SSH密钥对，以登录到应用程序实例。",
+  "D. 在公共子网中创建一个堡垒主机。设置堡垒主机安全组以仅允许来自外部工程师IP地址范围的访问。确保所有实例都有允许来自堡垒主机的SSH访问的安全组。为每个外部支持工程师提供SSH密钥对，以登录到应用程序实例。为工程师提供本地账户IAM用户凭据，以便访问控制台。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "这是一种最安全的解决方案。使用AWS Systems Manager Session\nManager可以让外部支持工程师在不需要直接SSH访问的情况下安全地管理EC2实例。IAM Identity Center（以前称为AWS Single Sign-On）可以提供安全的控制台访问，并通过中央管理确保权限的最小化和控制。使用Session Manager减少了对实例的直接访问，避免了暴露在公网或VPN中的风险。",
+  "AI解析": "本题聚焦AWS混合环境下的安全访问控制，核心在于通过无密钥、无公网暴露的托管方案实现最小权限原则。正确方案使用Systems Manager Session Manager建立加密会话，无需开放SSH端口或部署堡垒主机，结合SSM Agent和实例角色实现操作系统级访问控制；同时通过IAM Identity Center集中管理控制台权限，避免本地IAM用户凭证分散风险，确保审计溯源能力。这种设计彻底消除了传统SSH密钥或公网入口点的攻击面，严格遵循零信任架构的安全实践。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2264604777",
+ "index": 806,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在营销活动期间使用高并发的AWS Lambda函数来处理消息队列中不断增加的消息数量。Lambda函数使用CPU密集型代码来处理这些消息。公司希望减少计算成本，并保持对其客户的服务延迟。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 为Lambda函数配置保留并发。减少分配给Lambda函数的内存。",
+  "B. 为Lambda函数配置保留并发。根据AWS Compute Optimizer的建议增加内存。",
+  "C. 为Lambda函数配置预留并发。减少分配给Lambda函数的内存。",
+  "D. 为Lambda函数配置预留并发。根据AWS Compute Optimizer的建议增加内存。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项 D 中提到了为 Lambda 函数配置预留并发，并根据 AWS Compute Optimizer 的建议增加内存。这个解决方案可以有效地满足减少计算成本和保持对客户服务延迟的要求。通过配置预留并发，公司可以根据其预期的工作负载需求来确保 Lambda 函数能够获得所需的资源，同时根据 AWS Compute\nOptimizer 的建议增加内存可以提高 Lambda 函数的执行效率，从而减少服务延迟。",
+  "AI解析": "AWS Lambda的计费基于内存和运行时间。CPU资源随内存配置增加按比例分配。AWS Compute Optimizer通过分析历史数据推荐内存设置，优化执行时间与成本平衡。题目中Lambda处理CPU密集型任务，增加内存可提升CPU性能，缩短运行时间，降低总体成本。配置预留并发（Provisioned Concurrency）预热实例，避免冷启动延迟，维持低延迟。选项D同时应用内存优化和预留并发，符合题干要求。其他选项中的“保留并发”（Reserved Concurrency）用于限制并发数，与预热无关；减少内存可能导致CPU不足，延长运行时间。"
+ }
+}

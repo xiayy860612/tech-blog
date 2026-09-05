@@ -1,0 +1,17 @@
+{
+ "index": 318,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS云中有数百个基于Linux的Amazon EC2实例。系统管理员使用共享SSH密钥来管理这些实例。在最近的审计后，公司的安全团队要求删除所有共享密钥。解决方案架构师必须设计一个解决方案，提供安全访问EC2实例。\n哪种解决方案将以最少的管理开销满足这一要求？",
+ "options": [
+  "A. 使用AWS Systems Manager Session Manager连接到EC2实例。",
+  "B. 使用AWS Security Token Service (AWS STS)根据需要生成一次性SSH密钥。",
+  "C. 允许一组跳板实例的共享SSH访问。配置所有其他实例仅允许从跳板实例进行SSH访问。",
+  "D. 使用Amazon Cognito自定义授权程序对用户进行身份验证。调用AWS Lambda函数生成临时SSH密钥。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了以最少的管理开销满足这一要求，最佳做法是使用AWS Systems Manager Session Manager（选项A）。Session Manager允许您通过AWS Management Console、AWS CLI或AWS SDKs等方式连接到EC2实例，而无需共享SSH密钥。这样，您可以更好地控制和审计访问，而不需要手动管理密钥对。选项B中的AWS STS生成一次性SSH密钥，但需要额外的操作来分发和管理这些密钥。选项C中的共享SSH访问可能会导致访问控制不够严格。选项D中的Amazon Cognito和AWS Lambda方法可能涉及更多的自定义开发和管理工作。因此，选项A是最合适的选项。",
+  "AI解析": "AWS Systems Manager Session Manager允许通过AWS管理控制台或AWS CLI连接到EC2实例，无需SSH密钥或开放入站端口。此服务通过IAM策略控制访问权限，消除了密钥管理的需求。审计后要求移除共享密钥时，Session Manager无需维护密钥对或跳板机，直接利用现有IAM整合，管理成本最低。选项B、C、D涉及额外密钥生成、跳板机维护或复杂Lambda/Cognito集成，导致更高管理开销。AWS官方文档推荐Session Manager作为安全且低维护的实例访问方案。"
+ }
+}

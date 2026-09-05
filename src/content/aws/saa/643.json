@@ -1,0 +1,19 @@
+{
+ "qid": "1908084760",
+ "index": 643,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家国际公司为公司在运营的每个国家都有一个子域。子域的格式为example.com、country1.example.com和country2.example.com。该公司的工作负载位于一个Application Load Balancer背后。公司希望加密在传输中的网站数据。\n哪种步骤的组合将满足这些要求？（选择两个）",
+ "options": [
+  "A. 使用AWS Certificate Manager (ACM) 控制台请求顶级域example.com的公共证书和*.example.com的通配符证书。",
+  "B. 使用AWS Certificate Manager (ACM) 控制台请求顶级域example.com的私有证书和*.example.com的通配符证书。",
+  "C. 使用AWS Certificate Manager (ACM) 控制台请求顶级域example.com的公共和私有证书。",
+  "D. 通过电子邮件地址验证域所有权。通过在DNS提供商中添加所需的DNS记录切换到DNS验证。",
+  "E. 通过添加所需的DNS记录到DNS提供商中验证域所有权。"
+ ],
+ "answer": {
+  "正确答案": "AE",
+  "解析": "A 使用 AWS Certificate Manager (ACM) 控制台请求顶级域 example.com 的公共证书和 *.example.com 的通配符证书，以确保可以加密所有子域的数据传输。\nE 通过添加所需的 DNS 记录到 DNS 提供商中验证域所有权，这是为了证明你对域名的控制权，从而能够成功颁发证书。",
+  "AI解析": "本题核心在于ACM证书申请与域名验证操作。申请公共证书时必须覆盖主域名和所有子域，选择example.com搭配通配符*.example.com可同时保护根域名及所有国家子域（如country1.example.com）。DNS验证是ACM推荐的高效方式，需在域名解析服务商处添加指定CNAME记录完成所有权验证。私有证书不适用于ALB的HTTPS终端，邮件验证流程繁琐且不适用通配符场景。"
+ }
+}

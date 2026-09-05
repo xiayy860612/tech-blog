@@ -1,0 +1,18 @@
+{
+ "qid": "1529125566",
+ "index": 509,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个全球性的营销公司在 ap-southeast-2 区域和 eu-west-1 区域运行应用程序。在 eu-west-1 区域运行的应用程序需要与在 ap-southeast-2 区域运行的数据库进行安全通信。\n哪种网络设计能够满足这些要求？",
+ "options": [
+  "A. 在 eu-west-1 VPC 和 ap-southeast-2 VPC 之间创建一个 VPC 对等连接。在 eu-west-1 应用程序安全组中创建一个入站规则，允许来自 ap-southeast-2 安全组中数据库服务器 IP 地址的流量。",
+  "B. 在 ap-southeast-2 VPC 和 eu-west-1 VPC 之间配置一个 VPC 对等连接。更新子网路由表。在 ap-southeast-2 数据库安全组中创建一个入站规则，引用 eu-west-1 应用服务器的安全组 ID。",
+  "C. 在 ap-southeast-2 VPC 和 eu-west-1 VPC 之间配置一个 VPC 对等连接。更新子网路由表。在 ap-southeast-2 数据库安全组中创建一个入站规则，允许来自 eu-west-1 应用服务器的流量。",
+  "D. 在 eu-west-1 VPC 和 ap-southeast-2 VPC 之间创建一个带有对等附件的 Transit Gateway。在正确配置了 Transit Gateways 的对等连接和路由之后，在数据库安全组中创建一个入站规则，引用了 eu-west-1 应用服务器的安全组 ID。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "使用 Transit Gateway 是一种有效的方法，特别是在涉及多个 VPC 和区域之间的连接时。它提供了中心化的管理和更灵活的网络连接。在这种情况下，创建 Transit Gateway 并在相应的安全组中引用对等 VPC 的安全组 ID，能够确保安全地连接两个区域的 VPC。其他选项中的 VPC 对等连接可能需要更多的手动配置，并且可能不如 Transit Gateway 那样灵活。",
+  "AI解析": "AWS网络架构设计涉及跨区域VPC连接的安全性和路由配置。AWS文档指出，Transit Gateway支持跨区域VPC互连，通过创建对等附件和配置路由表实现流量转发。安全组规则引用源安全组ID可动态管理访问权限，避免依赖静态IP。选项D正确配置了Transit Gateway的路由和对等连接，并在数据库安全组中正确引用应用服务器的安全组ID。其他选项或未使用Transit Gateway导致扩展性不足，或安全组规则基于IP而非安全组ID，安全性较低。"
+ }
+}

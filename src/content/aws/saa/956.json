@@ -1,0 +1,19 @@
+{
+ "qid": "2949540297",
+ "index": 956,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司需要设计一个混合网络架构。公司的工作负载目前存储在AWS云和本地数据中心中。这些工作负载需要单数字延迟进行通信。公司使用AWS\nTransit Gateway（传输网关）来连接多个VPC。\n哪一组合的步骤将最具成本效益地满足这些要求？（选择两个）",
+ "options": [
+  "A. 建立一个AWS Site-to-Site VPN连接到每个VPC。",
+  "B. 将一个AWS Direct Connect网关与附加到VPC的传输网关关联。",
+  "C. 建立一个AWS Site-to-Site VPN连接到AWS Direct Connect网关。",
+  "D. 建立一个AWS Direct Connect连接。创建一个传输虚拟接口（VIF）到Direct Connect网关。",
+  "E. 将AWS Site-to-Site VPN连接与附加到VPC的传输网关关联。"
+ ],
+ "answer": {
+  "正确答案": "BD",
+  "解析": "AWS Direct Connect的优势： AWS Direct Connect 提供了稳定的低延迟连接，对于需要单数字延迟的应用程序是必要的。相比VPN连接，Direct Connect通常会提供更低的延迟和更高的带宽。\nDirect Connect网关与传输网关的结合： 选项B中的做法是将AWS Direct Connect网关与传输网关关联，这样可以通过Direct Connect连接本地数据中心与AWS VPC，提供高效的网络连接，并支持多个VPC的访问。\n创建传输虚拟接口（VIF）： 选项D中的步骤是建立AWS Direct Connect连接，并创建一个传输虚拟接口（VIF）到Direct Connect网关。这允许你在Direct Connect中直接路由到你的VPC，进一步降低延迟并优化成本。\n成本效益： 选项A和E涉及使用AWS Site-to-Site VPN，这种方式虽然可以建立安全的连接，但相较于Direct\nConnect，它的延迟和带宽性能较差。选项C也是利用VPN连接到Direct Connect网关，这并不会优化延迟，也不如直接使用Direct\nConnect和相应的网关组合有效。\n综合来看，选项B和D的组合提供了最具成本效益且符合低延迟要求的解决方案。",
+  "AI解析": "为满足公司混合网络架构需求并实现低延迟通信，B选项将AWS Direct Connect网关与附加到VPC的传输网关关联，可通过私有网络连接AWS，保障连接稳定、可预测，减少延迟。D选项建立AWS Direct Connect连接并创建传输虚拟接口（VIF）到Direct Connect网关，能提供更高带宽、更低延迟，适合对延迟敏感的应用场景 。"
+ }
+}

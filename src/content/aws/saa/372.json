@@ -1,0 +1,18 @@
+{
+ "qid": "1529124293",
+ "index": 372,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个从汽车上的物联网传感器收集数据的应用程序。数据通过Amazon Kinesis Data Firehose进行流式处理，并存储在Amazon S3中。该数据每年产生数万亿个S3对象。每天早上，公司使用前30天的数据来重新训练一套机器学习（ML）模型。每年四次，公司使用前12个月的数据进行分析和训练其他ML模型。数据必须在最多1年的时间内以最少的延迟可用。1年后，数据必须保留以进行归档。\n哪种存储解决方案在成本效益最高的情况下满足这些要求？",
+ "options": [
+  "A. 使用S3 Intelligent-Tiering存储类别。创建一个S3生命周期策略，在1年后将对象转换为S3 Glacier Deep Archive。",
+  "B. 使用S3 Intelligent-Tiering存储类别。配置S3 Intelligent-Tiering以在1年后自动将对象移动到S3 Glacier Deep Archive。",
+  "C. 使用S3 Standard-Infrequent Access（S3标准IA）存储类别。创建一个S3生命周期策略，在1年后将对象转换为S3 Glacier Deep Archive。",
+  "D. 使用S3标准存储类别。创建一个S3生命周期策略，在30天后将对象转换为S3 Standard-Infrequent Access（S3标准IA），然后在1年后将对象转换为S3 Glacier Deep Archive。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "Amazon S3存储类别的选择和生命周期策略配置。根据数据访问模式和保留需求，S3标准存储适用于需要频繁访问的数据（前30天），30天后转为S3标准IA减少成本但仍保持低延迟访问。一年后归档至Glacier Deep Archive满足长期保留。选项D采用分层策略，针对不同阶段优化成本和访问性能，符合题目中“1年内低延迟可用，之后归档”的要求。AWS文档指出S3标准适用于高频访问，标准IA适用于不频繁访问但需要快速检索的数据，生命周期策略自动转换节省成本。"
+ }
+}

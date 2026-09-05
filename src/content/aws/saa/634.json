@@ -1,0 +1,18 @@
+{
+ "qid": "1908084751",
+ "index": 634,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在其主要AWS区域中使用Amazon FSx for NetApp ONTAP，用于CIFS和NFS文件共享。在Amazon EC2实例上运行的应用程序访问文件共享。公司需要在次要区域中实现存储灾难恢复（DR）解决方案。在次要区域中复制的数据需要使用与主要区域相同的协议进行访问。\n哪种解决方案将以最小的操作开销满足这些要求？",
+ "options": [
+  "A. 创建一个AWS Lambda函数，将数据复制到一个Amazon S3存储桶。将S3存储桶复制到次要区域。",
+  "B. 使用AWS Backup创建FSx for ONTAP卷的备份。将卷复制到次要区域。从备份创建新的FSx for ONTAP实例。",
+  "C. 在次要区域中创建一个FSx for ONTAP实例。使用NetApp SnapMirror将数据从主要区域复制到次要区域。",
+  "D. 创建一个Amazon Elastic File System（Amazon EFS）卷。将当前数据迁移到该卷。将卷复制到次要区域。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C中使用NetApp SnapMirror是实现存储灾难恢复的有效方式。这种方法可以在主要区域和次要区域之间进行数据复制，并且可以保持相同的协议（CIFS和NFS）。这减少了操作开销，因为NetApp SnapMirror是专门设计用于FSx for ONTAP的数据复制解决方案，而且可以提供较低的RTO（恢复时间目标）和RPO（恢复点目标）。其他选项中，使用Lambda函数和S3引入了额外的存储桶和数据复制步骤，可能会增加操作开销。AWS Backup用于创建备份和还原操作，但不是专门用于跨区域复制的解决方案。使用Amazon EFS创建卷可能涉及不同的文件系统和协议，而且复制到次要区域的操作可能不如NetApp SnapMirror有效。",
+  "AI解析": "Amazon FSx for NetApp ONTAP支持通过NetApp SnapMirror技术实现跨区域数据复制。该技术专为ONTAP设计，可在不同区域的FSx for ONTAP实例之间异步复制数据，保持协议兼容性（CIFS/NFS），无需更改应用访问方式。AWS官方文档明确指出SnapMirror是FSx for ONTAP推荐的DR方案。选项C直接利用该内置功能，其他选项要么涉及存储类型转换（A、D），要么依赖手动备份恢复（B），操作复杂度更高。"
+ }
+}

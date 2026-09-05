@@ -1,0 +1,17 @@
+{
+ "index": 95,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正准备部署一个新的无服务器工作负载。解决方案架构师必须使用最小权限原则来配置将用于运行AWS Lambda函数的权限。一个Amazon EventBridge（Amazon CloudWatch Events）规则将调用该函数。\n哪个解决方案满足这些要求？",
+ "options": [
+  "A. 为函数添加执行角色，以lambda:InvokeFunction作为操作，*作为主体。",
+  "B. 为函数添加执行角色，以lambda:InvokeFunction作为操作，Service: lambda.amazonaws.com作为主体。",
+  "C. 为函数添加基于资源的策略，以lambda:*作为操作，Service: events.amazonaws.com作为主体。",
+  "D. 为函数添加基于资源的策略，以lambda:InvokeFunction作为操作，Service: events.amazonaws.com作为主体。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": null,
+  "AI解析": "本题考察AWS Lambda权限配置，需结合最小权限原则及服务间调用权限设置。AWS文档指出，当其他服务（如EventBridge）触发Lambda函数时，需通过基于资源的策略（Resource-based policy）授权调用方，而非函数的执行角色。基于资源的策略需明确允许特定服务（主体为`events.amazonaws.com`）调用`lambda:InvokeFunction`。选项D正确配置了最小权限，仅允许EventBridge服务执行必要操作。选项C权限过宽（`lambda:*`），A/B错误使用执行角色而非资源策略。"
+ }
+}

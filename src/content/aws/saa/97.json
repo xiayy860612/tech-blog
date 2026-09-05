@@ -1,0 +1,17 @@
+{
+ "index": 97,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家共享自行车公司正在开发一个多层架构，以在高峰运营时跟踪自行车的位置。该公司希望在其现有的分析平台中使用这些数据点。解决方案架构师必须确定最可行的多层选项以支持此架构。这些数据点必须可以从REST API访问。\n哪种操作满足存储和检索位置数据的要求？",
+ "options": [
+  "A. 使用Amazon Athena与Amazon S3。",
+  "B. 使用Amazon API Gateway与AWS Lambda。",
+  "C. 使用Amazon QuickSight与Amazon Redshift。",
+  "D. 使用Amazon API Gateway与Amazon Kinesis Data Analytics。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "在这种情况下，需要开发一个REST API来存储和检索自行车位置数据。Amazon API Gateway与AWS Lambda的组合非常适合这一用例。以下是为什么选项B是最佳选择的原因：\nAmazon API Gateway：它允许您创建和管理API，提供了对RESTful接口的访问。您可以使用API Gateway来定义端点、控制访问和处理请求和响应。\nAWS Lambda：您可以使用AWS Lambda来处理API Gateway的请求并执行自定义业务逻辑，如存储和检索位置数据。Lambda可以轻松集成其他AWS服务，如Amazon S3，以存储数据。\n选项A（Amazon Athena）通常用于分析数据，而不是实时存储和检索。选项C（Amazon QuickSight与Amazon Redshift）主要用于数据分析和可视化，而不是实时数据存储和检索。选项D（Amazon API Gateway与Amazon Kinesis Data Analytics）更适用于流式数据分析，而不是用于REST API的存储和检索。",
+  "AI解析": "题干要求构建支持高峰时期自行车位置跟踪的多层架构，并通过REST API访问数据。选项B中的API Gateway负责创建、管理REST API，作为前端入口接收客户端请求。Lambda作为无服务器计算服务，处理API请求的业务逻辑，如数据存储和检索操作。两者结合满足构建灵活、可扩展的API层需求，Lambda可集成数据库（如DynamoDB）或存储服务（如S3）处理数据。其他选项如Athena/S3、QuickSight/Redshift侧重分析场景，Kinesis Data Analytics专注于实时流处理，均未直接解决REST API访问需求。答案B符合架构要求。"
+ }
+}

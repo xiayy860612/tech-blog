@@ -1,0 +1,18 @@
+{
+ "qid": "1908085457",
+ "index": 723,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司使用Amazon Elastic Kubernetes Service (Amazon EKS)和Kubernetes Horizontal Pod Autoscaler来运行容器应用程序。工作负载在一天内不一致。解决方案架构师注意到，当现有节点在集群中达到最大容量时，节点数量不会自动扩展，这会导致性能问题。\n哪种解决方案将通过最少的管理开销解决此问题？",
+ "options": [
+  "A. 通过跟踪内存使用情况扩展节点。",
+  "B. 使用Kubernetes Cluster Autoscaler来管理集群中的节点数量。",
+  "C. 使用AWS Lambda函数自动调整EKS集群大小。",
+  "D. 使用Amazon EC2 Auto Scaling组来分配工作负载。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "使用Kubernetes Cluster Autoscaler可以动态调整集群中的节点数量，以适应工作负载的变化，这样可以在最少的管理开销下解决问题。",
+  "AI解析": "该题目涉及Amazon EKS集群节点自动扩展的场景。Kubernetes Horizontal Pod Autoscaler（HPA）负责Pod级别的扩缩容，但无法直接调整底层节点数量。当节点资源不足导致Pod无法调度时，Kubernetes Cluster Autoscaler（CA）会监控未调度的Pod并触发节点组的扩缩容。AWS官方文档明确指出，Cluster Autoscaler是专为Kubernetes设计的组件，与EKS原生集成，通过自动调整节点组中的实例数量来确保资源可用性。选项B直接对应这一机制，而其他选项或仅关注资源指标（A）、需要额外脚本维护（C）或依赖基础ASG策略无法感知Pod状态（D），均不符合“最少管理开销”的要求。"
+ }
+}

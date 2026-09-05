@@ -1,0 +1,18 @@
+{
+ "qid": "2264604802",
+ "index": 831,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个本地SFTP文件传输解决方案。公司正在迁移到AWS云以扩展文件传输解决方案并通过使用Amazon S3来优化成本。公司的员工将使用他们在本地Microsoft Active Directory（AD）中的凭据来访问新解决方案。公司希望保持当前的身份验证和文件访问机制。",
+ "options": [
+  "A. 配置一个S3文件网关。在文件网关上创建使用现有Active Directory进行身份验证的SMB文件共享。",
+  "B. 配置一个包含Amazon EC2实例的自动伸缩组，用于运行一个SFTP解决方案。将组配置为在CPU利用率达到60%时扩展。",
+  "C. 创建一个带有SFTP端点的AWS Transfer Family服务器。选择AWS Directory Service选项作为身份提供者。使用AD Connector连接本地Active Directory。",
+  "D. 创建一个AWS Transfer Family SFTP端点。配置端点使用AWS Directory Service选项作为身份提供者连接到现有的Active Directory。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "这个问题要求满足以下要求：保持当前的身份验证和文件访问机制，并且降低运维开销。选项C提到使用AWS Transfer Family服务创建SFTP端点，并选择AWS Directory Service选项作为身份提供者，然后使用AD\nConnector连接本地Active Directory。这个解决方案能够满足所有的要求，并且降低了运维开销。\n其他选项中，选项A提到了使用S3文件网关和现有的Active Directory进行身份验证，但没有提及如何连接本地AD。选项B提到了在EC2实例上运行SFTP解决方案，但这会增加管理和维护成本。选项D提到了使用AWS Transfer Family创建SFTP端点，但没有提及如何连接到本地AD。",
+  "AI解析": "AWS Transfer Family支持使用AWS Directory Service作为身份提供者，结合AD Connector连接本地Active Directory。公司要求保留现有AD身份验证机制，AD Connector在不迁移目录的情况下实现双向集成，允许用户继续使用本地AD凭据。选项C正确配置了AWS Transfer SFTP服务器与AD Connector，而选项D错误选择了AWS托管目录而非连接本地AD。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1908084810",
+ "index": 693,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在AWS上构建一个购物应用程序。该应用程序提供一个每月更改一次的目录，并且需要根据流量量进行扩展。公司希望应用程序的延迟尽可能低。每个用户的购物车数据需要高可用性。即使用户断开连接并重新连接，用户会话数据也必须可用。\n解决方案架构师应该怎么做才能确保购物车数据始终保持不变？",
+ "options": [
+  "A. 配置一个应用程序负载均衡器，为访问 Amazon Aurora 中的目录启用粘性会话特性（会话亲和性）。",
+  "B. 配置 Amazon ElastiCache for Redis，从 Amazon DynamoDB 缓存目录数据和用户会话的购物车数据。",
+  "C. 配置 Amazon OpenSearch Service，从 Amazon DynamoDB 缓存目录数据和用户会话的购物车数据。",
+  "D. 配置一个 Amazon EC2 实例，使用 Amazon Elastic Block Store (Amazon EBS) 存储目录和购物车数据。配置自动快照。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个解决方案使用 Amazon ElastiCache for Redis 来缓存目录数据和用户会话中的购物车数据，确保了低延迟和高可用性。ElastiCache for Redis 是一个内存数据存储服务，可以快速地存取数据，同时保证了数据的持久性和可用性。",
+  "AI解析": "AWS架构设计需要满足高可用性、低延迟以及数据持久化。用户会话和购物车数据要求快速访问且持久存储。Amazon ElastiCache for Redis作为内存数据库提供低延迟读写能力，适合缓存会话及购物车数据，确保用户快速访问。结合Amazon DynamoDB作为持久层，数据自动持久化至磁盘，保障高可用性和数据不丢失。尽管目录数据每月更新，ElastiCache与DynamoDB的组合可支持动态扩展，适应流量变化。选项A的粘性会话限制扩展性，选项C的OpenSearch侧重搜索而非实时缓存，选项D的EC2+EBS缺乏自动扩展和即时数据同步能力。AWS架构最佳实践推荐使用ElastiCache加速数据访问，配合DynamoDB实现持久存储（AWS Well-Architected Framework）。"
+ }
+}

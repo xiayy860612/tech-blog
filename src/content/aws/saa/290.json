@@ -1,0 +1,18 @@
+{
+ "index": 290,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一个媒体公司使用Amazon CloudFront来提供其公开可用的流媒体视频内容。公司希望通过控制访问来保护托管在Amazon S3中的视频内容。公司的一些用户使用不支持Cookie的自定义HTTP客户端。公司的一些用户无法更改他们用于访问的硬编码URL。哪些服务或方法对用户影响最小，可以满足这些要求？（选择两个）",
+ "options": [
+  "A. 签名Cookie（Signed cookies）",
+  "B. 签名URL（Signed URLs）",
+  "C. AWS AppSync",
+  "D. JSON Web Token（JWT）",
+  "E. AWS Secrets Manager"
+ ],
+ "answer": {
+  "正确答案": "BD",
+  "解析": "签名URL（Signed URLs）：通过签名URL，您可以为特定资源生成具有过期时间的URL，以便让用户访问受保护的内容。这对于硬编码URL的用户非常有用，因为他们无需更改URL，而可以使用生成的签名URL来访问内容。\nJSON Web Token（JWT）：JWT是一种用于安全传输信息的紧凑的、自包含的令牌格式。您可以使用JWT来实现对内容的访问控制，而不依赖于Cookie。这对于不支持Cookie的自定义HTTP客户端非常有用。\n因此，签名URL和JWT是满足要求并对用户影响最小的选项。其他选项不直接满足题目中提到的要求。",
+  "AI解析": "本题核心在于通过无Cookie支持和固定URL限制实现访问控制。签名URL（B）通过动态生成包含权限参数的临时链接，既无需客户端处理Cookie又保持URL形态稳定；JWT（D）采用标准化令牌机制，可在HTTP头部或URL参数中传递验证信息，二者均满足硬编码URL限制且不依赖Cookie验证，实现精细的时效和权限管控。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2264604852",
+ "index": 881,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司通过使用Amazon\nEC2实例和AWS Lambda函数来运行其应用程序。EC2实例运行在VPC的私有子网中。Lambda函数需要直接访问EC2实例的网络以使应用程序正常工作。\n应用程序将运行1年。在1年期间，应用程序使用的Lambda函数数量将增加。公司必须尽量降低所有应用资源的成本。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 购买EC2实例的Savings Plan。将Lambda函数连接到包含EC2实例的私有子网。",
+  "B. 购买EC2实例的Savings Plan。将Lambda函数连接到相同VPC中新的公共子网。",
+  "C. 购买计算Savings Plan。将Lambda函数连接到包含EC2实例的私有子网。",
+  "D. 购买计算Savings Plan。将Lambda函数保留在Lambda服务的VPC中。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "C购买计算Savings Plan并将Lambda函数连接到包含EC2实例的私有子网可以最大程度地降低成本。计算Savings Plan可用于覆盖Lambda函数的使用成本，而将Lambda函数连接到私有子网可以确保它们能够直接访问EC2实例，从而使应用程序正常工作。",
+  "AI解析": "本题核心在于同时满足Lambda访问私有子网EC2和成本优化需求。计算Savings Plan覆盖EC2和Lambda，比单一EC2类型更灵活经济；将Lambda部署至目标私有子网可直接连通实例网络，避免跨子网或公网产生的复杂性与开销，符合长期扩展需求。"
+ }
+}

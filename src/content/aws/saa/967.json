@@ -1,0 +1,18 @@
+{
+ "qid": "2949540308",
+ "index": 967,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家金融公司使用本地搜索应用程序从各种生产者收集流数据。该应用程序提供实时更新，以支持搜索和可视化功能。\n公司计划迁移到AWS，并希望使用AWS本地解决方案。\n哪个解决方案将满足这些要求？",
+ "options": [
+  "A. 使用Amazon EC2实例来接收和处理数据流，将数据存储到Amazon S3桶中。使用Amazon Athena进行搜索。使用Amazon Managed Grafana创建可视化。",
+  "B. 使用Amazon EMR来接收和处理数据流，将数据存储到Amazon Redshift中。使用Amazon Redshift Spectrum进行搜索。使用Amazon QuickSight创建可视化。",
+  "C. 使用Amazon Elastic Kubernetes Service (Amazon EKS)来接收和处理数据流，将数据存储到Amazon DynamoDB中。使用Amazon CloudWatch创建图形仪表板来搜索和可视化数据。",
+  "D. 使用Amazon Kinesis Data Streams来接收和处理数据流，将数据存储到Amazon OpenSearch Service中。使用OpenSearch Service搜索数据。使用Amazon QuickSight创建可视化。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon Kinesis Data Streams和Amazon OpenSearch Service的优势： Amazon Kinesis\nData Streams非常适合实时流数据的收集和处理，而Amazon OpenSearch Service（之前叫Elasticsearch Service）提供强大的搜索和分析功能，可以对流数据进行高效的实时搜索。结合这两个服务，可以实现对流数据的实时处理和搜索。\n可视化方面，Amazon QuickSight 提供了丰富的数据可视化和商业智能功能，能够将数据可视化成图表和仪表板，与OpenSearch Service配合使用，能提供强大的数据分析能力。",
+  "AI解析": "AWS服务组合需要满足实时数据流处理、搜索和可视化的需求。Amazon Kinesis Data Streams专为实时数据流摄取和处理设计，能够高效处理持续生成的数据。Amazon OpenSearch Service（原Amazon Elasticsearch Service）提供实时搜索和分析能力，支持快速查询。Amazon QuickSight集成多种数据源，包括OpenSearch，适合创建可视化仪表板。其他选项中，EC2/S3/Athena组合缺乏实时处理能力；EMR/Redshift偏向批处理和大数据分析；EKS/DynamoDB/CloudWatch方案在搜索功能和实时分析上不足。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "index": 222,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司已经在Amazon Elastic Kubernetes Service（Amazon EKS）上部署了一个Java Spring Boot应用程序，该应用程序作为一个Pod在私有子网中运行。该应用程序需要将数据写入Amazon DynamoDB表。解决方案架构师必须确保应用程序能够与DynamoDB表进行交互，而不会暴露于互联网。以下哪种步骤组合可以实现这个目标？（选择两个。）",
+ "options": [
+  "A. 为EKS Pod附加具有足够权限的IAM角色。",
+  "B. 为EKS Pod附加具有足够权限的IAM用户。",
+  "C. 通过私有子网的网络ACL允许与DynamoDB表的出站连接。",
+  "D. 为DynamoDB创建一个VPC端点。",
+  "E. 将访问密钥嵌入Java Spring Boot代码中。"
+ ],
+ "answer": {
+  "正确答案": "AD",
+  "解析": "A 将IAM角色附加到EKS Pod是一种安全的方法，以便Pod可以使用角色中的临时安全凭证与DynamoDB进行交互，而不需要直接在代码中嵌入访问密钥。\nB 将IAM用户附加到EKS Pod不是一个推荐的安全做法，因为它涉及到在代码中嵌入IAM用户的访问密钥，这可能会导致安全风险。\nC 允许通过网络ACL的私有子网向DynamoDB表进行出站连接不是一个必要的步骤，因为DynamoDB通常不需要公开访问。\nD 创建一个VPC端点用于DynamoDB可以确保应用程序可以通过私有网络直接与DynamoDB通信，而不需要通过公共Internet。\nE 将访问密钥嵌入Java Spring Boot代码中是不安全的，因为访问密钥可能会被泄露，从而导致安全风险。\n因此，正确的步骤组合是A和D，以确保应用程序可以安全地与DynamoDB进行交互。",
+  "AI解析": "该题考察在Amazon EKS环境中安全访问DynamoDB的方法。AWS官方文档指出，Pod通过IAM角色（IRSA）获取临时凭证是最佳实践，而非IAM用户或硬编码密钥。VPC端点允许私有子网内的资源通过AWS内部网络直接访问DynamoDB，避免互联网暴露。网络ACL规则通常在默认情况下允许出站流量，而嵌入访问密钥存在安全风险。因此，正确组合是为Pod附加IAM角色并创建VPC端点。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2949540288",
+ "index": 947,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司想将现有的和持续的数据更改从本地的 Oracle 数据库复制到 Amazon RDS for Oracle。要复制的数据量在每天各不相同。公司希望使用 AWS Database Migration Service (AWS DMS) 进行数据复制。解决方案必须仅分配复制实例所需的容量。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 配置 AWS DMS 复制实例为 Multi-AZ 部署，以便在多个可用区中提供实例。",
+  "B. 创建一个 AWS DMS Serverless 复制任务以分析和复制数据，同时分配所需的容量。",
+  "C. 使用 Amazon EC2 Auto Scaling 根据要复制的数据量动态调整 AWS DMS 复制实例的大小。",
+  "D. 通过使用 Amazon Elastic Container Service (Amazon ECS) 的 AWS Fargate 启动类型来配置 AWS DMS 复制容量，以分析和复制数据，同时分配所需的容量。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS DMS Serverless 复制任务是 AWS DMS 的无服务器版本，它根据需要自动分配和调整容量。这意味着您不需要手动调整复制实例的容量，AWS DMS Serverless 会自动根据数据量和复制负载分配所需的资源。这种方法符合按需分配的要求，适合数据量在一天中变化的场景。",
+  "AI解析": "AWS DMS Serverless 专为按需自动扩展设计，根据工作负载动态分配资源，无需手动管理容量。Multi-AZ（A）提升可用性但无法弹性扩展。EC2 Auto Scaling（C）不适合直接调整DMS实例。Fargate（D）不适用于DMS复制任务。AWS DMS Serverless（B）文档明确其适用于动态数据量场景，自动处理容量需求。"
+ }
+}

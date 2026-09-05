@@ -1,0 +1,19 @@
+{
+ "qid": "2264604835",
+ "index": 864,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司的准实时流式应用正在\nAWS 上运行。随着数据的摄入，一个作业在数据上运行并需要 30 分钟才能完成。工作负载经常因大量传入数据而经历高延迟。解决方案架构师需要设计一个可扩展的无服务器解决方案来增强性能。解决方案架构师应该采取以下哪种组合的步骤？（选择两个。）",
+ "options": [
+  "A. 使用 Amazon Kinesis Data Firehose 来摄入数据。",
+  "B. 使用 AWS Lambda 与 AWS Step Functions 来处理数据。",
+  "C. 使用 AWS 数据库迁移服务 (AWS DMS) 来摄入数据。",
+  "D. 使用 Amazon EC2 实例在一个自动扩缩组中来处理数据。",
+  "E. 使用 AWS Fargate 与 Amazon Elastic Container Service (Amazon ECS) 来处理数据。"
+ ],
+ "answer": {
+  "正确答案": "AE",
+  "解析": "选项 A 建议使用 Amazon\nKinesis Data Firehose 来摄入数据，这是一个无服务器的托管服务，可以轻松地处理大量的流式数据。选项 E 建议使用 AWS Fargate 与 Amazon ECS 来处理数据，这是一个无服务器的容器管理服务，可以根据负载自动扩展容器。这两个选项结合起来可以提供高性能和可扩展性的解决方案，而不需要管理基础设施。其他选项涉及到使用 EC2 实例或数据库迁移服务，这些都不是无服务器的解决方案，而且需要更多的管理和配置。",
+  "AI解析": "准实时流式应用的无服务器架构设计需兼顾数据摄入和处理的扩展性。Amazon Kinesis Data Firehose 支持自动扩展、无服务器的数据摄入，适用于流式场景。AWS Fargate 提供无服务器容器计算，与 Amazon ECS 结合可动态调整容器实例数量，适应数据处理负载波动。选项 D 和 B 涉及非无服务器或非流式优化方案，选项 C 聚焦数据库迁移而非流式场景。AWS 官方文档指出，Kinesis Data Firehose 适用于数据摄取，Fargate 适用于无服务器容器化任务。"
+ }
+}

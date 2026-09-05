@@ -1,0 +1,18 @@
+{
+ "qid": "2949540259",
+ "index": 918,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司最近将其本地Oracle数据库工作负载迁移到运行在Amazon EC2内存优化Linux实例上的环境中。EC2 Linux实例使用了一个1 TB的Provisioned IOPS SSD（io1）EBS卷，具有64,000 IOPS。迁移后的数据库存储性能比本地数据库性能慢。\n哪种解决方案将改善存储性能？",
+ "options": [
+  "A. 添加更多的Provisioned IOPS SSD（io1）EBS卷。使用操作系统命令创建逻辑卷管理（LVM）条带。",
+  "B. 增加Provisioned IOPS SSD（io1）EBS卷的IOPS到超过64,000。",
+  "C. 增加Provisioned IOPS SSD（io1）EBS卷的大小到2 TB。",
+  "D. 将EC2 Linux实例更改为存储优化实例类型。不更改Provisioned IOPS SSD（io1）EBS卷。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "LVM条带：通过将多个io1卷条带化，您可以将EBS卷的I/O能力组合起来，从而提高总体的I/O性能。这种方法能够利用多个卷的IOPS总和来增强性能。\n容量和IOPS分配：虽然每个io1卷有其固定的IOPS限制，条带化可以有效提高性能，因为它分散了读写负载到多个卷上。\n操作简便：这种方法无需更改实例类型或增加卷的大小，只需要配置LVM条带即可。",
+  "AI解析": "该题核心在于EBS卷性能优化。单个Provisioned IOPS SSD（io1）卷的吞吐量受限于实例类型网络带宽和卷自身配置上限，单纯提高IOPS（B）或卷容量（C）无法突破单卷性能瓶颈，存储优化实例（D）主要针对本地存储而非EBS。通过LVM条带化（A）将I/O负载分散到多个EBS卷，可并行处理请求，显著提升聚合吞吐量，符合AWS最佳实践中\"横向扩展优于纵向扩展\"的原则。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 145,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一名解决方案架构师必须设计一个方案，使用Amazon CloudFront与Amazon S3源来存储一个静态网站。公司的安全政策要求所有网站流量都要经过AWS WAF检查。\n解决方案架构师应该如何满足这些要求？",
+ "options": [
+  "A. 配置S3存储桶策略，只接受来自AWS WAF Amazon资源名称（ARN）的请求。",
+  "B. 配置Amazon CloudFront在从S3源请求内容之前将所有传入请求转发给AWS WAF。",
+  "C. 配置一个安全组，允许Amazon CloudFront IP地址访问Amazon S3。将AWS WAF关联到CloudFront。",
+  "D. 配置Amazon CloudFront和Amazon S3使用源访问标识（OAI）来限制对S3存储桶的访问。在分发上启用AWS WAF。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "选项D使用源访问标识（OAI）来限制对Amazon S3存储桶的访问，这可以确保只有Amazon CloudFront分发能够访问S3存储桶中的内容。同时，在分发上启用AWS WAF可满足安全政策要求，以确保所有网站流量都经过AWS WAF检查。选项A不提供对S3存储桶的限制访问，选项B会将所有请求都发送到AWS WAF，不会限制S3的访问，选项C配置安全组不适用于S3存储桶。因此，选项D是最佳选择。",
+  "AI解析": "使用Amazon CloudFront与Amazon S3源部署静态网站时，需确保所有流量经过AWS WAF检查并遵循安全策略。AWS官方文档建议，为限制S3存储桶仅通过CloudFront访问，应配置源访问标识（OAI），避免直接暴露S3。同时，AWS WAF需关联至CloudFront分发以检查传入流量。选项A混淆了S3策略与WAF的ARN；选项B错误描述请求转发机制；选项C误用安全组（S3不支持安全组）。选项D正确结合OAI和WAF部署，符合安全要求。"
+ }
+}

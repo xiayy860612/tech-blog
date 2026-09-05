@@ -1,0 +1,18 @@
+{
+ "qid": "1908085511",
+ "index": 777,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个数据分析公司在全球范围内有80个办公室。每个办公室托管1 PB的数据，并且具有1至2 Gbps的互联网带宽。该公司需要执行一次性的大量数据迁移，从其办公室迁移到Amazon S3。公司必须在4周内完成迁移。\n哪种解决方案在成本上最具有效性？",
+ "options": [
+  "A. 对每个办公室建立一个新的10 Gbps AWS Direct Connect连接。将数据传输到Amazon S3。",
+  "B. 使用多个AWS Snowball Edge存储优化设备来存储和传输数据到Amazon S3。",
+  "C. 使用AWS Snowmobile来存储和传输数据到Amazon S3。",
+  "D. 设置AWS Storage Gateway Volume Gateway来传输数据到Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "使用多个AWS Snowball Edge存储优化设备是最具成本效益的解决方案。Snowball Edge设备可以离线存储大量数据，并在完成后直接将数据传输到Amazon S3，而不需要昂贵的网络带宽连接或特殊的物理设备。Snowball Edge还提供了安全的数据传输和存储功能，适用于一次性大规模数据迁移。",
+  "AI解析": "AWS在大量数据迁移场景中推荐使用Snow系列设备。根据AWS官方文档，当数据量超过网络带宽能力时，物理设备传输更具成本效益。选项A的Direct Connect受限于带宽，4周内无法完成1PB传输；选项C的Snowmobile适用于EB级数据，单个办公室1PB规模不经济；选项D的Storage Gateway用于持续同步而非批量迁移。选项B的Snowball Edge专为PB级传输设计，通过并行运输可满足时间要求。"
+ }
+}

@@ -1,0 +1,19 @@
+{
+ "qid": "1908085505",
+ "index": 771,
+ "total": 1018,
+ "type": "多选题",
+ "question": "公司使用 Docker 容器构建了一个应用程序，并需要在 AWS 云中运行该应用程序。公司希望使用托管服务来托管该应用程序。\n解决方案必须根据各个容器服务的需求适当地进行扩展和缩减。解决方案还不能增加额外的运维负担或需要管理的基础架构。\n哪些解决方案将满足这些要求？（选择两个。）",
+ "options": [
+  "A. 使用 Amazon Elastic Container Service (Amazon ECS) 和 AWS Fargate。",
+  "B. 使用 Amazon Elastic Kubernetes Service (Amazon EKS) 和 AWS Fargate。",
+  "C. 配置 Amazon API Gateway API。将 API 连接到 AWS Lambda 以运行容器。",
+  "D. 使用 Amazon Elastic Container Service (Amazon ECS) 和 Amazon EC2 工作节点。",
+  "E. 使用 Amazon Elastic Kubernetes Service (Amazon EKS) 和 Amazon EC2 工作节点。"
+ ],
+ "answer": {
+  "正确答案": "AB",
+  "解析": "选项 A 和 B 都使用了 AWS Fargate，这是一种托管的容器服务，无需管理底层的基础架构。它可以根据应用程序的需求自动扩展和缩减容器。选项 C 使用了 AWS Lambda，但无法直接运行 Docker 容器。选项 D 和 E 需要管理 EC2 实例作为工作节点，增加了运维负担。",
+  "AI解析": "题目考察在AWS中运行容器化应用时选择合适的托管服务，需满足自动扩展且无需管理基础设施。AWS官方文档指出，ECS和EKS均为容器编排服务，当与Fargate结合时，由AWS负责底层服务器管理，无需用户维护EC2实例，实现无服务器化容器部署。选项D、E涉及EC2实例，需自行管理节点；选项C中的Lambda主要用于无服务器函数，非容器托管场景。A、B通过Fargate消除了基础设施管理，符合题干要求。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 284,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司通过使用Amazon S3托管其静态网站。公司希望在其网页中添加一个联系表单。该联系表单将具有用于用户输入姓名、电子邮件地址、电话号码和用户留言的动态服务器端组件。该公司预计每月网站访问次数将少于100次。\n哪种解决方案能够以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 在Amazon Elastic Container Service（Amazon ECS）中托管动态联系表单页面。设置Amazon Simple Email Service（Amazon SES）以连接到任何第三方电子邮件提供商。",
+  "B. 创建一个带有AWS Lambda后端的Amazon API Gateway端点，该后端调用Amazon Simple Email Service（Amazon SES）。",
+  "C. 通过部署Amazon Lightsail将静态网页转换为动态。使用客户端脚本编写联系表单。将表单与Amazon WorkMail集成。",
+  "D. 创建一个t2.micro Amazon EC2实例。部署一个LAMP（Linux，Apache，MySQL，PHP/Perl/Python）堆栈以托管网页。使用客户端脚本编写联系表单。将表单与Amazon WorkMail集成。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "针对预期的每月少量访问的要求，采用AWS Lambda和Amazon API Gateway是最经济的解决方案。这种方法只在需要时调用资源，因此适用于低流量需求，而且不需要维护和管理服务器。AWS Lambda可响应网页中的用户输入，并将数据传递到Amazon SES，从而满足发送电子邮件的联系表单要求。其他选项涉及部署实例或容器，这可能对于预期较低的访问量来说是不必要的，并且可能会带来更高的成本和复杂性。",
+  "AI解析": "Amazon S3适用于静态网站托管，但处理动态表单需服务器端组件。问题要求在低流量下以最低成本实现。AWS文档强调Lambda与API Gateway的无服务器架构按请求计费，配合SES发送邮件，无需预置或持续运行资源。选项A使用ECS涉及容器管理，存在持续成本；选项C/D涉及维护服务器实例或客户端处理安全问题。选项B利用Lambda的按需计费，API Gateway的低成本，以及SES的邮件服务，最适合低流量场景。"
+ }
+}

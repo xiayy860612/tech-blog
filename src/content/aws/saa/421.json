@@ -1,0 +1,18 @@
+{
+ "qid": "1529124345",
+ "index": 421,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司正在AWS上开发一个新的机器学习（ML）模型解决方案。这些模型被开发为独立的微服务，它们在启动时从Amazon S3获取约1 GB的模型数据并将数据加载到内存中。用户通过异步API访问这些模型。用户可以发送请求或一批请求，并指定结果应该发送到哪里。\n公司向数百名用户提供模型。模型的使用模式不规律。一些模型可能在数天或数周内未被使用。其他模型可能会同时接收数千个请求。\n根据这些要求，解决方案架构师应该推荐以下哪个设计？",
+ "options": [
+  "A. 将API的请求定向到网络负载均衡器（NLB）。将模型部署为由NLB调用的AWS Lambda函数。",
+  "B. 将API的请求定向到应用负载均衡器（ALB）。将模型部署为Amazon Elastic Container Service (Amazon ECS)服务，这些服务从Amazon Simple Queue Service (Amazon SQS)队列中读取请求。使用AWS App Mesh根据SQS队列的大小来扩展ECS集群的实例。",
+  "C. 将API的请求定向到Amazon Simple Queue Service (Amazon SQS)队列。将模型部署为由SQS事件调用的AWS Lambda函数。使用AWS Auto Scaling根据SQS队列的大小增加Lambda函数的vCPU数量。",
+  "D. 将API的请求定向到Amazon Simple Queue Service (Amazon SQS)队列。将模型部署为从队列中读取的Amazon Elastic Container Service (Amazon ECS)服务。根据队列的大小，启用Amazon ECS的自动扩展功能，用于集群和服务的副本。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个方案考虑了模型使用模式的不规则性，可以有效地应对不同负载情况。通过将请求路由到ALB，可以轻松处理用户请求。使用Amazon ECS来部署模型，它允许更灵活地处理从SQS队列中读取的请求，而AWS App Mesh可以根据SQS队列的大小自动扩展ECS集群的实例，以应对不同的负载需求。这种方式使系统能够有效地扩展和缩减，以适应不同的使用情况，提供了更好的弹性。",
+  "AI解析": "AWS架构设计题，考查异步处理和弹性扩展能力。异步API需解耦请求处理与响应，使用SQS缓冲请求。模型需常驻内存且应对突发流量，ECS适合长时间运行并加载大模型数据，结合SQS队列大小自动扩展实例应对需求波动。ALB路由请求至ECS服务，App Mesh在此场景用于服务间通信管理和自动扩展策略。选项B组合ALB、ECS、SQS和App Mesh，符合异步处理、弹性扩展需求。选项C和D中Lambda冷启动加载模型效率低，选项A的Lambda同样存在此问题。ECS保持模型在内存，避免重复加载，通过SQS队列深度触发弹性伸缩，适应使用模式不规律场景。"
+ }
+}

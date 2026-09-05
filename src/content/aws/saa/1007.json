@@ -1,0 +1,18 @@
+{
+ "qid": "2949543547",
+ "index": 1007,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在单个\nAmazon EC2 按需实例上托管一个网站分析应用程序。该分析应用程序具有很高的弹性，并设计为无状态模式运行。\n公司注意到该应用程序在繁忙时段表现出性能下降并出现 5xx 错误。公司需要使应用程序无缝扩展。\n哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 创建一个应用程序的 Amazon Machine Image (AMI)。使用 AMI 启动第二个 EC2 按需实例。使用应用程序负载均衡器将负载分配到两个 EC2 实例。",
+  "B. 创建一个应用程序的 Amazon Machine Image (AMI)。使用 AMI 启动第二个 EC2 按需实例。使用 Amazon Route 53 加权路由将负载分配到两个 EC2 实例。",
+  "C. 创建一个 AWS Lambda 函数来停止 EC2 实例并更改实例类型。创建一个 Amazon CloudWatch 警报，在 CPU 利用率超过 75% 时调用 Lambda 函数。",
+  "D. 创建一个应用程序的 Amazon Machine Image (AMI)。将 AMI 应用到启动模板。创建一个 Auto Scaling 组，包括启动模板。配置启动模板以使用 Spot Fleet。将应用程序负载均衡器附加到 Auto Scaling 组。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "这个选项是最佳选择，因为它通过 Auto Scaling 组实现了应用程序的自动扩展，能够根据流量动态增加或减少 EC2 实例的数量。同时，使用 Spot Fleet 可以在降低成本的同时实现弹性扩展。应用程序负载均衡器可以有效地分配流量，确保无缝处理高负载。",
+  "AI解析": "AWS架构设计最佳实践中，无状态应用程序的高弹性和成本优化通常通过自动扩展结合Spot实例实现。Amazon EC2 Auto Scaling可根据负载动态调整实例数量，Spot Fleet利用竞价实例显著降低成本（AWS官方文档：EC2 Auto Scaling与Spot最佳实践）。选项D整合启动模板、Auto Scaling组及Spot Fleet，自动扩展实例规模的同时优化成本。负载均衡器确保流量分配，解决单实例性能瓶颈。其他选项或依赖手动扩展（A/B），或采用停机调整（C），无法满足无缝扩展及成本效益需求。"
+ }
+}

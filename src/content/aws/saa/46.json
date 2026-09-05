@@ -1,0 +1,17 @@
+{
+ "index": 46,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司每月存储通话记录文件。用户在通话后的1年内随机访问文件，但在1年后之后，用户很少访问这些文件。公司希望通过让用户能够尽快查询和检索不足1年的文件来优化其解决方案。对于检索较旧的文件有一定的延迟是可以接受的。\n哪种解决方案可以最具成本效益地满足这些要求？",
+ "options": [
+  "A. 使用Amazon S3 Glacier Instant Retrieval将文件单独存储，并附带标签。通过查询标签来从S3 Glacier Instant Retrieval中检索文件。",
+  "B. 使用Amazon S3 Intelligent-Tiering将文件单独存储。使用S3生命周期策略在1年后将文件移到S3 Glacier Flexible Retrieval中。使用Amazon Athena在Amazon S3中查询和检索文件。使用S3 Glacier Select在S3 Glacier中查询和检索文件。",
+  "C. 使用Amazon S3 Standard存储将文件单独存储，并附带标签。在Amazon S3 Standard存储中存储每个存档的搜索元数据。使用S3生命周期策略在1年后将文件移到S3 Glacier Instant Retrieval中。通过从Amazon S3中搜索元数据来查询和检索文件。",
+  "D. 使用Amazon S3 Standard存储将文件单独存储。使用S3生命周期策略在1年后将文件移到S3 Glacier Deep Archive中。在Amazon RDS中存储搜索元数据。通过Amazon RDS查询文件，并从S3 Glacier Deep Archive中检索文件。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "A使用Amazon S3 Glacier Instant Retrieval虽然可以提供快速检索，但它通常不适用于文件，因为它主要用于归档数据。此选项可能会导致高成本。\nB Amazon S3 Intelligent-Tiering是一个智能存储类别，但在1年后将文件移到S3 Glacier Flexible Retrieval中可能会导致相对较高的费用。此外，使用S3 Glacier Select可能需要较长时间来检索文件。\nC 选项C中，使用Amazon S3 Standard存储和S3 Glacier Instant Retrieval的组合是成本效益最高的选择。通过在Amazon S3中存储搜索元数据，您可以快速查询和检索不足1年的文件，同时使用S3 Glacier Instant Retrieval保留较旧的文件。\nD 使用Amazon S3 Standard存储将文件移到S3 Glacier Deep Archive后，检索文件可能会有较长的延迟，并且需要更多时间和成本。此选项可能会导致较高的总体成本。",
+  "AI解析": "该题考察AWS存储服务及数据生命周期管理的最佳实践。Amazon S3 Standard适用于频繁访问的数据，结合标签管理便于分类。S3生命周期策略在1年后将数据转至S3 Glacier Instant Retrieval，后者虽为归档存储但支持毫秒级检索满足旧文件偶尔访问需求。元数据单独存储在S3 Standard中，查询时无需访问归档层，减少延迟。选项中，C通过分层存储和元数据分离实现成本与性能平衡，而其他选项在检索速度、元数据管理或存储成本上存在不足。"
+ }
+}

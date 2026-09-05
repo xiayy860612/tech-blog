@@ -1,0 +1,18 @@
+{
+ "qid": "1908084748",
+ "index": 631,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在创建一个新的应用程序，将存储大量数据。这些数据将每小时进行分析，并将由部署在多个可用区的多个Amazon EC2 Linux实例进行修改。在接下来的6个月中，所需的存储空间将继续增长。\n解决方案架构师应该推荐哪种存储解决方案以满足这些要求？",
+ "options": [
+  "A. 将数据存储在Amazon S3 Glacier中。更新S3 Glacier保险库策略以允许应用程序实例访问。",
+  "B. 将数据存储在Amazon Elastic Block Store (Amazon EBS)卷中。将EBS卷挂载到应用程序实例上。",
+  "C. 将数据存储在Amazon Elastic File System (Amazon EFS)文件系统中。将文件系统挂载到应用程序实例上。",
+  "D. 将数据存储在Amazon Elastic Block Store (Amazon EBS) Provisioned IOPS卷中，共享给应用程序实例。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Amazon Elastic File System (Amazon EFS)是一个可以在多个Amazon EC2实例之间共享的托管文件存储服务。在这种情况下，由于数据需要被多个EC2实例进行分析和修改，并且存储需求将继续增长，使用Amazon EFS是一个合适的选择。EFS提供了可扩展的文件存储，并且可以在多个可用区进行跨区域访问。其他选项中，S3 Glacier适用于归档数据而不适用于频繁修改的数据，EBS是块存储而非文件存储，而EBS Provisioned IOPS卷则需要更多的管理和配置。",
+  "AI解析": "Amazon EFS是一个适用于多个EC2实例共享访问的托管文件存储服务，具备跨可用区的高可用性和自动扩展能力，无需预置容量。《AWS存储服务概述》指出，EFS设计用于需要低延迟访问、共享文件系统的场景，尤其适合频繁修改和多实例并发写入。A选项Glacier适用于长期归档，访问延迟高；B和D选项的EBS卷为块存储，单实例挂载且容量需手动扩展，不适用跨可用区共享。EFS自动扩展特性适应存储持续增长需求。"
+ }
+}

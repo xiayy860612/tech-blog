@@ -1,0 +1,18 @@
+{
+ "qid": "1529124334",
+ "index": 410,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个Web应用程序，其使用模式是间歇性的。每个月初使用很频繁，每周初使用较多，而在工作周内使用不可预测。该应用程序由一个运行在数据中心内的Web服务器和一个MySQL数据库服务器组成。公司希望将应用程序迁移到AWS云，并需要选择一个不需要修改数据库的成本效益数据库平台。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. Amazon DynamoDB",
+  "B. Amazon RDS for MySQL",
+  "C. 兼容MySQL的Amazon Aurora Serverless",
+  "D. 在Amazon EC2中部署MySQL，使用Auto Scaling组"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C建议使用兼容MySQL的Amazon Aurora Serverless。这是一个托管数据库服务，可以提供高度的弹性，因为它是无服务器的，根据工作负载需求自动缩放，而且兼容MySQL，不需要对现有MySQL数据库进行修改。这使它成为适合应对间歇性和不可预测性使用模式的成本效益数据库解决方案。\n选项A的Amazon DynamoDB通常用于NoSQL数据库需求，与MySQL不兼容。\n选项B的Amazon RDS for MySQL也是一个不错的选择，但它需要维护数据库实例，而且不如Aurora Serverless具有相同的弹性和自动缩放能力。\n选项D建议使用Amazon EC2中部署MySQL，使用Auto Scaling组，但这需要更多的管理工作和成本，并不提供与Aurora Serverless相同的无服务器、弹性和自动缩放特性。最佳答案是选项C。",
+  "AI解析": "该场景核心需求在于应对间歇性、不可预测的数据库负载，同时保持MySQL兼容性并实现成本优化。Amazon Aurora Serverless基于自动伸缩能力，可在使用高峰时秒级扩展计算资源、低谷时归零计费，完美匹配流量波动特性；其完全兼容MySQL协议，无需修改现有数据库结构，相较固定规格的RDS或需运维的EC2方案，显著降低闲置资源成本，实现按实际用量付费的效益模型。"
+ }
+}

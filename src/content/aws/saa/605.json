@@ -1,0 +1,18 @@
+{
+ "qid": "1908084722",
+ "index": 605,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一位解决方案架构师正在设计一个应用程序，允许业务用户将对象上传到Amazon S3。解决方案需要最大程度地提高对象的持久性。对象还必须随时和在任何时间段内可用。用户将在上传对象后的前30天内频繁访问对象，但在30天以上的时间内，用户访问对象的可能性要小得多。\n哪种解决方案以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 将所有对象存储在S3 Standard中，使用S3生命周期规则将对象在30天后迁移到S3 Glacier。",
+  "B. 将所有对象存储在S3 Standard中，使用S3生命周期规则将对象在30天后迁移到S3 Standard-Infrequent Access（S3 Standard-IA）。",
+  "C. 将所有对象存储在S3 Standard中，使用S3生命周期规则将对象在30天后迁移到S3 One Zone-Infrequent Access（S3 One Zone-IA）。",
+  "D. 将所有对象存储在S3 Intelligent-Tiering中，使用S3生命周期规则将对象在30天后迁移到S3 Standard-Infrequent Access（S3 Standard-IA）。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "将所有对象存储在 S3 Standard 中，然后使用 S3 生命周期规则将对象在 30 天后迁移到 S3 Standard-IA。这样做可以确保对象在上传后的前 30 天内保持在高持久性和高可用性的 S3 Standard 存储类别中，以满足用户频繁访问的需求。在 30 天之后，对象迁移到低成本的 S3 Standard-IA 存储类别中，以降低存储成本，同时保持对象可用性。",
+  "AI解析": "Amazon S3存储类别的生命周期配置及成本优化。来源：AWS文档对不同S3存储类别的描述。选项A迁移到Glacier会引入检索延迟，违反随时可用要求；选项C使用One Zone-IA仅在一个可用区存储，对象持久性降低；选项D的Intelligent-Tiering虽然自动分层，但迁移到Standard-IA无需额外监控费用，直接使用Standard转Standard-IA更简单且符合始终可用的需求。选项B在保证持久性和可用性的前提下，将不常访问的对象转入更低成本的Standard-IA存储，满足成本效益。"
+ }
+}

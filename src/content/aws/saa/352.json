@@ -1,0 +1,18 @@
+{
+ "qid": "1529124273",
+ "index": 352,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在单个可用区的Amazon EC2实例上托管了一个三层Web应用程序。Web应用程序使用托管在EC2实例上的自管理MySQL数据库，该数据库存储在Amazon Elastic Block Store（Amazon EBS）卷中。MySQL数据库目前使用1 TB的Provisioned IOPS SSD（io2）EBS卷。公司预计在峰值时段，读和写的流量都将达到1,000 IOPS。\n\n公司希望最大限度减少任何中断，稳定性能并降低成本，同时保留双倍IOPS的容量。公司希望将数据库层移动到一个完全托管、高可用和容错的解决方案。\n\n哪种解决方案将最经济地满足这些要求？",
+ "options": [
+  "A. 使用Amazon RDS for MySQL DB实例的Multi-AZ部署，搭配io2 Block Express EBS卷。",
+  "B. 使用Amazon RDS for MySQL DB实例的Multi-AZ部署，搭配General Purpose SSD（gp2）EBS卷。",
+  "C. 使用Amazon S3 Intelligent-Tiering访问层。",
+  "D. 使用两个大型EC2实例以主-备模式托管数据库。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "本题暂不支持生成解析"
+ }
+}

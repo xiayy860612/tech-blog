@@ -1,0 +1,18 @@
+{
+ "qid": "1908085517",
+ "index": 783,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司的营销数据从多个来源上传到一个Amazon S3存储桶中。一系列数据准备作业将数据聚合用于报告。数据准备作业需要定期并行运行。一些作业需要稍后按特定顺序运行。公司希望消除作业错误处理、重试逻辑和状态管理的操作负担。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS Lambda函数在数据上传到S3存储桶后立即处理数据。定期调用其他Lambda函数。",
+  "B. 使用Amazon Athena处理数据。使用Amazon EventBridge Scheduler定期调用Athena。",
+  "C. 使用AWS Glue DataBrew处理数据。使用AWS Step Functions状态机来运行DataBrew数据准备作业。",
+  "D. 使用AWS Data Pipeline处理数据。安排Data Pipeline在午夜时分处理数据一次。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "解决方案C最符合要求。AWS Glue DataBrew是一种用于数据准备和数据清洗的托管服务，可以方便地处理营销数据。AWS Step Functions可以管理作业的顺序和并行运行，并处理作业的错误处理、重试逻辑和状态管理。其他选项中的解决方案缺少特定的作业顺序管理和错误处理、重试逻辑。",
+  "AI解析": "题目考察如何选择AWS服务来管理数据准备作业的编排、错误处理和状态管理等需求。AWS官方文档指出，AWS Step Functions专用于协调多个AWS服务，实现复杂工作流的自动化，包括并行执行、错误重试及状态跟踪。Glue DataBrew提供无代码数据清洗，适合数据准备。选项C结合两者，通过Step Functions编排DataBrew作业，满足并行运行、顺序处理和自动化错误处理的要求。选项A和B缺乏内置工作流管理，选项D的Data Pipeline在复杂作业调度和错误处理上不如Step Functions灵活。因此选项C正确。"
+ }
+}

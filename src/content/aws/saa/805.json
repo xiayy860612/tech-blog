@@ -1,0 +1,18 @@
+{
+ "qid": "2264604776",
+ "index": 805,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个社交媒体公司有一些收集和处理数据的工作负载。这些工作负载将数据存储在本地NFS存储中。数据存储无法快速扩展以满足公司不断扩大的业务需求。公司希望将当前的数据存储迁移到AWS。哪种解决方案将以最具成本效益的方式满足这些要求？",
+ "options": [
+  "A. 设置一个AWS Storage Gateway卷网关。使用Amazon S3生命周期策略将数据转换为适当的存储类别。",
+  "B. 设置一个AWS Storage Gateway Amazon S3文件网关。使用Amazon S3生命周期策略将数据转换为适当的存储类别。",
+  "C. 使用Amazon Elastic File System（Amazon EFS）的标准低频访问（Standard-IA）存储类别。激活低频访问生命周期策略。",
+  "D. 使用Amazon Elastic File System（Amazon EFS）的单区域低频访问（One Zone-IA）存储类别。激活低频访问生命周期策略。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B提供了最佳的解决方案。通过设置AWS Storage Gateway Amazon S3文件网关，可以将本地NFS存储中的数据转换为Amazon S3存储。然后可以使用Amazon S3生命周期策略来将数据转换为适当的存储类别，以满足成本和性能要求。其他选项都提到了Amazon S3和Amazon EFS，但没有提及如何将本地NFS存储中的数据迁移到AWS。",
+  "AI解析": "本题聚焦NFS数据存储迁移至AWS的扩展性与成本优化方案。核心知识点在于区分文件网关与卷网关的功能差异：S3文件网关直接提供NFS/SMB协议支持，将数据存储为S3对象，天然具备无限扩展能力，同时通过生命周期策略自动降冷存储层级（如标准转低频访问），实现成本优化。EFS虽为托管NFS服务，但其低频存储单价高于S3标准层级，且生命周期策略仅触发存储类别转换，无法叠加S3更灵活的多级存储策略。Storage Gateway卷网关映射为块存储（iSCSI），与原始NFS架构不兼容，故排除。"
+ }
+}

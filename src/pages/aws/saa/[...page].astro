@@ -1,0 +1,404 @@
+---
+import type { GetStaticPaths, Page } from 'astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import Header from '../../../components/Header.astro';
+import SaaQuestionCard from '../../../components/SaaQuestionCard.astro';
+import { SITE_TITLE } from '../../../consts';
+
+// 一题一页：paginate 的 pageSize 设成 1，第 N 题就是第 N 页，
+// 上一题 / 下一题直接用 page.url.prev / page.url.next，无需客户端状态。
+export const getStaticPaths = (async ({ paginate }) => {
+	const questions = (await getCollection('awsSaa')).sort((a, b) => a.data.index - b.data.index);
+	return paginate(questions, { pageSize: 1 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props as { page: Page<CollectionEntry<'awsSaa'>> };
+const question = page.data[0];
+const progress = Math.round((question.data.index / question.data.total) * 100);
+
+const title = 'AWS SAA';
+const description = 'AWS Certified Solutions Architect – Associate 题库，点击卡片查看答案';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead
+			title={`${title} 第 ${question.data.index} 题 | ${SITE_TITLE}`}
+			description={description}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="quiz-head">
+				<h1>AWS SAA 题库</h1>
+				<p class="intro">
+					点击卡片任意位置翻面查看正确答案与解析，也可以用键盘 <kbd>←</kbd> <kbd>→</kbd> 切换题目。
+				</p>
+				<div
+					class="quiz-progress"
+					role="progressbar"
+					aria-valuenow={question.data.index}
+					aria-valuemin="1"
+					aria-valuemax={question.data.total}
+					aria-label={`题目进度：第 ${question.data.index} / ${question.data.total} 题`}
+				>
+					<div class="quiz-progress-track">
+						<div class="quiz-progress-fill" style={`width: ${progress}%`}></div>
+					</div>
+					<span class="quiz-progress-label" aria-hidden="true">{progress}%</span>
+				</div>
+			</div>
+
+			<SaaQuestionCard question={question} minHeight="22rem" />
+
+			<nav
+				class="pager"
+				aria-label="题目导航"
+				data-pager
+				data-prev={page.url.prev ?? ''}
+				data-next={page.url.next ?? ''}
+			>
+				{
+					page.url.prev ? (
+						<a class="step" href={page.url.prev} rel="prev" data-dir="prev">
+							<svg viewBox="0 0 16 16" aria-hidden="true" width="14" height="14">
+								<path
+									fill="currentColor"
+									d="M9.78 3.22a.75.75 0 0 1 0 1.06L6.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0z"
+								/>
+							</svg>
+							<span>上一题</span>
+						</a>
+					) : (
+						<span class="step disabled">
+							<svg viewBox="0 0 16 16" aria-hidden="true" width="14" height="14">
+								<path
+									fill="currentColor"
+									d="M9.78 3.22a.75.75 0 0 1 0 1.06L6.06 8l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0z"
+								/>
+							</svg>
+							<span>上一题</span>
+						</span>
+					)
+				}
+
+				<form class="jump" data-jump data-last={page.lastPage}>
+					<label class="sr-only" for="jump-input">
+						跳转到题号
+					</label>
+					<span class="counter">
+						第
+						<input
+							id="jump-input"
+							name="index"
+							type="number"
+							min="1"
+							max={page.lastPage}
+							value={question.data.index}
+							inputmode="numeric"
+						/>
+						/ {page.lastPage} 题
+					</span>
+					<button type="submit">跳转</button>
+				</form>
+
+				{
+					page.url.next ? (
+						<a class="step" href={page.url.next} rel="next" data-dir="next">
+							<span>下一题</span>
+							<svg viewBox="0 0 16 16" aria-hidden="true" width="14" height="14">
+								<path
+									fill="currentColor"
+									d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z"
+								/>
+							</svg>
+						</a>
+					) : (
+						<span class="step disabled">
+							<span>下一题</span>
+							<svg viewBox="0 0 16 16" aria-hidden="true" width="14" height="14">
+								<path
+									fill="currentColor"
+									d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06z"
+								/>
+							</svg>
+						</span>
+					)
+				}
+			</nav>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: 820px;
+	}
+	.quiz-head {
+		margin-bottom: 1.75rem;
+	}
+	.intro {
+		margin-bottom: 1.1rem;
+		color: rgb(var(--gray));
+		font-size: 0.9em;
+	}
+	kbd {
+		display: inline-block;
+		padding: 0.05em 0.5em;
+		font: inherit;
+		font-size: 0.85em;
+		border: 1px solid rgb(var(--gray-light));
+		border-bottom-width: 2px;
+		border-radius: 5px;
+		background: #fff;
+	}
+	.quiz-progress {
+		display: flex;
+		align-items: center;
+		gap: 0.75em;
+	}
+	.quiz-progress-track {
+		flex: 1;
+		height: 8px;
+		border-radius: 999px;
+		background: rgb(var(--gray-light));
+		overflow: hidden;
+	}
+	.quiz-progress-fill {
+		height: 100%;
+		min-width: 6px;
+		border-radius: inherit;
+		background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+		transition: width 0.4s ease;
+	}
+	.quiz-progress-label {
+		font-size: 0.78em;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		color: rgb(var(--gray));
+		white-space: nowrap;
+	}
+	.pager {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+		margin-top: 1.75rem;
+		font-size: 0.85em;
+	}
+	.step {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
+		min-height: 2.4em;
+		padding: 0.45em 1.1em;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 999px;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+		white-space: nowrap;
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease,
+			transform 0.15s ease;
+	}
+	a.step:hover {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+		transform: translateY(-1px);
+	}
+	a.step:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+	.step.disabled {
+		color: rgb(var(--gray));
+		opacity: 0.45;
+	}
+	.jump {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		color: rgb(var(--gray-dark));
+	}
+	.counter {
+		white-space: nowrap;
+	}
+	.jump input {
+		width: 5em;
+		padding: 0.3em 0.5em;
+		margin: 0 0.3em;
+		font: inherit;
+		font-size: 1em;
+		text-align: center;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 6px;
+	}
+	.jump input:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+	}
+	.jump button {
+		font: inherit;
+		font-size: 1em;
+		min-height: 2.2em;
+		padding: 0.4em 0.9em;
+		color: #fff;
+		background: var(--accent);
+		border: none;
+		border-radius: 999px;
+		cursor: pointer;
+		transition: background 0.15s ease;
+	}
+	.jump button:hover {
+		background: var(--accent-dark);
+	}
+	.jump button:focus-visible {
+		outline: 2px solid var(--accent-dark);
+		outline-offset: 2px;
+	}
+	@media (max-width: 720px) {
+		.pager {
+			justify-content: center;
+		}
+		.step span {
+			display: none;
+		}
+		.step {
+			padding: 0.6em 0.9em;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.step,
+		.quiz-progress-fill,
+		.jump button {
+			transition: none;
+		}
+	}
+</style>
+
+<style is:global>
+	/* 题目之间翻页时用跨文档 View Transitions 做一个轻量的滑入滑出效果；
+	   不支持的浏览器会自动退化成普通的整页跳转，属于渐进增强。 */
+	@media (prefers-reduced-motion: no-preference) {
+		@view-transition {
+			navigation: auto;
+		}
+
+		@keyframes saa-slide-out-left {
+			to {
+				transform: translateX(-4%);
+				opacity: 0;
+			}
+		}
+		@keyframes saa-slide-in-right {
+			from {
+				transform: translateX(4%);
+				opacity: 0;
+			}
+		}
+		@keyframes saa-slide-out-right {
+			to {
+				transform: translateX(4%);
+				opacity: 0;
+			}
+		}
+		@keyframes saa-slide-in-left {
+			from {
+				transform: translateX(-4%);
+				opacity: 0;
+			}
+		}
+
+		html:active-view-transition-type(next)::view-transition-old(root) {
+			animation: 160ms ease-in both saa-slide-out-left;
+		}
+		html:active-view-transition-type(next)::view-transition-new(root) {
+			animation: 220ms ease-out both saa-slide-in-right;
+		}
+		html:active-view-transition-type(prev)::view-transition-old(root) {
+			animation: 160ms ease-in both saa-slide-out-right;
+		}
+		html:active-view-transition-type(prev)::view-transition-new(root) {
+			animation: 220ms ease-out both saa-slide-in-left;
+		}
+	}
+</style>
+
+<script>
+	const pager = document.querySelector<HTMLElement>('[data-pager]');
+	const jump = document.querySelector<HTMLFormElement>('[data-jump]');
+
+	const hrefFor = (index: number) => (index === 1 ? '/aws/saa' : `/aws/saa/${index}`);
+
+	// 记下本次导航的方向，加载到下一页时据此选一个滑入/滑出动画（见下面的 pagereveal）。
+	// 只支持 View Transitions 的浏览器才会用到；其它浏览器忽略这个值也没关系。
+	const DIRECTION_KEY = 'saa-vt-direction';
+	const rememberDirection = (direction: 'next' | 'prev') => {
+		try {
+			sessionStorage.setItem(DIRECTION_KEY, direction);
+		} catch {
+			/* 隐私模式下 sessionStorage 可能不可用，忽略即可，退化成无方向的默认过渡。 */
+		}
+	};
+
+	pager?.querySelectorAll<HTMLAnchorElement>('a.step[data-dir]').forEach((link) => {
+		link.addEventListener('click', () => {
+			const dir = link.dataset.dir;
+			if (dir === 'next' || dir === 'prev') rememberDirection(dir);
+		});
+	});
+
+	jump?.addEventListener('submit', (event) => {
+		event.preventDefault();
+		const input = jump.elements.namedItem('index') as HTMLInputElement;
+		const last = Number(jump.dataset.last);
+		const index = Number(input.value);
+		if (!Number.isInteger(index) || index < 1 || index > last) {
+			input.reportValidity();
+			return;
+		}
+		location.href = hrefFor(index);
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.metaKey || event.ctrlKey || event.altKey) return;
+		// 正在题号输入框里按方向键调数字时不要翻页。
+		const target = event.target;
+		if (target instanceof Element && target.closest('input, textarea, select')) return;
+
+		if (event.key === 'ArrowLeft' && pager?.dataset.prev) {
+			rememberDirection('prev');
+			location.href = pager.dataset.prev;
+		} else if (event.key === 'ArrowRight' && pager?.dataset.next) {
+			rememberDirection('next');
+			location.href = pager.dataset.next;
+		}
+	});
+
+	// 跨文档 View Transitions：加载到新页面时，把上面记下的方向翻译成
+	// CSS 里 `:active-view-transition-type()` 认识的过渡类型。
+	if ('onpagereveal' in window) {
+		window.addEventListener('pagereveal', (event: any) => {
+			if (!event.viewTransition) return;
+			let direction: string | null = null;
+			try {
+				direction = sessionStorage.getItem(DIRECTION_KEY);
+				sessionStorage.removeItem(DIRECTION_KEY);
+			} catch {
+				/* 忽略：读不到就用默认过渡。 */
+			}
+			if (direction === 'next' || direction === 'prev') {
+				event.viewTransition.types.add(direction);
+			}
+		});
+	}
+</script>

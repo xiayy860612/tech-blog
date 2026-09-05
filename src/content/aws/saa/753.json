@@ -1,0 +1,18 @@
+{
+ "qid": "1908085487",
+ "index": 753,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有全球用户访问部署在多个 AWS 区域的 Amazon EC2 实例上的基于 HTTP 的应用程序。公司希望提高应用程序的可用性和性能。公司还希望保护应用程序免受可能影响可用性、威胁安全性或消耗过多资源的常见 Web 攻击。需要静态 IP 地址。\n解决方案架构师应该推荐什么来实现这个需求？",
+ "options": [
+  "A. 将 EC2 实例放置在每个区域的 Network Load Balancers（NLBs）后面。在 NLBs 上部署 AWS WAF。使用 AWS 全球加速器创建加速器，并将 NLBs 注册为端点。",
+  "B. 将 EC2 实例放置在每个区域的 Application Load Balancers（ALBs）后面。在 ALBs 上部署 AWS WAF。使用 AWS 全球加速器创建加速器，并将 ALBs 注册为端点。",
+  "C. 将 EC2 实例放置在每个区域的 Network Load Balancers（NLBs）后面。在 NLBs 上部署 AWS WAF。创建一个 Amazon CloudFront 分发，其源使用 Amazon Route 53 延迟路由，将请求路由到 NLBs。",
+  "D. 将 EC2 实例放置在每个区域的 Application Load Balancers（ALBs）后面。创建一个 Amazon CloudFront 分发，其源使用 Amazon Route 53 延迟路由，将请求路由到 ALBs。在 CloudFront 分发上部署 AWS WAF。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了提高应用程序的可用性和性能，并且保护应用程序免受常见的 Web 攻击，应该将 EC2 实例放置在每个区域的 Application Load Balancers（ALBs）后面，并在 ALBs 上部署 AWS WAF。使用 AWS 全球加速器创建加速器，并将 ALBs 注册为端点，以确保用户全球范围内的访问都能得到加速和路由到最近的 ALBs。",
+  "AI解析": "该题考察针对多区域部署的HTTP应用如何提升可用性、性能及安全防护的方案设计。AWS文档指出，Application Load Balancer（ALB）支持应用层流量管理并与AWS WAF集成，可防御Web攻击；Global Accelerator利用静态IP通过最优路径路由流量至最近区域端点以提高性能，且支持跨区域ALB作为后端。选项B结合ALB、WAF及Global Accelerator，满足HTTP应用防护、全局加速与固定入口需求。选项A因NLB不支持WAF不适用；选项C和D未同时满足静态IP与WAF在负载均衡层的集成。"
+ }
+}

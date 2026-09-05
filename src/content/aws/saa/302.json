@@ -1,0 +1,17 @@
+{
+ "index": 302,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在推出一个新的应用程序，部署在Amazon Elastic Container Service（Amazon ECS）集群上，并使用Fargate启动类型来运行ECS任务。由于公司预计应用程序的启动将引起高流量，因此他们正在监视CPU和内存使用情况。然而，公司希望在利用率降低时降低成本。解决方案架构师应该推荐什么？",
+ "options": [
+  "A. 使用Amazon EC2 Auto Scaling，根据以前的流量模式，在特定时期进行扩展。",
+  "B. 使用AWS Lambda函数，根据触发Amazon CloudWatch警报的指标违规来扩展Amazon ECS。",
+  "C. 使用Amazon EC2 Auto Scaling和简单的扩展策略，当ECS指标违规触发Amazon CloudWatch警报时进行扩展。",
+  "D. 使用AWS Application Auto Scaling和目标跟踪策略，当ECS指标违规触发Amazon CloudWatch警报时进行扩展。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在使用Fargate启动类型的情况下，最佳做法是使用AWS Application Auto Scaling。这允许您根据应用程序的负载和性能指标来自动扩展或缩小ECS任务。使用目标跟踪策略可以更精确地控制应用程序的吞吐量，以确保资源利用率高并在需要时自动扩展。其他选项中，EC2 Auto Scaling适用于EC2实例的自动伸缩，而Lambda函数通常用于执行特定的任务而不是应用程序自动扩展。",
+  "AI解析": "Amazon ECS与Fargate的自动扩展策略。AWS文档指出，Application Auto Scaling支持目标追踪策略，可基于CloudWatch指标动态调整任务数量，适用于Fargate服务。选项D正确，因为目标追踪策略自动调整资源，无需手动干预。选项A、C涉及EC2 Auto Scaling，不适用于Fargate；选项B需手动编写Lambda，效率低于内置的Application Auto Scaling。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2264604796",
+ "index": 825,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将应用程序从公司管理的本地Microsoft Active Directory迁移到AWS。公司在多个AWS账户中部署应用程序。公司使用AWS Organizations来集中管理这些账户。公司的安全团队需要一个跨所有公司AWS账户的单点登录解决方案。公司必须继续管理在本地Active Directory中的用户和组。",
+ "options": [
+  "A. 在AWS Directory Service for Microsoft Active Directory中创建一个企业版Active Directory。配置Active Directory作为AWS IAM身份中心的身份源。",
+  "B. 启用AWS IAM身份中心。使用AWS Directory Service for Microsoft Active Directory配置双向森林信任关系，将公司自管的Active Directory与IAM身份中心连接起来。",
+  "C. 使用AWS Directory Service并创建一个与公司自管的Active Directory之间的双向信任关系。",
+  "D. 在Amazon EC2上部署一个身份提供者（IdP）。将IdP链接为AWS IAM身份中心的身份源。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个问题要求一个跨所有公司AWS账户的单点登录解决方案，并且需要继续管理在本地Active Directory中的用户和组。选项B提到了启用AWS IAM身份中心，并使用AWS Directory Service for Microsoft\nActive Directory配置双向森林信任关系，将公司自管的Active Directory与IAM身份中心连接起来。这个解决方案可以满足单点登录的要求，并且可以继续使用本地Active\nDirectory管理用户和组。\n其他选项中，选项A提到了在AWS\nDirectory Service for Microsoft Active Directory中创建企业版Active\nDirectory，但它没有提及单点登录，选项C提到了使用AWS\nDirectory Service创建双向信任关系，但它没有提及IAM身份中心，选项D提到了在Amazon EC2上部署一个身份提供者，但这并不是AWS推荐的最佳做法，因此不是最佳解决方案。",
+  "AI解析": "AWS IAM Identity Center（原AWS SSO）支持集成本地Microsoft Active Directory以实现跨AWS账户的单点登录（SSO）。题目要求继续使用本地AD作为用户和组的权威源。AWS解决方案中，通过AWS Directory Service创建托管AD，并与本地AD建立双向森林信任，使IAM Identity Center能够将本地AD作为身份源。选项B正确描述了这种配置：启用IAM Identity Center后，配置双向信任关系确保本地AD与AWS托管AD之间的互操作性，从而允许用户在不迁移的情况下使用现有凭证访问AWS资源。选项A错误在于创建新的企业版AD而非利用现有本地AD；选项C未提及IAM Identity Center集成；选项D的EC2 IdP增加了不必要的维护成本。"
+ }
+}

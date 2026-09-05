@@ -1,0 +1,18 @@
+{
+ "qid": "1529124388",
+ "index": 464,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在开发一个应用程序，以支持客户需求。该公司希望在同一可用区内部署该应用程序，使用多个Amazon EC2 Nitro-based实例。该公司还希望使应用程序能够同时写入多个EC2 Nitro-based实例中的多个块存储卷，以实现更高的应用程序可用性。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用Amazon Elastic Block Store（Amazon EBS）Multi-Attach的通用型SSD（gp3）EBS卷。",
+  "B. 使用Amazon Elastic Block Store（Amazon EBS）Multi-Attach的吞吐优化HDD（st1）EBS卷。",
+  "C. 使用Amazon Elastic Block Store（Amazon EBS）Multi-Attach的预配置IOPS SSD（io2）EBS卷。",
+  "D. 使用Amazon Elastic Block Store（Amazon EBS）Multi-Attach的通用型SSD（gp2）EBS卷。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "该题考查Amazon EBS Multi-Attach功能的核心应用场景及卷类型限制。Multi-Attach要求使用支持该功能的特定EBS卷类型，仅预配置IOPS SSD（io2）卷允许同时附加到同一可用区的多个Nitro实例并支持并发写入，其他选项中的gp3、st1、gp2卷类型均不支持Multi-Attach功能，因此唯一可行方案为选项C。"
+ }
+}

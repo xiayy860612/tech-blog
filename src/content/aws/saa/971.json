@@ -1,0 +1,18 @@
+{
+ "qid": "2949540312",
+ "index": 971,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司当前在本地运行一个使用\nMicrosoft Windows Server 的股票交易应用程序。公司希望将应用程序迁移到 AWS 云。\n公司需要设计一个高度可用的解决方案，提供低延迟的块存储访问，并跨多个可用区提供服务。\n哪个解决方案将以最低的实施开销满足这些要求？",
+ "options": [
+  "A. 配置一个跨两个可用区的 Windows Server 集群，运行在 Amazon EC2 实例上。在两个集群节点上安装应用程序。使用 Amazon FSx for Windows File Server 作为两个集群节点之间的共享存储。",
+  "B. 配置一个跨两个可用区的 Windows Server 集群，运行在 Amazon EC2 实例上。在两个集群节点上安装应用程序。使用 Amazon Elastic Block Store (Amazon EBS) 通用 SSD (gp3) 卷作为附加到 EC2 实例的存储。设置应用程序级别的复制，将一个可用区的 EBS 卷的数据同步到另一个可用区的 EBS 卷。",
+  "C. 在两个可用区的 Amazon EC2 实例上部署应用程序。将一个 EC2 实例配置为活动状态，另一个 EC2 实例配置为备用状态。使用 Amazon FSx for NetApp ONTAP Multi-AZ 文件系统，通过互联网小型计算机系统接口 (iSCSI) 协议访问数据。",
+  "D. 在两个可用区的 Amazon EC2 实例上部署应用程序。将一个 EC2 实例配置为活动状态，另一个 EC2 实例配置为备用状态。使用 Amazon Elastic Block Store (Amazon EBS) 预配置 IOPS SSD (io2) 卷作为附加到 EC2 实例的存储。设置 Amazon EBS 级别的复制，将一个 io2 卷的数据同步到另一个 io2 卷。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon FSx for Windows File Server： Amazon FSx for Windows File Server 提供与\nWindows 文件服务器兼容的共享文件存储。它支持跨多个可用区部署，并提供高可用性和低延迟访问，非常适合需要高可用、低延迟块存储的应用程序。\nWindows Server 集群： 使用 Windows Server 集群可以在多个 EC2 实例上运行应用程序，并利用 FSx for Windows File Server 提供的共享存储。这种配置可以确保在一个节点失败时，另一个节点可以继续服务，符合高可用性的要求。",
+  "AI解析": "高度可用的 Windows 应用程序迁移到 AWS 需满足跨多可用区、低延迟块存储且实施简单的要求。Amazon FSx for Windows File Server 作为 AWS 原生托管服务，天然支持多可用区架构，提供 SMB 协议共享存储并与 Windows 集群原生兼容，无需手动配置数据同步或复制。选项 B、D 依赖应用或 EBS 卷级别的数据同步，增加了复杂性和管理成本；选项 C 采用非 Windows 优化的 NetApp ONTAP 且需 iSCSI 协议，不符合 Windows 应用场景。AWS 官方推荐使用 FSx for Windows 作为跨可用区 Windows 集群的共享存储解决方案，简化架构并降低运维负担。"
+ }
+}

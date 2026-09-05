@@ -1,0 +1,19 @@
+{
+ "qid": "2949540271",
+ "index": 930,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家媒体公司在\nUs-east-1 区域拥有一个多账户的 AWS 环境。该公司在生产账户中拥有一个 Amazon Simple Notification Service（Amazon SNS）主题，用于发布性能指标。公司在管理员账户中有一个 AWS Lambda 函数，用于处理和分析日志数据。\n当报告出重要指标时，位于管理员账户中的 Lambda 函数必须由位于生产账户中的 SNS 主题发送的消息调用。\n以下哪两种步骤的组合可以满足这些要求？（选择两个）",
+ "options": [
+  "A. 为 Lambda 函数创建一个 IAM 资源策略，允许 Amazon SNS 调用该函数。",
+  "B. 在管理员账户中实现一个 Amazon Simple Queue Service（Amazon SQS）队列，用于缓存来自生产账户中的 SNS 主题的消息。配置 SQS 队列以调用 Lambda 函数。",
+  "C. 为 SNS 主题创建一个 IAM 策略，允许 Lambda 函数订阅该主题。",
+  "D. 在生产账户中使用 Amazon EventBridge 规则捕获 SNS 主题通知。配置 EventBridge 规则将通知转发到管理员账户中的 Lambda 函数。",
+  "E. 将性能指标存储在生产账户中的 Amazon S3 存储桶中。使用 Amazon Athena 从管理员账户分析这些指标。"
+ ],
+ "answer": {
+  "正确答案": "AC",
+  "解析": "选项 A创建一个 IAM 资源策略为 Lambda 函数授权 Amazon SNS 调用该函数\n这是正确的步骤，因为 SNS 需要有权限调用 Lambda 函数。通过在 Lambda 函数上设置 IAM 资源策略，可以允许 SNS 主题在生产账户中调用 Lambda 函数。这样，当 SNS 主题发布消息时，它能够触发 Lambda 函数处理这些消息。\n选项 C为 SNS 主题创建一个 IAM 策略，允许 Lambda 函数订阅该主题\n这也是正确的步骤。SNS 主题需要一个\nIAM 策略，以允许 Lambda 函数订阅该主题。在这种情况下，Lambda 函数将能够接收 SNS 主题中的消息。",
+  "AI解析": "跨账户服务调用需通过IAM策略双向授权。SNS主题需配置访问策略允许目标Lambda函数订阅（C选项），而Lambda函数需附加资源策略授权SNS发起调用（A选项），二者结合实现跨账户消息触发机制。B/D/E涉及中间服务或非直接调用方式，不符合题目要求的SNS到Lambda直连场景。"
+ }
+}

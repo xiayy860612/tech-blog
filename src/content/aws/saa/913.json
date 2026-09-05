@@ -1,0 +1,18 @@
+{
+ "qid": "2949540254",
+ "index": 913,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司开发了一个非生产环境的应用程序，该应用程序由多个微服务组成，每个微服务对应公司的一个业务部门。一个开发团队维护所有微服务。当前的架构使用静态网页前端和一个包含应用程序逻辑的Java后端。此外，架构还使用公司托管在Amazon EC2实例上的MySQL数据库。公司需要确保应用程序的安全性和全球可用性。\n哪种解决方案能够以最低的操作开销满足这些要求？",
+ "options": [
+  "A. 使用Amazon CloudFront和AWS Amplify托管静态网页前端。将微服务重构为使用AWS Lambda函数，并通过Amazon API Gateway访问这些Lambda函数。将MySQL数据库迁移到Amazon EC2 Reserved Instance。",
+  "B. 使用Amazon CloudFront和Amazon S3托管静态网页前端。将微服务重构为使用AWS Lambda函数，并通过Amazon API Gateway访问这些Lambda函数。将MySQL数据库迁移到Amazon RDS for MySQL。",
+  "C. 使用Amazon CloudFront和Amazon S3托管静态网页前端。将微服务重构为使用AWS Lambda函数，这些Lambda函数在一个网络负载均衡器（Network Load Balancer）后的目标组中。将MySQL数据库迁移到Amazon RDS for MySQL。",
+  "D. 使用Amazon S3托管静态网页前端。将微服务重构为使用AWS Lambda函数，这些Lambda函数在一个应用程序负载均衡器（Application Load Balancer）后的目标组中。将MySQL数据库迁移到Amazon EC2 Reserved Instance。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "静态网页托管：Amazon S3提供了高可用、全球分布的静态网页托管解决方案，结合Amazon CloudFront可以进一步提升全球内容分发的速度和可靠性。\n微服务重构：将微服务重构为使用AWS Lambda函数，并通过Amazon API Gateway访问，可以大幅度减少运维工作量，同时Lambda的无服务器特性提高了应用的弹性和缩放能力。\n数据库迁移：将MySQL数据库迁移到Amazon\nRDS for MySQL，可以享受RDS的高可用性、自动备份、监控和自动化管理功能，从而减少管理开销并提高数据库的可用性和安全性。",
+  "AI解析": "题目核心在于通过全托管服务降低运维成本并提升可用性。静态网页前端采用Amazon S3存储与CloudFront加速实现全球分发，无需服务器管理；微服务重构为Lambda函数通过API Gateway触发，彻底实现无服务器化，自动扩展且免除运维；数据库迁移至RDS MySQL可自动处理备份、扩展和高可用配置，相比EC2托管显著减少操作负担。选项B完整覆盖这三个核心优化点，而其他选项或保留EC2数据库（A/D增加运维）、或错误使用负载均衡器调用Lambda（C违背无服务器架构逻辑），均无法满足最低运维开销要求。"
+ }
+}

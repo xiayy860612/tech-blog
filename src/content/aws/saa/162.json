@@ -1,0 +1,17 @@
+{
+ "index": 162,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个新的动态订购网站。该公司希望最大程度减少服务器维护和打补丁的工作。该网站必须高度可用，并必须能够迅速扩展读取和写入容量，以满足用户需求的变化。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 将静态内容托管在Amazon S3中。通过使用Amazon API Gateway和AWS Lambda托管动态内容。使用Amazon DynamoDB以按需容量进行数据库配置。配置Amazon CloudFront来提供网站内容。",
+  "B. 将静态内容托管在Amazon S3中。通过使用Amazon API Gateway和AWS Lambda托管动态内容。使用Amazon Aurora与Aurora Auto Scaling进行数据库配置。配置Amazon CloudFront来提供网站内容。",
+  "C. 将所有网站内容托管在Amazon EC2实例上。创建一个自动伸缩组以扩展EC2实例。使用应用负载均衡器来分发流量。使用Amazon DynamoDB与预置写入容量进行数据库配置。",
+  "D. 将所有网站内容托管在Amazon EC2实例上。创建一个自动伸缩组以扩展EC2实例。使用应用负载均衡器来分发流量。使用Amazon Aurora与Aurora Auto Scaling进行数据库配置。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项A中的解决方案最符合公司的要求。将静态内容托管在Amazon S3上，这样可以降低服务器维护成本。使用Amazon API Gateway和AWS Lambda来托管动态内容，这使得网站能够快速扩展以满足用户需求变化。另外，使用Amazon DynamoDB以按需容量配置数据库，这有助于最小化数据库的维护工作。配置Amazon CloudFront来提供网站内容，提高了网站的可用性和性能。\n其他选项中，选项B使用了Amazon Aurora数据库，但可能会引入更多的维护工作。选项C和选项D将所有内容托管在EC2实例上，这会增加服务器维护的工作量。选项A是最佳选择。",
+  "AI解析": "Amazon S3适用于托管静态内容，无需管理服务器，Amazon API Gateway和AWS Lambda的组合提供无服务器架构处理动态内容，自动扩展且无需维护。Amazon DynamoDB按需容量模式根据负载自动调整吞吐量，无需手动配置，满足快速扩展读写需求。Amazon CloudFront加速内容分发，提升可用性。其他选项涉及EC2实例管理或Aurora数据库，需更多维护且扩展灵活性较低。[AWS无服务器架构最佳实践、DynamoDB按需容量文档]选项A采用全托管服务，减少运维工作，动态扩展能力最佳。"
+ }
+}

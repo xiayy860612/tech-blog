@@ -1,0 +1,17 @@
+{
+ "index": 322,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的设施在建筑的每个入口处都配有门禁读卡器。当刷卡时，读卡器会通过HTTPS发送消息，以指示谁尝试访问特定入口。\n解决方案架构师必须设计一个系统来处理这些来自传感器的消息。解决方案必须具有高可用性，并且必须将结果提供给公司的安全团队进行分析。\n解决方案架构师应该推荐哪种系统架构？",
+ "options": [
+  "A. 启动一个Amazon EC2实例作为HTTPS端点来处理消息。配置EC2实例将结果保存到Amazon S3存储桶。",
+  "B. 在Amazon API Gateway中创建一个HTTPS端点。配置API Gateway端点来调用AWS Lambda函数以处理消息并将结果保存到Amazon DynamoDB表中。",
+  "C. 使用Amazon Route 53将传入的传感器消息定向到AWS Lambda函数。配置Lambda函数来处理消息并将结果保存到Amazon DynamoDB表中。",
+  "D. 为Amazon S3创建一个网关VPC端点。配置一个从设施网络到VPC的站点到站点VPN连接，以便通过VPC端点直接将传感器数据写入S3存储桶。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "为了处理来自传感器的消息并提供高可用性，最佳做法是选择B选项。Amazon API Gateway可以提供HTTPS端点，AWS Lambda函数可以处理传感器消息并将结果保存到Amazon DynamoDB表中。这种方法具有高可用性，并且可以通过配置API Gateway来轻松扩展和管理。其他选项也可以实现处理消息的功能，但B选项是最直接和高效的选择。",
+  "AI解析": "该题考察在AWS中设计高可用数据处理系统的能力。AWS架构最佳实践指出无服务器架构天然具备高可用性和自动扩展能力。API Gateway作为全托管服务，默认具备跨AZ冗余，可处理HTTP/HTTPS请求并集成Lambda。Lambda无服务器计算服务能自动扩容，DynamoDB作为托管数据库提供99.999%可用性。选项B的组合完全采用AWS托管服务，消除了单点故障风险；选项C错误使用Route53作为请求入口，选项A依赖单EC2实例存在可用性风险，选项D缺乏实时数据处理层。"
+ }
+}

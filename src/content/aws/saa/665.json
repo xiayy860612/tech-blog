@@ -1,0 +1,19 @@
+{
+ "qid": "1908084782",
+ "index": 665,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家初创公司在Amazon EC2实例上为其客户托管网站。该网站由一个无状态的Python应用程序和一个MySQL数据库组成。该网站仅提供少量流量。公司对实例的可靠性表示担忧，并且需要迁移到一个高可用性的架构。公司无法修改应用程序代码。\n解决方案架构师应采取哪些组合操作以实现网站的高可用性？（选择两个）",
+ "options": [
+  "A. 在每个使用中的可用区中配置一个Internet Gateway。",
+  "B. 将数据库迁移到Amazon RDS for MySQL Multi-AZ数据库实例。",
+  "C. 将数据库迁移到Amazon DynamoDB，并启用DynamoDB自动缩放。",
+  "D. 使用AWS DataSync将数据库数据同步到多个EC2实例。",
+  "E. 创建一个Application Load Balancer，将流量分发到跨两个可用区分布的EC2实例的Auto Scaling组。"
+ ],
+ "answer": {
+  "正确答案": "BE",
+  "解析": "要实现高可用性，可以采取以下两个操作：\nB 将数据库迁移到Amazon RDS for MySQL Multi-AZ数据库实例。Amazon RDS提供Multi-AZ部署，可以在主要数据库实例发生故障时自动切换到辅助实例，从而提高数据库的可用性。\nE 创建一个Application Load Balancer（ALB），将流量分发到跨两个可用区分布的EC2实例的Auto Scaling组。使用Auto Scaling可以确保在需要时启动或终止EC2实例，以满足流量需求，同时通过ALB分布流量可以提高应用程序的可用性。\n其他选项中，A项是关于Internet Gateway的，不涉及高可用性的问题；C项涉及将数据库迁移到DynamoDB，但问题描述中指定了使用MySQL数据库；D项是关于使用AWS DataSync同步数据库数据的，但并不是高可用性的解决方案。",
+  "AI解析": "高可用性架构设计涉及冗余和故障转移机制。Amazon RDS Multi-AZ通过维护主数据库和备用副本实现数据库层的高可用，自动处理故障切换。Application Load Balancer结合Auto Scaling组确保应用层流量跨多个可用区分布，消除单点故障。选项B和E分别对应数据库和应用层的高可用实现。《AWS Well-Architected Framework》强调Multi-AZ部署和负载均衡作为核心高可用模式。A选项的Internet Gateway是VPC组件而非可用区级别；C选项的DynamoDB需要应用适配数据库类型变更；D选项的DataSync不适合实时数据库同步场景。"
+ }
+}

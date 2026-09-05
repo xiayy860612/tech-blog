@@ -1,0 +1,18 @@
+{
+ "qid": "1529124414",
+ "index": 490,
+ "total": 1018,
+ "type": "单选题",
+ "question": "设计一个异步应用程序，用于处理银行的信用卡数据验证请求。该应用程序必须安全，并能至少处理每个请求一次。\n哪种解决方案在成本方面最具成本效益且能够满足这些要求？",
+ "options": [
+  "A. 使用 AWS Lambda 事件源映射。将 Amazon Simple Queue Service (Amazon SQS) 标准队列设置为事件源。使用 AWS Key Management Service (SSE-KMS) 进行加密。为 Lambda 执行角色添加 kms:Decrypt 权限。",
+  "B. 使用 AWS Lambda 事件源映射。将 Amazon Simple Queue Service (Amazon SQS) FIFO 队列设置为事件源。使用 SQS 托管加密密钥 (SSE-SQS) 进行加密。为 Lambda 函数添加加密密钥调用权限。",
+  "C. 使用 AWS Lambda 事件源映射。将 Amazon Simple Queue Service (Amazon SQS) FIFO 队列设置为事件源。使用 AWS KMS 密钥 (SSE-KMS)。为 Lambda 执行角色添加 kms:Decrypt 权限。",
+  "D. 使用 AWS Lambda 事件源映射。将 Amazon Simple Queue Service (Amazon SQS) 标准队列设置为事件源。使用 AWS KMS 密钥 (SSE-KMS) 进行加密。为 Lambda 函数添加加密密钥调用权限。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "本题核心在于平衡安全需求和成本效益。AWS Lambda事件源映射触发异步处理时，标准队列(SQS)支持至少一次传递且成本低于FIFO队列，符合题干的\"至少处理一次\"要求；SSE-KMS加密保障敏感数据安全，需通过Lambda执行角色的kms:Decrypt权限实现密钥解密。选项A采用标准队列降低费用，正确配置KMS权限确保安全性，而其他选项或误用FIFO队列增加成本，或权限配置不完整。"
+ }
+}

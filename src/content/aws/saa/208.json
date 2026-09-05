@@ -1,0 +1,17 @@
+{
+ "index": 208,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一位解决方案架构师正在设计一个部署在AWS云中的新应用程序的架构。该应用程序将在Amazon EC2 On-Demand实例上运行，并将自动跨多个可用区进行扩展。EC2实例将在一天中频繁进行扩展和缩减。应用程序负载分发将由一个应用程序负载均衡器（ALB）处理。架构需要支持分布式会话数据管理。公司愿意根据需要进行代码更改。\n解决方案架构师应该采取什么措施来确保架构支持分布式会话数据管理？",
+ "options": [
+  "A. 使用Amazon ElastiCache来管理和存储会话数据。",
+  "B. 使用ALB的粘性会话（sticky sessions）来管理会话数据。",
+  "C. 使用AWS Systems Manager的Session Manager来管理会话。",
+  "D. 使用AWS Security Token Service（AWS STS）中的GetSessionToken API操作来管理会话。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了确保架构支持分布式会话数据管理，最佳的解决方案是选项A。使用Amazon ElastiCache来管理和存储会话数据是一个常见的做法，它可以确保会话数据被存储在可扩展和高性能的内存数据库中，以便多个EC2实例可以共享和访问这些数据。\n选项B中，使用粘性会话（sticky sessions）仅在单个EC2实例上保持会话数据，不适用于多实例分布式环境。\n选项C中，AWS Systems Manager的Session Manager用于管理与EC2实例的交互，而不是用于分布式会话数据管理。\n选项D中，AWS Security Token Service（AWS STS）的GetSessionToken API操作用于生成临时安全凭证，而不是用于会话数据管理。\n因此，选项A是最佳选择，它提供了一个强大的分布式会话数据管理解决方案，可以满足应用程序的需求。",
+  "AI解析": "分布式会话管理需集中存储以应对动态扩展场景，Amazon ElastiCache作为托管内存数据库提供跨可用区的高性能缓存服务，将会话数据与EC2实例解耦，确保任意实例均可访问统一会话信息。ALB粘性会话仅定向流量但无法解决实例终止导致数据丢失问题，其余选项涉及会话凭证或运维工具与会话存储无关，故采用ElastiCache实现无状态架构下的会话持久化。"
+ }
+}

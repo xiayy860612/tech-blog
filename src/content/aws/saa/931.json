@@ -1,0 +1,18 @@
+{
+ "qid": "2949540272",
+ "index": 931,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将应用程序从本地迁移到 Amazon Elastic Kubernetes Service（Amazon\nEKS）。公司必须在其 VPC 中为 pods 使用自定义子网以符合要求。公司还需要确保 pods 能够在 pods 的 VPC\n内安全地进行通信。\n哪个解决方案可以满足这些要求？",
+ "options": [
+  "A. 配置 AWS Transit Gateway 以直接管理 Amazon EKS 中 pods 的自定义子网配置。",
+  "B. 从公司的本地 IP 地址范围到 EKS pods 创建一个 AWS Direct Connect 连接。",
+  "C. 使用 Amazon VPC CNI 插件为 Kubernetes。在 VPC 集群中定义 pods 使用的自定义子网。",
+  "D. 实施一个 Kubernetes 网络策略，该策略具有 pod 反亲和规则以限制 pod 部署到位于自定义子网中的特定节点。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "Amazon VPC CNI 插件允许\nKubernetes pods 使用 VPC 内的 IP 地址，这样 pods 可以直接在自定义子网中分配 IP 地址。通过这种方式，可以确保 pods 在其 VPC 内安全地通信，并且可以按照要求使用自定义子网。配置 VPC CNI 插件时，可以指定多个子网供 pods 使用，以便满足安全和网络需求。",
+  "AI解析": "Amazon EKS 的 VPC CNI 插件（amazon-vpc-cni）负责为 Kubernetes pods 分配 VPC IP 地址。通过在集群中配置自定义子网，CNI 插件能够将 pods 调度到指定子网，满足合规要求。AWS 官方文档指出，VPC CNI 允许用户为 pods 定义独立的子网，与节点子网分离，从而增强网络隔离和安全性。选项 C 直接对应这一机制，属于标准操作。选项 A 错误，Transit Gateway 用于跨 VPC 网络互联，与子网分配无关；选项 B 涉及混合云连接，不解决子网配置问题；选项 D 的网络策略功能聚焦流量控制，无法指定子网。正确答案 C 出自 AWS 对 EKS 网络模型的说明。"
+ }
+}

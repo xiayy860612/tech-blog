@@ -1,0 +1,18 @@
+{
+ "qid": "1529125609",
+ "index": 552,
+ "total": 1018,
+ "type": "单选题",
+ "question": "解决方案架构师需要审查公司的Amazon S3存储桶，以发现其中的个人身份信息（PII）。该公司将PII数据存储在us-east-1地区和us-west-2地区。\n哪种解决方案能以最小的操作开销满足这些要求？",
+ "options": [
+  "A. 在每个地区配置Amazon Macie。创建一个任务来分析存储在Amazon S3中的数据。",
+  "B. 为所有地区配置AWS Security Hub。创建一个AWS Config规则来分析存储在Amazon S3中的数据。",
+  "C. 配置Amazon Inspector来分析存储在Amazon S3中的数据。",
+  "D. 配置Amazon GuardDuty来分析存储在Amazon S3中的数据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "Amazon Macie是一个用于发现和保护敏感数据的服务。它能够自动发现S3存储桶中的PII数据，并且在所选区域中配置Amazon Macie，可以最大限度地减少操作开销。针对特定区域，配置Amazon Macie能够自动扫描S3存储桶以发现PII数据，使其成为满足要求并减少操作开销的良好选择。\n其他选项（B C D）要么不直接针对Amazon S3中的数据进行扫描（比如AWS Security Hub、Amazon Inspector），要么不是专门用于PII数据发现（比如Amazon GuardDuty）。因此，这些选项都不如Amazon Macie直接有效且操作开销较小。",
+  "AI解析": "Amazon Macie是一项专门用于敏感数据发现的服务，通过机器学习自动识别S3中的PII等数据，支持多区域任务。AWS官方文档指出Macie设计目的即为减少手动分类敏感数据的开销。选项B的Config规则主要检查资源配置合规性而非内容，Security Hub聚焦聚合安全警报。选项C的Inspector针对计算实例漏洞，选项D的GuardDuty监测威胁而非数据内容。只有选项A直接对应PII识别需求并最小化操作步骤。"
+ }
+}

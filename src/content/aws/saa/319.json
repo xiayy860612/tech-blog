@@ -1,0 +1,17 @@
+{
+ "index": 319,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用一组Amazon EC2实例从本地数据源摄取数据。数据以JSON格式存在，摄取速率可以高达1 MB/s。当EC2实例重新启动时，飞行中的数据会丢失。公司的数据科学团队希望以近实时方式查询摄取的数据。\n哪种解决方案提供了可扩展的近实时数据查询，同时数据丢失最小？",
+ "options": [
+  "A. 将数据发布到Amazon Kinesis Data Streams，使用Kinesis Data Analytics查询数据。",
+  "B. 将数据发布到Amazon Kinesis Data Firehose，以Amazon Redshift为目标。使用Amazon Redshift查询数据。",
+  "C. 将摄取的数据存储在EC2实例存储中。将数据发布到Amazon Kinesis Data Firehose，以Amazon S3为目标。使用Amazon Athena查询数据。",
+  "D. 将摄取的数据存储在Amazon Elastic Block Store（Amazon EBS）卷中。将数据发布到Amazon ElastiCache for Redis。订阅Redis通道以查询数据。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了提供可扩展的近实时数据查询并最小化数据丢失，最佳选择是选项A。使用Amazon Kinesis Data Streams和Kinesis Data Analytics，您可以实时处理和查询摄取的数据。Kinesis Data Streams用于流式传输数据，而Kinesis Data Analytics用于分析和查询数据。这种解决方案允许近实时处理和查询数据，且高度可扩展。\n选项B中的Amazon Redshift需要一定时间来加载和查询数据，不适合近实时查询需求。选项C中将数据存储在EC2实例存储中，可能导致数据丢失，不适合近实时需求。选项D中的Amazon ElastiCache for Redis适用于缓存，不适合用于数据查询。因此，选项A是最合适的选项。",
+  "AI解析": "Amazon Kinesis Data Streams提供持久化存储，确保在EC2实例重启时飞行中数据不会丢失，支持高吞吐量的实时数据摄取。Kinesis Data Analytics允许直接对数据流运行SQL查询，满足近实时分析需求。Kinesis Data Firehose的缓冲机制引入延迟，无法满足实时要求；EC2实例存储或EBS卷不具备流处理能力，存在数据丢失风险。ElastiCache for Redis适用于缓存场景，而非持久化实时分析。该方案符合AWS架构良好框架中关于实时数据处理和分析的最佳实践。"
+ }
+}

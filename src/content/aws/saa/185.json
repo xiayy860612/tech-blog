@@ -1,0 +1,17 @@
+{
+ "index": 185,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司提供食品送餐服务，正在迅速增长。由于增长，公司的订单处理系统在高峰时段出现了扩展问题。当前架构包括以下内容：\n\n• 一组Amazon EC2实例，运行在Amazon EC2 Auto Scaling组中，用于从应用程序收集订单\n\n• 另一组Amazon EC2实例，运行在Amazon EC2 Auto Scaling组中，用于完成订单\n\n订单收集过程发生得很快，但订单处理过程可能需要更长时间。数据不能因扩展事件而丢失。\n\n解决方案架构师必须确保在高峰时段，订单收集和订单处理过程都能够正确扩展。解决方案还必须优化公司的AWS资源利用率。\n\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用Amazon CloudWatch指标监控Auto Scaling组中每个实例的CPU。根据峰值工作负载值配置每个Auto Scaling组的最小容量。",
+  "B. 使用Amazon CloudWatch指标监控Auto Scaling组中每个实例的CPU。配置CloudWatch警报以调用Amazon Simple Notification Service (Amazon SNS)主题，该主题会根据需求创建额外的Auto Scaling组。",
+  "C. 创建两个Amazon Simple Queue Service (Amazon SQS)队列：一个用于订单收集，另一个用于订单处理。配置EC2实例轮询它们各自的队列。根据队列发送的通知来扩展Auto Scaling组。",
+  "D. 创建两个Amazon Simple Queue Service (Amazon SQS)队列：一个用于订单收集，另一个用于订单处理。配置EC2实例轮询它们各自的队列。基于每个实例计算的积压（backlog）创建度量标准。根据这个度量标准来扩展Auto Scaling组。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "使用 Amazon SQS 进行解耦：\n\n通过创建两个 Amazon Simple Queue Service (SQS) 队列，一个用于订单收集，另一个用于订单处理，可以有效解耦这两个过程。这样，无论订单收集速度多快，订单处理的速度都不会受到直接影响，确保数据不会因扩展事件而丢失。\n\n基于积压的扩展：\n\n配置 EC2 实例轮询各自的 SQS 队列并计算积压（backlog），可以清晰地了解当前待处理的订单数量。当订单处理队列中的积压增加时，可以触发 Auto Scaling，以自动扩展处理实例的数量。这种方法能够在高峰时段动态调整资源，确保订单处理能力与订单收集速度相匹配。\n\n资源利用优化：\n\n通过使用 SQS 和根据积压动态扩展，能够优化资源利用率。在非高峰时段，处理实例的数量可以减少，从而降低成本。",
+  "AI解析": "该题核心在于处理异步任务扩展与数据持久化，需利用消息队列解耦订单收集和处理系统。SQS队列能缓冲请求防止数据丢失，基于积压指标（如ApproximateNumberOfMessagesVisible）触发Auto Scaling可精准匹配实际负载：当队列积压增加时自动扩容实例处理订单，消息减少时缩容，既保证高峰处理能力又避免资源浪费。直接绑定队列深度作为扩展依据比CPU指标更贴合业务流量特征，实现资源利用率最优化。"
+ }
+}

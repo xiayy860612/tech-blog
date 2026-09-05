@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  # 每次 push 到 main 分支都会自动触发构建 + 部署
+  push:
+    branches: [astro]
+  # 也支持在 GitHub 网页上手动触发（Actions 页面 -> Run workflow）
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只允许一个部署任务运行，新的 push 会取消正在排队、尚未开始的旧任务
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v7
+      - name: Install, build, and upload your site
+        uses: withastro/action@v6
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

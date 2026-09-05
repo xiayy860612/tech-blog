@@ -1,0 +1,18 @@
+{
+ "qid": "1908084764",
+ "index": 647,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家气象预测公司需要处理数百GB的数据，并要求亚毫秒的延迟。该公司在其数据中心内有一个高性能计算（HPC）环境，并希望扩展其预测能力。解决方案架构师必须确定一个高可用的云存储解决方案，能够处理大量持续的吞吐量。存储在解决方案中的文件应该能够被成千上万的计算实例访问，这些实例将同时访问和处理整个数据集。\n解决方案架构师应该采取什么措施来满足这些要求？",
+ "options": [
+  "A. 使用Amazon FSx for Lustre 临时文件系统。",
+  "B. 使用Amazon FSx for Lustre 持久文件系统。",
+  "C. 使用Amazon Elastic File System (Amazon EFS) 以 Bursting Throughput 模式。",
+  "D. 使用Amazon Elastic File System (Amazon EFS) 以 Provisioned Throughput 模式。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B中的Amazon FSx for Lustre持久文件系统是一个高性能且可扩展的文件系统，适用于HPC和大规模数据处理。Lustre文件系统可以提供亚毫秒级的延迟，并能够处理大量的持续吞吐量。这种持久文件系统是为高性能计算和大规模数据处理而设计的，因此非常适合气象预测公司的需求。\n其他选项：\n选项A中的Amazon FSx for Lustre 临时文件系统是一种暂时性的存储解决方案，不适合需要持久性的数据存储。\n选项C和选项D中的Amazon EFS是一种全面托管的文件存储服务，但它在处理大量数据和高吞吐量方面可能不如Amazon FSx for Lustre效果好。 Bursting Throughput 模式适用于具有突发性工作负载的场景，而 Provisioned Throughput 模式适用于需要持续高吞吐量的场景。",
+  "AI解析": "Amazon FSx for Lustre持久文件系统专为高性能计算（HPC）场景设计，支持高吞吐量、低延迟访问，适合需要并行处理大规模数据的场景。根据AWS文档，FSx for Lustre持久文件系统具有高可用特性，支持多可用区部署，并允许数千个计算实例同时访问同一数据集，满足持续高吞吐量需求。临时文件系统（A）不具备持久性，EFS（C、D）的延迟较高且吞吐量模式可能无法满足持续高负载需求。"
+ }
+}

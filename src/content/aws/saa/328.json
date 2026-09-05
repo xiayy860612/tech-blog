@@ -1,0 +1,17 @@
+{
+ "index": 328,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一项安全审计显示Amazon EC2实例没有定期打补丁。解决方案架构师需要提供一个解决方案，用于在大量EC2实例上定期运行安全扫描。该解决方案还应定期为EC2实例打补丁，并提供每个实例的打补丁状态报告。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 设置Amazon Macie以扫描EC2实例的软件漏洞。在每个EC2实例上设置cron作业，以定期打补丁实例。",
+  "B. 在帐户中打开Amazon GuardDuty。配置GuardDuty以扫描EC2实例的软件漏洞。设置AWS Systems Manager Session Manager以定期打补丁EC2实例。",
+  "C. 设置Amazon Detective以扫描EC2实例的软件漏洞。设置Amazon EventBridge定时规则以定期打补丁EC2实例。",
+  "D. 在帐户中打开Amazon Inspector。配置Amazon Inspector以扫描EC2实例的软件漏洞。设置AWS Systems Manager Patch Manager以定期打补丁EC2实例。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "Amazon Inspector和AWS Systems Manager Patch Manager是AWS的服务，专门用于扫描EC2实例的软件漏洞并定期打补丁这些漏洞。这两个服务可以很好地满足问题中提到的要求。Amazon GuardDuty用于检测安全威胁，而不是软件漏洞扫描和打补丁。Amazon Macie用于敏感数据发现和保护，而不是扫描和打补丁。Amazon Detective用于分析安全事件，不直接用于软件漏洞扫描和打补丁。因此，最佳答案是D。",
+  "AI解析": "该题目涉及AWS服务在安全扫描和自动化补丁管理中的应用。AWS文档指出，Amazon Inspector用于自动扫描EC2实例的软件漏洞，支持持续评估和生成详细报告。AWS Systems Manager Patch Manager专为自动化、调度操作系统和应用程序补丁而设计，支持批量操作并提供合规状态报告。选项A中的Macie不适用于漏洞扫描，cron作业缺乏集中管理；选项B的GuardDuty侧重威胁检测，Session Manager无补丁功能；选项C的Detective用于事件分析，EventBridge需配合其他工具；选项D的Inspector和Patch Manager组合完整覆盖题干需求，符合AWS推荐架构（参考Amazon Inspector和Patch Manager产品文档）。"
+ }
+}

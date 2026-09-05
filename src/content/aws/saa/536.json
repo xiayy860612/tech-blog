@@ -1,0 +1,18 @@
+{
+ "qid": "1529125593",
+ "index": 536,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司在AWS云中运行一个跨三个可用区的三层Web应用程序。应用架构具有一个应用负载均衡器、一个托管用户会话状态的Amazon EC2 Web服务器以及一个在EC2实例上运行的MySQL数据库。公司预期应用流量会突然增加。公司希望能够扩展以满足未来的应用容量需求，并确保在所有三个可用区内具有高可用性。\n哪种解决方案可以满足这些要求？",
+ "options": [
+  "A. 将MySQL数据库迁移到Amazon RDS for MySQL，并使用Multi-AZ DB集群部署。使用具有高可用性的Amazon ElastiCache for Redis来存储会话数据和缓存读取。将Web服务器迁移到跨三个可用区的Auto Scaling组。",
+  "B. 将MySQL数据库迁移到Amazon RDS for MySQL，并使用Multi-AZ DB集群部署。使用具有高可用性的Amazon ElastiCache for Memcached来存储会话数据和缓存读取。将Web服务器迁移到跨三个可用区的Auto Scaling组。",
+  "C. 将MySQL数据库迁移到Amazon DynamoDB，并使用DynamoDB加速器 (DAX) 缓存读取。将会话数据存储在DynamoDB中。将Web服务器迁移到跨三个可用区的Auto Scaling组。",
+  "D. 将MySQL数据库迁移到单个可用区的Amazon RDS for MySQL。使用具有高可用性的Amazon ElastiCache for Redis来存储会话数据和缓存读取。将Web服务器迁移到跨三个可用区的Auto Scaling组。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A中，MySQL数据库迁移到Amazon RDS for MySQL并使用Multi-AZ DB集群部署，保证了数据库的高可用性。使用Amazon ElastiCache for Redis存储会话数据和缓存读取。将Web服务器放置在跨三个可用区的Auto Scaling组中，以确保对未来应用容量需求的弹性扩展和高可用性。",
+  "AI解析": "该题核心在于实现高可用及弹性扩展的云架构设计。RDS Multi-AZ部署通过主备数据库自动故障切换保障数据层高可用，ElastiCache for Redis支持数据持久化与跨可用区副本，满足会话状态存储的高可靠性和缓存需求；Auto Scaling组跨三个可用区部署Web层，既可应对流量突增实现水平扩展，又能通过多可用区分布消除单点故障。Memcached缺乏持久化机制，DynamoDB改变原有数据库类型可能引入兼容风险，单可用区RDS无法满足冗余要求，故排除其他选项。"
+ }
+}

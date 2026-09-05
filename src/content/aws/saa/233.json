@@ -1,0 +1,17 @@
+{
+ "index": 233,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个新的基于Web的客户关系管理应用程序。该应用程序将使用由Amazon Elastic Block Store（Amazon EBS）卷支持的多个Amazon EC2实例，位于一个应用程序负载均衡器（ALB）后面。该应用程序还将使用Amazon Aurora数据库。应用程序的所有数据必须在静止状态和传输中进行加密。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用AWS Key Management Service（AWS KMS）证书在ALB上加密传输中的数据。使用AWS Certificate Manager（ACM）来加密EBS卷和Aurora数据库在静止状态下的存储。",
+  "B. 使用AWS根账户登录到AWS管理控制台。上传公司的加密证书。在根账户中，选择打开帐户中所有静止状态和传输中的数据加密选项。",
+  "C. 使用AWS Key Management Service（AWS KMS）来在静止状态下加密EBS卷和Aurora数据库存储。将AWS Certificate Manager（ACM）证书附加到ALB以加密传输中的数据。",
+  "D. 使用BitLocker来对所有静止状态的数据进行加密。导入公司的TLS证书密钥到AWS Key Management Service（AWS KMS）。将KMS密钥附加到ALB以加密传输中的数据。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "AWS服务中数据传输和静态加密的实现方式。根据AWS文档，Amazon EBS卷和Aurora数据库静态加密均依赖AWS KMS管理的密钥。应用程序负载均衡器（ALB）使用ACM提供的证书处理传输中加密（如HTTPS）。选项C正确组合了KMS处理静态数据加密与ACM处理传输加密，符合最佳实践。选项A错误分配KMS和ACM用途，选项B描述的根账户全局加密选项不存在，选项D提及的BitLocker不适用于AWS托管服务。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124317",
+ "index": 396,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家电子商务公司需要运行一个定时的每日作业，以汇总和过滤销售记录以进行分析。公司将销售记录存储在一个Amazon S3存储桶中。每个对象的大小最多可以达到10 GB。基于销售事件的数量，作业可能需要高达一小时的时间才能完成。作业的CPU和内存使用量是恒定的，可以提前知道。\n解决方案架构师需要尽量减少运行作业所需的操作工作。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 创建一个具有Amazon EventBridge通知的AWS Lambda函数。安排EventBridge事件每天运行一次。",
+  "B. 创建一个AWS Lambda函数。创建一个Amazon API Gateway HTTP API，并将API与函数集成。创建一个Amazon EventBridge定时事件，调用API并触发函数。",
+  "C. 创建一个具有AWS Fargate启动类型的Amazon Elastic Container Service（Amazon ECS）集群。创建一个Amazon EventBridge定时事件，启动ECS任务来运行作业。",
+  "D. 创建一个具有Amazon EC2启动类型和至少一个EC2实例的Auto Scaling组的Amazon Elastic Container Service（Amazon ECS）集群。创建一个Amazon EventBridge定时事件，启动ECS任务来运行作业。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "Amazon ECS Fargate是无服务器计算引擎，适用于无需管理底层基础设施的场景。题目强调最小化操作工作，Fargate自动处理服务器配置和扩展，无需手动管理EC2实例或Auto Scaling组。Lambda存在执行时间限制（最长15分钟），无法满足一小时作业需求。EventBridge定时事件触发Fargate任务能可靠执行长时间任务，同时减少运维复杂性。选项C通过Fargate启动ECS任务，符合要求；选项D涉及EC2实例管理，增加运维负担。参考AWS文档对Fargate和Lambda用例的说明。"
+ }
+}

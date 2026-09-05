@@ -1,0 +1,18 @@
+{
+ "qid": "2949540317",
+ "index": 976,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家金融服务公司计划在\nAWS 上启动一个新应用程序，以处理敏感的金融交易。公司将在 Amazon EC2 实例上部署应用程序。公司将使用 Amazon RDS for MySQL 作为数据库。公司的安全政策要求数据必须在静态和传输过程中加密。\n哪种解决方案将以最少的操作开销满足这些要求？",
+ "options": [
+  "A. 配置 Amazon RDS For MySQL 的静态加密，使用 AWS KMS 托管密钥。配置 AWS Certificate Manager (ACM) SSL/TLS 证书以进行传输加密。",
+  "B. 配置 Amazon RDS For MySQL 的静态加密，使用 AWS KMS 托管密钥。配置 IPsec 隧道以进行传输加密。",
+  "C. 实施第三方应用程序级数据加密，然后将数据存储在 Amazon RDS for MySQL 中。配置 AWS Certificate Manager (ACM) SSL/TLS 证书以进行传输加密。",
+  "D. 配置 Amazon RDS For MySQL 的静态加密，使用 AWS KMS 托管密钥。配置 VPN 连接以启用私有连接以加密数据传输。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "静态加密： 配置 Amazon RDS for MySQL 使用 AWS KMS 托管密钥来加密数据静态时。这是 RDS 内置的功能，能够自动处理数据的加密，无需额外的操作。\n传输加密： 配置 AWS Certificate Manager (ACM)\nSSL/TLS 证书用于加密数据传输。这确保数据在传输过程中被加密，是一个简单且常见的做法。",
+  "AI解析": "Amazon RDS for MySQL默认支持使用AWS KMS管理的密钥进行静态加密，无需额外配置。传输层加密要求可以通过AWS Certificate Manager（ACM）提供的托管SSL/TLS证书实现，该服务自动处理证书的部署和续订。IPsec隧道（选项B）和VPN连接（选项D）需要手动配置网络基础设施，引入额外复杂性。第三方应用层加密（选项C）需要修改应用程序代码，增加开发维护成本。AWS官方文档指出，RDS静态加密结合ACM证书是满足加密要求的最低管理开销方案。"
+ }
+}

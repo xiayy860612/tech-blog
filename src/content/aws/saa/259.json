@@ -1,0 +1,17 @@
+{
+ "index": 259,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的合规团队需要将其文件共享迁移到 AWS。这些共享运行在 Windows 服务器的 SMB 文件共享上。一个自管理的本地 Active Directory 控制着对文件和文件夹的访问。\n公司希望将 Amazon FSx for Windows File Server 作为解决方案的一部分。公司必须确保本地 Active Directory 组在迁移到 AWS 后限制对 FSx for Windows File Server SMB 合规共享、文件夹和文件的访问。公司已创建了一个 FSx for Windows File Server 文件系统。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 创建一个 Active Directory 连接器以连接到 Active Directory。将 Active Directory 组映射到 IAM 组以限制访问。",
+  "B. 分配一个标签，使用 Restrict 标签键和 Compliance 标签值。将 Active Directory 组映射到 IAM 组以限制访问。",
+  "C. 创建一个直接与 FSx for Windows File Server 相关联的 IAM 服务相关角色以限制访问。",
+  "D. 将文件系统加入到 Active Directory 以限制访问。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "在这种情况下，选项 D 是最适合的解决方案。通过将 FSx for Windows File Server 文件系统加入到公司的现有本地 Active Directory 中，可以确保本地 Active Directory 组织结构限制对文件共享的访问。这允许在 AWS 中继续使用现有的 Active Directory 权限和策略，并与 AWS 服务整合。",
+  "AI解析": "AWS FSx for Windows File Server 的设计要求与现有的本地 Active Directory (AD) 集成以实现基于 AD 组和用户的访问控制。根据 AWS 官方文档，FSx 文件系统必须在部署时加入现有的 Active Directory 域，才能继承 AD 中定义的权限策略。选项 D 正确描述了这一过程，即通过将文件系统加入 AD 域，使得原有的 AD 组、用户及权限规则自动生效。其他选项（如 IAM 组映射或服务相关角色）不适用于 SMB 文件共享的场景，因为 FSx 的权限管理依赖 AD 而非 IAM。参考 AWS 文档《Amazon FSx for Windows File Server 管理指南》中\"将文件系统加入 Active Directory 域\"章节。"
+ }
+}

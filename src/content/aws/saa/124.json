@@ -1,0 +1,17 @@
+{
+ "index": 124,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个报告团队每天在Amazon S3存储桶中收到文件。报告团队手动地每天在相同时间将文件从初始S3存储桶复制到分析S3存储桶，以便在Amazon QuickSight中使用。其他团队开始向初始S3存储桶发送更多和更大的文件。\n\n报告团队希望在文件进入初始S3存储桶时自动将文件移动到分析S3存储桶。报告团队还希望使用AWS Lambda函数对复制的数据运行模式匹配代码。此外，报告团队希望将数据文件发送到Amazon SageMaker Pipelines中的管道。\n\n解决方案架构师应该采取什么措施以满足这些要求并使运营开销最小？",
+ "options": [
+  "A. 创建一个Lambda函数来将文件复制到分析S3存储桶。为分析S3存储桶创建一个S3事件通知。将Lambda和SageMaker Pipelines配置为事件通知的目标。将事件类型配置为s3:ObjectCreated:Put。",
+  "B. 创建一个Lambda函数来将文件复制到分析S3存储桶。将分析S3存储桶配置为向Amazon EventBridge（Amazon CloudWatch Events）发送事件通知。在EventBridge（CloudWatch Events）中创建一个ObjectCreated规则。将Lambda和SageMaker Pipelines配置为规则的目标。",
+  "C. 在S3存储桶之间配置S3复制。为分析S3存储桶创建一个S3事件通知。将Lambda和SageMaker Pipelines配置为事件通知的目标。将事件类型配置为s3:ObjectCreated:Put。",
+  "D. 在S3存储桶之间配置S3复制。将分析S3存储桶配置为向Amazon EventBridge（Amazon CloudWatch Events）发送事件通知。在EventBridge（CloudWatch Events）中创建一个ObjectCreated规则。将Lambda和SageMaker Pipelines配置为规则的目标。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "配置 S3 复制：\n\n在 S3 存储桶之间配置 S3 复制可以自动将文件从初始存储桶复制到分析存储桶。这种方式简化了文件的移动过程，减少了手动干预的需要，符合自动化的需求。\n\n使用 Amazon EventBridge：\n\n将分析 S3 存储桶配置为向 Amazon EventBridge（以前称为 CloudWatch Events）发送事件通知，可以实现对文件创建事件的监控。当新的文件复制到分析存储桶时，EventBridge 将触发相应的事件。\n\n集成 Lambda 和 SageMaker Pipelines：\n\n在 EventBridge 中创建 ObjectCreated 规则，可以将 Lambda 函数和 SageMaker Pipelines 配置为规则的目标。这样，当新文件进入分析存储桶时，Lambda 函数可以被触发以运行模式匹配代码，而 SageMaker Pipelines 可以处理相应的数据文件进行进一步分析。",
+  "AI解析": "Amazon S3复制功能可在存储桶间自动同步对象，无需自定义Lambda处理数据传输，降低运营成本。Amazon官方文档指出，S3事件通知与EventBridge集成后支持更复杂的事件路由场景，例如同一事件触发多个下游服务。选项D采用S3复制替代Lambda手动复制，减少代码维护；利用EventBridge规则同时触发Lambda函数和SageMaker Pipelines，避免多个S3事件通知配置，符合最小化运营开销的设计原则。选项C直接使用S3事件通知仅支持单个目标，而EventBridge可多路分发事件。"
+ }
+}

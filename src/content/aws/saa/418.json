@@ -1,0 +1,19 @@
+{
+ "qid": "1529124342",
+ "index": 418,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司使用启用了所有功能的AWS组织，并在ap-southeast-2地区运行多个Amazon EC2工作负载。公司有一个服务控制策略（SCP），阻止在其他地区创建任何资源。安全策略要求公司对所有数据进行加密。\n一次审计发现，员工已经创建了未加密的Amazon Elastic Block Store（Amazon EBS）卷，用于EC2实例。公司希望在ap-southeast-2地区中，由IAM用户或根用户启动的任何新EC2实例都使用加密的EBS卷。\n公司希望找到一种解决方案，对于创建EBS卷的员工影响最小。\n哪种步骤组合将满足这些要求？（选择两个）",
+ "options": [
+  "A. 在Amazon EC2控制台中，选择EBS加密帐户属性，并定义默认加密密钥。",
+  "B. 创建一个IAM权限边界。将权限边界附加到根组织单位（OU）。定义权限边界，以在ec2:Encrypted条件等于false时拒绝ec2:CreateVolume操作。",
+  "C. 创建一个SCP。将SCP附加到根组织单位（OU）。定义SCP，以在ec2:Encrypted条件等于false时拒绝ec2:CreateVolume操作。",
+  "D. 更新每个帐户的IAM策略，以在ec2:Encrypted条件等于false时拒绝ec2:CreateVolume操作。",
+  "E. 在组织管理帐户中，指定默认的EBS卷加密设置。"
+ ],
+ "answer": {
+  "正确答案": "CE",
+  "解析": null,
+  "AI解析": "AWS服务控制策略（SCP）和默认加密设置是核心。AWS文档指出，通过启用组织级别的默认EBS加密（选项E），所有新EBS卷自动加密，无需用户干预。结合SCP（选项C）拒绝未加密卷的创建，双重确保合规。IAM策略或权限边界（选项B/D）需维护每个账户，而SCP和默认加密在组织层面统一生效，对用户影响最小。AWS最佳实践推荐同时使用默认加密和SCP以强制执行加密策略。"
+ }
+}

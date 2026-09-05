@@ -1,0 +1,18 @@
+{
+ "qid": "1529122083",
+ "index": 11,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个在Amazon EC2实例上运行的应用程序，使用Amazon Aurora数据库。EC2实例通过在一个文件中本地存储的用户名和密码连接到数据库。公司希望最小化凭据管理的操作开销。解决方案架构师应该如何实现这个目标？",
+ "options": [
+  "A. 使用AWS Secrets Manager。打开自动轮换。",
+  "B. 使用AWS Systems Manager Parameter Store。打开自动轮换。",
+  "C. 创建一个Amazon S3存储桶，存储由AWS Key Management Service (AWS KMS)加密的对象。将凭据文件迁移到S3存储桶。将应用程序指向S3存储桶。",
+  "D. 为每个EC2实例创建一个加密的Amazon Elastic Block Store (Amazon EBS)卷。将新的EBS卷附加到每个EC2实例。将凭据文件迁移到新的EBS卷。将应用程序指向新的EBS卷。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "AWS Secrets Manager： Secrets Manager 是一项 AWS 服务，用于安全地存储和管理敏感信息，如数据库凭据、API密钥和其他凭据。使用 Secrets Manager 可以更轻松地实现凭据的安全存储、轮换和访问。自动轮换可以定期更改凭据，增加安全性。AWS Systems Manager Parameter Store： Parameter Store 也是一项 AWS 服务，用于存储配置和凭据。然而，它通常用于存储非敏感的配置数据，而 Secrets Manager 更专注于安全地存储凭据。Amazon S3存储桶： 使用 S3 存储桶来存储凭据是一种方法，但通常不如 Secrets Manager 安全。此外，你需要编写额外的逻辑来管理访问控制、加密和轮换。Amazon Elastic Block Store (EBS)卷： 将凭据存储在 EBS 卷上，同样需要额外的管理和配置，而且可能不如 Secrets Manager 提供的自动轮换和集成那么便捷。因此，AWS Secrets Manager 提供了一个安全且易于管理的方式来存储和轮换凭据。",
+  "AI解析": "AWS Secrets Manager专为安全存储和管理机密信息（如数据库凭证）设计，可自动轮换凭证，减少手动操作。AWS官方文档指出，Secrets Manager支持自动轮换RDS数据库凭证，无需应用代码修改。选项B的Systems Manager Parameter Store不提供自动轮换机密的功能。选项C和D仅涉及静态加密存储，未解决凭证轮换问题，仍需手动管理。正确答案为A。"
+ }
+}

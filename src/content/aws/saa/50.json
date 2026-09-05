@@ -1,0 +1,17 @@
+{
+ "index": 50,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上运行多个Windows工作负载。公司的员工使用托管在两个Amazon EC2实例上的Windows文件共享。这些文件共享在它们之间同步数据并维护副本。公司希望一个高度可用且耐用的存储解决方案，同时保留用户当前访问文件的方式。",
+ "options": [
+  "A. 将所有数据迁移到Amazon S3，并设置IAM身份验证，以便用户访问文件。",
+  "B. 设置Amazon S3文件网关。将S3文件网关挂载到现有的EC2实例上。",
+  "C. 将文件共享环境扩展到Amazon FSx for Windows File Server，使用Multi-AZ配置，并将所有数据迁移到FSx for Windows File Server。",
+  "D. 将文件共享环境扩展到Amazon Elastic File System (Amazon EFS)，使用Multi-AZ配置，并将所有数据迁移到Amazon EFS。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是最符合要求的答案。Amazon FSx for Windows File Server是一种专为Windows工作负载设计的托管文件存储服务，支持SMB协议，并具有Multi-AZ配置，可提供高可用性和耐用性。这将允许公司继续使用Windows文件共享，并提供高度可用和耐用的存储解决方案。其他选项中，A虽然提到了Amazon S3，但需要更改用户访问方式，并且不提供实时同步。选项B中，使用Amazon S3文件网关也需要更改用户访问方式，并且不提供实时同步。选项D中，Amazon EFS提供了高可用性，但不支持SMB协议，这可能需要更改用户的文件访问方式。",
+  "AI解析": "这道题考察的是在AWS环境中选择合适的存储解决方案以实现高可用性、持久性，同时保持现有文件访问方式。题目中用户当前使用两个EC2实例托管Windows文件共享，需要迁移到更可靠的托管服务。AWS文档指出，Amazon FSx for Windows File Server专为Windows环境设计，原生支持SMB协议，能够无缝兼容现有Windows文件共享访问方式，无需修改客户端配置。其Multi-AZ特性通过跨可用区自动复制数据，提供内置的高可用性和容错能力。选项A和B涉及S3，但S3是对象存储，访问方式与标准文件共享协议不同，需通过网关或API，可能改变用户体验。选项D的EFS仅支持NFS协议，不适用于Windows环境。因此，选项C是唯一满足保留用户访问方式且实现高可用性和持久性的答案。"
+ }
+}

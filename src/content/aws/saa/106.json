@@ -1,0 +1,17 @@
+{
+ "index": 106,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个基于Amazon EC2实例运行的Web应用程序，该应用程序跨多个可用区提供服务。Web应用程序将提供对总计约900 TB的文档仓库的访问。公司预计Web应用程序将在某些时段经历高需求。解决方案架构师必须确保文档存储组件能够随时扩展以满足应用程序的需求。公司关心解决方案的整体成本。\n哪种存储解决方案在成本效益方面最符合要求？",
+ "options": [
+  "A. Amazon Elastic Block Store（Amazon EBS）",
+  "B. Amazon Elastic File System（Amazon EFS）",
+  "C. Amazon OpenSearch Service（Amazon Elasticsearch Service）",
+  "D. Amazon S3"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "对于需要存储大规模文档并具有成本效益的需求，Amazon S3是最佳选择。Amazon S3是一个高度可扩展的对象存储服务，具有高可用性、耐久性和安全性，并且通常在成本方面更具竞争力。\n其他选项的考虑：\nA Amazon EBS适用于块级存储，但不适用于大规模文档存储。通常用于EC2实例的卷。\nB Amazon EFS适用于文件存储，但可能涉及更高的成本，并通常不用于存储大规模文档。\nC Amazon OpenSearch Service是一个搜索引擎服务，不适用于直接存储大规模文档。",
+  "AI解析": "存储服务的选型需考虑扩展性、成本及用例适配性。AWS文档指出，Amazon S3作为对象存储服务，专为海量数据设计，具备无限扩展能力，存储容量自动随数据增长扩展，无需预置。其按实际用量计费的模式及更低的存储单价（对比EFS、EBS）尤其适合静态文档仓库场景。EFS适用于需文件系统接口的多实例共享访问，但存储成本高于S3；EBS为块存储，绑定单实例且扩展性受限。OpenSearch侧重搜索分析，不适合文档存储。故D选项最符合需求。"
+ }
+}

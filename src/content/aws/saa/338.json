@@ -1,0 +1,17 @@
+{
+ "index": 338,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司有一个自定义应用程序，其中嵌入了凭据，用于从Amazon RDS MySQL数据库实例中检索信息。管理层表示应用程序必须更加安全，且要求尽量减少编程工作量。\n解决方案架构师应该采取什么措施以满足这些要求？",
+ "options": [
+  "A. 使用AWS密钥管理服务（AWS KMS）创建密钥。配置应用程序从AWS KMS加载数据库凭据。启用自动密钥轮换。",
+  "B. 为应用程序用户在RDS for MySQL数据库上创建凭据，并将凭据存储在AWS Secrets Manager中。配置应用程序从Secrets Manager加载数据库凭据。创建一个AWS Lambda函数，在Secrets Manager中轮换凭据。",
+  "C. 为应用程序用户在RDS for MySQL数据库上创建凭据，并将凭据存储在AWS Secrets Manager中。配置应用程序从Secrets Manager加载数据库凭据。使用Secrets Manager在RDS for MySQL数据库中为应用程序用户设置凭据轮换计划。",
+  "D. 为应用程序用户在RDS for MySQL数据库上创建凭据，并将凭据存储在AWS Systems Manager参数存储中。配置应用程序从Parameter Store加载数据库凭据。使用Parameter Store在RDS for MySQL数据库中为应用程序用户设置凭据轮换计划。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "本题考查AWS凭证安全管理核心方案。Secrets Manager专为敏感信息存储设计，支持与RDS深度集成实现自动凭证轮换（无需自定义代码），直接解决硬编码风险。KMS仅管理加密密钥，无法直接轮换数据库凭据；Systems Manager参数存储缺乏原生凭证轮换功能，需额外开发Lambda实现。选项C通过Secrets Manager内置的轮换机制，在保障安全性的同时最大程度减少开发量，完全满足题目核心需求。"
+ }
+}

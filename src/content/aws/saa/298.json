@@ -1,0 +1,17 @@
+{
+ "index": 298,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个研究实验室需要处理大约8 TB的数据。该实验室需要亚毫秒的延迟和存储子系统的最低吞吐量为6 GBps。数百个运行Amazon Linux的Amazon EC2实例将分发和处理数据。哪种解决方案可以满足性能要求？",
+ "options": [
+  "A. 创建一个Amazon FSx for NetApp ONTAP文件系统。将每个卷的层级策略设置为ALL。将原始数据导入文件系统。在EC2实例上挂载文件系统。",
+  "B. 创建一个Amazon S3存储桶来存储原始数据。创建一个使用持久性SSD存储的Amazon FSx for Lustre文件系统。选择从Amazon S3导入数据和导出数据的选项。在EC2实例上挂载文件系统。",
+  "C. 创建一个Amazon S3存储桶来存储原始数据。创建一个使用持久性HDD存储的Amazon FSx for Lustre文件系统。选择从Amazon S3导入数据和导出数据的选项。在EC2实例上挂载文件系统。",
+  "D. 创建一个Amazon FSx for NetApp ONTAP文件系统。将每个卷的层级策略设置为NONE。将原始数据导入文件系统。在EC2实例上挂载文件系统。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "在这个情况下，选项B是最适合的解决方案，因为它满足性能要求。下面是选项B的解释：\n创建一个Amazon S3存储桶：Amazon S3是高度耐用的对象存储服务，用于存储原始数据。\n创建一个Amazon FSx for Lustre文件系统：Amazon FSx for Lustre是一个高性能的文件存储解决方案，可以提供亚毫秒的延迟和高吞吐量。使用持久性SSD存储可以满足性能需求。\n选择从Amazon S3导入数据和导出数据的选项：这允许将数据从Amazon S3导入到文件系统，并在需要时导出数据。\n在EC2实例上挂载文件系统：EC2实例可以通过挂载文件系统来访问数据，以进行分发和处理。\n其他选项的解释：\n选项A中的Amazon FSx for NetApp ONTAP文件系统不提供持久性SSD存储，可能无法满足性能需求。\n选项C中的Amazon FSx for Lustre文件系统使用持久性HDD存储，可能无法提供所需的高吞吐量和低延迟。\n选项D中的Amazon FSx for NetApp ONTAP文件系统将层级策略设置为NONE，这可能导致性能问题，并不符合要求。\n因此，选项B是最佳选择，因为它提供了高性能和持久性存储，并且可以满足性能要求。",
+  "AI解析": "题目核心考察高性能分布式存储选型。Amazon FSx for Lustre专为机器学习等高吞吐场景设计，SSD版本提供亚毫秒级延迟及远超6GBps的吞吐量，直接满足性能指标。其与S3无缝集成实现数据导入/导出，符合数百EC2实例并行处理8TB数据的架构需求，而持久性SSD确保数据持久与速度的平衡。HDD存储吞吐不足，NetApp ONTAP侧重企业级NAS功能而非并行计算场景。"
+ }
+}

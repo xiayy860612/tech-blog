@@ -1,0 +1,18 @@
+{
+ "qid": "2264604791",
+ "index": 820,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司使用Salesforce。该公司需要将来自Salesforce的现有数据和正在进行的数据更改加载到Amazon Redshift进行分析。公司不希望数据通过公共互联网传输。",
+ "options": [
+  "A. 从VPC到Salesforce建立VPN连接。使用AWS Glue DataBrew传输数据。",
+  "B. 从VPC到Salesforce建立AWS Direct Connect连接。使用AWS Glue DataBrew传输数据。",
+  "C. 在VPC中创建与Salesforce的AWS PrivateLink连接。使用Amazon AppFlow传输数据。",
+  "D. 与Salesforce创建VPC对等连接。使用Amazon AppFlow传输数据。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "这个问题要求在不使用公共互联网的情况下将数据从Salesforce传输到Amazon Redshift，并且希望实现最小的开发工作量。选项C提到创建在VPC中创建与Salesforce的AWS\nPrivateLink连接，然后使用Amazon AppFlow来传输数据。这个解决方案可以在不通过公共互联网的情况下安全地传输数据，而且使用Amazon AppFlow可以减少开发工作量，因为它提供了可视化界面和预先构建的集成，可以快速配置数据传输。\n其他选项中，选项A提到使用VPN连接，选项B提到使用Direct Connect连接，选项D提到使用VPC对等连接，虽然这些方法都可以连接到Salesforce，但它们不直接满足要求不通过公共互联网传输数据，而且相比于Amazon\nAppFlow，它们可能需要更多的开发工作量来实现数据传输。",
+  "AI解析": "本题考查混合云架构下数据传输的私有连接方案。核心知识点在于AWS PrivateLink支持在VPC内创建私有终端节点访问第三方SaaS服务，结合Amazon AppFlow（专用于SaaS应用的数据集成服务）实现数据迁移。选项C通过PrivateLink建立与Salesforce的安全私有通道，利用AppFlow原生支持Salesforce的特性进行增量数据同步，完全规避公共网络传输；其余选项或存在技术限制（VPN/专线需企业侧网络设施配合），或涉及不兼容场景（VPC对等仅适用AWS内部网络）。"
+ }
+}

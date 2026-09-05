@@ -1,0 +1,17 @@
+{
+ "index": 163,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司拥有一个用于软件工程的AWS帐户。该AWS帐户通过一对AWS Direct Connect连接访问公司的本地数据中心。所有非-VPC的流量都经由虚拟专用网关。\n最近，一个开发团队通过控制台创建了一个AWS Lambda函数。该开发团队需要允许这个函数访问运行在公司数据中心的私有子网中的数据库。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 配置Lambda函数在VPC中运行，并使用适当的安全组。",
+  "B. 建立从AWS到数据中心的VPN连接。将Lambda函数的流量路由通过VPN。",
+  "C. 更新VPC中的路由表，允许Lambda函数通过Direct Connect访问本地数据中心。",
+  "D. 创建一个弹性IP地址。配置Lambda函数将流量通过弹性IP地址发送，而不使用弹性网络接口。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "要允许Lambda函数访问公司数据中心中的数据库，最佳做法是将Lambda函数配置为运行在一个VPC中，并确保它使用适当的安全组。这允许Lambda函数与VPC内的资源进行通信，包括位于私有子网中的数据库。选项B提到了VPN连接，但通常情况下，Lambda函数并不直接连接到VPN，而是通过VPC与公司数据中心通信。选项C提到更新VPC中的路由表，但通常不直接在VPC中配置路由表以连接到Direct Connect。选项D提到创建弹性IP地址，但Lambda函数通常不使用弹性IP地址。所以，选项A是满足要求的最佳解决方案。",
+  "AI解析": "Lambda函数默认部署在用户的AWS账户中，但不在任何VPC内。访问本地数据中心资源需通过VPC内的网络路径。AWS官方文档指出，Lambda函数需配置为在VPC中运行，并关联安全组以控制出入流量。虚拟专用网关与Direct Connect连接已建立，VPC路由表应已包含本地数据中心的路径。选项B的VPN连接冗余，选项C的路由表更新可能非必要，选项D的弹性IP不适用。配置Lambda在VPC并应用安全组满足访问需求。[AWS Lambda 在 VPC 中配置](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html)"
+ }
+}

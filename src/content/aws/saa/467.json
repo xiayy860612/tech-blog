@@ -1,0 +1,18 @@
+{
+ "qid": "1529124391",
+ "index": 467,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司正在开发一个微服务应用程序，为客户提供搜索目录。公司必须使用REST API将应用程序的前端呈现给用户。这些REST API必须访问公司在私有VPC子网中托管的后端服务。\n哪种解决方案满足这些要求？",
+ "options": [
+  "A. 使用Amazon API Gateway设计一个WebSocket API。将应用程序托管在Amazon Elastic Container Service（Amazon ECS）的私有子网中。为API Gateway创建一个私有VPC链路以访问Amazon ECS。",
+  "B. 使用Amazon API Gateway设计一个REST API。将应用程序托管在Amazon Elastic Container Service（Amazon ECS）的私有子网中。为API Gateway创建一个私有VPC链路以访问Amazon ECS。",
+  "C. 使用Amazon API Gateway设计一个WebSocket API。将应用程序托管在Amazon Elastic Container Service（Amazon ECS）的私有子网中。为API Gateway创建一个安全组以访问Amazon ECS。",
+  "D. 使用Amazon API Gateway设计一个REST API。将应用程序托管在Amazon Elastic Container Service（Amazon ECS）的私有子网中。为API Gateway创建一个安全组以访问Amazon ECS。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这种情况下，由于需要使用REST API，并且后端服务托管在私有VPC子网中，最适合的解决方案是创建一个Amazon API Gateway REST API，并为它创建一个私有VPC链路，以便安全地访问Amazon ECS中的后端服务。其他选项中的WebSocket API并不是必需的，而使用安全组不足以提供与VPC链路相同的安全性和隔离。",
+  "AI解析": "Amazon API Gateway支持创建REST API与私有VPC资源集成。官方文档指出，当后端服务部署在VPC私有子网时，需通过VPC链路建立私有连接。题干明确要求REST API，排除WebSocket选项（A、C）。选项D依赖安全组，但安全组仅管理实例级别的流量规则，无法直接打通API Gateway到私有子网的网络访问。VPC链路专为API Gateway与VPC内部服务的安全、私有连接设计，符合场景需求。答案B正确对应REST API及VPC链路的组合。"
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "index": 131,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要保留关键应用程序的应用程序日志文件10年。应用程序团队经常访问过去一个月的日志以进行故障排除，但1个月前的日志很少被访问。该应用程序每个月生成超过10 TB的日志。\n哪种存储选项在最经济有效的情况下满足这些要求？",
+ "options": [
+  "A. 将日志存储在Amazon S3中。使用AWS Backup将超过1个月的日志移至S3 Glacier Deep Archive。",
+  "B. 将日志存储在Amazon S3中。使用S3生命周期策略将超过1个月的日志移至S3 Glacier Deep Archive。",
+  "C. 将日志存储在Amazon CloudWatch Logs中。使用AWS Backup将超过1个月的日志移至S3 Glacier Deep Archive。",
+  "D. 将日志存储在Amazon CloudWatch Logs中。使用Amazon S3生命周期策略将超过1个月的日志移至S3 Glacier Deep Archive。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项B是最经济有效的解决方案。将日志存储在Amazon S3中，使用S3的生命周期策略来自动将超过1个月的日志转移到S3 Glacier Deep Archive。这样，您可以在S3中保持近期日志以供快速访问，而将长期不再经常访问的日志以更低的存储成本存档到S3 Glacier Deep Archive。这可以满足10年的保留要求，同时最大程度降低存储成本。\n选项A和选项C中使用AWS Backup是一个不必要的步骤，增加了复杂性，不如直接使用S3生命周期策略。\n选项D中将日志存储在Amazon CloudWatch Logs中，但使用S3生命周期策略将日志移至S3 Glacier Deep Archive更为经济有效，因为S3 Glacier Deep Archive更便宜。",
+  "AI解析": "Amazon S3适用于存储大量日志数据，且生命周期策略能自动将对象迁移到成本更低的存储类别。S3 Glacier Deep Archive是AWS中最低成本的归档存储，适合极少访问的数据。AWS Backup主要用于备份管理，而生命周期策略直接集成在S3服务中，无需额外配置即可实现基于时间的自动转换。[选项分析]选项B利用S3生命周期策略自动转移旧日志至Glacier Deep Archive，对比其他选项，此方式更简洁经济。来源：AWS文档关于S3生命周期策略和存储类别的说明。"
+ }
+}

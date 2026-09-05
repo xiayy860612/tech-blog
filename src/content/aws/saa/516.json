@@ -1,0 +1,18 @@
+{
+ "qid": "1529125573",
+ "index": 516,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将所有 AWS Systems Manager Session Manager 日志发送到 Amazon S3 存储桶以进行归档。\n哪种解决方案能够以最高的运维效率满足这一要求？",
+ "options": [
+  "A. 在 Systems Manager 控制台中启用 S3 日志记录。选择将会话数据发送到一个 S3 存储桶。",
+  "B. 安装 Amazon CloudWatch 代理。将所有日志推送到一个 CloudWatch 日志组。从该组中将日志导出到 S3 存储桶进行归档。",
+  "C. 创建一个 Systems Manager 文档，将所有服务器日志上传到一个中央 S3 存储桶。使用 Amazon EventBridge 每天针对帐户中的所有服务器运行 Systems Manager 文档。",
+  "D. 安装 Amazon CloudWatch 代理。将所有日志推送到一个 CloudWatch 日志组。创建一个 CloudWatch 日志订阅，将任何传入的日志事件推送到 Amazon Kinesis Data Firehose 交付流。将 Amazon S3 设置为目的地。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "Session Manager会话日志归档需优先使用原生集成功能确保运维效率。AWS Systems Manager支持在控制台直接启用S3日志记录，通过配置会话首选项自动将所有日志传输至指定存储桶（A选项），无需部署代理或额外数据处理链路。其他选项需通过CloudWatch代理转发（B/D）或自定义脚本定时触发（C），均引入冗余组件与复杂性，不符合高效运维要求。"
+ }
+}

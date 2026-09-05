@@ -1,0 +1,19 @@
+{
+ "qid": "2949540276",
+ "index": 935,
+ "total": 1018,
+ "type": "多选题",
+ "question": "一家公司运行着数千个 AWS\nLambda 函数。公司需要一个解决方案来安全地存储所有 Lambda 函数使用的敏感信息。该解决方案还必须管理敏感信息的自动轮换。\n哪两个步骤可以以最低的操作开销满足这些要求？（选择两个）",
+ "options": [
+  "A. 使用 Lambda@Edge 创建 HTTP 安全头以检索和创建敏感信息",
+  "B. 创建一个 Lambda 层来检索敏感信息",
+  "C. 将敏感信息存储在 AWS Secrets Manager 中",
+  "D. 将敏感信息存储在 AWS Systems Manager Parameter Store 中",
+  "E. 创建一个具有专用吞吐量的 Lambda 消费者以检索敏感信息并创建环境变量"
+ ],
+ "answer": {
+  "正确答案": "CD",
+  "解析": "C选项AWS Secrets\nManager 是一个专门用于安全存储和管理敏感信息的服务，它可以自动轮换密钥和密码。它提供了 API 访问，Lambda 函数可以直接从 Secrets Manager 中检索敏感信息，而无需手动管理轮换操作，降低了操作开销。\nD选项AWS Systems\nManager Parameter Store 也可以用来存储敏感信息，并且支持自动轮换（对于高级参数）。它提供了加密选项和访问控制，可以与 Lambda 函数集成来安全地检索参数值。",
+  "AI解析": "AWS认证相关考试中常见考点，题目涉及如何安全存储Lambda函数使用的敏感信息并实现自动轮换。AWS官方文档指出，AWS Secrets Manager（选项C）专为敏感信息设计，支持自动轮换密钥或凭证，无需额外代码。AWS Systems Manager Parameter Store（选项D）的SecureString类型参数可通过KMS加密存储敏感数据，虽然原生不支持自动轮换，但结合Lambda或EventBridge等工具可实现低操作成本的轮换机制。选项A（Lambda@Edge）和安全头无关，选项B（Lambda层）无法解决存储和轮换问题，选项E（环境变量）不安全且不适用敏感数据。"
+ }
+}

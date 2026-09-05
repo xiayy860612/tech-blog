@@ -1,0 +1,18 @@
+{
+ "qid": "1908084811",
+ "index": 694,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在构建一个基于微服务的应用程序，将部署在 Amazon Elastic Kubernetes Service (Amazon EKS) 上。这些微服务将相互交互。公司希望确保应用程序是可观测的，以便在未来识别性能问题。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 配置应用程序使用 Amazon ElastiCache 来减少发送到微服务的请求数量。",
+  "B. 配置 Amazon CloudWatch Container Insights 从 EKS 集群收集指标。使用 AWS X-Ray 跟踪微服务之间的请求。",
+  "C. 配置 AWS CloudTrail 来审查 API 调用。构建一个 Amazon QuickSight 仪表板以观察微服务之间的交互。",
+  "D. 使用 AWS Trusted Advisor 来了解应用程序的性能。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "这个解决方案通过配置 Amazon CloudWatch Container Insights 收集指标，并使用 AWS X-Ray 跟踪微服务之间的请求，确保了应用程序的可观测性。CloudWatch Container Insights 可以提供有关容器和集群的详细性能指标，而 AWS X-Ray 则提供了对微服务之间请求的端到端跟踪和分析。",
+  "AI解析": "题目考查微服务架构的可观测性实现，核心在于指标收集和请求跟踪。Amazon CloudWatch Container Insights专为容器环境设计，实时采集EKS集群的资源利用率及性能指标；AWS X-Ray通过追踪分布式请求流，可视化服务间调用关系和延迟瓶颈。两者结合覆盖了指标监控与链路追踪两大可观测性维度，直接定位性能问题根源。其他选项或聚焦缓存优化（A）、API审计（C），或提供通用建议（D），均未针对微服务交互的深度观测需求。"
+ }
+}

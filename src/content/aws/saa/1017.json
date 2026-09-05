@@ -1,0 +1,18 @@
+{
+ "qid": "2949543557",
+ "index": 1017,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司需要为全球分布的开发团队提供安全访问公司 AWS 资源的方式，同时遵循安全政策。\n该公司目前使用本地 Active Directory 进行内部身份验证，并使用 AWS Organizations 管理多个支持多个项目的 AWS 账户。\n公司需要一个解决方案来集成现有基础设施，以提供集中式身份管理和访问控制。\n哪种解决方案将以最少的运营开销满足这些要求？",
+ "options": [
+  "A. 设置 AWS Directory Service，在 AWS 上创建一个 AWS 管理的 Microsoft Active Directory。与本地 Active Directory 建立信任关系。使用分配给 Active Directory 组的 IAM 角色访问公司 AWS 账户中的 AWS 资源。",
+  "B. 为每个开发人员创建一个 IAM 用户。根据每个用户参与的项目手动管理每个 IAM 用户的权限。强制执行多因素身份验证 (MFA) 作为额外的安全层。",
+  "C. 在 AWS Directory Service 中使用 AD Connector 连接到本地 Active Directory。将 AD Connector 与 AWS IAM Identity Center 集成。配置权限集以为每个 AD 组提供对特定 AWS 账户和资源的访问。",
+  "D. 使用 Amazon Cognito 部署身份联合解决方案。将身份联合解决方案与本地 Active Directory 集成。使用 Amazon Cognito 为开发人员提供访问 AWS 账户和资源的访问令牌。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "这个选项通过 AD Connector 直接连接到现有的本地 Active Directory，确保开发团队可以使用现有的身份验证和组管理。\n使用 AWS IAM Identity Center（前称 AWS Single Sign-On）可集中管理对多个 AWS 账户的访问，简化权限管理，并能够轻松根据 AD 组配置权限集。\n此解决方案最小化了运营开销，因为它利用了现有的身份管理系统，而不是创建和管理新的用户身份或多个 IAM 用户。",
+  "AI解析": "本题核心在于通过本地Active Directory实现跨AWS账户的集中身份管理。AWS IAM Identity Center（原AWS SSO）专为多账户权限集中控制设计，AD Connector无需在AWS托管目录即可桥接本地AD，避免维护双目录的复杂性。选项C通过AD Connector建立实时连接，利用IAM Identity Center将权限集映射到AD组，实现基于现有目录的精细化跨账户访问，且权限变更自动同步；而A需维护双向信任关系，D的Cognito侧重外部用户身份池，B手动管理违背最小开销原则。"
+ }
+}

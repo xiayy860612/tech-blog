@@ -1,0 +1,18 @@
+{
+ "qid": "1908085448",
+ "index": 714,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在公司的 AWS 帐户中使用 Amazon EC2、AWS Fargate 和 AWS Lambda 运行多个工作负载。该公司希望充分利用其的 Compute Savings Plans。当 Compute Savings Plans 的覆盖范围下降时，公司希望收到通知。\n哪种解决方案能够以最高的运行效率满足这些要求？",
+ "options": [
+  "A. 使用 AWS Budgets 创建每日预算，配置预算的覆盖率阈值，以向适当的电子邮件收件人发送通知。",
+  "B. 创建一个 Lambda 函数，针对 Savings Plans 运行一个覆盖范围报告。使用 Amazon Simple Email Service (Amazon SES) 将报告发送给适当的电子邮件收件人。",
+  "C. 为 Savings Plans 预算创建一个 AWS Budgets 报告。将频率设置为每日。",
+  "D. 创建一个 Savings Plans 警报订阅。启用所有通知选项。输入一个电子邮件地址以接收通知。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "选项 A 允许您使用 AWS Budgets 创建每日预算，并在覆盖率达到特定阈值时发送通知。这种方法提供了最高的操作效率，因为它可以根据特定的覆盖率阈值自动发送通知，无需手动操作或编写自定义代码。相比其他选项，这种方法也更直观和易于管理。",
+  "AI解析": "AWS Budgets服务支持对Savings Plans覆盖率的监控与告警设置。根据AWS文档，用户可在AWS Budgets中创建预算，选择Savings Plans覆盖率为监控指标，并指定阈值。当覆盖率低于该值时，系统自动发送通知至指定邮箱。选项B涉及自定义代码与额外服务，运维成本较高；选项C的报告功能不具备主动告警能力；选项D描述的订阅功能并非AWS原生支持。选项A通过内置功能实现自动化监控，符合最佳实践。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "1529124316",
+ "index": 395,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上实施了一个自管理的DNS服务。该解决方案包括以下内容：\n• 不同AWS区域中的Amazon EC2实例\n• AWS全局加速器中的标准加速器终端\n该公司希望保护解决方案免受DDoS攻击。\n解决方案架构师应该采取哪些措施来满足这一要求？",
+ "options": [
+  "A. 订阅AWS Shield Advanced。将加速器添加为要保护的资源。",
+  "B. 订阅AWS Shield Advanced。将EC2实例添加为要保护的资源。",
+  "C. 创建一个包含速率基础规则的AWS WAF web ACL。将web ACL与加速器关联。",
+  "D. 创建一个包含速率基础规则的AWS WAF web ACL。将web ACL与EC2实例关联。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "为了保护解决方案免受DDoS攻击，应该订阅AWS Shield Advanced服务。AWS Shield Advanced提供高级的DDoS保护，并可以用于保护AWS Global Accelerator加速器，而不是EC2实例。因此，选项A是正确的选择。\n选项B是不正确的，因为在这种情况下，保护的重点应该放在加速器上，而不是EC2实例。\n选项C和选项D是关于AWS WAF的，但题目中没有提到需要基于Web应用程序防火墙（WAF）的保护。AWS WAF通常用于应用程序层的安全性，而不是DDoS攻击的防护。",
+  "AI解析": "AWS Shield Advanced提供针对DDoS攻击的增强防护，可保护AWS资源如Global Accelerator。AWS文档指出，Shield Advanced保护适用于加速器。选项A正确，因加速器是面向互联网的入口点，保护加速器可覆盖其后端资源。选项B错误，Shield Advanced直接保护加速器而非EC2实例。选项C和D涉及WAF速率规则，但WAF主要防御第7层攻击，题目未指定应用层防护需求。"
+ }
+}

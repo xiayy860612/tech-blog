@@ -1,0 +1,18 @@
+{
+ "qid": "1908084792",
+ "index": 675,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司的应用程序使用Network Load Balancers、Auto Scaling组、Amazon EC2实例和部署在Amazon VPC中的数据库。公司希望在其Amazon VPC中以近实时方式捕获有关网络接口往来的流量信息。公司希望将这些信息发送到Amazon OpenSearch Service进行分析。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在Amazon CloudWatch Logs中创建一个日志组。配置VPC Flow Logs将日志数据发送到该日志组。使用Amazon Kinesis Data Streams将日志从日志组流式传输到OpenSearch Service。",
+  "B. 在Amazon CloudWatch Logs中创建一个日志组。配置VPC Flow Logs将日志数据发送到该日志组。使用Amazon Kinesis Data Firehose将日志从日志组流式传输到OpenSearch Service。",
+  "C. 在AWS CloudTrail中创建一个跟踪。配置VPC Flow Logs将日志数据发送到该跟踪。使用Amazon Kinesis Data Streams将日志从跟踪流式传输到OpenSearch Service。",
+  "D. 在AWS CloudTrail中创建一个跟踪。配置VPC Flow Logs将日志数据发送到该跟踪。使用Amazon Kinesis Data Firehose将日志从跟踪流式传输到OpenSearch Service。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "选项 B 提供了一种解决方案，通过创建CloudWatch Logs日志组，并配置VPC Flow Logs将数据发送到该日志组。随后，使用Kinesis Data Firehose将日志从日志组流式传输到OpenSearch Service，实现了实时数据的捕获和分析。\n选项 A 中使用了Kinesis Data Streams，这对于大规模的实时流式数据处理可能更为适用，但对于这个场景，Data Firehose更简单、适用。\n选项 C 和 D 使用AWS CloudTrail，但CloudTrail主要用于审计AWS资源的 API 活动，而不是网络流量的捕获。\n因此，选项 B 是在满足要求的同时操作开销相对较小的解决方案。",
+  "AI解析": "AWS服务集成中，VPC流量日志需发送至OpenSearch。VPC Flow Logs支持将日志发送到CloudWatch Logs（选项A、B）。Kinesis Data Firehose可直接将数据从CloudWatch传输到OpenSearch，而无需额外处理。CloudTrail（选项C、D）不处理VPC Flow Logs。AWS文档指出，Kinesis Data Firehose是推荐的服务，用于将CloudWatch Logs数据加载到OpenSearch。选项B正确组合了CloudWatch Logs与Firehose，满足近实时传输需求。"
+ }
+}

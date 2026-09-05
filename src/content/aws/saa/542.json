@@ -1,0 +1,19 @@
+{
+ "qid": "1529125599",
+ "index": 542,
+ "total": 1018,
+ "type": "多选题",
+ "question": "某公司在多个单独结算的AWS账户中运行Amazon EC2实例。该公司最近购买了一项Savings Plan。由于公司业务需求的变化，公司已经停用了大量的EC2实例。公司希望在其他AWS账户中使用其Savings Plan折扣。\n哪种步骤组合将满足这些要求？（选择两项）",
+ "options": [
+  "A. 在管理账户的AWS账户管理控制台中，从计费首选项部分开启折扣共享。",
+  "B. 在购买现有Savings Plan的账户的AWS账户管理控制台中，从计费首选项部分开启折扣共享。包括所有账户。",
+  "C. 在AWS Organizations的管理账户中，使用AWS资源访问管理器（AWS RAM）与其他账户共享Savings Plan。",
+  "D. 在新的支付账户中的AWS Organizations中创建一个组织。从管理账户邀请其他AWS账户加入组织。",
+  "E. 在拥有现有EC2实例和Savings Plan的现有AWS账户中的AWS Organizations中创建一个组织。从管理账户邀请其他AWS账户加入组织。"
+ ],
+ "answer": {
+  "正确答案": "AE",
+  "解析": null,
+  "AI解析": "Savings Plans折扣共享需通过AWS Organizations统一管理。AWS官方文档指出，管理账户需在计费首选项中启用折扣共享，使组织内所有账户自动享受Savings Plan优惠。构建组织时，必须在现有已购Savings Plan的账户中启用AWS Organizations，将该账户设为管理账户，后续邀请其他账户加入组织方能生效。选项A对应开启共享的配置操作，选项E正确创建组织结构的步骤。未正确设置Organizations或共享选项将导致跨账户折扣无法应用。"
+ }
+}

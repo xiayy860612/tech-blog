@@ -1,0 +1,18 @@
+{
+ "qid": "1908084775",
+ "index": 658,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在迁移其数据中心，希望在2周内安全地将50TB的数据传输到AWS。现有数据中心与AWS之间有一个90%被利用的站点到站点VPN连接。\n解决这些要求，解决方案架构师应该使用哪个AWS服务？",
+ "options": [
+  "A. 带有VPC终端节点的AWS DataSync",
+  "B. AWS Direct Connect",
+  "C. AWS Snowball Edge Storage Optimized",
+  "D. AWS Storage Gateway"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "由于现有的VPN连接已经90%被利用，使用AWS DataSync（选项A）可能会受到网络带宽限制。AWS Direct Connect（选项B）是一种可行的选择，但在短时间内可能需要较长的时间来设置和部署。\nAWS Snowball Edge Storage Optimized（选项C）是一种物理设备，可以快速、安全地迁移大量数据到AWS。它可以在本地进行数据预加载，然后将设备快速地邮寄到AWS进行导入。这是一个适合紧急且大量数据传输的解决方案。\nAWS Storage Gateway（选项D）是一种服务，可将本地数据存储与云存储集成，但不适合快速迁移大量数据的紧急需求。",
+  "AI解析": "AWS Snowball Edge Storage Optimized适用于大规模数据迁移场景，尤其是网络带宽受限或传输时间不可接受的情况。AWS官方文档指出，当网络传输时间过长时，使用物理设备（如Snow系列）是更高效的选择。现有VPN利用率已达90%，无法满足50TB数据在两周内传输的带宽需求。选项A的DataSync依赖现有网络，B的Direct Connect虽提供专用连接但需额外带宽，D的Storage Gateway主要用于混合云存储集成而非批量迁移。选项C通过物理设备离线传输数据，避免了网络瓶颈，符合题干的时间和安全要求。答案：C"
+ }
+}

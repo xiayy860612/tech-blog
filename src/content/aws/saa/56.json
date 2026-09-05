@@ -1,0 +1,17 @@
+{
+ "index": 56,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在AWS上托管了一个网站，该网站位于一个已配置为分别处理HTTP和HTTPS的Application Load Balancer (ALB)之后。公司希望将所有请求重定向到使用HTTPS。",
+ "options": [
+  "A. 更新ALB的网络ACL以仅接受HTTPS流量。",
+  "B. 创建一个规则，将URL中的HTTP替换为HTTPS。",
+  "C. 在ALB上创建一个监听规则，将HTTP流量重定向到HTTPS。",
+  "D. 用使用Server Name Indication (SNI)配置的Network Load Balancer替换ALB。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C是最符合要求的答案。通过在ALB上创建一个监听规则，你可以捕获到达ALB的HTTP流量，并将其重定向到HTTPS。这是一种常见的方式来确保网站的所有请求都使用HTTPS，以提高安全性。\n其他选项中，A提到了更新ALB的网络ACL，但ACL主要用于控制访问安全组，而不是HTTP到HTTPS的重定向。选项B提到了替换URL中的HTTP，但这通常不是最佳做法，因为它要求客户端输入正确的URL，而不是自动重定向。选项D提到了替换ALB为Network Load Balancer，但这不是必要的，只需在ALB上配置监听规则即可实现HTTP到HTTPS的重定向。",
+  "AI解析": "AWS的Application Load Balancer（ALB）支持通过监听器规则配置流量重定向。官方文档指出，可以在ALB上为HTTP 80端口添加监听器，并设置规则将所有请求重定向至HTTPS 443端口。选项C通过ALB监听规则直接实现协议级别的重定向，是标准做法。选项A错误，因网络ACL控制的是子网流量而非ALB行为；选项B未涉及协议重定向；选项D的NLB不处理应用层协议转换。ALB的HTTP到HTTPS重定向功能属于其核心设计特性。"
+ }
+}

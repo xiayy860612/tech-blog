@@ -1,0 +1,18 @@
+{
+ "qid": "1908085436",
+ "index": 702,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地数据中心中有 NFS 服务器，需要定期将少量数据备份到 Amazon S3。哪种解决方案既能满足这些要求又是最具成本效益的？",
+ "options": [
+  "A. 设置 AWS Glue 来将数据从本地服务器复制到 Amazon S3。",
+  "B. 在本地服务器上设置一个 AWS DataSync 代理，并将数据同步到 Amazon S3。",
+  "C. 使用 AWS Transfer for SFTP 设置一个 SFTP 同步，将数据从本地同步到 Amazon S3。",
+  "D. 在本地数据中心和 VPC 之间建立一个 AWS Direct Connect 连接，并将数据复制到 Amazon S3。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "AWS DataSync 是一个专为数据传输和迁移设计的服务，可轻松地将数据从本地存储同步到 Amazon S3。它提供了高效的数据传输、安全性和可靠性，并且与 S3 高度集成。相比其他选项，使用 AWS DataSync 既简单又经济高效。",
+  "AI解析": "该题目考察如何经济高效地将本地NFS数据定期备份至Amazon S3。AWS官方文档指出，AWS DataSync专为混合云存储场景设计，支持自动化、优化的数据传输，尤其适合NFS等文件系统与S3之间的同步。选项B通过本地部署DataSync代理直接与S3集成，无需额外配置复杂服务或昂贵网络连接；选项A的Glue面向ETL场景，不适合简单备份；选项C的SFTP引入不必要协议层；选项D的Direct Connect成本过高，适合大规模持续数据传输而非少量备份场景。正确答案B符合低成本、高效率的要求。"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "qid": "2264604780",
+ "index": 809,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司从供应商那里收集和处理数据。供应商将其数据存储在供应商自己的AWS账户中的Amazon RDS for MySQL数据库中。公司的VPC没有互联网网关、AWS Direct Connect连接或AWS站点到站点VPN连接。公司需要访问供应商数据库中的数据。哪种解决方案将满足这个需求？",
+ "options": [
+  "A. 指示供应商注册AWS Hosted Connection Direct Connect Program。使用VPC peering连接公司的VPC和供应商的VPC。",
+  "B. 在公司的VPC和供应商的VPC之间配置客户端VPN连接。使用VPC Peering连接公司的VPC和供应商的VPC。",
+  "C. 指示供应商创建一个网络负载均衡器（NLB）。将NLB放置在Amazon RDS for MySQL数据库的前面。使用AWS PrivateLink集成公司的VPC和供应商的VPC。",
+  "D. 使用AWS Transit Gateway集成公司的VPC和供应商的VPC。使用VPC peering连接公司的VPC和供应商的VPC。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项C提供了最佳的解决方案。通过指示供应商创建一个网络负载均衡器（NLB），然后将NLB放置在Amazon\nRDS for MySQL数据库的前面，可以使用AWS PrivateLink将公司的VPC和供应商的VPC进行集成。这种方式不需要公司的VPC具有互联网访问权限，同时保持了安全性。其他选项涉及使用VPC peering或AWS Transit Gateway，但这些方法都需要公司的VPC有互联网访问权限，不符合题目中的要求。",
+  "AI解析": "AWS网络架构设计中，当需要跨VPC私有访问资源且不具备互联网网关、Direct Connect或VPN时，AWS PrivateLink是推荐方案。供应商创建网络负载均衡器（NLB）并发布为VPC端点服务，公司通过PrivateLink建立私有连接，流量通过AWS内部网络传输，无需经过公共互联网。其他选项涉及VPC Peering、VPN或Direct Connect，均依赖网络连接方式不符合题干限制条件。参考AWS文档中关于PrivateLink的应用场景，该方案适用于无公网访问需求的跨VPC数据交互。"
+ }
+}

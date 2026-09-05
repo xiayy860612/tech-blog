@@ -1,0 +1,18 @@
+{
+ "qid": "2949540247",
+ "index": 906,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望在其测试环境中使用AWS CloudFormation堆栈。该公司将CloudFormation模板存储在一个阻止公共访问的Amazon S3存储桶中。公司希望根据用户创建测试环境的特定请求，授予CloudFormation访问S3存储桶中模板的权限。解决方案必须遵循安全最佳实践。\n哪种解决方案能够满足这些要求？",
+ "options": [
+  "A. 为Amazon S3创建一个网关VPC端点。将CloudFormation堆栈配置为使用S3对象的URL。",
+  "B. 创建一个以S3存储桶为目标的Amazon API Gateway REST API。将CloudFormation堆栈配置为使用API Gateway URL。",
+  "C. 为模板对象创建一个预签名URL。将CloudFormation堆栈配置为使用预签名URL。",
+  "D. 允许公共访问S3存储桶中的模板对象。在创建测试环境后阻止公共访问。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "预签名URL是一种安全的方式，允许对存储在Amazon S3中的特定对象进行临时访问。通过为CloudFormation模板创建预签名URL，可以在不公开访问S3存储桶的情况下授予临时访问权限，这符合安全最佳实践。预签名URL具有时间限制，确保访问权限仅在特定时间段内有效，从而降低了安全风险。",
+  "AI解析": "AWS CloudFormation需要安全访问私有S3存储桶中的模板。预签名URL通过生成有时限的临时URL，无需公开存储桶或放宽权限，确保了最小权限原则。根据AWS文档，预签名URL适用于临时授权特定对象的访问请求。选项C直接解决了临时安全访问的问题，其他选项涉及公共访问或复杂架构，不符合最佳实践。正确答案C。"
+ }
+}

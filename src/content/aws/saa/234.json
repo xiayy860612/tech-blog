@@ -1,0 +1,17 @@
+{
+ "index": 234,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司正在将其本地Oracle数据库迁移到Amazon Aurora PostgreSQL。该数据库有多个应用程序写入相同的表。这些应用程序需要逐个迁移，每次迁移之间间隔一个月。管理层担心数据库有大量读写操作。在整个迁移过程中，数据必须在两个数据库之间保持同步。\n解决方案架构师应该推荐什么？",
+ "options": [
+  "A. 使用AWS DataSync进行初始迁移。使用AWS Database Migration Service（AWS DMS）创建一个变更数据捕获（CDC）复制任务和一个表映射以选择所有表。",
+  "B. 使用AWS DataSync进行初始迁移。使用AWS Database Migration Service（AWS DMS）创建一个完整加载加变更数据捕获（CDC）复制任务和一个表映射以选择所有表。",
+  "C. 使用AWS Schema Conversion Tool与AWS Database Migration Service（AWS DMS），使用内存优化的复制实例。创建一个完整加载加变更数据捕获（CDC）复制任务和一个表映射以选择所有表。",
+  "D. 使用AWS Schema Conversion Tool与AWS Database Migration Service（AWS DMS），使用计算优化的复制实例。创建一个完整加载加变更数据捕获（CDC）复制任务和一个表映射以选择最大的表。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": null,
+  "AI解析": "该场景需要异构数据库迁移（Oracle到PostgreSQL）并保持长期数据同步，涉及模式转换和持续变更捕获。AWS Schema Conversion Tool用于自动转换Oracle模式至PostgreSQL兼容结构，避免手动重构；AWS DMS的完整加载+CDC任务组合既能完成初始全量迁移，又能实时同步增量写入。内存优化型复制实例适合高并发读写场景，确保CDC处理大量变更时低延迟。表映射选择所有表覆盖完整业务数据流，排除部分表映射（选项D）或纯数据传输工具（选项A/B）无法满足跨引擎迁移需求。"
+ }
+}

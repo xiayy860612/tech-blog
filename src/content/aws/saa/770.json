@@ -1,0 +1,18 @@
+{
+ "qid": "1908085504",
+ "index": 770,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司在本地 Oracle 关系数据库中存储数据。该公司需要将数据用于 Amazon Aurora PostgreSQL 进行分析。公司使用 AWS 站点到站点 VPN 连接将其本地网络连接到 AWS。\n在迁移到 Aurora PostgreSQL 过程中，公司必须捕获源数据库发生的更改。\n哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 使用 AWS Schema Conversion Tool (AWS SCT) 将 Oracle 模式转换为 Aurora PostgreSQL 模式。使用 AWS 数据库迁移服务 (AWS DMS) 完成迁移任务以迁移数据。",
+  "B. 使用 AWS DataSync 将数据迁移到 Amazon S3 存储桶。通过使用 Aurora PostgreSQL 的 aws_s3 扩展，将 S3 数据导入到 Aurora PostgreSQL。",
+  "C. 使用 AWS Schema Conversion Tool (AWS SCT) 将 Oracle 模式转换为 Aurora PostgreSQL 模式。使用 AWS 数据库迁移服务 (AWS DMS) 迁移现有数据并复制正在发生的更改。",
+  "D. 使用 AWS Snowball 设备将数据迁移到 Amazon S3 存储桶。通过使用 Aurora PostgreSQL 的 aws_s3 扩展，将 S3 数据导入到 Aurora PostgreSQL。"
+ ],
+ "answer": {
+  "正确答案": "C",
+  "解析": "选项 C 结合了 AWS Schema Conversion Tool (AWS SCT) 和 AWS 数据库迁移服务 (AWS DMS)。使用 AWS SCT 可以将 Oracle 数据库的模式转换为 Aurora PostgreSQL 兼容的模式，而 AWS DMS 则可用于迁移现有数据并在迁移过程中复制正在发生的更改。这种方法可以确保在迁移期间捕获到源数据库的更改，并使迁移后的数据库保持最新。",
+  "AI解析": "AWS Schema Conversion Tool (AWS SCT) 用于将 Oracle 模式转换为与 PostgreSQL 兼容的模式，解决异构数据库之间的结构差异。AWS 数据库迁移服务 (AWS DMS) 支持全量迁移和增量复制，能够迁移现有数据的同时持续捕获源数据库的变更。选项 C 完整覆盖了模式转换、数据迁移及变更捕获三个核心步骤。选项 A 未提及增量复制，选项 B 和 D 通过 S3 迁移无法保证实时捕获数据库变更，且缺乏模式转换的直接支持。AWS 文档指出，DMS 支持持续数据复制（CDC），适用于需要最小停机时间的场景。"
+ }
+}

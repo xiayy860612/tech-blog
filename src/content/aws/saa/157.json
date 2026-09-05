@@ -1,0 +1,17 @@
+{
+ "index": 157,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一个娱乐公司正在使用Amazon DynamoDB来存储媒体元数据。应用程序具有高读取负载且正在遇到延迟。公司没有员工来处理额外的运维开销，需要提高DynamoDB的性能效率，而不重新配置应用程序。",
+ "options": [
+  "A. 使用Amazon ElastiCache for Redis。",
+  "B. 使用Amazon DynamoDB Accelerator (DAX)。",
+  "C. 通过使用DynamoDB全局表来复制数据。",
+  "D. 使用已启用Auto Discovery的Amazon ElastiCache for Memcached。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": "使用Amazon DynamoDB Accelerator (DAX)是一个适合的解决方案，因为它可以提高DynamoDB的性能，而无需重新配置应用程序。DAX是一个全托管的缓存服务，可以自动缓存DynamoDB的查询结果，从而显著减少了读取负载对DynamoDB的影响，提供更快的响应时间。这意味着您可以在不增加操作开销的情况下提高性能。其他选项不直接解决性能问题，或者会引入不必要的复杂性。",
+  "AI解析": "Amazon DynamoDB Accelerator (DAX) 是针对 DynamoDB 读取密集型应用设计的全托管内存缓存服务。DynamoDB 文档指出，DAX 通过提供毫秒级微秒响应时间，无需更改现有应用程序代码，直接降低读取延迟。选项 A 和 D 需要应用层处理缓存逻辑，增加了运维复杂度。选项 C 的全局表用于跨区域复制，不直接优化读取性能。DAX 的无缝集成特性和无需代码调整的优势使其成为最符合题意的解决方案。"
+ }
+}

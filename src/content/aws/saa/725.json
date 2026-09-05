@@ -1,0 +1,18 @@
+{
+ "qid": "1908085459",
+ "index": 725,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司已经部署了一款面向移动设备的多人游戏。游戏需要基于经度和纬度的玩家实时位置跟踪。游戏的数据存储必须支持快速更新和检索位置信息。\n游戏使用Amazon RDS for PostgreSQL DB实例以及读取副本来存储位置数据。在高峰使用期间，数据库无法保持所需的读写更新性能。游戏的用户基数正在迅速增长。\n解决方案架构师应该如何提高数据层的性能？",
+ "options": [
+  "A. 对现有DB实例进行快照。使用启用了Multi-AZ的快照进行恢复。",
+  "B. 从Amazon RDS迁移到具有OpenSearch Dashboards的Amazon OpenSearch Service。",
+  "C. 在现有DB实例前部署Amazon DynamoDB Accelerator (DAX)。修改游戏以使用DAX。",
+  "D. 在现有DB实例前部署Amazon ElastiCache for Redis集群。修改游戏以使用Redis。"
+ ],
+ "answer": {
+  "正确答案": "D",
+  "解析": "部署 Amazon ElastiCache for Redis 集群可以帮助提高数据层的性能。Redis 是一种内存数据库，具有快速读写能力和高度可扩展性，非常适合实时位置跟踪等需要快速更新和检索数据的应用场景。通过将 Redis 集群部署在现有的架构中，并相应地修改游戏以利用 Redis，可以提高数据层的性能和扩展性，应对用户基数迅速增长的挑战。",
+  "AI解析": "该题考察如何优化高并发场景下的数据库性能。来源涉及AWS架构最佳实践，针对实时数据处理需求。选项D中，Amazon ElastiCache for Redis作为内存数据库，能够提供低延迟的数据访问，显著缓解RDS实例的读写压力。Redis的缓存机制适合频繁更新的位置信息，提升吞吐量。选项B的OpenSearch侧重搜索分析，非实时写入场景。选项C的DAX仅适用于DynamoDB，与当前RDS架构不兼容。选项A的Multi-AZ提升可用性而非性能。"
+ }
+}

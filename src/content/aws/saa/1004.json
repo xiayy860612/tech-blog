@@ -1,0 +1,18 @@
+{
+ "qid": "2949543544",
+ "index": 1004,
+ "total": 1018,
+ "type": "单选题",
+ "question": "公司通过网站上的调查问卷追踪客户满意度。每小时的调查问卷有时会发送给成千上万的客户。目前，调查结果通过电子邮件发送给公司，以便公司员工手动查看结果并评估客户情绪。公司希望自动化处理客户调查流程，并且调查结果需要保存最近12个月的数据。\n哪种解决方案最具可扩展性并满足这些需求？",
+ "options": [
+  "A. 将调查结果数据发送到与 Amazon Simple Queue Service (Amazon SQS) 队列相连接的 Amazon API Gateway 端点。创建 AWS Lambda 函数轮询 SQS 队列，调用 Amazon Comprehend 进行情感分析，并将结果保存到 Amazon DynamoDB 表中。将所有记录的 TTL 设置为365天。",
+  "B. 将调查结果数据发送到运行在 Amazon EC2 实例上的 API。配置该 API 将调查结果作为新记录存储在 Amazon DynamoDB 表中，调用 Amazon Comprehend 进行情感分析，并将结果保存到第二个 DynamoDB 表中。将所有记录的 TTL 设置为365天。",
+  "C. 将调查结果数据写入 Amazon S3 存储桶。使用 S3 事件通知触发 AWS Lambda 函数读取数据，并调用 Amazon Rekognition 进行情感分析。将情感分析结果存储在第二个 S3 存储桶中。对每个存储桶使用 S3 生命周期策略在365天后过期对象。",
+  "D. 将调查结果数据发送到与 Amazon Simple Queue Service (Amazon SQS) 队列相连接的 Amazon API Gateway 端点。配置 SQS 队列触发 AWS Lambda 函数，调用 Amazon Lex 进行情感分析，并将结果保存到 Amazon DynamoDB 表中。将所有记录的 TTL 设置为365天。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": "需求是自动化处理大量调查问卷，进行情感分析，并存储12个月。方案A最匹配：使用API Gateway接收数据，SQS队列缓冲和消峰，Lambda处理实现无服务器自动化，DynamoDB存储，TTL365天符合12个月要求，且Amazon Comprehend专用于自然语言情感分析。其他选项：B使用EC2无弹性伸缩；C使用Rekognition是图像视频分析，不适合文本情感；D使用Lex是聊天机器人，不适合分析。故A最具可扩展性",
+  "AI解析": "本题核心在于处理高并发调查数据时需采用无服务器架构确保扩展性，并精准选用情感分析服务。Amazon API Gateway和SQS组合可缓冲突发流量，Lambda自动触发处理任务避免资源闲置；Amazon Comprehend专用于文本情感分析，而Lex适用于对话交互，Rekognition处理多媒体，故排除C、D。选项B依赖EC2实例存在扩展瓶颈，而A通过SQS解耦数据接收与处理，DynamoDB TTL精准控制数据保留12个月，实现全托管自动化流程。"
+ }
+}

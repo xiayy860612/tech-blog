@@ -1,0 +1,18 @@
+{
+ "qid": "2264604781",
+ "index": 810,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司希望将Amazon\nManaged Grafana设置为其可视化工具。公司希望将来自其Amazon RDS数据库的数据可视化为一个数据源。公司需要一个安全的解决方案，不会将数据暴露在互联网上。哪种解决方案将满足这些要求？",
+ "options": [
+  "A. 在没有VPC的情况下创建一个Amazon Managed Grafana工作区。为RDS数据库创建一个公共端点。在Amazon Managed Grafana中将公共端点配置为数据源。",
+  "B. 在VPC中创建一个Amazon Managed Grafana工作区。为RDS数据库创建一个私有端点。在Amazon Managed Grafana中将私有端点配置为数据源。",
+  "C. 在没有VPC的情况下创建一个Amazon Managed Grafana工作区。创建一个AWS PrivateLink端点来建立Amazon Managed Grafana和Amazon RDS之间的连接。在Amazon Managed Grafana中设置Amazon RDS为数据源。",
+  "D. 在VPC中创建一个Amazon Managed Grafana工作区。为RDS数据库创建一个公共端点。在Amazon Managed Grafana中将公共端点配置为数据源。"
+ ],
+ "answer": {
+  "正确答案": "B",
+  "解析": null,
+  "AI解析": "Amazon Managed Grafana支持通过AWS PrivateLink与数据源建立私有连接，确保流量不经过互联网。根据AWS文档，当数据源位于VPC中时，使用PrivateLink可在不暴露公共端点的情况下安全访问。选项A和D的公共端点存在暴露风险。选项B的私有端点通常需配合VPC内部配置，但未提及PrivateLink。选项C正确使用PrivateLink，私有连接满足安全要求。答案选择C。"
+ }
+}

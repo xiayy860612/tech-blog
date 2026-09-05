@@ -1,0 +1,17 @@
+{
+ "index": 303,
+ "total": 1018,
+ "type": "单选题",
+ "question": "一家公司最近在不同的AWS区域创建了一个灾难恢复站点。该公司需要定期在两个区域之间传输大量数据，这些数据存储在NFS文件系统中。\n哪种解决方案将以最小的运营开销满足这些要求？",
+ "options": [
+  "A. 使用AWS DataSync。",
+  "B. 使用AWS Snowball设备。",
+  "C. 在Amazon EC2上设置SFTP服务器。",
+  "D. 使用AWS Database Migration Service (AWS DMS)。"
+ ],
+ "answer": {
+  "正确答案": "A",
+  "解析": null,
+  "AI解析": "AWS DataSync是一项专为大规模数据传输和复制设计的托管服务，支持跨区域或混合环境中的NFS、SMB文件系统及对象存储。它能自动处理增量同步，减少网络消耗，无需手动干预。AWS Snowball适用于离线传输极大数据量，涉及硬件操作。自建SFTP服务器需管理基础设施及维护，增加运营成本。AWS DMS专注于数据库迁移而非文件系统。根据AWS文档，DataSync针对自动化、高效的文件系统数据同步场景优化，符合题干中\"最小运营开销\"的需求。"
+ }
+}
